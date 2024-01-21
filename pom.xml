@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.endless</groupId>
+    <artifactId>fanli</artifactId>
+    <version>0.0.6-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>fanli</name>
+    <description>God of wealth named FanLi.</description>
+    <url>https://github.com/org-endless/fanli</url>
+    <organization>
+        <name>Endless, Org.</name>
+        <url>https://github.com/org-endless</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Endless</name>
+            <email>haozhi_deng@126.com</email>
+            <organization>Endless, Org.</organization>
+            <organizationUrl>https://github.com/org-endless</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/spring-projects/org-endless/fanli.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/org-endless/fanli.git</developerConnection>
+        <url>https://github.com/org-endless/fanli</url>
+    </scm>
+
+    <properties>
+        <!-- Maven -->
+        <java.version>21</java.version>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <maven.compiler.encoding>${encoding}</maven.compiler.encoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-compiler-plugin.version>3.12.0</maven-compiler-plugin.version>
+
+        <endless.version>0.0.6-SNAPSHOT</endless.version>
+    </properties>
+    <modules>
+        <module>fanli-core</module>
+        <module>fanli-domain</module>
+        <module>fanli-infrastructure</module>
+        <module>fanli-trigger</module>
+        <module>fanli-type</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>fanli-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>fanli-trigger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>endless-dependencies</artifactId>
+                <version>${endless.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
