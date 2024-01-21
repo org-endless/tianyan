@@ -2,7 +2,7 @@ package org.endless.erp.game.eve.market.order;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.endless.erp.share.ddd.order.Order;
+import org.endless.fanli.common.type.ddd.order.Order;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.validation.annotation.Validated;
 

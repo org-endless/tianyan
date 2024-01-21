@@ -3,7 +3,7 @@ package org.endless.erp.game.eve.market.saleHistory;
 import lombok.extern.log4j.Log4j2;
 import org.endless.erp.game.eve.item.GameEveItem;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
-import org.endless.erp.share.ddd.industry.Industry;
+import org.endless.fanli.common.type.ddd.industry.Industry;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
 import org.endless.spring.boot.com.utiliy.decimal.Decimal;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
@@ -33,11 +33,11 @@ import java.util.Map;
 @Component("gameEveMarketSaleHistoryTask")
 public class GameEveMarketSaleHistorySaveTask implements GameEveAsyncTask {
 
-    private final GameEveMarketSaleHistoryAdapter marketSaleHistoryAdapter;
+    private final org.endless.erp.game.eve.market.saleHistory.GameEveMarketSaleHistoryAdapter marketSaleHistoryAdapter;
 
     private final MongoBulkOperations bulkRepository;
 
-    public GameEveMarketSaleHistorySaveTask(GameEveMarketSaleHistoryAdapter marketSaleHistoryAdapter, MongoBulkOperations bulkRepository) {
+    public GameEveMarketSaleHistorySaveTask(org.endless.erp.game.eve.market.saleHistory.GameEveMarketSaleHistoryAdapter marketSaleHistoryAdapter, MongoBulkOperations bulkRepository) {
         this.marketSaleHistoryAdapter = marketSaleHistoryAdapter;
         this.bulkRepository = bulkRepository;
     }
@@ -82,7 +82,7 @@ public class GameEveMarketSaleHistorySaveTask implements GameEveAsyncTask {
                         .set("updateTimeStamp", System.currentTimeMillis());
                 pairs.add(Pair.of(query, update));
             });
-            bulkRepository.upsert(pairs, GameEveMarketSaleHistory.class);
+            bulkRepository.upsert(pairs, org.endless.erp.game.eve.market.saleHistory.GameEveMarketSaleHistory.class);
         });
         log.info("Thread: " + Thread.currentThread().getName() + " save executed completely!");
     }

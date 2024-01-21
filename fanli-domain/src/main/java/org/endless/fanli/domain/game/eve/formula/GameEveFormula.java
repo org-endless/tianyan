@@ -1,7 +1,7 @@
 package org.endless.erp.game.eve.formula;
 
 import lombok.*;
-import org.endless.erp.share.ddd.formula.Formula;
+import org.endless.fanli.common.type.ddd.formula.Formula;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.validation.annotation.Validated;
 

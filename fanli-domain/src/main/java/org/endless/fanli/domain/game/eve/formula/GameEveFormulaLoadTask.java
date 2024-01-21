@@ -2,7 +2,7 @@ package org.endless.erp.game.eve.formula;
 
 import lombok.extern.slf4j.Slf4j;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
-import org.endless.erp.share.ddd.formula.Formula;
+import org.endless.fanli.common.type.ddd.formula.Formula;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
 import org.endless.spring.boot.com.utiliy.decimal.Decimal;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
@@ -56,38 +56,38 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
             if (manufacturing != null) {
 
                 log.trace("Get manufacturing pairs");
-                pairs.addAll(getPairs(manufacturing, GameEveFormula.Categories.manufacturing, formulaItemId, maxProductionLimit));
+                pairs.addAll(getPairs(manufacturing, org.endless.erp.game.eve.formula.GameEveFormula.Categories.manufacturing, formulaItemId, maxProductionLimit));
             }
 
             var invention = (Map<?, ?>) activities.get("invention");
             if (invention != null) {
 
                 log.trace("Get invention pairs");
-                pairs.addAll(getPairs(invention, GameEveFormula.Categories.invention, formulaItemId, maxProductionLimit));
+                pairs.addAll(getPairs(invention, org.endless.erp.game.eve.formula.GameEveFormula.Categories.invention, formulaItemId, maxProductionLimit));
             }
 
             var copying = (Map<?, ?>) activities.get("copying");
             if (copying != null) {
 
                 log.trace("Get copying pairs");
-                pairs.addAll(getPairs(copying, GameEveFormula.Categories.copying, formulaItemId, maxProductionLimit));
+                pairs.addAll(getPairs(copying, org.endless.erp.game.eve.formula.GameEveFormula.Categories.copying, formulaItemId, maxProductionLimit));
             }
 
             var researchMaterial = (Map<?, ?>) activities.get("research_material");
             if (researchMaterial != null) {
 
                 log.trace("Get researchMaterial pairs");
-                pairs.addAll(getPairs(researchMaterial, GameEveFormula.Categories.researchMaterial, formulaItemId, maxProductionLimit));
+                pairs.addAll(getPairs(researchMaterial, org.endless.erp.game.eve.formula.GameEveFormula.Categories.researchMaterial, formulaItemId, maxProductionLimit));
             }
             var researchTime = (Map<?, ?>) activities.get("research_time");
             if (researchTime != null) {
 
                 log.trace("Get researchTime pairs");
-                pairs.addAll(getPairs(researchTime, GameEveFormula.Categories.researchTime, formulaItemId, maxProductionLimit));
+                pairs.addAll(getPairs(researchTime, org.endless.erp.game.eve.formula.GameEveFormula.Categories.researchTime, formulaItemId, maxProductionLimit));
             }
         });
         log.trace(pairs.toString());
-        bulkRepository.upsert(pairs, GameEveFormula.class);
+        bulkRepository.upsert(pairs, org.endless.erp.game.eve.formula.GameEveFormula.class);
 
         long end = System.currentTimeMillis();
         log.debug("Thread: " + Thread.currentThread().getName() + " loading end: " + end);
@@ -100,7 +100,7 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
         long begin = System.currentTimeMillis();
         log.debug("Thread: " + Thread.currentThread().getName() + " loading begin: " + begin);
 
-        if (!categories.equals(GameEveFormula.Categories.planet)) {
+        if (!categories.equals(org.endless.erp.game.eve.formula.GameEveFormula.Categories.planet)) {
             return;
         }
 
@@ -150,14 +150,14 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
             pairs.add(Pair.of(query, update));
         });
         log.trace(pairs.toString());
-        bulkRepository.upsert(pairs, GameEveFormula.class);
+        bulkRepository.upsert(pairs, org.endless.erp.game.eve.formula.GameEveFormula.class);
 
         long end = System.currentTimeMillis();
         log.debug("Thread: " + Thread.currentThread().getName() + " loading end: " + end);
         log.info("Thread: " + Thread.currentThread().getName() + " loaded completed!");
     }
 
-    protected List<Pair<Query, Update>> getPairs(Map<?, ?> formula, GameEveFormula.Categories categories, String formulaItemId, BigDecimal maxProductionLimit) {
+    protected List<Pair<Query, Update>> getPairs(Map<?, ?> formula, org.endless.erp.game.eve.formula.GameEveFormula.Categories categories, String formulaItemId, BigDecimal maxProductionLimit) {
 
         List<Pair<Query, Update>> pairs = new ArrayList<>();
         var industryId = "game.eve";

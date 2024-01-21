@@ -4,7 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.endless.erp.game.eve.share.regular.GameEvePattern;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
 import org.endless.erp.share.constant.ConstantResource;
-import org.endless.erp.share.ddd.formula.FormulaService;
+import org.endless.fanli.common.type.ddd.formula.FormulaService;
 import org.endless.spring.boot.com.utiliy.file.FileLoader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,11 +29,11 @@ public class GameEveFormulaService implements FormulaService {
 
     private final GameEveAsyncTask asyncTask;
 
-    private final GameEveFormulaRepository formulaRepository;
+    private final org.endless.erp.game.eve.formula.GameEveFormulaRepository formulaRepository;
 
     public GameEveFormulaService(
             @Qualifier("gameEveFormulaLoadTask") GameEveAsyncTask asyncTask,
-            GameEveFormulaRepository formulaRepository) {
+            org.endless.erp.game.eve.formula.GameEveFormulaRepository formulaRepository) {
 
         this.asyncTask = asyncTask;
         this.formulaRepository = formulaRepository;
@@ -87,7 +87,7 @@ public class GameEveFormulaService implements FormulaService {
         log.info("Loading!");
         log.debug("Load main thread begin: " + begin);
 
-        if (!categories.equals(GameEveFormula.Categories.planet)) {
+        if (!categories.equals(org.endless.erp.game.eve.formula.GameEveFormula.Categories.planet)) {
             log.debug("Only for Categories.planet");
             return;
         }
@@ -122,7 +122,7 @@ public class GameEveFormulaService implements FormulaService {
         log.debug("main thread cost : " + (System.currentTimeMillis() - begin));
     }
 
-    public List<GameEveFormula> getAll() {
+    public List<org.endless.erp.game.eve.formula.GameEveFormula> getAll() {
         return formulaRepository.findAll();
     }
 }

@@ -2,7 +2,7 @@ package org.endless.erp.game.eve.market.saleHistory;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.endless.erp.share.ddd.saleHistory.SaleHistory;
+import org.endless.fanli.common.type.ddd.saleHistory.SaleHistory;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.validation.annotation.Validated;
 

@@ -13,6 +13,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.endless</groupId>
+            <artifactId>fanli-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.endless</groupId>
+            <artifactId>fanli-domain</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <exclusions>
@@ -30,6 +38,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <optional>true</optional>
         </dependency>
         <!-- Dev -->

@@ -2,7 +2,7 @@ package org.endless.erp.game.eve.item;
 
 import lombok.extern.slf4j.Slf4j;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
-import org.endless.erp.share.ddd.item.Item;
+import org.endless.fanli.common.type.ddd.item.Item;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
 import org.endless.spring.boot.com.utiliy.decimal.Decimal;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.endless.erp.share.ddd.industry.Industry.GAME_EVE;
+import static org.endless.fanli.common.type.ddd.industry.Industry.GAME_EVE;
 
 /**
  * GameEveItemLoadTask

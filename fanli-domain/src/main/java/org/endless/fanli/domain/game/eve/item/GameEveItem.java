@@ -1,33 +1,31 @@
-package org.endless.erp.game.eve.item;
+package org.endless.fanli.domain.game.eve.item;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.endless.erp.share.ddd.item.Item;
-import org.endless.erp.share.pattern.Regular;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.endless.fanli.common.constant.Regular;
+import org.endless.fanli.common.type.item.Item;
 import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveItem
- * <p>游戏EVE物品/商品类，映射数据文档game.eve.item
- * <p>Game EVE item class mapping the data document named game.eve.item.
+ * <p>游戏EVE物品/商品实体类
+ * <p>Game EVE item entities class.
  * <p>
  * <p>create 2023/03/07 1:28
- * <p>update 2023/05/28 00:35
+ * <p>update 2024/01/21 22:17
  *
  * @author Deng Haozhi
  * @see Item
- * @since 0.0.3
+ * @since 0.0.6
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Validated
-@Document("game.eve.item")
 public class GameEveItem extends Item {
 
     /**

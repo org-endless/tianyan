@@ -48,17 +48,33 @@
         <endless.version>0.0.6-SNAPSHOT</endless.version>
     </properties>
     <modules>
+        <module>fanli-application</module>
         <module>fanli-core</module>
         <module>fanli-domain</module>
         <module>fanli-infrastructure</module>
         <module>fanli-trigger</module>
-        <module>fanli-type</module>
+        <module>fanli-common</module>
     </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.endless</groupId>
+                <artifactId>fanli-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>fanli-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
                 <artifactId>fanli-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>fanli-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

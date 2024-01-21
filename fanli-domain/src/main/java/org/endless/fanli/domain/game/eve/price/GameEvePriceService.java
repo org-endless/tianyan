@@ -1,6 +1,6 @@
 package org.endless.erp.game.eve.price;
 
-import org.endless.erp.share.ddd.price.PriceServer;
+import org.endless.fanli.common.type.ddd.price.PriceServer;
 import org.springframework.stereotype.Service;
 
 /**

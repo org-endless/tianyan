@@ -2,7 +2,7 @@ package org.endless.erp.game.eve.market.order;
 
 import lombok.extern.log4j.Log4j2;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
-import org.endless.erp.share.ddd.order.OrderService;
+import org.endless.fanli.common.type.ddd.order.OrderService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -22,18 +22,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameEveMarketOrderService implements OrderService {
 
-    private final GameEveMarketOrderAdapter gameEveMarketOrderAdapter;
+    private final org.endless.erp.game.eve.market.order.GameEveMarketOrderAdapter gameEveMarketOrderAdapter;
 
     private final GameEveAsyncTask gameEveAsyncTask;
 
     private final MongoOperations mongoOperations;
 
-    private final GameEveMarketOrderRepository gameEveMarketOrderJpaRepository;
+    private final org.endless.erp.game.eve.market.order.GameEveMarketOrderRepository gameEveMarketOrderJpaRepository;
 
     public GameEveMarketOrderService(
-            GameEveMarketOrderAdapter gameEveMarketOrderAdapter,
+            org.endless.erp.game.eve.market.order.GameEveMarketOrderAdapter gameEveMarketOrderAdapter,
             @Qualifier("gameEveMarketOrderLoadTask") GameEveAsyncTask gameEveAsyncTask,
-            MongoOperations mongoOperations, GameEveMarketOrderRepository gameEveMarketOrderJpaRepository) {
+            MongoOperations mongoOperations, org.endless.erp.game.eve.market.order.GameEveMarketOrderRepository gameEveMarketOrderJpaRepository) {
 
         this.gameEveMarketOrderAdapter = gameEveMarketOrderAdapter;
         this.gameEveAsyncTask = gameEveAsyncTask;
@@ -57,7 +57,7 @@ public class GameEveMarketOrderService implements OrderService {
         mongoOperations.updateMulti(
                 Query.query(Criteria.where("existed").is(true)),
                 Update.update("existed", false),
-                GameEveMarketOrder.class);
+                org.endless.erp.game.eve.market.order.GameEveMarketOrder.class);
 
         for (int i = 0; i < pages; i++) {
             log.trace("The page is " + (i + 1));

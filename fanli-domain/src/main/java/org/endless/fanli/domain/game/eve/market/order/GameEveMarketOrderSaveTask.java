@@ -2,8 +2,8 @@ package org.endless.erp.game.eve.market.order;
 
 import lombok.extern.slf4j.Slf4j;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
-import org.endless.erp.share.ddd.industry.Industry;
-import org.endless.erp.share.ddd.order.Order;
+import org.endless.fanli.common.type.ddd.industry.Industry;
+import org.endless.fanli.common.type.ddd.order.Order;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
 import org.endless.spring.boot.com.utiliy.decimal.Decimal;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
@@ -32,11 +32,11 @@ import java.util.Map;
 @Component("gameEveMarketOrderLoadTask")
 public class GameEveMarketOrderSaveTask implements GameEveAsyncTask {
 
-    private final GameEveMarketOrderAdapter marketOrderAdapter;
+    private final org.endless.erp.game.eve.market.order.GameEveMarketOrderAdapter marketOrderAdapter;
 
     private final MongoBulkOperations bulkRepository;
 
-    public GameEveMarketOrderSaveTask(GameEveMarketOrderAdapter marketOrderAdapter, MongoBulkOperations bulkRepository) {
+    public GameEveMarketOrderSaveTask(org.endless.erp.game.eve.market.order.GameEveMarketOrderAdapter marketOrderAdapter, MongoBulkOperations bulkRepository) {
         this.marketOrderAdapter = marketOrderAdapter;
         this.bulkRepository = bulkRepository;
     }
@@ -78,7 +78,7 @@ public class GameEveMarketOrderSaveTask implements GameEveAsyncTask {
 
             pairs.add(Pair.of(query, update));
         });
-        bulkRepository.upsert(pairs, GameEveMarketOrder.class);
+        bulkRepository.upsert(pairs, org.endless.erp.game.eve.market.order.GameEveMarketOrder.class);
 
         long end = System.currentTimeMillis();
         log.debug("Thread: " + Thread.currentThread().getName() + " loading end: " + end);
