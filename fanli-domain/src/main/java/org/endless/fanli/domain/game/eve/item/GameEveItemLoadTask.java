@@ -50,6 +50,7 @@ public class GameEveItemLoadTask implements GameEveAsyncTask {
      */
     @Override
     public <T> void run(T scannerMaps) {
+        Boolean.valueOf(true);
 
         log.debug("Thread: " + Thread.currentThread().getName() + " load executing");
 

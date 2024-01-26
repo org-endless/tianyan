@@ -49,11 +49,12 @@
     </properties>
     <modules>
         <module>fanli-application</module>
+        <module>fanli-common</module>
+        <module>fanli-components/fanli-game-eve</module>
         <module>fanli-core</module>
         <module>fanli-domain</module>
         <module>fanli-infrastructure</module>
-        <module>fanli-trigger</module>
-        <module>fanli-common</module>
+        <module>fanli-user-interface</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -65,6 +66,12 @@
             <dependency>
                 <groupId>org.endless</groupId>
                 <artifactId>fanli-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Components -->
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>fanli-game-eve</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -79,7 +86,7 @@
             </dependency>
             <dependency>
                 <groupId>org.endless</groupId>
-                <artifactId>fanli-trigger</artifactId>
+                <artifactId>fanli-user-interface</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
