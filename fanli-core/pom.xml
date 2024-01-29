@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>fanli-core</artifactId>
-
+    
     <dependencies>
         <dependency>
             <groupId>org.endless</groupId>

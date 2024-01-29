@@ -1,11 +1,5 @@
 {
-  "eslint.enable": true,
-  "prettier.enable": true,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.prettier": "explicit"
-  },
 
   "files.exclude": {
     "**/.git": true,
@@ -16,22 +10,15 @@
     "**/.DS_Store": true,
     "**/.history": true,
     "**/Thumbs.db": true,
-
-    "**/.nuxt": true,
-    "**/.output": true,
-    "**/node_modules": true
-  },
-  "files.associations": {
-    "*.css": "tailwindcss"
+    "**/.output": true
   },
   "editor.quickSuggestions": {
     "strings": true
   },
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-21",
-      "path": "D:/Program Files/JDK/jdk-21.0.2",
-      "default": true
-    }
-  ]
+  "maven.terminal.customEnv": [],
+  "cSpell.words": ["fanli"],
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+  "java.jdt.ls.java.home": "D:\\Program Files\\JDK\\jdk-21.0.2"
 }

@@ -48,13 +48,13 @@
         <endless.version>0.0.6-SNAPSHOT</endless.version>
     </properties>
     <modules>
-        <module>fanli-application</module>
-        <module>fanli-common</module>
+        <!-- <module>fanli-application</module> -->
+        <!-- <module>fanli-common</module> -->
         <module>fanli-components/fanli-game-eve</module>
         <module>fanli-core</module>
-        <module>fanli-domain</module>
-        <module>fanli-infrastructure</module>
-        <module>fanli-user-interface</module>
+        <!-- <module>fanli-domain</module> -->
+        <!-- <module>fanli-infrastructure</module> -->
+        <!-- <module>fanli-user-interface</module> -->
     </modules>
     <dependencyManagement>
         <dependencies>
