@@ -1,21 +1,25 @@
 package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+// @Import(GameEveItemEsiRemoteAdapter.class)
 class GameEveItemEsiRemoteAdapterTest {
 
-    final GameEveItemEsiRemoteAdapter adapter;
+    // final GameEveItemEsiRemoteAdapter gameEveItemEsiRemoteAdapter;
 
-    GameEveItemEsiRemoteAdapterTest(GameEveItemEsiRemoteAdapter adapter) {
-        this.adapter = adapter;
+    // public GameEveItemEsiRemoteAdapterTest(
+    // GameEveItemEsiRemoteAdapter gameEveItemEsiRemoteAdapter) {
+    // this.gameEveItemEsiRemoteAdapter = gameEveItemEsiRemoteAdapter;
+    // }
+
+    @Test
+    void testGetItemByItemId() {
+        System.out.println("123");
     }
 
     @Test
-    void test() {
-        adapter.getItemIds(1);
-
+    void testGetItemIds() {
+        System.out.println("123");
+        System.out.println(gameEveItemEsiRemoteAdapter.getItemIds(1));
     }
-
 }

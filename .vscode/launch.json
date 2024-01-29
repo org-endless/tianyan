@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FanliCoreApplication<fanli-core>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.endless.fanli.FanliCoreApplication",
+            "projectName": "fanli-core",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
