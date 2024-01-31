@@ -7,5 +7,7 @@ public interface GameEveItemRemoteAdapter {
 
     List<String> getItemIds(Integer page);
 
+    Integer getItemIdPages();
+
     Optional<GameEveItem> getItemByItemId();
 }
