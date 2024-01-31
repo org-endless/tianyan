@@ -1,6 +1,6 @@
 package org.endless.fanli.component.game.eve.ui.driving.api.rest;
 
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.GameEveItemEsiRemoteAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.adapter.GameEveItemEsiRemoteAdapter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +33,8 @@ public class GameEveItemController {
     @PostMapping("/load")
     public String load() {
 
-        var result = "success";
+        // return gameEveItemRemoteAdapter.getItemIds(10).toString();
 
-        return String.valueOf(gameEveItemRemoteAdapter.getItemIdPages());
+        return gameEveItemRemoteAdapter.getItemByItemId("10").toString();
     }
 }

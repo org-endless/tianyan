@@ -1,7 +1,6 @@
 package org.endless.fanli.component.game.eve.domain.item;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface GameEveItemRemoteAdapter {
 
@@ -9,5 +8,5 @@ public interface GameEveItemRemoteAdapter {
 
     Integer getItemIdPages();
 
-    Optional<GameEveItem> getItemByItemId();
+    GameEveItem getItemByItemId(String itemId);
 }

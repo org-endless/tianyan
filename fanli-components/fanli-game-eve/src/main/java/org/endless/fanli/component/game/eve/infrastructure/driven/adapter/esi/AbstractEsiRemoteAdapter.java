@@ -3,10 +3,10 @@ package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
-
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
-
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,7 +22,8 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
     protected static final String ESI_BASE_URL = "https://ali-esi.evepc.163.com/latest";
 
-    protected static final String ESI_AUTHORIZE_URL = "https://login.evepc.163.com/v2/oauth/authorize";
+    protected static final String ESI_AUTHORIZE_URL =
+            "https://login.evepc.163.com/v2/oauth/authorize";
 
     protected static final String ESI_DATASOURCE = "serenity";
 
@@ -30,7 +31,8 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
     protected static final String ESI_SSO_CACHE_URI = "https://login.evepc.163.com/account/logoff";
 
-    protected static final String ESI_SSO_REDIRECT_URI = "https://esi.evepc.163.com/ui/oauth2-redirect.html";
+    protected static final String ESI_SSO_REDIRECT_URI =
+            "https://esi.evepc.163.com/ui/oauth2-redirect.html";
 
     protected static final String ESI_SSO_CLIENT_ID = "bc90aa496a404724a93f41b4f4e97761";
 
@@ -38,19 +40,20 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
     protected static final String ESI_SSO_STATE = "eve_erp_state";
 
-    protected static final String ESI_SSO_SCOPE = "esi-characters.read_corporation_roles.v1 esi-corporations.read_blueprints.v1 esi-industry.read_corporation_jobs.v1 esi-skills.read_skills.v1 esi-wallet.read_corporation_wallets.v1 esi-assets.read_corporation_assets.v1 esi-planets.manage_planets.v1";
+    protected static final String ESI_SSO_SCOPE =
+            "esi-characters.read_corporation_roles.v1 esi-corporations.read_blueprints.v1 esi-industry.read_corporation_jobs.v1 esi-skills.read_skills.v1 esi-wallet.read_corporation_wallets.v1 esi-assets.read_corporation_assets.v1 esi-planets.manage_planets.v1";
 
-    protected <T> T get(
-            @NonNull RestClient restClient,
-            @NonNull String uri,
-            @NonNull Map<String, Object> uriVariables,
+    protected <T> T get(@NonNull RestClient restClient, @NonNull String uri,
             @NonNull Class<T> bodyType) {
+        return get(restClient, uri, bodyType, Object.class);
+    }
+
+    protected <T> T get(@NonNull RestClient restClient, @NonNull String uri,
+            @NonNull Class<T> bodyType, @NonNull Map<String, Object> uriVariables) {
 
         try {
-            return restClient.get()
-                    .uri(uri, uriVariables)
-                    .retrieve()
-                    .body(bodyType);
+
+            return restClient.get().uri(uri, uriVariables).retrieve().body(bodyType);
 
         } catch (Exception e) {
 
@@ -60,17 +63,30 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
         }
     }
 
-    protected <T> HttpHeaders getHeader(
-            @NonNull RestClient restClient,
-            @NonNull String uri,
-            @NonNull Map<String, Object> uriVariables,
-            @NonNull Class<T> bodyType) {
+    protected <T> T get(@NonNull RestClient restClient, @NonNull String uri,
+            @NonNull Class<T> bodyType, Object... uriVariables) {
 
         try {
-            return restClient.get()
-                    .uri(uri, uriVariables)
-                    .retrieve()
-                    .toEntity(bodyType)
+
+            if (Objects.isNull(uriVariables)) {
+                return restClient.get().uri(uri).retrieve().body(bodyType);
+            } else {
+                return restClient.get().uri(uri, uriVariables).retrieve().body(bodyType);
+            }
+
+        } catch (Exception e) {
+
+            log.error(e.getMessage());
+            log.trace(Arrays.toString(e.getStackTrace()));
+            return null;
+        }
+    }
+
+    protected <T> HttpHeaders getHeader(@NonNull RestClient restClient, @NonNull String uri,
+            @NonNull Class<T> bodyType, @NonNull Map<String, Object> uriVariables) {
+
+        try {
+            return restClient.get().uri(uri, uriVariables).retrieve().toEntity(bodyType)
                     .getHeaders();
         } catch (Exception e) {
 
@@ -80,16 +96,14 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
         }
     }
 
-    public <T> Integer getPages(
-            @NonNull RestClient restClient,
-            @NonNull String uri,
-            @NonNull Map<String, Object> uriVariables,
-            @NonNull Class<T> bodyType) {
+    public <T> Integer getPages(@NonNull RestClient restClient, @NonNull String uri,
+            @NonNull Class<T> bodyType, @NonNull Map<String, Object> uriVariables) {
+
         try {
-            return Integer.parseInt(
-                    Objects.requireNonNull(
-                            getHeader(restClient, uri, uriVariables, bodyType).get("X-Pages"))
-                            .get(0));
+            return Integer.parseInt(Objects
+                    .requireNonNull(
+                            getHeader(restClient, uri, bodyType, uriVariables).get("X-Pages"))
+                    .get(0));
 
         } catch (Exception e) {
 
@@ -119,7 +133,4 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
     // }
     // }
 
-    // protected String getUrl(String service, String scenes) {
-    // return ESI_URI + service + "/" + ConstantResource.REGION_ID + "/" + scenes;
-    // }
 }
