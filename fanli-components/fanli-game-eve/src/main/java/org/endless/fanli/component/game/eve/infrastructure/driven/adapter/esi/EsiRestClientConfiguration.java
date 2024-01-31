@@ -1,4 +1,4 @@
-package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
+package org.endless.fanli.component.game.eve;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class EsiRestClientConfiguration {
 
-    private static final String ESI_BASE_URL = "https:/ali-esi.evepc.163.com/latest";
+    private static final String ESI_BASE_URL = "https://ali-esi.evepc.163.com/latest";
     private static final String ESI_AUTHORIZE_URL = "https://login.evepc.163.com/v2/oauth/authorize";
 
     protected static final String ESI_DATASOURCE = "serenity";

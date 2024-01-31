@@ -1,4 +1,4 @@
-package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
+package org.endless.fanli.component.game.eve;
 
 import org.endless.fanli.component.game.eve.domain.item.GameEveItem;
 import org.endless.fanli.component.game.eve.domain.item.GameEveItemRemoteAdapter;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.EsiRestClientConfiguration.ESI_DATASOURCE;
+import static org.endless.fanli.component.game.eve.EsiRestClientConfiguration.ESI_DATASOURCE;
 
 @Component
 public class GameEveItemEsiRemoteAdapter implements GameEveItemRemoteAdapter {
