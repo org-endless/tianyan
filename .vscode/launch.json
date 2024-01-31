@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Fanli",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.endless.fanli.FanliCoreApplication",
+            "projectName": "fanli",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-FanliCoreApplication<fanli-core>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

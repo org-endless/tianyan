@@ -1,5 +1,6 @@
-package org.endless.fanli.component.game.eve;
+package org.endless.fanli.component.game.eve.ui.driving.api.rest;
 
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.GameEveItemEsiRemoteAdapter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * <p>
  * <p>
  * <p>
- * <p>create 2024/1/30 9:24
- * <p>update 2024/1/30 9:24
+ * <p>
+ * create 2024/1/30 9:24
+ * <p>
+ * update 2024/1/30 9:24
  *
  * @author Deng Haozhi
  * @since 0.0.6
@@ -26,14 +29,12 @@ public class GameEveItemController {
         this.gameEveItemRemoteAdapter = gameEveItemRemoteAdapter;
     }
 
-
     @GetMapping("/load")
     @PostMapping("/load")
     public String load() {
 
         var result = "success";
 
-
-        return gameEveItemRemoteAdapter.getItemIds(1).toString();
+        return String.valueOf(gameEveItemRemoteAdapter.getItemIdPages());
     }
 }
