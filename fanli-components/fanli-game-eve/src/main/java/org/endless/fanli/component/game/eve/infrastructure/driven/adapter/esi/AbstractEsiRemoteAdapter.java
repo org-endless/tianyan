@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,6 +25,8 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
     protected static final String ESI_AUTHORIZE_URL = "https://login.evepc.163.com/v2/oauth/authorize";
 
     protected static final String ESI_DATASOURCE = "serenity";
+
+    protected static final String ESI_LANGUAGE = "zh";
 
     protected static final String ESI_SSO_CACHE_URI = "https://login.evepc.163.com/account/logoff";
 

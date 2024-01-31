@@ -52,6 +52,10 @@ public class GameEveItemEsiRemoteAdapter extends AbstractEsiRemoteAdapter
 
     @Override
     public Optional<GameEveItem> getItemByItemId() {
+
+        Map<String, Object> uriVariables = new HashMap<>();
+        uriVariables.put("datasource", ESI_DATASOURCE);
+        uriVariables.put("language", ESI_LANGUAGE);
         return Optional.empty();
     }
 
