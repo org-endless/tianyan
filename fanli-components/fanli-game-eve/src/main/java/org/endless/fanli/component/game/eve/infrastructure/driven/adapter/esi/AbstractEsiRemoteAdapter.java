@@ -45,13 +45,18 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
             @NonNull String uri,
             @NonNull Map<String, Object> uriVariables,
             @NonNull Class<T> bodyType) {
-        try{
-        return restClient.get()
-                .uri(uri, uriVariables)
-                .retrieve()
-                .body(bodyType);
-        } catch (Exception){
 
+        try {
+            return restClient.get()
+                    .uri(uri, uriVariables)
+                    .retrieve()
+                    .body(bodyType);
+
+        } catch (Exception e) {
+
+            log.error(e.getMessage());
+            log.trace(Arrays.toString(e.getStackTrace()));
+            return null;
         }
     }
 
@@ -61,11 +66,18 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
             @NonNull Map<String, Object> uriVariables,
             @NonNull Class<T> bodyType) {
 
-        return restClient.get()
-                .uri(uri, uriVariables)
-                .retrieve()
-                .toEntity(bodyType)
-                .getHeaders();
+        try {
+            return restClient.get()
+                    .uri(uri, uriVariables)
+                    .retrieve()
+                    .toEntity(bodyType)
+                    .getHeaders();
+        } catch (Exception e) {
+
+            log.error(e.getMessage());
+            log.trace(Arrays.toString(e.getStackTrace()));
+            return null;
+        }
     }
 
     public <T> Integer getPages(
@@ -74,7 +86,6 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
             @NonNull Map<String, Object> uriVariables,
             @NonNull Class<T> bodyType) {
         try {
-
             return Integer.parseInt(
                     Objects.requireNonNull(
                             getHeader(restClient, uri, uriVariables, bodyType).get("X-Pages"))
