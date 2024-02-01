@@ -20,11 +20,15 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class EsiRestClientConfiguration {
 
+    protected static final String ESI_BASE_URL = "https://ali-esi.evepc.163.com/latest";
+
+    protected static final String ESI_AUTHORIZE_URL = "https://login.evepc.163.com/v2/oauth/authorize";
+
     public @Bean RestClient esiRestClient() {
-        return RestClient.builder().baseUrl(AbstractEsiRemoteAdapter.ESI_BASE_URL).build();
+        return RestClient.builder().baseUrl(ESI_BASE_URL).build();
     }
 
     public @Bean RestClient esiAuthorizeRestClient() {
-        return RestClient.builder().baseUrl(AbstractEsiRemoteAdapter.ESI_AUTHORIZE_URL).build();
+        return RestClient.builder().baseUrl(ESI_AUTHORIZE_URL).build();
     }
 }

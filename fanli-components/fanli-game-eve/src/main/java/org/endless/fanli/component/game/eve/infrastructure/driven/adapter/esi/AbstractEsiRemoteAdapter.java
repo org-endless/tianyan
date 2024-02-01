@@ -3,27 +3,28 @@ package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
+
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * AbstractEsiRemoteAdapter
+ * <p>
+ * <p>
+ * <p>
+ * <p>create 2024/02/01 16:29
+ * <p>update 2024/02/01 16:29
  *
  * @author Deng Haozhi
- * @date 2023/4/23 16:59
- * @since 0.0.2
+ * @since 0.0.6
  */
 @Slf4j
 @Component
 public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
-
-    protected static final String ESI_BASE_URL = "https://ali-esi.evepc.163.com/latest";
-
-    protected static final String ESI_AUTHORIZE_URL =
-            "https://login.evepc.163.com/v2/oauth/authorize";
 
     protected static final String ESI_DATASOURCE = "serenity";
 
@@ -31,8 +32,7 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
     protected static final String ESI_SSO_CACHE_URI = "https://login.evepc.163.com/account/logoff";
 
-    protected static final String ESI_SSO_REDIRECT_URI =
-            "https://esi.evepc.163.com/ui/oauth2-redirect.html";
+    protected static final String ESI_SSO_REDIRECT_URI = "https://esi.evepc.163.com/ui/oauth2-redirect.html";
 
     protected static final String ESI_SSO_CLIENT_ID = "bc90aa496a404724a93f41b4f4e97761";
 
@@ -40,8 +40,7 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
     protected static final String ESI_SSO_STATE = "eve_erp_state";
 
-    protected static final String ESI_SSO_SCOPE =
-            "esi-characters.read_corporation_roles.v1 esi-corporations.read_blueprints.v1 esi-industry.read_corporation_jobs.v1 esi-skills.read_skills.v1 esi-wallet.read_corporation_wallets.v1 esi-assets.read_corporation_assets.v1 esi-planets.manage_planets.v1";
+    protected static final String ESI_SSO_SCOPE = "esi-characters.read_corporation_roles.v1 esi-corporations.read_blueprints.v1 esi-industry.read_corporation_jobs.v1 esi-skills.read_skills.v1 esi-wallet.read_corporation_wallets.v1 esi-assets.read_corporation_assets.v1 esi-planets.manage_planets.v1";
 
     protected <T> T get(@NonNull RestClient restClient, @NonNull String uri,
             @NonNull Class<T> bodyType) {

@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * <p>
  * <p>
  * <p>
- * <p>
- * create 2024/1/30 9:24
- * <p>
- * update 2024/1/30 9:24
+ * <p>create 2024/1/30 9:24
+ * <p>update 2024/1/30 9:24
  *
  * @author Deng Haozhi
  * @since 0.0.6
@@ -32,8 +30,6 @@ public class GameEveItemController {
     @GetMapping("/load")
     @PostMapping("/load")
     public String load() {
-
-        // return gameEveItemRemoteAdapter.getItemIds(10).toString();
 
         return gameEveItemRemoteAdapter.getItemByItemId("10").toString();
     }
