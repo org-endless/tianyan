@@ -1,8 +1,7 @@
-package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.type;
+package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -18,7 +17,6 @@ import lombok.ToString;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString

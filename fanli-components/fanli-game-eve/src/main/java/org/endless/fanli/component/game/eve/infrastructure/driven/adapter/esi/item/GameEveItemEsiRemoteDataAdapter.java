@@ -1,26 +1,27 @@
-package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.adapter;
+package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
+
+import org.endless.fanli.component.game.eve.domain.item.GameEveItem;
+import org.endless.fanli.component.game.eve.domain.item.GameEveItemRemoteData;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.AbstractEsiRemoteAdapter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClient;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.endless.fanli.component.game.eve.domain.item.GameEveItem;
-import org.endless.fanli.component.game.eve.domain.item.GameEveItemRemoteAdapter;
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.AbstractEsiRemoteAdapter;
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.type.GameEveItemEsiData;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClient;
 
 @Component
-public class GameEveItemEsiRemoteAdapter extends AbstractEsiRemoteAdapter
-        implements GameEveItemRemoteAdapter {
+public class GameEveItemEsiRemoteDataAdapter extends AbstractEsiRemoteAdapter
+        implements GameEveItemRemoteData {
 
     private static final String ESI_TYPES_URI = "/universe/types";
 
     private final RestClient restClient;
 
-    public GameEveItemEsiRemoteAdapter(@Qualifier("esiRestClient") RestClient restClient) {
+    public GameEveItemEsiRemoteDataAdapter(
+            @Qualifier("esiRestClient") RestClient restClient) {
         this.restClient = restClient;
     }
 
@@ -44,25 +45,28 @@ public class GameEveItemEsiRemoteAdapter extends AbstractEsiRemoteAdapter
 
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("datasource", ESI_DATASOURCE);
-        uriVariables.put("pages", Integer.valueOf(1));
+        uriVariables.put("pages", 1);
 
-        return super.getPages(restClient, ESI_TYPES_URI, List.class, uriVariables);
+        return getPages(restClient.get()
+                .uri(ESI_TYPES_URI, uriVariables)
+                .retrieve()
+                .toEntity(List.class).
+                getHeaders());
     }
 
     @Override
-    public GameEveItem getItemByItemId(String itemID) {
+    public GameEveItem getItemByItemId(String itemId) {
 
-        String datasource = ESI_DATASOURCE;
-        String language = "zh";
+        Map<String, Object> uriVariables = new HashMap<>();
+        uriVariables.put("datasource", ESI_DATASOURCE);
+        uriVariables.put("language", ESI_LANGUAGE);
 
         GameEveItemEsiData result = super.get(restClient,
-                ESI_TYPES_URI + "/{itemID}/?datasource={datasource}&language={language}",
-                GameEveItemEsiData.class, Integer.valueOf(itemID), datasource, language);
+                ESI_TYPES_URI + "/" + itemId + "/",
+                GameEveItemEsiData.class,
+                uriVariables);
 
-        GameEveItem gameEveItem = new GameEveItem();
-        gameEveItem.setItemId(String.valueOf(result.getType_id()));
-
-        return gameEveItem;
+        return new GameEveItem(String.valueOf(result.getType_id()));
     }
 
 }

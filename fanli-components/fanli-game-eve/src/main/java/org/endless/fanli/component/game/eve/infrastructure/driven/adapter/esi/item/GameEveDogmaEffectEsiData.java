@@ -1,4 +1,4 @@
-package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.type;
+package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

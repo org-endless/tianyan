@@ -1,6 +1,6 @@
 package org.endless.fanli.component.game.eve.ui.driving.api.rest;
 
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.adapter.GameEveItemEsiRemoteAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item.GameEveItemEsiRemoteDataAdapter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/game/eve/item")
 public class GameEveItemController {
 
-    private final GameEveItemEsiRemoteAdapter gameEveItemRemoteAdapter;
+    private final GameEveItemEsiRemoteDataAdapter gameEveItemRemoteAdapter;
 
-    public GameEveItemController(GameEveItemEsiRemoteAdapter gameEveItemRemoteAdapter) {
+    public GameEveItemController(GameEveItemEsiRemoteDataAdapter gameEveItemRemoteAdapter) {
         this.gameEveItemRemoteAdapter = gameEveItemRemoteAdapter;
     }
 

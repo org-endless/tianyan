@@ -3,7 +3,7 @@ package org.endless.fanli.component.game.eve.domain.item;
 import java.util.List;
 
 /**
- * GameEveItemRemoteAdapter
+ * GameEveItemRemoteData
  * <p>
  * <p>
  * <p>
@@ -13,7 +13,7 @@ import java.util.List;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface GameEveItemRemoteAdapter {
+public interface GameEveItemRemoteData {
 
     List<String> getItemIds(Integer page);
 
