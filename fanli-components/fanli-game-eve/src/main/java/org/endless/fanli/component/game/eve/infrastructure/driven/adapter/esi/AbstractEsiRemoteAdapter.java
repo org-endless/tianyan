@@ -25,7 +25,7 @@ import java.util.Objects;
 @Component
 public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
 
-    protected static final String ESI_DATASOURCE = "serenity";
+    protected static final Map<String, Object> ESI_DATASOURCE = Map.of("datasource", "serenity");
 
     protected static final String ESI_LANGUAGE = "zh";
 
@@ -111,24 +111,13 @@ public abstract class AbstractEsiRemoteAdapter implements EsiRemoteAdapter {
         }
     }
 
-    // public List<?> get(String service, String scenes, Map<String, String> paras)
-    // {
+    public static String getVarsUri(Map<String, Object> uriVariables) {
 
-    // String url = getUrl(service, scenes);
+        if (uriVariables.isEmpty()) return null;
 
-    // url = url + UrlFormatter.para(paras);
-
-    // try {
-
-    // return restTemplate.getForObject(url, List.class, paras);
-
-    // } catch (HttpClientErrorException.NotFound e) {
-    // return null;
-    // } catch (Exception e) {
-    // log.error(e.getMessage());
-    // log.trace(Arrays.toString(e.getStackTrace()));
-    // return null;
-    // }
-    // }
+        StringBuilder paras = new StringBuilder("?");
+        uriVariables.forEach((key, value) -> paras.append(key).append("={").append(key).append("}&"));
+        return paras.substring(0, paras.length() - 1);
+    }
 
 }

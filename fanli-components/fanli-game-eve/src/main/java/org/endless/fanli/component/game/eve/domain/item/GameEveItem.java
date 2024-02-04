@@ -1,7 +1,8 @@
 package org.endless.fanli.component.game.eve.domain.item;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * GameEveItem
@@ -14,8 +15,9 @@ import lombok.Getter;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-@AllArgsConstructor
 @Getter
+@Builder
+@ToString
 public class GameEveItem {
 
     private String itemId;
