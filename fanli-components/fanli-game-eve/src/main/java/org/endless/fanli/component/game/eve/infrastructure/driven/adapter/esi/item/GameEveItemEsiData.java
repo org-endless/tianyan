@@ -1,10 +1,10 @@
 package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.endless.fanli.component.game.eve.domain.common.type.RemoteData;
+import org.endless.fanli.component.game.eve.domain.item.GameEveItem;
 
-import java.util.Collection;
+import java.math.BigDecimal;
 
 /**
  * GameEveItemEsiData
@@ -17,29 +17,26 @@ import java.util.Collection;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-@AllArgsConstructor
-@Getter
-@ToString
-public class GameEveItemEsiData {
-
-    private int type_id;
-    private int group_id;
-    private int market_group_id;
-    private int icon_id;
-    private int graphic_id;
-
-    private boolean published;
-
-    private String name;
-    private String description;
-
-    private int portion_size;
-    private double mass;
-    private double capacity;
-    private double volume;
-    private double packaged_volume;
-    private double radius;
-
-    private Collection<GameEveDogmaAttributeEsiData> dogma_attributes;
-    private Collection<GameEveDogmaEffectEsiData> dogma_effects;
+public record GameEveItemEsiData(
+        @JsonProperty("type_id") String itemId,
+        @JsonProperty("group_id") String groupId,
+        @JsonProperty("market_group_id") String marketGroupId,
+        @JsonProperty("published") boolean published,
+        @JsonProperty("name") String name,
+        @JsonProperty("description") String description,
+        @JsonProperty("portion_size") BigDecimal portionSize,
+        @JsonProperty("mass") BigDecimal mass,
+        @JsonProperty("capacity") BigDecimal capacity,
+        @JsonProperty("volume") BigDecimal volume,
+        @JsonProperty("packaged_volume") BigDecimal packagedVolume,
+        @JsonProperty("radius") BigDecimal radius,
+        @JsonProperty("icon_id") String iconId,
+        @JsonProperty("graphic_id") String graphicId
+        // @JsonProperty("dogma_attributes") Collection<GameEveDogmaAttributeEsiData> dogmaAttributes,
+        // @JsonProperty("dogma_effects") Collection<GameEveDogmaEffectEsiData> dogmaEffects
+) implements RemoteData<GameEveItem> {
+    @Override
+    public GameEveItem toEntity() {
+        return null;
+    }
 }

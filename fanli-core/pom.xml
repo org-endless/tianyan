@@ -71,7 +71,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.endss.fanli.FanliCoreApplication</mainClass>
+                    <mainClass>
+                        org.endless.fanli.FanliCoreApplication
+                    </mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,6 +1,6 @@
 package org.endless.fanli.component.game.eve.ui.driving.api.rest;
 
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.market.GameEveMarketOrderEsiRemoteDataAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.market.GameEveMarketOrderEsiDataAdapter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/game/eve/marker/order")
 public class GameEveMarketOrderController {
 
-    private final GameEveMarketOrderEsiRemoteDataAdapter adapter;
+    private final GameEveMarketOrderEsiDataAdapter adapter;
 
-    public GameEveMarketOrderController(GameEveMarketOrderEsiRemoteDataAdapter adapter) {
+    public GameEveMarketOrderController(GameEveMarketOrderEsiDataAdapter adapter) {
         this.adapter = adapter;
     }
 

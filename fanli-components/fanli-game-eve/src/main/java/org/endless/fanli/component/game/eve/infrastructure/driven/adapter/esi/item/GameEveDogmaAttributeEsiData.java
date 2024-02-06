@@ -1,8 +1,6 @@
 package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * GameEveDogmaAttributeEsiData
@@ -17,11 +15,8 @@ import lombok.ToString;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-@AllArgsConstructor
-@Getter
-@ToString
-public class GameEveDogmaAttributeEsiData {
+public record GameEveDogmaAttributeEsiData(
+        @JsonProperty("attribute_id") String DogmaAttributeId,
+        @JsonProperty("value") boolean DogmaAttributeValue) {
 
-    private int attribute_id;
-    private double value;
 }

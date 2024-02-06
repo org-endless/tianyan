@@ -8,10 +8,11 @@ import lombok.Getter;
  * <p>
  * <p>
  * <p>
- * <p>create 2024/2/4 0:20
- * <p>update 2024/2/4 0:20
+ * <p>create 2024/02/04 0:20
+ * <p>update 2024/02/04 16:34
  *
  * @author Deng Haozhi
+ * @see Enum
  * @since 0.0.6
  */
 @Getter

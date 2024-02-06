@@ -3,6 +3,7 @@ package org.endless.fanli.component.game.eve.domain.market.order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.fanli.component.game.eve.domain.common.type.Entity;
 import org.endless.fanli.component.game.eve.domain.common.type.TradeType;
 
 import java.math.BigDecimal;
@@ -23,7 +24,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @ToString
-public class GameEveMarketOrder {
+public class GameEveMarketOrder implements Entity {
 
     private String itemId;
     private String orderId;

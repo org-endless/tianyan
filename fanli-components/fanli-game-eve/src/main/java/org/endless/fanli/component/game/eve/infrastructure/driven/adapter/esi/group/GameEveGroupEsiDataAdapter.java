@@ -2,7 +2,7 @@ package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.g
 
 import org.endless.fanli.component.game.eve.domain.group.GameEveGroup;
 import org.endless.fanli.component.game.eve.domain.group.GameEveGroupRemoteDataAdapter;
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.AbstractEsiRemoteAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.RemoteDataAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -26,8 +26,8 @@ import java.util.Objects;
  * @since 0.0.6
  */
 @Component
-public class GameEveGroupEsiDataAdapter extends AbstractEsiRemoteAdapter
-        implements GameEveGroupRemoteDataAdapter {
+public class GameEveGroupEsiDataAdapter
+        implements RemoteDataAdapter, GameEveGroupRemoteDataAdapter {
 
     private static final String ESI_GROUP_URI = "/universe/groups";
     private final RestClient restClient;
@@ -39,7 +39,6 @@ public class GameEveGroupEsiDataAdapter extends AbstractEsiRemoteAdapter
 
     @Override
     public List<String> getGroupIds(Integer page) {
-
 
         Map<String, Object> uriVariables = new HashMap<>(ESI_DATASOURCE);
         uriVariables.put("page", page);
@@ -54,30 +53,18 @@ public class GameEveGroupEsiDataAdapter extends AbstractEsiRemoteAdapter
 
     @Override
     public GameEveGroup getGroupByGroupId(String groupId) {
+
         Map<String, Object> uriVariables = new HashMap<>(ESI_DATASOURCE);
         uriVariables.put("group_id", groupId);
         uriVariables.put("language", ESI_LANGUAGE);
 
         String uri = ESI_GROUP_URI + "/" + groupId + getVarsUri(uriVariables);
 
-        GameEveGroupEsiData result = restClient
-                .get()
-                .uri(uri, uriVariables)
-                .retrieve()
-                .body(GameEveGroupEsiData.class);
-
-        return toEntity(result);
-    }
-
-    private GameEveGroup toEntity(GameEveGroupEsiData data) {
-
-        if (Objects.isNull(data)) return null;
-        return GameEveGroup.builder()
-                .groupId(data.groupId())
-                .categoryId(data.categoryId())
-                .groupName(data.groupName())
-                .published(data.published())
-                .items(data.items())
-                .build();
+        return Objects.requireNonNull(restClient
+                        .get()
+                        .uri(uri, uriVariables)
+                        .retrieve()
+                        .body(GameEveGroupEsiData.class))
+                .toEntity();
     }
 }

@@ -1,9 +1,6 @@
 package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.item;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * GameEveDogmaEffectEsiData
@@ -16,12 +13,7 @@ import lombok.ToString;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@ToString
-public class GameEveDogmaEffectEsiData {
-
-    private int effect_id;
-    private boolean is_default;
+public record GameEveDogmaEffectEsiData(
+        @JsonProperty("effect_id") String DogmaEffectId,
+        @JsonProperty("is_default") boolean isDefault) {
 }
