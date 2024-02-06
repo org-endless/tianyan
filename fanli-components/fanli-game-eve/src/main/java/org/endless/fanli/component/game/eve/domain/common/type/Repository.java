@@ -11,6 +11,6 @@ package org.endless.fanli.component.game.eve.domain.common.type;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface Repository<T extends Aggregate> {
-    void save(T aggregate);
+public interface Repository<T extends Entity> {
+    void save(T entity);
 }

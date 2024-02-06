@@ -3,7 +3,7 @@ package org.endless.fanli.component.game.eve.domain.group;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.fanli.component.game.eve.domain.common.type.Entity;
+import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-public class GameEveGroup implements Entity {
+public class GameEveGroup implements GameEveEntity {
 
     private String groupId;
     private String categoryId;

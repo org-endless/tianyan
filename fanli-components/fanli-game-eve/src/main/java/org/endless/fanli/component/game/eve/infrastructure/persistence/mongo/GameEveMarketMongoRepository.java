@@ -1,7 +1,7 @@
 package org.endless.fanli.component.game.eve.infrastructure.persistence.mongo;
 
 import org.endless.fanli.component.game.eve.domain.common.type.GameEveRepository;
-import org.endless.fanli.component.game.eve.domain.market.GameEveMarketAggregate;
+import org.endless.fanli.component.game.eve.domain.market.GameEveMarketEntity;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
  * @since 0.0.6
  */
 public class GameEveMarketMongoRepository
-        implements GameEveRepository<GameEveMarketAggregate> {
+        implements GameEveRepository<GameEveMarketEntity> {
 
     private final GameEveMarketMongoJpaRepository jpaRepository;
 
@@ -28,8 +28,7 @@ public class GameEveMarketMongoRepository
     }
 
     @Override
-    public void save(GameEveMarketAggregate aggregate) {
-
-        jpaRepository.save(GameEveMarketDocument.builder().build().fromEntity(aggregate));
+    public void save(GameEveMarketEntity entity) {
+        jpaRepository.save(GameEveMarketDocument.builder().build().fromEntity(entity));
     }
 }

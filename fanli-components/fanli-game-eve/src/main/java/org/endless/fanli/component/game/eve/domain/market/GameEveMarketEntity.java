@@ -3,13 +3,14 @@ package org.endless.fanli.component.game.eve.domain.market;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
 import org.endless.spring.boot.common.utility.decimal.Decimal;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * GameEveMarketAggregateRoot
+ * GameEveMarketEntity
  * <p>
  * <p>
  * <p>
@@ -22,7 +23,7 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-public class GameEveMarketAggregateRoot implements GameEveMarketAggregate {
+public class GameEveMarketEntity implements GameEveMarketAggregate, GameEveEntity {
 
     private final String itemId;
     private BigDecimal averagePrice;

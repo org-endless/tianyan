@@ -2,7 +2,7 @@ package org.endless.fanli.component.game.eve.application.market;
 
 import org.endless.fanli.component.game.eve.domain.common.type.GameEveService;
 import org.endless.fanli.component.game.eve.domain.market.GameEveMarketAggregate;
-import org.endless.fanli.component.game.eve.domain.market.GameEveMarketAggregateRoot;
+import org.endless.fanli.component.game.eve.domain.market.GameEveMarketEntity;
 import org.endless.fanli.component.game.eve.domain.market.GameEveMarketRemoteDataAdapter;
 import org.endless.fanli.component.game.eve.domain.market.GameEveMarketRepository;
 import org.endless.spring.boot.common.utility.decimal.Decimal;
@@ -39,7 +39,7 @@ public class GameEveMarketService implements GameEveService {
 
     public BigDecimal getMarketAnnualSalesQuantity(String itemId) {
 
-        GameEveMarketAggregate aggregate = GameEveMarketAggregateRoot.builder()
+        GameEveMarketAggregate aggregate = GameEveMarketEntity.builder()
                 .itemId(itemId)
                 .build();
 

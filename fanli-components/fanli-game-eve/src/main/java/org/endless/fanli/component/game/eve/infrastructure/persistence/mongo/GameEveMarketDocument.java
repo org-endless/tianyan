@@ -3,7 +3,7 @@ package org.endless.fanli.component.game.eve.infrastructure.persistence.mongo;
 import lombok.Builder;
 import lombok.Getter;
 import org.endless.fanli.component.game.eve.domain.common.type.PersistenceData;
-import org.endless.fanli.component.game.eve.domain.market.GameEveMarketAggregateRoot;
+import org.endless.fanli.component.game.eve.domain.market.GameEveMarketEntity;
 import org.endless.fanli.component.game.eve.domain.market.GameEveMarketOrder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,7 +26,7 @@ import java.util.List;
 @Getter
 @Builder
 @Document("game.eve.market")
-public class GameEveMarketDocument implements PersistenceData<GameEveMarketAggregateRoot> {
+public class GameEveMarketDocument implements PersistenceData<GameEveMarketEntity> {
     @Id
     @Field("itemId")
     private String itemId;
@@ -38,8 +38,8 @@ public class GameEveMarketDocument implements PersistenceData<GameEveMarketAggre
     private List<GameEveMarketOrder> marketOrders;
 
     @Override
-    public GameEveMarketAggregateRoot toEntity() {
-        return GameEveMarketAggregateRoot.builder()
+    public GameEveMarketEntity toEntity() {
+        return GameEveMarketEntity.builder()
                 .itemId(getItemId())
                 .averagePrice(getAveragePrice())
                 .highestPrice(getHighestPrice())
@@ -50,7 +50,7 @@ public class GameEveMarketDocument implements PersistenceData<GameEveMarketAggre
     }
 
     @Override
-    public GameEveMarketDocument fromEntity(GameEveMarketAggregateRoot entity) {
+    public GameEveMarketDocument fromEntity(GameEveMarketEntity entity) {
 
         itemId = entity.getItemId();
         averagePrice = entity.getAveragePrice();

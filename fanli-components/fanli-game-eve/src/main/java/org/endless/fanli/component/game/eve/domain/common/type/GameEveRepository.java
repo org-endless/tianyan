@@ -11,5 +11,5 @@ package org.endless.fanli.component.game.eve.domain.common.type;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface GameEveRepository<T extends GameEveAggregate> extends Repository<T> {
+public interface GameEveRepository<T extends GameEveEntity> extends Repository<T> {
 }

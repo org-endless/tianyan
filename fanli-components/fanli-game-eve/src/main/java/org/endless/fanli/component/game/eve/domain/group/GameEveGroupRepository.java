@@ -1,5 +1,8 @@
 package org.endless.fanli.component.game.eve.domain.group;
 
+import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
+import org.endless.fanli.component.game.eve.domain.common.type.GameEveRepository;
+
 /**
  * GameEveGroupRepository
  * <p>
@@ -11,6 +14,6 @@ package org.endless.fanli.component.game.eve.domain.group;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface GameEveGroupRepository {
+public interface GameEveGroupRepository extends GameEveRepository<> {
     void save(GameEveGroup groupByGroupId);
 }

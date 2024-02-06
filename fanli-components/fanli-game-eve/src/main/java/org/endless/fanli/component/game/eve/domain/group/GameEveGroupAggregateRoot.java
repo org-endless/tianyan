@@ -4,12 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * GameEveGroupAggregateImpl
+ * GameEveGroupAggregateRoot
  * <p>
  * <p>
  * <p>
@@ -23,7 +24,8 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-public class GameEveGroupAggregateImpl implements GameEveGroupAggregate {
+public class GameEveGroupAggregateRoot
+        implements GameEveGroupAggregate, GameEveEntity {
 
     private List<String> gameEveGroups;
 
@@ -31,7 +33,7 @@ public class GameEveGroupAggregateImpl implements GameEveGroupAggregate {
 
     private final GameEveGroupRemoteDataTask remoteDataTask;
 
-    public GameEveGroupAggregateImpl(List<String> gameEveGroups, GameEveGroupRemoteDataAdapter remoteDataAdapter, GameEveGroupRemoteDataTask remoteDataTask) {
+    public GameEveGroupAggregateRoot(List<String> gameEveGroups, GameEveGroupRemoteDataAdapter remoteDataAdapter, GameEveGroupRemoteDataTask remoteDataTask) {
         this.gameEveGroups = gameEveGroups;
         this.remoteDataAdapter = remoteDataAdapter;
         this.remoteDataTask = remoteDataTask;
