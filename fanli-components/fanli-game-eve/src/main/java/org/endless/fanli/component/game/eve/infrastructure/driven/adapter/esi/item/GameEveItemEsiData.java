@@ -37,6 +37,21 @@ public record GameEveItemEsiData(
 ) implements RemoteData<GameEveItem> {
     @Override
     public GameEveItem toEntity() {
-        return null;
+        return GameEveItem.builder()
+                .itemId(itemId())
+                .groupId(groupId())
+                .marketGroupId(marketGroupId())
+                .published(published())
+                .name(name())
+                .description(description())
+                .portionSize(portionSize())
+                .mass(mass())
+                .capacity(capacity())
+                .volume(volume())
+                .packagedVolume(packagedVolume())
+                .radius(radius())
+                .iconId(iconId())
+                .graphicId(graphicId())
+                .build();
     }
 }

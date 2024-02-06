@@ -1,4 +1,4 @@
-package org.endless.fanli.component.game.eve.domain.market.order;
+package org.endless.fanli.component.game.eve.domain.market;
 
 import lombok.Builder;
 import lombok.Getter;

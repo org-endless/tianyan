@@ -2,6 +2,7 @@ package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.i
 
 import org.endless.fanli.component.game.eve.domain.item.GameEveItem;
 import org.endless.fanli.component.game.eve.domain.item.GameEveItemRemoteDataAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.GameEveEsiDataAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -10,10 +11,11 @@ import org.springframework.web.client.RestClient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class GameEveItemEsiDataAdapter
-        implements GameEveItemRemoteDataAdapter {
+        implements GameEveItemRemoteDataAdapter, GameEveEsiDataAdapter {
 
     private static final String ESI_TYPES_URI = "/universe/types";
 
@@ -31,7 +33,7 @@ public class GameEveItemEsiDataAdapter
         uriVariables.put("page", page);
 
         return restClient.get()
-                .uri(ESI_TYPES_URI + getVariablesUri(uriVariables), uriVariables)
+                .uri(ESI_TYPES_URI + getVarsUri(uriVariables), uriVariables)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {
                 });
@@ -43,7 +45,7 @@ public class GameEveItemEsiDataAdapter
         uriVariables.put("page", 1);
 
         return getPages(restClient.get()
-                .uri(ESI_TYPES_URI, getVariablesUri(uriVariables))
+                .uri(ESI_TYPES_URI, getVarsUri(uriVariables))
                 .retrieve()
                 .toEntity(List.class).
                 getHeaders());
@@ -55,38 +57,12 @@ public class GameEveItemEsiDataAdapter
         Map<String, Object> uriVariables = new HashMap<>(ESI_DATASOURCE);
         uriVariables.put("language", ESI_LANGUAGE);
 
-        String uri = ESI_TYPES_URI + "/" + itemId + getVariablesUri(uriVariables);
+        String uri = ESI_TYPES_URI + "/" + itemId + getVarsUri(uriVariables);
 
-        GameEveItemEsiData result = restClient.get()
-                .uri(uri, uriVariables)
-                .retrieve()
-                .body(GameEveItemEsiData.class);
-
-        if (result != null) {
-            return toEntity(result);
-        } else {
-            throw new NullPointerException();
-        }
-    }
-
-    @Override
-    public GameEveItem toEntity(GameEveItemEsiData data) {
-
-        return GameEveItem.builder()
-                .itemId(data.itemId())
-                .groupId(data.groupId())
-                .marketGroupId(data.marketGroupId())
-                .published(data.published())
-                .name(data.name())
-                .description(data.description())
-                .portionSize(data.portionSize())
-                .mass(data.mass())
-                .capacity(data.capacity())
-                .volume(data.volume())
-                .packagedVolume(data.packagedVolume())
-                .radius(data.radius())
-                .iconId(data.iconId())
-                .graphicId(data.graphicId())
-                .build();
+        return Objects.requireNonNull(restClient.get()
+                        .uri(uri, uriVariables)
+                        .retrieve()
+                        .body(GameEveItemEsiData.class))
+                .toEntity();
     }
 }

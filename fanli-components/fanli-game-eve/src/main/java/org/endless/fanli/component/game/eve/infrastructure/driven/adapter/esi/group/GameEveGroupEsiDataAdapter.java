@@ -2,7 +2,7 @@ package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.g
 
 import org.endless.fanli.component.game.eve.domain.group.GameEveGroup;
 import org.endless.fanli.component.game.eve.domain.group.GameEveGroupRemoteDataAdapter;
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.RemoteDataAdapter;
+import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.GameEveEsiDataAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ import java.util.Objects;
  */
 @Component
 public class GameEveGroupEsiDataAdapter
-        implements RemoteDataAdapter, GameEveGroupRemoteDataAdapter {
+        implements GameEveEsiDataAdapter, GameEveGroupRemoteDataAdapter {
 
     private static final String ESI_GROUP_URI = "/universe/groups";
     private final RestClient restClient;
@@ -60,8 +60,7 @@ public class GameEveGroupEsiDataAdapter
 
         String uri = ESI_GROUP_URI + "/" + groupId + getVarsUri(uriVariables);
 
-        return Objects.requireNonNull(restClient
-                        .get()
+        return Objects.requireNonNull(restClient.get()
                         .uri(uri, uriVariables)
                         .retrieve()
                         .body(GameEveGroupEsiData.class))

@@ -11,8 +11,12 @@
     <artifactId>fanli-game-eve</artifactId>
 
     <dependencies>
-
-
+        <!-- Endless -->
+        <dependency>
+            <groupId>org.endless</groupId>
+            <artifactId>nvwa-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

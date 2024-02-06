@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * RemoteDataAdapter
+ * GameEveEsiDataAdapter
  * <p>
  * <p>
  * <p>
@@ -16,11 +16,14 @@ import java.util.Objects;
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface RemoteDataAdapter {
+public interface GameEveEsiDataAdapter {
 
     Map<String, Object> ESI_DATASOURCE = Map.of("datasource", "serenity");
     String ESI_LANGUAGE = "zh";
-    String ESI_FORGE_REGION_ID = "10000002";
+
+    String ESI_MARKET_URI = "/markets";
+    String ESI_ORDER_URI = "/orders";
+    String ESI_HISTORY_URI = "/history";
     String ESI_SSO_CACHE_URI = "https://login.evepc.163.com/account/logoff";
     String ESI_SSO_REDIRECT_URI = "https://esi.evepc.163.com/ui/oauth2-redirect.html";
     String ESI_SSO_CLIENT_ID = "bc90aa496a404724a93f41b4f4e97761";
