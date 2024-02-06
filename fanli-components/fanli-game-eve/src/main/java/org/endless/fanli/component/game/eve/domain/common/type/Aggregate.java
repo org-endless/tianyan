@@ -1,16 +1,16 @@
 package org.endless.fanli.component.game.eve.domain.common.type;
 
 /**
- * GameEveAggregate
+ * Aggregate
  * <p>
  * <p>
  * <p>
- * <p>create 2024/02/06 17:02
- * <p>update 2024/02/06 17:02
+ * <p>create 2024/02/06 18:18
+ * <p>update 2024/02/06 18:18
  *
  * @author Deng Haozhi
  * @since 0.0.6
  */
-public interface GameEveAggregate extends Aggregate {
+public interface Aggregate extends Entity {
 
 }

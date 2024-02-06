@@ -2,6 +2,7 @@ package org.endless.fanli.component.game.eve.domain.market;
 
 import org.endless.fanli.component.game.eve.domain.common.type.GameEveAggregate;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,5 +17,5 @@ import java.util.List;
  * @since 0.0.6
  */
 public interface GameEveMarketAggregate extends GameEveAggregate {
-    void calculateMarketAnnualSalesQuantity(List<GameEveMarketOrderHistory> histories);
+    BigDecimal calculateMarketAnnualSalesQuantity(List<GameEveMarketOrderHistory> histories);
 }
