@@ -29,8 +29,12 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/spring-projects/org-endless/fanli.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/org-endless/fanli.git</developerConnection>
+        <connection>
+            scm:git:git://github.com/spring-projects/org-endless/fanli.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/org-endless/fanli.git
+        </developerConnection>
         <url>https://github.com/org-endless/fanli</url>
     </scm>
 
@@ -39,7 +43,8 @@
         <java.version>21</java.version>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <project.reporting.outputEncoding>${encoding}
+        </project.reporting.outputEncoding>
         <maven.compiler.encoding>${encoding}</maven.compiler.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -48,30 +53,16 @@
         <endless.version>0.0.6-SNAPSHOT</endless.version>
     </properties>
     <modules>
-        <!-- <module>fanli-application</module> -->
-        <!-- <module>fanli-common</module> -->
+        <module>fanli-common</module>
         <module>fanli-components/fanli-game-eve</module>
         <module>fanli-core</module>
-        <!-- <module>fanli-domain</module> -->
-        <!-- <module>fanli-infrastructure</module> -->
-        <!-- <module>fanli-user-interface</module> -->
     </modules>
     <dependencyManagement>
         <dependencies>
-            <!-- <dependency>
-                <groupId>org.endless</groupId>
-                <artifactId>fanli-application</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!-- Models -->
             <dependency>
                 <groupId>org.endless</groupId>
                 <artifactId>fanli-common</artifactId>
-                <version>${project.version}</version>
-            </dependency> -->
-            <!-- Components -->
-            <dependency>
-                <groupId>org.endless</groupId>
-                <artifactId>fanli-game-eve</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -79,16 +70,13 @@
                 <artifactId>fanli-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- <dependency>
-                <groupId>org.endless</groupId>
-                <artifactId>fanli-domain</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!-- Components -->
             <dependency>
                 <groupId>org.endless</groupId>
-                <artifactId>fanli-user-interface</artifactId>
+                <artifactId>fanli-game-eve</artifactId>
                 <version>${project.version}</version>
-            </dependency> -->
+            </dependency>
+            <!-- endless-dependencies -->
             <dependency>
                 <groupId>org.endless</groupId>
                 <artifactId>endless-dependencies</artifactId>

@@ -1,6 +1,6 @@
 package org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi;
 
-import org.endless.fanli.component.game.eve.infrastructure.driven.adapter.esi.market.GameEveMarketEsiDataAdapter;
+import org.endless.fanli.component.game.eve.common.infrastructure.adapter.esi.market.GameEveMarketEsiDataAdapter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

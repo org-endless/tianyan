@@ -1,5 +1,7 @@
 ### data ###
-data/eve
+data/
+!**/src/main/**/data/
+!**/src/test/**/data/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
