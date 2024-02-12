@@ -1,27 +1,50 @@
-### data ###
+# Data
 data/
 !**/src/main/**/data/
 !**/src/test/**/data/
 
+# Dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Maven Build
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Logs
+**/logs
+*.log
+*.log*
 
-### IntelliJ IDEA ###
+# Local env files
+.env
+.env.*
+!.env.example
+
+# VCS
+**/.git
+**/.svn
+**/.hg
+
+# IDE
 .idea
+.fleet
 *.iws
 *.iml
 *.ipr
 
-.flattened-pom.xml
-.history/
+# Misc
+.DS_Store
+**/.history
+*.xml.versionsBackup
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
