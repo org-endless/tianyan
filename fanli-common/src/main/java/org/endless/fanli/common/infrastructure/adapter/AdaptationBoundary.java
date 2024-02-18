@@ -14,5 +14,5 @@ import org.endless.fanli.common.domain.model.Value;
  * @since 0.0.6
  */
 public interface AdaptationBoundary<T extends Value> {
-    T toEntity();
+    T toValue();
 }
