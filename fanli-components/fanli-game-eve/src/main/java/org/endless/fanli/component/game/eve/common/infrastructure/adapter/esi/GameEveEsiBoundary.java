@@ -1,6 +1,6 @@
 package org.endless.fanli.component.game.eve.common.infrastructure.adapter.esi;
 
-import org.endless.fanli.component.game.eve.common.domain.model.GameEveEntity;
+import org.endless.fanli.component.game.eve.common.domain.model.GameEveValue;
 import org.endless.fanli.component.game.eve.common.infrastructure.adapter.GameEveAdaptationBoundary;
 
 /**
@@ -15,5 +15,5 @@ import org.endless.fanli.component.game.eve.common.infrastructure.adapter.GameEv
  * @see GameEveAdaptationBoundary
  * @since 0.0.6
  */
-public interface GameEveEsiBoundary<T extends GameEveEntity> extends GameEveAdaptationBoundary<T> {
+public interface GameEveEsiBoundary<T extends GameEveValue> extends GameEveAdaptationBoundary<T> {
 }

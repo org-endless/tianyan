@@ -1,0 +1,22 @@
+@startuml
+!include eventstorming.puml
+FacadeCommand('FacadeCommand')
+Command('Command')
+Result('Result')
+Event('Event')
+DomainEvent('DomainEvent')
+IntegrationEvent('IntegrationEvent')
+Query('Query')
+ReadModel('ReadModel')
+UserInterface('UserInterface')
+Aggregate('Aggregate')
+Service('Service')
+Policy('Policy')
+Saga('Saga')
+Process('Process')
+Timer('Timer')
+Person('Person')
+System('System')
+Comment('Comment')
+
+@enduml

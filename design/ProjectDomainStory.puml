@@ -1,0 +1,19 @@
+@startuml
+!include ./puml/domainstory/domainstory.puml
+
+Person(SystemOwner,系统责任人)
+
+
+Boundary(counter, cash counter) {
+    Person(cashier)
+    System(ticketSystem, ticket system, )
+
+    activity(_, SystemOwner, asks for, Conversation: reservation, cashier)
+    activity(_, cashier, finds available seats in, Document: screen plan, with, ticketSystem)
+    activity(_<, cashier, recommends, Conversation: available seats, to, SystemOwner)
+    activity(_, SystemOwner, confirms, Conversation: offered seats, cashier)
+    activity(_, cashier, marks seats as reserved in, Document: screen plan, with, ticketSystem)
+    activity(_<, ticketSystem, generates, Info: reservation number, for, cashier)
+    activity(_<, cashier, tells, Conversation: reservation number, to, SystemOwner)
+}
+@enduml

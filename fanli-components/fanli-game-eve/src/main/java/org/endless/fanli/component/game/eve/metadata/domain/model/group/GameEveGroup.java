@@ -3,7 +3,7 @@ package org.endless.fanli.component.game.eve.metadata.domain.model.group;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
+import org.endless.fanli.component.game.eve.common.domain.model.GameEveEntity;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
+import org.endless.fanli.component.game.eve.common.domain.model.GameEveEntity;
 
 import java.util.ArrayList;
 import java.util.List;
