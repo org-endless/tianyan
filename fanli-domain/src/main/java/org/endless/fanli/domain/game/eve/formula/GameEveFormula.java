@@ -33,7 +33,7 @@ public class GameEveFormula extends Formula {
     @Getter
     public enum Categories {
 
-        manufacturing("0", "manufacturing", "制造"),
+        manufacturing("0", "producing", "制造"),
         invention("1", "invention", "发明"),
         copying("2", "copying", "拷贝"),
         researchMaterial("3", "researchMaterial", "材料成本研究"),

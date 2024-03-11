@@ -1,7 +1,6 @@
 package org.endless.fanli.component.game.eve.market.infrastructure.adapter.esi.market;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.endless.fanli.component.game.eve.domain.common.type.RemoteData;
 import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketOrderHistory;
 import org.endless.spring.boot.common.utility.decimal.Decimal;
 

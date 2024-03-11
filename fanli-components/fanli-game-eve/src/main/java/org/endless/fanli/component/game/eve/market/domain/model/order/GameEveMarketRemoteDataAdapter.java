@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface GameEveMarketRemoteDataAdapter {
 
-    List<GameEveMarketOrder> getRegionMarketOrdersByItemId(String itemId, String regionId);
+    List<Order> getRegionMarketOrdersByItemId(String itemId, String regionId);
 
     List<GameEveMarketOrderHistory> getRegionMarketOrderHistoryByItemId(String itemId, String regionId);
 }

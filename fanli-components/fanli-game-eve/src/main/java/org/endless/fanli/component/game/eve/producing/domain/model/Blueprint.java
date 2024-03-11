@@ -1,4 +1,4 @@
-package org.endless.fanli.component.game.eve.manufacturing.domain.model;
+package org.endless.fanli.component.game.eve.producing.domain.model;
 
 import org.endless.fanli.component.game.eve.common.domain.model.GameEveValue;
 

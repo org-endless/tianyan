@@ -2,9 +2,9 @@ package org.endless.fanli.component.game.eve.market.infrastructure.adapter.esi.m
 
 import lombok.extern.slf4j.Slf4j;
 import org.endless.fanli.component.game.eve.common.infrastructure.adapter.esi.AbstractGameEveEsiAdapter;
-import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketOrder;
 import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketOrderHistory;
 import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketRemoteDataAdapter;
+import org.endless.fanli.component.game.eve.market.domain.model.order.Order;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -39,7 +39,7 @@ public class GameEveMarketEsiAdapter
     }
 
     @Override
-    public List<GameEveMarketOrder> getRegionMarketOrdersByItemId(String itemId, String regionId) {
+    public List<Order> getRegionMarketOrdersByItemId(String itemId, String regionId) {
 
         Map<String, Object> uriVariables = new HashMap<>(ESI_DATASOURCE);
         uriVariables.put("type_id", itemId);

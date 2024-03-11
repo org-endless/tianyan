@@ -52,10 +52,10 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
             var maxProductionLimit = Decimal.format(rat.get("maxProductionLimit"));
             var activities = (Map<?, ?>) rat.get("activities");
 
-            var manufacturing = (Map<?, ?>) activities.get("manufacturing");
+            var manufacturing = (Map<?, ?>) activities.get("producing");
             if (manufacturing != null) {
 
-                log.trace("Get manufacturing pairs");
+                log.trace("Get producing pairs");
                 pairs.addAll(getPairs(manufacturing, org.endless.erp.game.eve.formula.GameEveFormula.Categories.manufacturing, formulaItemId, maxProductionLimit));
             }
 

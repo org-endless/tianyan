@@ -1,8 +1,8 @@
-package org.endless.fanli.component.game.eve.manufacturing.infrastructure.adapter.file.esi.blueprint;
+package org.endless.fanli.component.game.eve.producing.infrastructure.adapter.file.esi.blueprint;
 
 
 import org.endless.fanli.component.game.eve.common.infrastructure.adapter.GameEveAdaptationBoundary;
-import org.endless.fanli.component.game.eve.manufacturing.domain.model.Blueprint;
+import org.endless.fanli.component.game.eve.producing.domain.model.Blueprint;
 
 /**
  * BlueprintBoundary

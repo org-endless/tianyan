@@ -35,7 +35,7 @@ public class GameEveMarketService implements GameEveService {
 
     public BigDecimal getMarketAnnualSalesQuantity(String itemId) {
 
-        GameEveMarketAggregate aggregate = GameEveMarketEntity.builder()
+        GameEveMarketAggregate aggregate = Market.builder()
                 .itemId(itemId)
                 .build();
 

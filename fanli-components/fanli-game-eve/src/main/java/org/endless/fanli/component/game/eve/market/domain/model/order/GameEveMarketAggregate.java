@@ -1,6 +1,7 @@
 package org.endless.fanli.component.game.eve.market.domain.model.order;
 
-import org.endless.fanli.component.game.eve.domain.common.type.GameEveAggregate;
+
+import org.endless.fanli.component.game.eve.common.domain.model.GameEveAggregate;
 
 import java.math.BigDecimal;
 import java.util.List;

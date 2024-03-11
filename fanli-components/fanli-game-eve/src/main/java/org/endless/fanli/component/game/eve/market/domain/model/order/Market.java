@@ -3,14 +3,14 @@ package org.endless.fanli.component.game.eve.market.domain.model.order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.fanli.component.game.eve.domain.common.type.GameEveEntity;
+import org.endless.fanli.component.game.eve.common.domain.model.GameEveAggregateRoot;
 import org.endless.spring.boot.common.utility.decimal.Decimal;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * GameEveMarketEntity
+ * Market
  * <p>
  * <p>
  * <p>
@@ -23,15 +23,14 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-public class GameEveMarketEntity implements GameEveMarketAggregate, GameEveEntity {
+public class Market implements GameEveMarketAggregate, GameEveAggregateRoot {
 
     private final String itemId;
-    private BigDecimal averagePrice;
-    private BigDecimal highestPrice;
-    private BigDecimal lowestPrice;
+    private CurrentPrice currentPrice;
     private BigDecimal marketAnnualSalesQuantity;
+    private List<Order> orders;
 
-    private List<GameEveMarketOrder> marketOrders;
+    private List<Order> marketOrders;
 
     @Override
     public BigDecimal calculateMarketAnnualSalesQuantity(List<GameEveMarketOrderHistory> histories) {

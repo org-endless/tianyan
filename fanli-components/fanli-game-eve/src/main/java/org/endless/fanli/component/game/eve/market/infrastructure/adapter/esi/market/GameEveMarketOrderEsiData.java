@@ -3,7 +3,7 @@ package org.endless.fanli.component.game.eve.market.infrastructure.adapter.esi.m
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.endless.fanli.component.game.eve.domain.common.type.RemoteData;
 import org.endless.fanli.component.game.eve.domain.common.type.TradeType;
-import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketOrder;
+import org.endless.fanli.component.game.eve.market.domain.model.order.Order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,10 +34,10 @@ public record GameEveMarketOrderEsiData(
         @JsonProperty("system_id") String universeSystemId,
         @JsonProperty("location_id") String universeLocationId,
         @JsonProperty("range") String universeRange)
-        implements RemoteData<GameEveMarketOrder> {
+        implements RemoteData<Order> {
     @Override
-    public GameEveMarketOrder toEntity() {
-        return GameEveMarketOrder.builder()
+    public Order toEntity() {
+        return Order.builder()
                 .itemId(itemId())
                 .orderId(orderId())
                 .price(price())

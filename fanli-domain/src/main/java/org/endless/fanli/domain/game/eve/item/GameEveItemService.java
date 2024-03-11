@@ -122,19 +122,19 @@ public class GameEveItemService implements ItemService {
     //                             && type.getProfit().getManufacturingProfitPerDay().compareTo(new BigDecimal("10000000")) > 0)
     //             .filter(type -> getTypeByTypeId(blueprintService.getManufacturingBlueprint(blueprints, type.getTypeId()).getTypeId()).getMarketGroupId() != null)
     //             .map(type -> {
-    //                 Map<String, String> manufacturing = new HashMap<>();
+    //                 Map<String, String> producing = new HashMap<>();
     //                 var profitPerday = type.getProfit().getManufacturingProfitPerDay();
     //                 var procurementDifference = CurrencyFormatter.format(CurrencyCalculation.subtract(profitPerday, type.getProfit().getManufacturingProcurementProfitPerDay()));
     //
-    //                 manufacturing.put("typeId", type.getTypeId());
-    //                 manufacturing.put("name", type.getName().getZhName().getFullName());
-    //                 manufacturing.put("profit", type.getProfit().getManufacturingProfit().toString());
-    //                 manufacturing.put("profitMargin", type.getProfit().getManufacturingProfitMargin().toString());
-    //                 manufacturing.put("profitPerDay", profitPerday.toString());
+    //                 producing.put("typeId", type.getTypeId());
+    //                 producing.put("name", type.getName().getZhName().getFullName());
+    //                 producing.put("profit", type.getProfit().getManufacturingProfit().toString());
+    //                 producing.put("profitMargin", type.getProfit().getManufacturingProfitMargin().toString());
+    //                 producing.put("profitPerDay", profitPerday.toString());
     //                 if (procurementDifference != null)
-    //                     manufacturing.put("procurementDifference", procurementDifference.toString());
-    //                 manufacturing.put("isManufacturing", String.valueOf(type.getCost().getIsManufacturing()));
-    //                 return manufacturing;
+    //                     producing.put("procurementDifference", procurementDifference.toString());
+    //                 producing.put("isManufacturing", String.valueOf(type.getCost().getIsManufacturing()));
+    //                 return producing;
     //             })
     //             .sorted((m1, m2) -> new BigDecimal(m2.get("profitPerDay")).compareTo(new BigDecimal(m1.get("profitPerDay"))))
     //             .collect(Collectors.toList());
