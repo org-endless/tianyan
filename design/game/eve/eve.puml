@@ -2,29 +2,163 @@
 !include ../../puml/eventstorming/eventstorming.puml
 allowmixing
 
-Command("CalculateProductCurrentPrice")[
-    计算产品当前价格
-    --
+Person('Person')[
 ]
 
-Aggregate("MarketAggregate")[
+FacadeCommand('ManageProduct')[
+    产品信息管理
+    --rules--
+    1.从EVE基础数据文件中逐条读取数据
+    2.进行新增更新操作
+    3.进行删除操作
+    --fields--
+    filename
+]
+Person --> ManageProduct
+
+
+Service('ManageProductService')[
+    产品信息管理服务
+    --methods--
+    manageProduct
+    readProductDataFile
+]
+ManageProduct .. ManageProductService
+
+Command('UpsertProduct')[
+    产品信息新增更新
+    --rules--
+    1.根据EVE基础数据新增和更新产品信息
+    2.已经存在且未删除的产品信息进行更新
+    3.不存在或已删除的产品信息进行新增
+    --fields--
+     productId
+     productName
+     productType
+    --event--
+     产品已新增更新
+]
+ManageProductService --> UpsertProduct
+
+Command('RemoveProduct')[
+    产品信息删除
+    --rules--
+    1.删除EVE基础数据中没有且未删除的产品
+    --fields--
+     productId
+    --event--
+     产品已删除
+]
+ManageProductService --> RemoveProduct
+
+Aggregate('ProductAggregate')[
+    产品聚合
+    --id--
+     productId
+    --fields--
+     productName
+     productType
+     isRemoved
+    --methods--
+     upsertProduct
+     removeProduct
+
+]
+UpsertProduct .. ProductAggregate
+RemoveProduct .. ProductAggregate
+
+DomainEvent('ProductUpserted')[
+    产品已新增更新
+    --fields--
+     productId
+     productName
+     productType
+]
+ProductAggregate --> ProductUpserted
+
+'DomainEvent('ProductUpsertFailed')[
+'    产品新增更新已失败
+'    --fields--
+'     productId
+'     errorMassage
+']
+'ManageProduct --> ProductUpsertFailed
+
+DomainEvent('ProductRemoved')[
+    产品已删除
+    --fields--
+     productId
+]
+ProductAggregate --> ProductRemoved
+
+'DomainEvent('ProductRemoveFailed')[
+'    产品删除已失败
+'    --fields--
+'     productId
+'     errorMassage
+']
+'ManageProduct --> ProductRemoveFailed
+
+DomainEvent('CurrentPriceCalculated')[
+    产品当前价格已计算
+    --fields--
+    buyPrice
+    sellPrice
+]
+
+DomainEvent('CurrentPriceCalculateFailed')[
+    产品当前价格计算已失败
+    --fields--
+    errorMassage
+]
+
+DomainEvent('DailySalesAverageCalculated')[
+    日均销量已计算
+    --fields--
+    dailySalesAverage
+]
+
+DomainEvent('DailySalesAverageCalculateFailed')[
+    日均销量计算已失败
+    --fields--
+    errorMassage
+]
+
+DomainEvent('CostCalculateCalculated')[
+    成本已计算
+    --fields--
+    cost
+]
+
+Command('CalculateCurrentPrice')[
+    计算产品当前价格
+    --rules--
+]
+
+Command('CalculateDailySalesAverage')[
+    计算产品日均销量
+    --rules--
+]
+
+
+
+
+
+Aggregate('MarketAggregate')[
    市场聚合
    --
-   itemId
    productId
 ]
 
-Aggregate("ProducingAggregate")[
+Aggregate('ProducingAggregate')[
    生产聚合
    --
-   itemId
    productId
 ]
 
-Aggregate("FormulaAggregate")[
+Aggregate('FormulaAggregate')[
    配方聚合
    --
-   itemId
    productId
 ]
 
@@ -42,39 +176,4 @@ class CurrentPrice{
 MarketAggregate <|-- Order : VO
 MarketAggregate <|-- CurrentPrice : VO
 
-DomainEvent("CurrentPriceCalculated")[
-    产品当前价格已计算
-    ---
-]
-DomainEvent("ProjectDeleted")[
-    成功删除项目
-    ---
-]
-DomainEvent("ProjectModified")[
-    成功修改项目
-    ---
-]
-DomainEvent("ProjectEnabled")[
-     成功启用项目
-     ---
-]
-DomainEvent("ProjectDisabled")[
-     成功禁用项目
-     ---
-]
-
-
-CreateProject --> ProjectAggregate : invoked on
-DeleteProject --> ProjectAggregate : invoked on
-ModifyProject --> ProjectAggregate : invoked on
-EnableProject --> ProjectAggregate : invoked on
-DisableProject --> ProjectAggregate : invoked on
-
-
-
-ProjectAggregate --> ProjectCreated : generates
-ProjectAggregate --> ProjectDeleted : generates
-ProjectAggregate --> ProjectModified : generates
-ProjectAggregate --> ProjectEnabled : generates
-ProjectAggregate --> ProjectDisabled : generates
 @enduml

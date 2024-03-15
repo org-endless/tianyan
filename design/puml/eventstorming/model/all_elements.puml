@@ -1,5 +1,5 @@
 @startuml
-!include eventstorming.puml
+!include ../eventstorming.puml
 FacadeCommand('FacadeCommand')
 Command('Command')
 Result('Result')
