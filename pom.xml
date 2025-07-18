@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>tianyan</name>
-    <description>天演</description>
+    <description>天演，这里有ERP的一切</description>
     <url>https://github.com/org-endless/tianyan</url>
     <organization>
         <name>Endless, Org.</name>
@@ -38,6 +38,8 @@
         <url>https://github.com/org-endless/tianyan</url>
     </scm>
     <modules>
+        <module>tianyan-finance</module>
+        <module>tianyan-item</module>
     </modules>
 
     <properties>
