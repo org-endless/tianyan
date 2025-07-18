@@ -1,50 +1,50 @@
-# Data
-data/
-!**/src/main/**/data/
-!**/src/test/**/data/
-
-# Dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
-
-# Maven Build
+### Build Tools ###
+.ddd
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+*.tar.gz
+*.jar
+!endless-ddd-simplified-generator-1.0.0-SNAPSHOT.jar
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-# Logs
-**/logs
-*.log
-*.log*
+### IDE ###
+.history
+.vscode
 
-# Local env files
-.env
-.env.*
-!.env.example
+.DS_Store
 
-# VCS
-**/.git
-**/.svn
-**/.hg
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
 
-# IDE
+### IntelliJ IDEA ###
 .idea
-.fleet
 *.iws
 *.iml
 *.ipr
+tansun/*
+logs/*
 
-# Misc
-.DS_Store
-**/.history
+### NetBeans ###
+nbproject/private/
+build/*
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Others ###
+*.log
 *.xml.versionsBackup
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.swp
+data
+
+!*/build/*.java
+!*/build/*.html
+!*/build/*.xml
