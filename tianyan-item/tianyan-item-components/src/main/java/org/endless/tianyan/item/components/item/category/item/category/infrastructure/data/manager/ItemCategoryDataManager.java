@@ -1,5 +1,8 @@
 package org.endless.tianyan.item.components.item.category.item.category.infrastructure.data.manager;
 
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.category.item.category.application.query.anticorruption.ItemCategoryQueryRepository;
 import org.endless.tianyan.item.components.item.category.item.category.domain.anticorruption.ItemCategoryRepository;
@@ -39,17 +42,22 @@ public class ItemCategoryDataManager implements ItemCategoryRepository, ItemCate
     }
 
     @Override
-    public ItemCategoryAggregate save(ItemCategoryAggregate itemCategoryAggregate) {
-        return null;
+    @Log(message = "保存物品分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    public ItemCategoryAggregate save(ItemCategoryAggregate aggregate) {
+        Optional.ofNullable(aggregate)
+                .map(ItemCategoryAggregate::validate)
+                .orElseThrow(() -> new DataManagerRequestNullException("保存物品分类聚合数据不能为空"));
+        itemCategoryMapper.save(ItemCategoryRecord.from(aggregate));
+        return aggregate;
     }
 
     @Override
-    public void remove(ItemCategoryAggregate itemCategoryAggregate) {
+    public void remove(ItemCategoryAggregate aggregate) {
 
     }
 
     @Override
-    public ItemCategoryAggregate modify(ItemCategoryAggregate itemCategoryAggregate) {
+    public ItemCategoryAggregate modify(ItemCategoryAggregate aggregate) {
         return null;
     }
 

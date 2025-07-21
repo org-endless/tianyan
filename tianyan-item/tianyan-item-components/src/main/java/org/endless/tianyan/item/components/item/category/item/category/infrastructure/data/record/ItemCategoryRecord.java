@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
  * ItemCategoryRecord
  * <p>物品分类数据库记录实体
  * <p>
- * create 2025/07/21 14:40
+ * create 2025/07/21 15:11
  * <p>
- * update 2025/07/21 14:40
+ * update 2025/07/21 15:11
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord

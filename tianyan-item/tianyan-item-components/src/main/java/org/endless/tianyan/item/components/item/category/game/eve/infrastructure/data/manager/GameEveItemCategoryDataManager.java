@@ -1,5 +1,8 @@
 package org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.manager;
 
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
@@ -39,17 +42,22 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
     }
 
     @Override
-    public GameEveItemCategoryAggregate save(GameEveItemCategoryAggregate gameEveItemCategoryAggregate) {
-        return null;
+    @Log(message = "保存游戏EVE物品分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    public GameEveItemCategoryAggregate save(GameEveItemCategoryAggregate aggregate) {
+        Optional.ofNullable(aggregate)
+                .map(GameEveItemCategoryAggregate::validate)
+                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE物品分类聚合数据不能为空"));
+        gameEveItemCategoryMapper.save(GameEveItemCategoryRecord.from(aggregate));
+        return aggregate;
     }
 
     @Override
-    public void remove(GameEveItemCategoryAggregate gameEveItemCategoryAggregate) {
+    public void remove(GameEveItemCategoryAggregate aggregate) {
 
     }
 
     @Override
-    public GameEveItemCategoryAggregate modify(GameEveItemCategoryAggregate gameEveItemCategoryAggregate) {
+    public GameEveItemCategoryAggregate modify(GameEveItemCategoryAggregate aggregate) {
         return null;
     }
 

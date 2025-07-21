@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
  * ItemCategoryRestController
  * <p>物品分类领域Rest控制器
  * <p>
- * create 2025/07/20 22:39
+ * create 2025/07/21 15:11
  * <p>
- * update 2025/07/20 22:39
+ * update 2025/07/21 15:11
  *
  * @author Deng Haozhi
  * @see TianyanItemRestController
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Lazy
 @RestController
-@RequestMapping("/item.category/item/category")
+@RequestMapping("/item/category")
 public class ItemCategoryRestController implements TianyanItemRestController {
 
     /**

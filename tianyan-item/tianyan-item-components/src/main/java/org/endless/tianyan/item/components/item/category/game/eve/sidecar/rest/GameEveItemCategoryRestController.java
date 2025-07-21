@@ -21,9 +21,9 @@ import java.util.Optional;
  * GameEveItemCategoryRestController
  * <p>游戏EVE物品分类领域Rest控制器
  * <p>
- * create 2025/07/20 22:39
+ * create 2025/07/21 15:05
  * <p>
- * update 2025/07/20 22:39
+ * update 2025/07/21 15:05
  *
  * @author Deng Haozhi
  * @see TianyanItemRestController
@@ -31,7 +31,7 @@ import java.util.Optional;
  */
 @Lazy
 @RestController
-@RequestMapping("/item/category/game/eve/item/category")
+@RequestMapping("/item/category/game/eve")
 public class GameEveItemCategoryRestController implements TianyanItemRestController {
 
     /**
