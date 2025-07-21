@@ -43,8 +43,8 @@ nbdist/
 *.log
 *.xml.versionsBackup
 *.swp
-data/game/eve
 
 !*/build/*.java
 !*/build/*.html
 !*/build/*.xml
+/tianyan-metadata/tianyan-metadata-core/data/

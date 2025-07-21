@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * GameEveMetaGroupService
- *
  * <p>update 2023/4/20 18:28
  * <p>update 2023/8/15 21:04
  *
@@ -19,9 +18,9 @@ public class GameEveMetaGroupService {
     //     this.bulkMongoRepository = bulkMongoRepository;
     // }
     //
-    // public void load(String file) {
+    // public void load(String load) {
     //
-    //     var scanner = FileLoader.getScanner(file, ErpPattern.getEve());
+    //     var scanner = FileLoader.getScanner(load, ErpPattern.getEve());
     //     List<Pair<Query, Update>> upsertList = new ArrayList<>();
     //
     //     while (scanner.hasNext()) {

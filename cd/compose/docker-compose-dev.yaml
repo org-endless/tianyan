@@ -1,0 +1,104 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins
+    restart: always
+    ports:
+      - 21000:8080
+    volumes:
+      - /cloud/docker/volumes/jenkins/jenkins_home:/var/jenkins_home
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: always
+    hostname: 123.57.16.198
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://123.57.16.198:21001'
+        gitlab_rails['gitlab_shell_ssh_port'] = 21003
+    ports:
+      - 21001:80
+      - 21002:443
+      - 21003:22
+    volumes:
+      - /cloud/docker/volumes/gitlab/config:/etc/gitlab
+      - /cloud/docker/volumes/gitlab/logs:/var/log/gitlab
+      - /cloud/docker/volumes/gitlab/data:/var/opt/gitlab
+    shm_size: '256m'
+  minio:
+    build:
+      context: /cloud/docker/dockerfile/minio
+      dockerfile: minio.Dockerfile
+    image: gycdp/minio:1.0.0
+    container_name: minio
+    restart: always
+    environment:
+      MINIO_ROOT_USER: gycdp
+      MINIO_ROOT_PASSWORD: gycdp@minio
+    ports:
+      - 11000:9000
+      - 11001:9001
+    volumes:
+      - /cloud/docker/volumes/minio/data:/bitnami/minio/data
+    networks:
+      - gycdp
+  redis:
+    build:
+      context: /cloud/docker/dockerfile/redis
+      dockerfile: redis.Dockerfile
+    image: gycdp/redis:1.0.0
+    container_name: redis
+    restart: always
+    ports:
+      - 12000:6379
+    networks:
+      - gycdp
+  mysql:
+    image: mysql:9.1.0-oraclelinux9
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gycdp@mysql
+    ports:
+      - 13000:3306
+    volumes:
+      - /cloud/docker/volumes/mysql/data:/var/lib/mysql
+      - /cloud/docker/volumes/mysql/conf.d:/etc/mysql/conf.d
+      - /cloud/docker/volumes/mysql/logs:/var/log/mysql
+    networks:
+      - gycdp
+  gycdp-server:
+    build:
+      context: /cloud/docker/dockerfile/gycdp-server
+      dockerfile: gycdp-server.Dockerfile
+    image: gycdp/gycdp-server:1.0.0
+    container_name: gycdp-server
+    restart: always
+    ports:
+      - 10001:10001
+    volumes:
+      - /cloud/docker/volumes/gycdp-server/logs:/gycdp-server/logs
+    depends_on:
+      - mysql
+      - minio
+      - redis
+    networks:
+      - gycdp
+  gycdp-web:
+    build:
+      context: /cloud/docker/dockerfile/gycdp-web
+      dockerfile: nginx.Dockerfile
+    image: gycdp/gycdp-web:1.0.0
+    container_name: gycdp-web
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /cloud/docker/volumes/gycdp-web/logs:/var/log/nginx
+    depends_on:
+      - gycdp-server
+    networks:
+      - gycdp
+networks:
+  gycdp:
+    driver: bridge

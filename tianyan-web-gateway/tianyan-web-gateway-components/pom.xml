@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.endless</groupId>
+        <artifactId>tianyan-web-gateway</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>tianyan-web-gateway-components</artifactId>
+    <packaging>jar</packaging>
+    <name>tianyan-web-gateway-components</name>
+    <description>天演-网页网关-核心域组件</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.endless</groupId>
+            <artifactId>tianyan-web-gateway-common</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

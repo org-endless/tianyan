@@ -1,0 +1,20 @@
+services:
+  mysql:
+    build:
+      context: /cloud/docker/dockerfile/mysql
+      dockerfile: mysql.Dockerfile
+    image: tianyan/mysql:1.0.0
+    container_name: mysql
+    restart: unless-stopped
+    env_file:
+      - /cloud/docker/dockerfile/mysql/resource/.env
+    ports:
+      - 13000:13000
+    volumes:
+      - /cloud/docker/volumes/mysql/data:/var/lib/mysql
+      - /cloud/docker/volumes/mysql/logs:/var/log/mysql
+    networks:
+      - endless
+networks:
+  endless:
+    driver: bridge

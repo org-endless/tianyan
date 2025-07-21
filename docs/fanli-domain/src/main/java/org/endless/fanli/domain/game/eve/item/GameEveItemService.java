@@ -41,6 +41,7 @@ public class GameEveItemService implements ItemService {
     private final MongoOperations operations;
 
     private final GameEveAsyncTask asyncTask;
+
     private final GameEveItemRepository itemRepository;
 
     public GameEveItemService(
@@ -53,7 +54,7 @@ public class GameEveItemService implements ItemService {
 
     /**
      * 加载游戏EVE物品/商品数据文件
-     * <p>Load the game EVE item data file.
+     * <p>Load the game EVE item data load.
      *
      * @param file 文件路径 (File path)
      */

@@ -2,13 +2,13 @@
 <Configuration status="ERROR" monitorInterval="300">
     <Properties>
         <property name="APP_NAME" value="tianyan-item"/>
-        <property name="APP_HOME" value="/logs/${APP_NAME}"/>
-        <property name="LOG_HOME" value="${APP_HOME}/logs"/>
+        <property name="LOG_HOME" value="/logs/${APP_NAME}"/>
         <property name="LOG_NAME" value="${APP_NAME}"/>
-        <Property name="LOG_PATTERN_ASPECT">[%date{HH:mm:ss.SSS}][%TX{tl}][%-5p][%T]%tm%xEx%n</Property>
-        <Property name="LOG_PATTERN">[%date{HH:mm:ss.SSS}]%TX{tl}[%-5p][%T][%c.%M:%L]%tm%xEx%n</Property>
+        <property name="LOG_PATTERN_ASPECT">[%d{HH:mm:ss.SSS}][%-5p][%t] %c{1.} - %m%n</property>
+        <property name="LOG_PATTERN">[%d{HH:mm:ss.SSS}][%-5p][%t][%c.%M:%L] - %m%n</property>
         <property name="FILE_SIZE">20MB</property>
     </Properties>
+
     <Appenders>
         <Console name="Console_aspect" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN_ASPECT}" charset="UTF-8"/>
@@ -16,9 +16,10 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
         </Console>
-        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_HOME}/${LOG_NAME}.log"
-                                 filePattern="${LOG_HOME}/${date:yyyyMMdd}/${LOG_NAME}-%d{yyyyMMdd}-%i.log">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+        <RollingRandomAccessFile name="RollingRandomAccessFile"
+                                 fileName="${LOG_HOME}/${LOG_NAME}.log"
+                                 filePattern="${LOG_HOME}/%d{yyyyMMdd}/${LOG_NAME}-%d{yyyyMMdd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="${FILE_SIZE}"/>
@@ -48,14 +49,15 @@
         <Logger name="org.springdoc" level="INFO"/>
         <Logger name="druid" level="INFO"/>
         <Logger name="java.io.serialization" level="INFO"/>
-        <Logger name="org.endless.ddd.simplified.starter.common.config.log.aspect.LogAspect" level="TRACE" additivity="false">
+        <Logger name="org.endless.ddd.simplified.starter.common.config.log.aspect.LogAspect" level="TRACE"
+                additivity="false">
             <AppenderRef ref="Console_aspect"/>
         </Logger>
         <!-- 其他日志配置，Root 配置不再冗余打印 LogAspect 的日志 -->
         <Root level="TRACE">
             <AppenderRef ref="Console"/>
             <!-- 如果需要输出到文件，可以启用文件输出 -->
-            <AppenderRef ref="RollingRandomAccessFile"/>
+            <!--            <AppenderRef ref="RollingRandomAccessFile"/>-->
         </Root>
     </Loggers>
 </Configuration>

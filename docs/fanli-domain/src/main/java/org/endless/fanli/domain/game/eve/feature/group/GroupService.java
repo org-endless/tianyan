@@ -3,10 +3,9 @@ package org.endless.erp.game.eve.feature.group;
 import org.springframework.stereotype.Service;
 
 /**
- * GroupService load groups from yaml data file
+ * GroupService load groups from yaml data load
  *
  * @author Deng Haozhi
- * @date 2023/3/7 1:28
  * @since 0.0.2
  */
 @Service
@@ -17,9 +16,9 @@ public class GroupService {
     //     this.bulkMongoRepository = bulkMongoRepository;
     // }
     //
-    // public void load(String file) {
+    // public void load(String load) {
     //
-    //     var scanner = FileLoader.getScanner(file, ErpPattern.getEve());
+    //     var scanner = FileLoader.getScanner(load, ErpPattern.getEve());
     //     List<Pair<Query, Update>> upsertList = new ArrayList<>();
     //
     //     while (scanner.hasNext()) {

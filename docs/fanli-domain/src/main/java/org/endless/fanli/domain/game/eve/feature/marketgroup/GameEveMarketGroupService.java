@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * GameEveMarketGroupService
- *
  * <p>create 2023/4/20 17:59
  * <p>update 2023/8/15 21:03
  *
@@ -20,9 +19,9 @@ public class GameEveMarketGroupService {
     //     this.bulkMongoRepository = bulkMongoRepository;
     // }
     //
-    // public void load(String file) {
+    // public void load(String load) {
     //
-    //     var scanner = FileLoader.getScanner(file, ErpPattern.getEve());
+    //     var scanner = FileLoader.getScanner(load, ErpPattern.getEve());
     //     List<Pair<Query, Update>> upsertList = new ArrayList<>();
     //
     //     while (scanner.hasNext()) {

@@ -23,7 +23,7 @@ import static org.endless.fanli.common.type.ddd.industry.Industry.GAME_EVE;
 /**
  * GameEveItemLoadTask
  * <p>游戏EVE物品/商品数据文件加载异步任务
- * <p>Game EVE item data file loading asynchronous task.
+ * <p>Game EVE item data load loading asynchronous task.
  * <p>
  * <p>create 2023/05/11 11:05
  * <p>update 2023/05/27 19:50
@@ -44,7 +44,7 @@ public class GameEveItemLoadTask implements GameEveAsyncTask {
 
     /**
      * 运行游戏EVE物品/商品数据文件加载异步任务
-     * <p>Run the game EVE item data file loading asynchronous task.
+     * <p>Run the game EVE item data load loading asynchronous task.
      *
      * @param scannerMaps 文件扫描结果 (File scan results)
      */

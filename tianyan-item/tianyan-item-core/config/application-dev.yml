@@ -1,7 +1,7 @@
 project-home: ${user.dir}
 server-data-center-id: 1
 server-worker-id: 1
-server-port: 10001
+server-port: 10003
 #Tomcat
 tomcat-connection-timeout: 20000 # 设置连接超时时间，单位为毫秒
 tomcat-max-threads: 200 # 设置最大线程数
@@ -31,9 +31,9 @@ redis-lettuce-pool-max-wait: -1 # 从连接池获取连接的最大等待时间�
 #Datasource
 datasource-type: com.alibaba.druid.pool.DruidDataSource # 指定 Druid 数据源类型
 datasource-driver-class-name: com.mysql.cj.jdbc.Driver # 设置数据库驱动类
-datasource-url: jdbc:mysql://120.24.251.166:13000/gycdp?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-datasource-username: gycdp # 数据库用户名
-datasource-password: gycdp # 数据库密码
+datasource-url: jdbc:mysql://127.0.0.1:61005/tianyan?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+datasource-username: tianyan # 数据库用户名
+datasource-password: tianyan # 数据库密码
 #Druid
 druid-initial-size: 1 # 初始化连接数
 druid-min-idle: 1 # 最小空闲连接数

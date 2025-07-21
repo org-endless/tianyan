@@ -1,0 +1,61 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanItem
+rootPath: tianyan-item/tianyan-item-components
+serviceSubPackage: components
+contextName: item.group
+domainName: GameEveItemGroup
+aggregateName: GameEveItemGroupAggregate
+description: 游戏EVE物品分组
+fields:
+  - name: gameEveItemGroupId
+    type: String
+    description: 游戏EVE物品分组ID
+    nullable: false
+  - name: nameZh
+    type: NameValue
+    description: 中文名称
+    nullable: false
+  - name: nameEn
+    type: NameValue
+    description: 英文名称
+    nullable: false
+  - name: isPublished
+    type: Boolean
+    description: 是否发布
+    nullable: false
+values:
+  - name: NameValue
+    description: 名称
+    fields:
+      - name: fullName
+        type: String
+        description: 全称
+        nullable: false
+      - name: alias
+        type: String
+        description: 别名
+        nullable: false
+      - name: abbreviation
+        type: String
+        description: 简称
+        nullable: false
+enums:
+  - name: TestEnum
+    valueType: String
+    description: 测试
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: TEST
+        description: TEST
+      - code: TEST1
+        description: TEST11

@@ -13,6 +13,30 @@ fields:
     type: String
     description: 物品ID
     nullable: false
+  - name: nameZh
+    type: NameValue
+    description: 中文名称
+    nullable: false
+  - name: nameEn
+    type: NameValue
+    description: 英文名称
+    nullable: false
+values:
+  - name: NameValue
+    description: 名称
+    fields:
+      - name: fullName
+        type: String
+        description: 全称
+        nullable: false
+      - name: alias
+        type: String
+        description: 别名
+        nullable: true
+      - name: abbreviation
+        type: String
+        description: 简称
+        nullable: true
 enums:
   - name: TestEnum
     valueType: String

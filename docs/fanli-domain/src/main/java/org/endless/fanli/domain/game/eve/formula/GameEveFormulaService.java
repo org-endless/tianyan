@@ -50,7 +50,7 @@ public class GameEveFormulaService implements FormulaService {
         var scanner = FileLoader.getScanner(String.valueOf(file), GameEvePattern.getFile());
 
         if (scanner == null) {
-            log.error("The file read failed!");
+            log.error("The load read failed!");
             return;
         }
 

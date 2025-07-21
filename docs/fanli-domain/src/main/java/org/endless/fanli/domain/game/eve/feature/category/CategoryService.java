@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
  * CategoryService
  *
  * @author Deng Haozhi
- * @date 2023/4/20 17:37
  * @since 0.0.2
  */
 @Service
@@ -18,9 +17,9 @@ public class CategoryService {
     //     this.bulkMongoRepository = bulkMongoRepository;
     // }
     //
-    // public void load(String file) {
+    // public void load(String load) {
     //
-    //     var scanner = FileLoader.getScanner(file, ErpPattern.getEve());
+    //     var scanner = FileLoader.getScanner(load, ErpPattern.getEve());
     //     List<Pair<Query, Update>> upsertList = new ArrayList<>();
     //
     //     while (scanner.hasNext()) {

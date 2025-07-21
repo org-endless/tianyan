@@ -1,0 +1,52 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanItem
+rootPath: tianyan-item/tianyan-item-components
+serviceSubPackage: components
+contextName: item
+domainName: GameEveItem
+aggregateName: GameEveItemAggregate
+description: 游戏EVE物品
+fields:
+  - name: gameEveItemId
+    type: String
+    description: 游戏EVE物品ID
+    nullable: false
+  - name: itemId
+    type: String
+    description: 物品ID
+    nullable: false
+  - name: code
+    type: String
+    description: 游戏EVE物品编码
+    nullable: false
+enums:
+  - name: TestEnum
+    valueType: String
+    description: 测试
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: TEST
+        description: TEST
+      - code: TEST1
+        description: TEST11
+transfers:
+  - name: GameEveItemLoadReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE物品加载命令请求传输对象
+    fields:
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
