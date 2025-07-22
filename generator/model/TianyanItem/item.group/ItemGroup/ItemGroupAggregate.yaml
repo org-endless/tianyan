@@ -15,15 +15,11 @@ fields:
     nullable: false
   - name: nameZh
     type: NameValue
-    description: 中文名称
+    description: 物品分组中文名称
     nullable: false
   - name: nameEn
     type: NameValue
-    description: 英文名称
-    nullable: false
-  - name: isPublished
-    type: Boolean
-    description: 是否发布
+    description: 物品分组英文名称
     nullable: false
 values:
   - name: NameValue
@@ -36,26 +32,37 @@ values:
       - name: alias
         type: String
         description: 别名
-        nullable: false
+        nullable: true
       - name: abbreviation
         type: String
         description: 简称
-        nullable: false
-enums:
-  - name: TestEnum
-    valueType: String
-    description: 测试
+        nullable: true
+transfers:
+  - name: ItemGroupCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 物品分组创建命令请求传输对象
     fields:
-      - name: code
+      - name: nameZh
         type: String
-        description: 枚举代码
+        description: 中文名称
         nullable: false
-      - name: description
+      - name: nameEn
         type: String
-        description: 枚举描述
+        description: 英文名称
         nullable: false
-    enumValues:
-      - code: TEST
-        description: TEST
-      - code: TEST1
-        description: TEST11
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: ItemGroupCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 物品分组创建命令响应传输对象
+    fields:
+      - name: itemGroupId
+        type: String
+        description: 物品分组ID
+        nullable: false

@@ -1,9 +1,12 @@
-DROP TABLE IF EXISTS item_item;
-CREATE TABLE item_item (
+DROP TABLE IF EXISTS item;
+CREATE TABLE item (
     item_id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT '物品ID',
     name_zh_full_name VARCHAR(255) NOT NULL COMMENT '全称',
     name_zh_alias VARCHAR(255) NULL COMMENT '别名',
     name_zh_abbreviation VARCHAR(255) NULL COMMENT '简称',
+    name_en_full_name VARCHAR(255) NOT NULL COMMENT '全称',
+    name_en_alias VARCHAR(255) NULL COMMENT '别名',
+    name_en_abbreviation VARCHAR(255) NULL COMMENT '简称',
     create_user_id VARCHAR(255) NOT NULL COMMENT '创建者ID',
     modify_user_id VARCHAR(255) NOT NULL COMMENT '修改者ID',
     is_removed BOOLEAN NOT NULL COMMENT '是否已删除',

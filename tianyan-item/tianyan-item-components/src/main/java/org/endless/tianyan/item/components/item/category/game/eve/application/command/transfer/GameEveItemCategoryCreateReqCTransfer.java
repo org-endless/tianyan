@@ -3,7 +3,6 @@ package org.endless.tianyan.item.components.item.category.game.eve.application.c
 import org.endless.tianyan.item.common.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.value.*;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
@@ -21,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryCreateReqCTransfer
  * <p>游戏EVE物品分类创建命令请求传输对象
  * <p>
- * create 2025/07/21 12:59
+ * create 2025/07/21 16:08
  * <p>
- * update 2025/07/21 12:59
+ * update 2025/07/21 16:08
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -32,8 +31,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"nameZh", "nameEn", "code", "isPublished", "createUserId"})
+@JSONType(orders = {"code", "nameZh", "nameEn", "isPublished", "createUserId"})
 public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommandTransfer {
+
+    /**
+     * 游戏EVE物品分类编码
+     */
+    private final String code;
 
     /**
      * 游戏EVE物品分类中文名称
@@ -44,11 +48,6 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
      * 游戏EVE物品分类英文名称
      */
     private final String nameEn;
-
-    /**
-     * 游戏EVE物品分类编码
-     */
-    private final String code;
 
     /**
      * 游戏EVE物品分类是否发布
@@ -62,12 +61,18 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
 
     @Override
     public GameEveItemCategoryCreateReqCTransfer validate() {
+        validateCode();
         validateNameZh();
         validateNameEn();
-        validateCode();
         validateIsPublished();
         validateCreateUserId();
         return this;
+    }
+
+    private void validateCode() {
+        if (!StringUtils.hasText(code)) {
+            throw new CommandTransferValidateException("游戏EVE物品分类编码不能为空");
+        }
     }
 
     private void validateNameZh() {
@@ -79,12 +84,6 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
     private void validateNameEn() {
         if (!StringUtils.hasText(nameEn)) {
             throw new CommandTransferValidateException("游戏EVE物品分类英文名称不能为空");
-        }
-    }
-
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
-            throw new CommandTransferValidateException("游戏EVE物品分类编码不能为空");
         }
     }
 

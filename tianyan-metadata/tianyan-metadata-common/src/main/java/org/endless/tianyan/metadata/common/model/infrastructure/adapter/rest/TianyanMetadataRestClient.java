@@ -1,7 +1,6 @@
 package org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest;
 
 import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 
 /**
  * TianyanMetadataDrivenRestAdapter
@@ -14,7 +13,6 @@ import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer
  * @see RestClientAdapter
  * @since 0.0.1
  */
-public interface TianyanMetadataRestClient<T extends TianyanMetadataDrivenTransfer>
-        extends RestClientAdapter {
+public interface TianyanMetadataRestClient extends RestClientAdapter {
 
 }

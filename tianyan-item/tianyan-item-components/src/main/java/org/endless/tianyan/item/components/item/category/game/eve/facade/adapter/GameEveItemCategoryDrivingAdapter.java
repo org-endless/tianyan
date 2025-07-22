@@ -2,6 +2,8 @@ package org.endless.tianyan.item.components.item.category.game.eve.facade.adapte
 
 import org.endless.tianyan.item.common.model.facade.adapter.TianyanItemDrivingAdapter;
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
 
 /**
  * GameEveItemCategoryDrivingAdapter
@@ -17,5 +19,9 @@ import org.endless.tianyan.item.components.item.category.game.eve.application.co
  */
 public interface GameEveItemCategoryDrivingAdapter extends TianyanItemDrivingAdapter {
 
+
     void create(GameEveItemCategoryCreateReqCTransfer command);
+
+    GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
+
 }

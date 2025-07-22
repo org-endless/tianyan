@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEveDataTypeEnum;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.category.GameEveDataItemCategoryLoadTask;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.group.GameEveDataItemGroupLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.GameEveDataItemLoadTask;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.context.annotation.Lazy;
@@ -36,6 +37,8 @@ public class GameEveDataLoadTaskFactory {
             if (clazz == GameEveDataItemLoadTask.class) executorMap.put(GameEveDataTypeEnum.ITEM, task);
             if (clazz == GameEveDataItemCategoryLoadTask.class)
                 executorMap.put(GameEveDataTypeEnum.ITEM_CATEGORY, task);
+            if (clazz == GameEveDataItemGroupLoadTask.class)
+                executorMap.put(GameEveDataTypeEnum.ITEM_GROUP, task);
         }
     }
 

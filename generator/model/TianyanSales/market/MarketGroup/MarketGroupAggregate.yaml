@@ -1,0 +1,43 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market
+domainName: MarketGroup
+aggregateName: MarketGroupAggregate
+description: 市场分组
+fields:
+  - name: marketGroupId
+    type: String
+    description: 市场分组ID
+    nullable: false
+  - name: nameZh
+    type: NameValue
+    description: 中文名称
+    nullable: false
+  - name: nameEn
+    type: NameValue
+    description: 英文名称
+    nullable: false
+  - name: parentId
+    type: String
+    description: 父市场分组ID
+    nullable: true
+values:
+  - name: NameValue
+    description: 名称
+    fields:
+      - name: fullName
+        type: String
+        description: 全称
+        nullable: false
+      - name: alias
+        type: String
+        description: 别名
+        nullable: true
+      - name: abbreviation
+        type: String
+        description: 简称
+        nullable: true

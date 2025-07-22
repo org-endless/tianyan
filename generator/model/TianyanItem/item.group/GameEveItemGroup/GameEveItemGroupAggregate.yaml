@@ -13,49 +13,58 @@ fields:
     type: String
     description: 游戏EVE物品分组ID
     nullable: false
-  - name: nameZh
-    type: NameValue
-    description: 中文名称
+  - name: itemGroupId
+    type: String
+    description: 物品分组ID
     nullable: false
-  - name: nameEn
-    type: NameValue
-    description: 英文名称
+  - name: code
+    type: String
+    description: 游戏EVE物品分组编码
+    nullable: false
+  - name: gameEveItemCategoryId
+    type: String
+    description: 游戏EVE物品分类ID
     nullable: false
   - name: isPublished
     type: Boolean
-    description: 是否发布
+    description: 游戏EVE物品分组是否发布
     nullable: false
-values:
-  - name: NameValue
-    description: 名称
-    fields:
-      - name: fullName
-        type: String
-        description: 全称
-        nullable: false
-      - name: alias
-        type: String
-        description: 别名
-        nullable: false
-      - name: abbreviation
-        type: String
-        description: 简称
-        nullable: false
-enums:
-  - name: TestEnum
-    valueType: String
-    description: 测试
+  - name: isUseBasePrice
+    type: Boolean
+    description: 游戏EVE物品分组是否使用基准价格
+    nullable: false
+transfers:
+  - name: GameEveItemGroupCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE物品分组创建命令请求传输对象
     fields:
       - name: code
         type: String
-        description: 枚举代码
+        description: 游戏EVE物品分组编码
         nullable: false
-      - name: description
+      - name: gameEveItemCategoryId
         type: String
-        description: 枚举描述
+        description: 游戏EVE物品分类ID
         nullable: false
-    enumValues:
-      - code: TEST
-        description: TEST
-      - code: TEST1
-        description: TEST11
+      - name: nameZh
+        type: String
+        description: 游戏EVE物品分组中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 游戏EVE物品分组英文名称
+        nullable: false
+      - name: isPublished
+        type: Boolean
+        description: 游戏EVE物品分组是否发布
+        nullable: false
+      - name: isUseBasePrice
+        type: Boolean
+        description: 游戏EVE物品分组是否使用基准价格
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false

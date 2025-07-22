@@ -1,24 +1,19 @@
 package org.endless.tianyan.item.components.item.category.item.category.domain.value;
 
-import org.endless.tianyan.item.common.model.domain.value.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.value.ValueValidateException;
+import org.endless.tianyan.item.common.model.domain.value.TianyanItemValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 /**
  * NameValue
  * <p>名称
  * <p>
- * create 2025/07/21 13:40
+ * create 2025/07/21 15:22
  * <p>
- * update 2025/07/21 13:40
+ * update 2025/07/21 15:22
  *
  * @author Deng Haozhi
  * @see TianyanItemValue
@@ -47,8 +42,8 @@ public class NameValue implements TianyanItemValue {
     public static NameValue create(NameValueBuilder builder) {
         return builder
                 .fullName(builder.fullName)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

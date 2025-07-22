@@ -1,0 +1,23 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market
+domainName: GameEveMarketGroup
+aggregateName: GameEveMarketGroupAggregate
+description: 游戏EVE市场分组
+fields:
+  - name: gameEveMarketGroupId
+    type: String
+    description: 游戏EVE市场分组ID
+    nullable: false
+  - name: marketGroupId
+    type: String
+    description: 市场分组ID
+    nullable: false
+  - name: description
+    type: String
+    description: 游戏EVE市场分组描述
+    nullable: true

@@ -17,21 +17,3 @@ fields:
     type: String
     description: 基准价格
     nullable: true
-enums:
-  - name: TestEnum
-    valueType: String
-    description: 测试
-    fields:
-      - name: code
-        type: String
-        description: 枚举代码
-        nullable: false
-      - name: description
-        type: String
-        description: 枚举描述
-        nullable: false
-    enumValues:
-      - code: TEST
-        description: TEST
-      - code: TEST1
-        description: TEST11

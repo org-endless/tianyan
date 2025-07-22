@@ -1,9 +1,14 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.impl;
 
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.*;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.GameEveItemCategoryQueryHandler;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
+
+import java.util.Optional;
 
 /**
  * GameEveItemCategoryQueryHandlerImpl
@@ -26,5 +31,14 @@ public class GameEveItemCategoryQueryHandlerImpl implements GameEveItemCategoryQ
 
     public GameEveItemCategoryQueryHandlerImpl(GameEveItemCategoryQueryRepository gameEveItemCategoryQueryRepository) {
         this.gameEveItemCategoryQueryRepository = gameEveItemCategoryQueryRepository;
+    }
+
+    @Override
+    @Log(message = "游戏EVE物品分类根据编码查询ID", value = "#command", level = LogLevel.TRACE)
+    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分类根据编码查询ID参数不能为空"));
+        return gameEveItemCategoryQueryRepository.findIdByCode(query.getCode());
     }
 }

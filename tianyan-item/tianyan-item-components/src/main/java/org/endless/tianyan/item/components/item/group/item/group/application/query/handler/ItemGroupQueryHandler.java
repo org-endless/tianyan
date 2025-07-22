@@ -1,0 +1,19 @@
+package org.endless.tianyan.item.components.item.group.item.group.application.query.handler;
+
+import org.endless.tianyan.item.common.model.application.query.handler.*;
+import org.endless.tianyan.item.components.item.group.item.group.domain.entity.*;
+
+/**
+ * ItemGroupQueryHandler
+ * <p>物品分组领域查询处理器
+ * <p>
+ * create 2025/07/21 16:04
+ * <p>
+ * update 2025/07/21 16:04
+ *
+ * @author Deng Haozhi
+ * @see TianyanItemQueryHandler
+ * @since 0.0.1
+ */
+public interface ItemGroupQueryHandler extends TianyanItemQueryHandler {
+}

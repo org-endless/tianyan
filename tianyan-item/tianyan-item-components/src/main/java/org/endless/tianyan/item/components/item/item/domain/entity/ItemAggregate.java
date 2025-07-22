@@ -1,6 +1,7 @@
 package org.endless.tianyan.item.components.item.item.domain.entity;
 
 import org.endless.tianyan.item.common.model.domain.entity.*;
+import org.endless.tianyan.item.components.item.item.domain.value.*;
 import org.endless.tianyan.item.components.item.item.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
@@ -21,9 +22,9 @@ import java.util.stream.Collectors;
  * ItemAggregate
  * <p>物品聚合根
  * <p>
- * create 2025/07/19 07:15
+ * create 2025/07/21 15:37
  * <p>
- * update 2025/07/19 07:15
+ * update 2025/07/21 15:37
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -38,6 +39,16 @@ public class ItemAggregate implements TianyanItemAggregate {
      * 物品ID
      */
     private final String itemId;
+
+    /**
+     * 中文名称
+     */
+    private NameValue nameZh;
+
+    /**
+     * 英文名称
+     */
+    private NameValue nameEn;
 
     /**
      * 创建者ID
@@ -57,6 +68,8 @@ public class ItemAggregate implements TianyanItemAggregate {
     public static ItemAggregate create(ItemAggregateBuilder builder) {
         return builder
                 .itemId(IdGenerator.of())
+                .nameZh(builder.nameZh)
+                .nameEn(builder.nameEn)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
@@ -83,6 +96,8 @@ public class ItemAggregate implements TianyanItemAggregate {
     @Override
     public ItemAggregate validate() {
         validateItemId();
+        validateNameZh();
+        validateNameEn();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -92,6 +107,18 @@ public class ItemAggregate implements TianyanItemAggregate {
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new AggregateValidateException("物品ID不能为空");
+        }
+    }
+
+    private void validateNameZh() {
+        if (nameZh == null) {
+            throw new AggregateValidateException("中文名称不能为 null ");
+        }
+    }
+
+    private void validateNameEn() {
+        if (nameEn == null) {
+            throw new AggregateValidateException("英文名称不能为 null ");
         }
     }
 

@@ -1,8 +1,9 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption;
 
-import org.endless.tianyan.item.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.*;
+import org.endless.tianyan.item.common.model.application.query.anticorruption.TianyanItemQueryRepository;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
+import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
 
 /**
  * GameEveItemCategoryQueryRepository
@@ -18,4 +19,6 @@ import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.
  * @since 0.0.1
  */
 public interface GameEveItemCategoryQueryRepository extends GameEveItemCategoryRepository, TianyanItemQueryRepository<GameEveItemCategoryAggregate> {
+
+    GameEveItemCategoryFindIdRespQTransfer findIdByCode(String code);
 }

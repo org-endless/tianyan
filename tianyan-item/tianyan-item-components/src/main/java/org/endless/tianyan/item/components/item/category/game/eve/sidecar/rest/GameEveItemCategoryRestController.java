@@ -7,6 +7,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.Re
 import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
 import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.facade.adapter.GameEveItemCategoryDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,19 @@ public class GameEveItemCategoryRestController implements TianyanItemRestControl
             return response().success("游戏EVE物品分类创建成功");
         } catch (JSONException | NullPointerException e) {
             throw new RestErrorException("游戏EVE物品分类创建失败", e);
+        }
+    }
+
+    @PostMapping("/query/find_id_by_code")
+    @Log(message = "游戏EVE物品分类根据编码查询ID", value = "#command")
+    public ResponseEntity<RestResponse> findIdByCode(@RequestBody GameEveItemCategoryFindByCodeReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分类根据编码查询ID参数不能为空"));
+        try {
+            return response().success("游戏EVE物品分类根据编码查询ID成功", gameEveItemCategoryDrivingAdapter.findIdByCode(query));
+        } catch (JSONException | NullPointerException e) {
+            throw new RestErrorException("游戏EVE物品分类根据编码查询ID失败", e);
         }
     }
 }

@@ -1,7 +1,8 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.query.handler;
 
-import org.endless.tianyan.item.common.model.application.query.handler.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.*;
+import org.endless.tianyan.item.common.model.application.query.handler.TianyanItemQueryHandler;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
 
 /**
  * GameEveItemCategoryQueryHandler
@@ -16,4 +17,7 @@ import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.
  * @since 0.0.1
  */
 public interface GameEveItemCategoryQueryHandler extends TianyanItemQueryHandler {
+
+    GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
+
 }

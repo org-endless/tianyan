@@ -2,15 +2,18 @@ package org.endless.tianyan.item.components.item.category.game.eve.infrastructur
 
 import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
 import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerNotFoundException;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
 import org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.persistence.mapper.GameEveItemCategoryMapper;
 import org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.record.GameEveItemCategoryRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -69,5 +72,17 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
     @Override
     public Optional<GameEveItemCategoryAggregate> findByIdForUpdate(String s) {
         return Optional.empty();
+    }
+
+    @Override
+    @Log(message = "游戏EVE物品分类根据编码查询ID数据", value = "#aggregate", level = LogLevel.TRACE)
+    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(String code) {
+        Optional.ofNullable(code)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE物品分类编码不能为空"));
+        return GameEveItemCategoryFindIdRespQTransfer.builder()
+                .gameEveItemCategoryId(gameEveItemCategoryMapper.findIdByCode(code)
+                        .orElseThrow(() -> new DataManagerNotFoundException("游戏EVE物品分类编码不存在")))
+                .build().validate();
     }
 }

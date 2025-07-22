@@ -1,10 +1,12 @@
 package org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.item.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.item.common.model.infrastructure.data.persistence.mapper.TianyanItemMapper;
+import org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.record.GameEveItemCategoryRecord;
 import org.springframework.context.annotation.Lazy;
+
+import java.util.Optional;
 
 /**
  * GameEveItemCategoryMapper
@@ -21,4 +23,12 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface GameEveItemCategoryMapper extends TianyanItemMapper<GameEveItemCategoryRecord> {
+
+    default Optional<String> findIdByCode(String code) {
+        QueryWrapper<GameEveItemCategoryRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .select(GameEveItemCategoryRecord::getGameEveItemCategoryId)
+                .eq(GameEveItemCategoryRecord::getCode, code);
+        return findFirstByWrapper(queryWrapper).map(GameEveItemCategoryRecord::getGameEveItemCategoryId);
+    }
 }

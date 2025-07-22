@@ -17,4 +17,5 @@ import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAg
 public interface TianyanMetadataCommandHandler<A extends TianyanMetadataAggregate>
         extends CommandHandler<A> {
 
+    String TIANYAN_METADATA_USER_ID = "TIANYAN_METADATA_0000000000";
 }

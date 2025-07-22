@@ -3,6 +3,8 @@ package org.endless.tianyan.item.components.item.category.game.eve.facade.adapte
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.handler.GameEveItemCategoryCommandHandler;
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.GameEveItemCategoryQueryHandler;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.facade.adapter.GameEveItemCategoryDrivingAdapter;
 
 /**
@@ -37,5 +39,10 @@ public class SpringGameEveItemCategoryDrivingAdapter implements GameEveItemCateg
     @Override
     public void create(GameEveItemCategoryCreateReqCTransfer command) {
         gameEveItemCategoryCommandHandler.create(command);
+    }
+
+    @Override
+    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
+        return gameEveItemCategoryQueryHandler.findIdByCode(query);
     }
 }

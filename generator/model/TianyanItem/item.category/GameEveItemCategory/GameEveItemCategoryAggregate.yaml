@@ -25,40 +25,6 @@ fields:
     type: Boolean
     description: 游戏EVE物品分类是否发布
     nullable: false
-values:
-  - name: NameValue
-    description: 名称
-    fields:
-      - name: fullName
-        type: String
-        description: 全称
-        nullable: false
-      - name: alias
-        type: String
-        description: 别名
-        nullable: false
-      - name: abbreviation
-        type: String
-        description: 简称
-        nullable: false
-enums:
-  - name: TestEnum
-    valueType: String
-    description: 测试
-    fields:
-      - name: code
-        type: String
-        description: 枚举代码
-        nullable: false
-      - name: description
-        type: String
-        description: 枚举描述
-        nullable: false
-    enumValues:
-      - code: TEST
-        description: TEST
-      - code: TEST1
-        description: TEST11
 transfers:
   - name: GameEveItemCategoryCreateReqCTransfer
     adapterType: DRIVING
@@ -66,6 +32,10 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE物品分类创建命令请求传输对象
     fields:
+      - name: code
+        type: String
+        description: 游戏EVE物品分类编码
+        nullable: false
       - name: nameZh
         type: String
         description: 游戏EVE物品分类中文名称
@@ -74,10 +44,6 @@ transfers:
         type: String
         description: 游戏EVE物品分类英文名称
         nullable: false
-      - name: code
-        type: String
-        description: 游戏EVE物品分类编码
-        nullable: false
       - name: isPublished
         type: Boolean
         description: 游戏EVE物品分类是否发布
@@ -85,4 +51,24 @@ transfers:
       - name: createUserId
         type: String
         description: 创建用户ID
+        nullable: false
+  - name: GameEveItemCategoryFindByCodeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE物品分类根据编码查询请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE物品分类编码
+        nullable: false
+  - name: GameEveItemCategoryFindIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE物品分类ID查询响应传输对象
+    fields:
+      - name: gameEveItemCategoryId
+        type: String
+        description: 游戏EVE物品分类ID
         nullable: false

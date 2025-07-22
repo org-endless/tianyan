@@ -4,29 +4,20 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.entity.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.value.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
+import org.endless.tianyan.item.components.item.category.item.category.domain.entity.ItemCategoryAggregate;
+import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ItemCategoryRecord
  * <p>物品分类数据库记录实体
  * <p>
- * create 2025/07/21 15:11
+ * create 2025/07/21 15:36
  * <p>
- * update 2025/07/21 15:11
+ * update 2025/07/21 15:36
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -62,9 +53,19 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
     private String nameZhAbbreviation;
 
     /**
-     * 英文名称
+     * 全称
      */
-    private NameValue nameEn;
+    private String nameEnFullName;
+
+    /**
+     * 别名
+     */
+    private String nameEnAlias;
+
+    /**
+     * 简称
+     */
+    private String nameEnAbbreviation;
 
     /**
      * 创建者ID
@@ -105,7 +106,9 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
                 .nameZhFullName(aggregate.getNameZh().getFullName())
                 .nameZhAlias(aggregate.getNameZh().getAlias())
                 .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEn(aggregate.getNameEn())
+                .nameEnFullName(aggregate.getNameEn().getFullName())
+                .nameEnAlias(aggregate.getNameEn().getAlias())
+                .nameEnAbbreviation(aggregate.getNameEn().getAbbreviation())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -122,7 +125,11 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
                         .alias(nameZhAlias)
                         .abbreviation(nameZhAbbreviation)
                         .innerBuild())
-                .nameEn(nameEn)
+                .nameEn(NameValue.builder()
+                        .fullName(nameEnFullName)
+                        .alias(nameEnAlias)
+                        .abbreviation(nameEnAbbreviation)
+                        .innerBuild())
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -133,7 +140,7 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
     public ItemCategoryRecord validate() {
         validateItemCategoryId();
         validateNameZhFullName();
-        validateNameEn();
+        validateNameEnFullName();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -152,9 +159,9 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
         }
     }
 
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new DataRecordValidateException("英文名称不能为 null ");
+    private void validateNameEnFullName() {
+        if (!StringUtils.hasText(nameEnFullName)) {
+            throw new DataRecordValidateException("全称不能为空");
         }
     }
 

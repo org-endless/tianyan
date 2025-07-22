@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
  * ItemRecord
  * <p>物品数据库记录实体
  * <p>
- * create 2025/07/21 13:36
+ * create 2025/07/21 15:37
  * <p>
- * update 2025/07/21 13:36
+ * update 2025/07/21 15:37
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@TableName(value = "item_item")
+@TableName(value = "item")
 public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
 
     /**
@@ -62,9 +62,19 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     private String nameZhAbbreviation;
 
     /**
-     * 英文名称
+     * 全称
      */
-    private NameValue nameEn;
+    private String nameEnFullName;
+
+    /**
+     * 别名
+     */
+    private String nameEnAlias;
+
+    /**
+     * 简称
+     */
+    private String nameEnAbbreviation;
 
     /**
      * 创建者ID
@@ -105,7 +115,9 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                 .nameZhFullName(aggregate.getNameZh().getFullName())
                 .nameZhAlias(aggregate.getNameZh().getAlias())
                 .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEn(aggregate.getNameEn())
+                .nameEnFullName(aggregate.getNameEn().getFullName())
+                .nameEnAlias(aggregate.getNameEn().getAlias())
+                .nameEnAbbreviation(aggregate.getNameEn().getAbbreviation())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -122,7 +134,11 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                         .alias(nameZhAlias)
                         .abbreviation(nameZhAbbreviation)
                         .innerBuild())
-                .nameEn(nameEn)
+                .nameEn(NameValue.builder()
+                        .fullName(nameEnFullName)
+                        .alias(nameEnAlias)
+                        .abbreviation(nameEnAbbreviation)
+                        .innerBuild())
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -133,7 +149,7 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     public ItemRecord validate() {
         validateItemId();
         validateNameZhFullName();
-        validateNameEn();
+        validateNameEnFullName();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -152,9 +168,9 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
         }
     }
 
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new DataRecordValidateException("英文名称不能为 null ");
+    private void validateNameEnFullName() {
+        if (!StringUtils.hasText(nameEnFullName)) {
+            throw new DataRecordValidateException("全称不能为空");
         }
     }
 

@@ -58,6 +58,28 @@ transfers:
         type: Boolean
         description: 物品分类是否发布
         nullable: false
+  - name: GameEveDataFileItemGroupRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE数据文件物品分组被动响应传输对象
+    fields:
+      - name: name
+        type: GameEveDataFileNameRespDTransfer
+        description: 物品分组名称
+        nullable: false
+      - name: categoryID
+        type: String
+        description: 物品分类编码
+        nullable: false
+      - name: published
+        type: Boolean
+        description: 物品分组是否发布
+        nullable: false
+      - name: useBasePrice
+        type: Boolean
+        description: 物品分组是否使用基准价格
+        nullable: false
   - name: GameEveDataFileNameRespDTransfer
     adapterType: DRIVEN
     cqrsType: COMMAND
@@ -113,6 +135,60 @@ transfers:
       - name: isPublished
         type: Boolean
         description: 游戏EVE物品分类是否发布
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveItemCategoryFindByCodeReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE物品分类根据编码查询被动请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE物品分类编码
+        nullable: false
+  - name: GameEveItemCategoryFindIdRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE物品分类ID查询被动响应传输对象
+    fields:
+      - name: gameEveItemCategoryId
+        type: String
+        description: 游戏EVE物品分类ID
+        nullable: false
+  - name: GameEveItemGroupCreateReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE物品分组创建命令被动请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE物品分组编码
+        nullable: false
+      - name: gameEveItemCategoryId
+        type: String
+        description: 游戏EVE物品分类ID
+        nullable: false
+      - name: nameZh
+        type: String
+        description: 游戏EVE物品分组中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 游戏EVE物品分组英文名称
+        nullable: false
+      - name: isPublished
+        type: Boolean
+        description: 游戏EVE物品分组是否发布
+        nullable: false
+      - name: isUseBasePrice
+        type: Boolean
+        description: 游戏EVE物品分组是否使用基准价格
         nullable: false
       - name: createUserId
         type: String

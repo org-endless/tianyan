@@ -1,30 +1,22 @@
 package org.endless.tianyan.item.components.item.category.item.category.domain.entity;
 
-import org.endless.tianyan.item.common.model.domain.entity.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.value.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
+import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * ItemCategoryAggregate
  * <p>物品分类聚合根
  * <p>
- * create 2025/07/20 22:39
+ * create 2025/07/21 15:22
  * <p>
- * update 2025/07/20 22:39
+ * update 2025/07/21 15:22
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -73,8 +65,8 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public ItemCategoryAggregate remove(String modifyUserId) {
