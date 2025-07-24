@@ -17,13 +17,13 @@ fields:
     type: String
     description: 资源项分组ID
     nullable: false
+  - name: itemCategoryId
+    type: String
+    description: 资源项分类ID
+    nullable: false
   - name: code
     type: String
     description: 游戏EVE资源项分组编码
-    nullable: false
-  - name: gameEveItemCategoryId
-    type: String
-    description: 游戏EVE资源项分类ID
     nullable: false
   - name: isPublished
     type: Boolean
@@ -44,17 +44,17 @@ transfers:
         type: String
         description: 游戏EVE资源项分组编码
         nullable: false
-      - name: gameEveItemCategoryId
+      - name: itemCategoryId
         type: String
-        description: 游戏EVE资源项分类ID
+        description: 资源项分类ID
         nullable: false
       - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分组中文全称
+        description: 资源项分组中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分组英文全称
+        description: 资源项分组英文全称
         nullable: true
       - name: isPublished
         type: Boolean

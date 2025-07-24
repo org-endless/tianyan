@@ -68,7 +68,7 @@ transfers:
     messageType: RESPONSE
     description: 游戏EVE资源项分类ID查询响应传输对象
     fields:
-      - name: gameEveItemCategoryId
+      - name: itemCategoryId
         type: String
-        description: 游戏EVE资源项分类ID
+        description: 资源项分类ID
         nullable: false

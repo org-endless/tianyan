@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveItemGroupCreateReqCTransfer
  * <p>游戏EVE资源项分组创建命令请求传输对象
  * <p>
- * create 2025/07/24 19:57
+ * create 2025/07/24 20:19
  * <p>
- * update 2025/07/24 19:57
+ * update 2025/07/24 20:19
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "gameEveItemCategoryId", "fullNameZh", "fullNameEn", "isPublished", "isUseBasePrice", "createUserId"})
+@JSONType(orders = {"code", "itemCategoryId", "fullNameZh", "fullNameEn", "isPublished", "isUseBasePrice", "createUserId"})
 public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
@@ -39,17 +39,17 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
     private final String code;
 
     /**
-     * 游戏EVE资源项分类ID
+     * 资源项分类ID
      */
-    private final String gameEveItemCategoryId;
+    private final String itemCategoryId;
 
     /**
-     * 游戏EVE资源项分组中文全称
+     * 资源项分组中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 游戏EVE资源项分组英文全称
+     * 资源项分组英文全称
      */
     private final String fullNameEn;
 
@@ -71,7 +71,7 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
     @Override
     public GameEveItemGroupCreateReqCTransfer validate() {
         validateCode();
-        validateGameEveItemCategoryId();
+        validateItemCategoryId();
         validateFullNameZh();
         validateIsPublished();
         validateIsUseBasePrice();
@@ -85,15 +85,15 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
         }
     }
 
-    private void validateGameEveItemCategoryId() {
-        if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分类ID不能为空");
+    private void validateItemCategoryId() {
+        if (!StringUtils.hasText(itemCategoryId)) {
+            throw new CommandTransferValidateException("资源项分类ID不能为空");
         }
     }
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分组中文全称不能为空");
+            throw new CommandTransferValidateException("资源项分组中文全称不能为空");
         }
     }
 

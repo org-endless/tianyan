@@ -4,20 +4,28 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
+import org.endless.tianyan.item.components.item.category.item.category.domain.entity.*;
+import org.endless.tianyan.item.components.item.category.item.category.domain.value.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
+import org.endless.ddd.simplified.starter.common.config.utils.id.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
-import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
-import org.endless.tianyan.item.components.item.category.item.category.domain.entity.ItemCategoryAggregate;
-import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * ItemCategoryRecord
  * <p>资源项分类数据库记录实体
  * <p>
- * create 2025/07/21 15:36
+ * create 2025/07/24 20:16
  * <p>
- * update 2025/07/21 15:36
+ * update 2025/07/24 20:16
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -106,9 +114,9 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
                 .nameZhFullName(aggregate.getNameZh().getFullName())
                 .nameZhAlias(aggregate.getNameZh().getAlias())
                 .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEnFullName(aggregate.getNameEn().getFullName())
-                .nameEnAlias(aggregate.getNameEn().getAlias())
-                .nameEnAbbreviation(aggregate.getNameEn().getAbbreviation())
+                .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getFullName())
+                .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAlias())
+                .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAbbreviation())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -140,7 +148,6 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
     public ItemCategoryRecord validate() {
         validateItemCategoryId();
         validateNameZhFullName();
-        validateNameEnFullName();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -155,12 +162,6 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
 
     private void validateNameZhFullName() {
         if (!StringUtils.hasText(nameZhFullName)) {
-            throw new DataRecordValidateException("全称不能为空");
-        }
-    }
-
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
             throw new DataRecordValidateException("全称不能为空");
         }
     }

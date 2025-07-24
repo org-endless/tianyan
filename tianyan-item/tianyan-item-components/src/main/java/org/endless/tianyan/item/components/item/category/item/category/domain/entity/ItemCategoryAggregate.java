@@ -1,22 +1,29 @@
 package org.endless.tianyan.item.components.item.category.item.category.domain.entity;
 
+import org.endless.tianyan.item.common.model.domain.entity.*;
+import org.endless.tianyan.item.components.item.category.item.category.domain.value.*;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
+import org.endless.ddd.simplified.starter.common.config.utils.id.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
-import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
-import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * ItemCategoryAggregate
  * <p>资源项分类聚合根
  * <p>
- * create 2025/07/21 15:22
+ * create 2025/07/24 20:16
  * <p>
- * update 2025/07/21 15:22
+ * update 2025/07/24 20:16
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -60,13 +67,10 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
     public static ItemCategoryAggregate create(ItemCategoryAggregateBuilder builder) {
         return builder
                 .itemCategoryId(IdGenerator.of())
-                .nameZh(builder.nameZh)
-                .nameEn(builder.nameEn)
-                .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-                .innerBuild()
-                .validate();
+            .innerBuild()
+            .validate();
     }
 
     public ItemCategoryAggregate remove(String modifyUserId) {
@@ -89,7 +93,6 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
     public ItemCategoryAggregate validate() {
         validateItemCategoryId();
         validateNameZh();
-        validateNameEn();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -105,12 +108,6 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
     private void validateNameZh() {
         if (nameZh == null) {
             throw new AggregateValidateException("中文名称不能为 null ");
-        }
-    }
-
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new AggregateValidateException("英文名称不能为 null ");
         }
     }
 
