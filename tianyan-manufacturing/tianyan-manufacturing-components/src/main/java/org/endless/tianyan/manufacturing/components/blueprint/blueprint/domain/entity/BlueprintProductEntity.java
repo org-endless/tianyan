@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * BlueprintProductEntity
  * <p>蓝图产品实体
  * <p>
- * create 2025/07/24 09:27
+ * create 2025/07/24 09:52
  * <p>
- * update 2025/07/24 09:27
+ * update 2025/07/24 09:52
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingEntity

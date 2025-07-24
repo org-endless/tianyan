@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * BlueprintSkillRecord
  * <p>蓝图技能数据库记录实体
  * <p>
- * create 2025/07/24 09:27
+ * create 2025/07/24 09:52
  * <p>
- * update 2025/07/24 09:27
+ * update 2025/07/24 09:52
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord

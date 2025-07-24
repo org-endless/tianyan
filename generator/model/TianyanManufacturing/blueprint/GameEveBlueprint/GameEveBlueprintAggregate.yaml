@@ -28,7 +28,7 @@ fields:
   - name: maxProductionLimit
     type: Integer
     description: 游戏EVE蓝图最大生产次数
-    nullable: false
+    nullable: true
 enums:
   - name: GameEveBlueprintTypeEnum
     valueType: String

@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * BlueprintRecord
  * <p>蓝图数据库记录实体
  * <p>
- * create 2025/07/24 09:27
+ * create 2025/07/24 09:52
  * <p>
- * update 2025/07/24 09:27
+ * update 2025/07/24 09:52
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord
@@ -196,9 +196,6 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
     public BlueprintRecord validate() {
         validateBlueprintId();
         validateItemId();
-        validateMaterials();
-        validateProducts();
-        validateSkills();
         validateCycle();
         validateCreateUserId();
         validateModifyUserId();
@@ -215,24 +212,6 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new DataRecordValidateException("资源项ID不能为空");
-        }
-    }
-
-    private void validateMaterials() {
-        if (CollectionUtils.isEmpty(materials)) {
-            throw new DataRecordValidateException("蓝图物料列表不能为空");
-        }
-    }
-
-    private void validateProducts() {
-        if (CollectionUtils.isEmpty(products)) {
-            throw new DataRecordValidateException("蓝图产品列表不能为空");
-        }
-    }
-
-    private void validateSkills() {
-        if (CollectionUtils.isEmpty(skills)) {
-            throw new DataRecordValidateException("蓝图所需技能列表不能为空");
         }
     }
 
