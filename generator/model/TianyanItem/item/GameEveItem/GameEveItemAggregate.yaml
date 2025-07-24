@@ -39,7 +39,7 @@ transfers:
       - name: metaGroupId
         type: String
         description: 元分组ID
-        nullable: false
+        nullable: true
       - name: itemGroupId
         type: String
         description: 资源项分组ID

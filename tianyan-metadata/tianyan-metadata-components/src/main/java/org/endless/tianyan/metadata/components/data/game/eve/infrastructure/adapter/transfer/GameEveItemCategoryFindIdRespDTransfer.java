@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryFindIdRespDTransfer
  * <p>游戏EVE资源项分类ID查询被动响应传输对象
  * <p>
- * create 2025/07/24 16:32
+ * create 2025/07/24 17:12
  * <p>
- * update 2025/07/24 16:32
+ * update 2025/07/24 17:12
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer

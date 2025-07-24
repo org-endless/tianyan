@@ -21,9 +21,9 @@ import java.math.BigDecimal;
  * ItemRecord
  * <p>资源项数据库记录实体
  * <p>
- * create 2025/07/24 16:27
+ * create 2025/07/24 16:46
  * <p>
- * update 2025/07/24 16:27
+ * update 2025/07/24 16:46
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -233,7 +233,6 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     @Override
     public ItemRecord validate() {
         validateItemId();
-        validateMetaGroupId();
         validateItemGroupId();
         validateNameZhFullName();
         validateCreateUserId();
@@ -245,12 +244,6 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new DataRecordValidateException("资源项ID不能为空");
-        }
-    }
-
-    private void validateMetaGroupId() {
-        if (!StringUtils.hasText(metaGroupId)) {
-            throw new DataRecordValidateException("元分组ID不能为空");
         }
     }
 

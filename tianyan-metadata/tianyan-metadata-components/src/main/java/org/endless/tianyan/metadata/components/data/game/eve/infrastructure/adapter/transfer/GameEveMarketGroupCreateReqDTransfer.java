@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupCreateReqDTransfer
  * <p>游戏EVE市场分组创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 16:32
+ * create 2025/07/24 17:12
  * <p>
- * update 2025/07/24 16:32
+ * update 2025/07/24 17:12
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -40,12 +40,12 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
     private final String code;
 
     /**
-     * 中文全称
+     * 游戏EVE市场分组中文全称
      */
     private final String nameZhFullName;
 
     /**
-     * 英文全称
+     * 游戏EVE市场分组英文全称
      */
     private final String nameEnFullName;
 
@@ -76,13 +76,13 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
 
     private void validateNameZhFullName() {
         if (!StringUtils.hasText(nameZhFullName)) {
-            throw new DrivenTransferValidateException("中文全称不能为空");
+            throw new DrivenTransferValidateException("游戏EVE市场分组中文全称不能为空");
         }
     }
 
     private void validateNameEnFullName() {
         if (!StringUtils.hasText(nameEnFullName)) {
-            throw new DrivenTransferValidateException("英文全称不能为空");
+            throw new DrivenTransferValidateException("游戏EVE市场分组英文全称不能为空");
         }
     }
 

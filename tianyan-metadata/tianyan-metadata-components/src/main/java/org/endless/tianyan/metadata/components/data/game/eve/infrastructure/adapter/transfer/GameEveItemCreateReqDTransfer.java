@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCreateReqDTransfer
  * <p>游戏EVE资源项创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 16:32
+ * create 2025/07/24 17:12
  * <p>
- * update 2025/07/24 16:32
+ * update 2025/07/24 17:12
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,13 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "isPublished", "createUserId"})
+@JSONType(orders = {"code", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "isPublished", "createUserId"})
 public class GameEveItemCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
      * 游戏EVE资源项编码
      */
     private final String code;
+
+    /**
+     * 元分组ID
+     */
+    private final String metaGroupId;
 
     /**
      * 资源项分组ID

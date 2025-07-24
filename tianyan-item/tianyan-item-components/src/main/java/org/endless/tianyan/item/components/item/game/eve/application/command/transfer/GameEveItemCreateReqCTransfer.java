@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveItemCreateReqCTransfer
  * <p>游戏EVE资源项创建命令请求传输对象
  * <p>
- * create 2025/07/24 16:27
+ * create 2025/07/24 16:47
  * <p>
- * update 2025/07/24 16:27
+ * update 2025/07/24 16:47
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -101,7 +101,6 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
     @Override
     public GameEveItemCreateReqCTransfer validate() {
         validateCode();
-        validateMetaGroupId();
         validateItemGroupId();
         validateFullNameZh();
         validateIsPublished();
@@ -112,12 +111,6 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
             throw new CommandTransferValidateException("游戏EVE资源项编码不能为空");
-        }
-    }
-
-    private void validateMetaGroupId() {
-        if (!StringUtils.hasText(metaGroupId)) {
-            throw new CommandTransferValidateException("元分组ID不能为空");
         }
     }
 

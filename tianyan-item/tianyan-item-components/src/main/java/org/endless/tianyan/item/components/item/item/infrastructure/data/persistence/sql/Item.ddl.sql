@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
     item_id              VARCHAR(255)   NOT NULL PRIMARY KEY COMMENT '资源项ID',
-    meta_group_id        VARCHAR(255)   NOT NULL COMMENT '元分组ID',
+    meta_group_id        VARCHAR(255)   NULL COMMENT '元分组ID',
     item_group_id        VARCHAR(255)   NOT NULL COMMENT '资源项分组ID',
     market_group_id      VARCHAR(255)   NULL COMMENT '市场分组ID',
     name_zh_full_name    VARCHAR(255)   NOT NULL COMMENT '全称',

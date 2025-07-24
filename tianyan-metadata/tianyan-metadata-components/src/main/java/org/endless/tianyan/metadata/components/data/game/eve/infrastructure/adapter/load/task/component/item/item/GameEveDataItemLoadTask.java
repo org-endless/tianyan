@@ -65,6 +65,7 @@ public class GameEveDataItemLoadTask implements GameEveDataLoadTask {
                     }
                     gameEveDataItemRestClient.create(GameEveItemCreateReqDTransfer.builder()
                             .code(key)
+                            .metaGroupId(item.getMetaGroupID())
                             .itemGroupId(gameEveDataItemGroupRestClient.findItemGroupIdByCode(item.getGroupID())
                                     .orElseThrow(() -> new DrivenAdapterManagerException("资源项分类ID不存在，无法创建资源项数据")))
                             .marketGroupId(item.getMarketGroupID() == null ? null : gameEveDataMarketGroupRestClient.findMarketGroupIdByCode(item.getMarketGroupID())
@@ -75,7 +76,7 @@ public class GameEveDataItemLoadTask implements GameEveDataLoadTask {
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                             .build().validate());
                 } catch (Exception e) {
-                    log.error("加载资源项分类数据失败，key:{}, error:{}", key, e.getMessage());
+                    log.error("加载资源项分类数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
                 }
             }
         });
