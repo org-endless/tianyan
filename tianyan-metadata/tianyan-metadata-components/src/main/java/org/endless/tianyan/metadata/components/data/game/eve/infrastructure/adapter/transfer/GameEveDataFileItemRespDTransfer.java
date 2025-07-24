@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveDataFileItemRespDTransfer
  * <p>游戏EVE数据文件资源项被动响应传输对象
  * <p>
- * create 2025/07/24 10:31
+ * create 2025/07/24 10:37
  * <p>
- * update 2025/07/24 10:31
+ * update 2025/07/24 10:37
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer

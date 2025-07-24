@@ -134,6 +134,10 @@ transfers:
         type: GameEveDataFileBlueprintActivitiesRespDTransfer
         description: 工序
         nullable: false
+      - name: blueprintTypeID
+        type: String
+        description: 蓝图编码
+        nullable: false
       - name: maxProductionLimit
         type: Integer
         description: 最大生产次数

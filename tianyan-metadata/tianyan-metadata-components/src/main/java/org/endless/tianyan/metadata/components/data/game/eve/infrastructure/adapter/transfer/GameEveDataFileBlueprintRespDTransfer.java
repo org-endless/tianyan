@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveDataFileBlueprintRespDTransfer
  * <p>游戏EVE数据文件蓝图被动响应传输对象
  * <p>
- * create 2025/07/24 10:31
+ * create 2025/07/24 10:37
  * <p>
- * update 2025/07/24 10:31
+ * update 2025/07/24 10:37
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,13 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"activities", "maxProductionLimit"})
+@JSONType(orders = {"activities", "blueprintTypeID", "maxProductionLimit"})
 public class GameEveDataFileBlueprintRespDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
      * 工序
      */
     private final GameEveDataFileBlueprintActivitiesRespDTransfer activities;
+
+    /**
+     * 蓝图编码
+     */
+    private final String blueprintTypeID;
 
     /**
      * 最大生产次数
@@ -47,6 +52,7 @@ public class GameEveDataFileBlueprintRespDTransfer implements TianyanMetadataDri
     @Override
     public GameEveDataFileBlueprintRespDTransfer validate() {
         validateActivities();
+        validateBlueprintTypeID();
         validateMaxProductionLimit();
         return this;
     }
@@ -54,6 +60,12 @@ public class GameEveDataFileBlueprintRespDTransfer implements TianyanMetadataDri
     private void validateActivities() {
         if (activities == null) {
             throw new DrivenTransferValidateException("工序不能为 null ");
+        }
+    }
+
+    private void validateBlueprintTypeID() {
+        if (!StringUtils.hasText(blueprintTypeID)) {
+            throw new DrivenTransferValidateException("蓝图编码不能为空");
         }
     }
 

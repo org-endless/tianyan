@@ -50,26 +50,28 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {
+
                     GameEveDataFileBlueprintRespDTransfer blueprint = TypeUtils.cast(value, GameEveDataFileBlueprintRespDTransfer.class).validate();
+                    String itemId = gameEveDataItemRestClient.findItemIdByCode(blueprint.getBlueprintTypeID());
                     GameEveDataFileBlueprintActivityRespDTransfer manufacturing = blueprint.getActivities().getManufacturing();
                     if (manufacturing != null) {
-                        createActivity(key, "PRODUCTION", blueprint.getMaxProductionLimit(), manufacturing);
+                        createActivity(itemId, blueprint.getBlueprintTypeID(), "PRODUCTION", blueprint.getMaxProductionLimit(), manufacturing);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer invention = blueprint.getActivities().getInvention();
                     if (invention != null) {
-                        createActivity(key, "INVENTION", null, invention);
+                        createActivity(itemId, blueprint.getBlueprintTypeID(), "INVENTION", null, invention);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer blueprintCopying = blueprint.getActivities().getCopying();
                     if (blueprintCopying != null) {
-                        createActivity(key, "BLUEPRINT_COPYING", null, blueprintCopying);
+                        createActivity(itemId, blueprint.getBlueprintTypeID(), "BLUEPRINT_COPYING", null, blueprintCopying);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer blueprintMaterialImprovement = blueprint.getActivities().getResearch_material();
                     if (blueprintMaterialImprovement != null) {
-                        createActivity(key, "BLUEPRINT_MATERIAL_IMPROVEMENT", blueprint.getMaxProductionLimit(), blueprintMaterialImprovement);
+                        createActivity(itemId, blueprint.getBlueprintTypeID(), "BLUEPRINT_MATERIAL_IMPROVEMENT", null, blueprintMaterialImprovement);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer blueprintCycleImprovement = blueprint.getActivities().getResearch_time();
                     if (blueprintCycleImprovement != null) {
-                        createActivity(key, "BLUEPRINT_CYCLE_IMPROVEMENT", blueprint.getMaxProductionLimit(), blueprintCycleImprovement);
+                        createActivity(itemId, blueprint.getBlueprintTypeID(), "BLUEPRINT_CYCLE_IMPROVEMENT", null, blueprintCycleImprovement);
                     }
                     log.info("加载蓝图数据成功，key:{}, value:{}", key, blueprint);
                 } catch (Exception e) {
@@ -90,8 +92,8 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
     }
 
     private void createActivity(String itemId, String code, String type, Integer maxProductionLimit, GameEveDataFileBlueprintActivityRespDTransfer activity) {
-        List<GameEveDataFileBlueprintItemRespDTransfer> materials = activity.getMaterials();
-        List<GameEveDataFileBlueprintItemRespDTransfer> products = activity.getProducts();
+        List<GameEveDataFileBlueprintMaterialRespDTransfer> materials = activity.getMaterials();
+        List<GameEveDataFileBlueprintProductRespDTransfer> products = activity.getProducts();
         List<GameEveDataFileBlueprintSkillRespDTransfer> skills = activity.getSkills();
         gameEveDataBlueprintRestClient.create(GameEveBlueprintCreateReqDTransfer.builder()
                 .itemId(itemId)
@@ -105,7 +107,9 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
                 .products(CollectionUtils.isEmpty(products) ? null : products.stream()
                         .map(product -> GameEveBlueprintProductReqDTransfer.builder()
                                 .itemId(gameEveDataItemRestClient.findItemIdByCode(product.getTypeID()))
-                                .quantity(product.getQuantity()).build().validate())
+                                .quantity(product.getQuantity())
+                                .successRate(product.getProbability())
+                                .build().validate())
                         .toList())
                 .skills(CollectionUtils.isEmpty(skills) ? null : skills.stream()
                         .map(skill -> GameEveBlueprintSkillReqDTransfer.builder()
