@@ -8,6 +8,7 @@ import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adap
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.group.GameEveDataItemGroupLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.item.GameEveDataItemLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.market.group.GameEveDataMarketGroupLoadTask;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.meta.group.GameEveDataMetaGroupLoadTask;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -35,8 +36,8 @@ public class GameEveDataLoadTaskFactory {
     public GameEveDataLoadTaskFactory(GameEveDataLoadTask... tasks) {
         for (GameEveDataLoadTask task : tasks) {
             Class<?> clazz = AopProxyUtils.ultimateTargetClass(task);
-            log.info("加载任务: {}", task.getClass().getName());
-            if (clazz == GameEveDataItemLoadTask.class) executorMap.put(GameEveDataTypeEnum.ITEM, task);
+            if (clazz == GameEveDataItemLoadTask.class)
+                executorMap.put(GameEveDataTypeEnum.ITEM, task);
             if (clazz == GameEveDataItemCategoryLoadTask.class)
                 executorMap.put(GameEveDataTypeEnum.ITEM_CATEGORY, task);
             if (clazz == GameEveDataItemGroupLoadTask.class)
@@ -45,6 +46,8 @@ public class GameEveDataLoadTaskFactory {
                 executorMap.put(GameEveDataTypeEnum.MARKET_GROUP, task);
             if (clazz == GameEveDataBlueprintLoadTask.class)
                 executorMap.put(GameEveDataTypeEnum.BLUEPRINT, task);
+            if (clazz == GameEveDataMetaGroupLoadTask.class)
+                executorMap.put(GameEveDataTypeEnum.META_GROUP, task);
         }
     }
 

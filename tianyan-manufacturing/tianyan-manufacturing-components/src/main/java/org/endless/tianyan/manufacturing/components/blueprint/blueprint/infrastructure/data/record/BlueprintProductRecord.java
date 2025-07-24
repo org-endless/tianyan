@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.*;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -22,9 +23,9 @@ import java.util.stream.Collectors;
  * BlueprintProductRecord
  * <p>蓝图产品数据库记录实体
  * <p>
- * create 2025/07/24 09:52
+ * create 2025/07/24 10:42
  * <p>
- * update 2025/07/24 09:52
+ * update 2025/07/24 10:42
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord
@@ -58,6 +59,11 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
      * 蓝图产品数量
      */
     private Long quantity;
+
+    /**
+     * 蓝图产品成功率(8, 5)
+     */
+    private BigDecimal successRate;
 
     /**
      * 创建者ID
@@ -97,6 +103,7 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
                 .blueprintId(blueprintId)
                 .itemId(entity.getItemId())
                 .quantity(entity.getQuantity())
+                .successRate(entity.getSuccessRate())
                 .createUserId(entity.getCreateUserId())
                 .modifyUserId(entity.getModifyUserId())
                 .isRemoved(entity.getIsRemoved())
@@ -110,6 +117,7 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
                 .blueprintProductId(blueprintProductId)
                 .itemId(itemId)
                 .quantity(quantity)
+                .successRate(successRate)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -122,6 +130,7 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
         validateBlueprintId();
         validateItemId();
         validateQuantity();
+        validateSuccessRate();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -150,6 +159,10 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
         if (quantity == null || quantity < 0) {
             throw new DataRecordValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
         }
+    }
+
+    private void validateSuccessRate() {
+        Decimal.validateRate(successRate);
     }
 
     private void validateCreateUserId() {

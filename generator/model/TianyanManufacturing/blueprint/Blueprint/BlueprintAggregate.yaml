@@ -69,7 +69,7 @@ entities:
         description: 蓝图产品数量
         nullable: false
       - name: successRate
-        type: Bigdecimal
+        type: BigDecimal
         description: 蓝图产品成功率(8, 5)
         nullable: false
   - name: BlueprintSkillEntity
@@ -187,7 +187,7 @@ transfers:
       - name: successRate
         type: String
         description: 产品成功率(8, 5)
-        nullable: false
+        nullable: true
   - name: BlueprintSkillReqCTransfer
     adapterType: DRIVING
     cqrsType: COMMAND

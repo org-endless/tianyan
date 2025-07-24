@@ -1,13 +1,12 @@
 package org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.config;
 
-import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.impl.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.impl.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.*;
-import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.spring.*;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.GameEveDataCommandHandler;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.impl.GameEveDataCommandHandlerImpl;
+import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.GameEveDataQueryHandler;
+import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.impl.GameEveDataQueryHandlerImpl;
+import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption.GameEveDataLoadDrivenAdapter;
+import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.GameEveDataDrivingAdapter;
+import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.spring.SpringGameEveDataDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,13 +37,13 @@ public class GameEveDataDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveDataCommandHandler gameEveDataCommandHandler(GameEveDataRepository repository) {
-        return new GameEveDataCommandHandlerImpl(repository);
+    protected @Bean GameEveDataCommandHandler gameEveDataCommandHandler(GameEveDataLoadDrivenAdapter gameEveDataLoadDrivenAdapter) {
+        return new GameEveDataCommandHandlerImpl(gameEveDataLoadDrivenAdapter);
     }
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveDataQueryHandler gameEveDataQueryHandler(GameEveDataQueryRepository gameEveDataQueryRepository) {
-        return new GameEveDataQueryHandlerImpl(gameEveDataQueryRepository);
+    protected @Bean GameEveDataQueryHandler gameEveDataQueryHandler() {
+        return new GameEveDataQueryHandlerImpl();
     }
 }

@@ -45,7 +45,7 @@ public class GameEveDataItemRestClient implements TianyanMetadataItemRestClient 
                 .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE资源项编码不能为空"));
         return Optional.ofNullable(post(
                         restClient,
-                        "/item/category/game/eve/query/find_id_by_code",
+                        "/item/game/eve/query/find_item_id_by_code",
                         GameEveItemFindByCodeReqDTransfer.builder()
                                 .code(code).build().validate(),
                         GameEveItemFindIdRespDTransfer.class)

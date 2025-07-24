@@ -3,6 +3,7 @@ package org.endless.tianyan.manufacturing.components.blueprint.blueprint.applica
 import org.endless.tianyan.manufacturing.common.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,9 +20,9 @@ import java.util.stream.Collectors;
  * BlueprintCreateReqCTransfer
  * <p>蓝图创建命令请求传输对象
  * <p>
- * create 2025/07/24 09:27
+ * create 2025/07/24 10:44
  * <p>
- * update 2025/07/24 09:27
+ * update 2025/07/24 10:44
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingCommandTransfer
@@ -30,13 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"itemId", "materials", "products", "skills", "cycle", "createUserId"})
+@JSONType(orders = {"itemId", "type", "materials", "products", "skills", "cycle", "createUserId"})
 public class BlueprintCreateReqCTransfer implements TianyanManufacturingCommandTransfer {
 
     /**
      * 资源项ID
      */
     private final String itemId;
+
+    /**
+     * 蓝图类型
+     */
+    private final String type;
 
     /**
      * 蓝图物料列表
@@ -66,9 +72,7 @@ public class BlueprintCreateReqCTransfer implements TianyanManufacturingCommandT
     @Override
     public BlueprintCreateReqCTransfer validate() {
         validateItemId();
-        validateMaterials();
-        validateProducts();
-        validateSkills();
+        validateType();
         validateCycle();
         validateCreateUserId();
         return this;
@@ -80,21 +84,9 @@ public class BlueprintCreateReqCTransfer implements TianyanManufacturingCommandT
         }
     }
 
-    private void validateMaterials() {
-        if (CollectionUtils.isEmpty(materials)) {
-            throw new CommandTransferValidateException("蓝图物料列表不能为空");
-        }
-    }
-
-    private void validateProducts() {
-        if (CollectionUtils.isEmpty(products)) {
-            throw new CommandTransferValidateException("蓝图产品列表不能为空");
-        }
-    }
-
-    private void validateSkills() {
-        if (CollectionUtils.isEmpty(skills)) {
-            throw new CommandTransferValidateException("蓝图技能列表不能为空");
+    private void validateType() {
+        if (!StringUtils.hasText(type)) {
+            throw new CommandTransferValidateException("蓝图类型不能为空");
         }
     }
 

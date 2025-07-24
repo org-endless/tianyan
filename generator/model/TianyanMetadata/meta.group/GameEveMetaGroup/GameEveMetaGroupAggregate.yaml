@@ -1,0 +1,66 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: meta.group
+domainName: GameEveMetaGroup
+aggregateName: GameEveMetaGroupAggregate
+description: 游戏EVE元分组
+fields:
+  - name: gameEveMetaGroupId
+    type: String
+    description: 游戏EVE元分组ID
+    nullable: false
+  - name: metaGroupId
+    type: String
+    description: 元分组ID
+    nullable: false
+  - name: code
+    type: String
+    description: 游戏EVE元分组编码
+    nullable: false
+transfers:
+  - name: GameEveMetaGroupCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE元分组创建命令请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE元分组编码
+        nullable: false
+      - name: fullNameZh
+        type: String
+        description: 中文全称
+        nullable: false
+      - name: fullNameEn
+        type: String
+        description: 英文全称
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveMetaGroupFindByCodeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE元分组根据编码查询请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE元分组编码
+        nullable: false
+  - name: GameEveMetaGroupFindMetaGroupIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE元分组ID查询响应传输对象
+    fields:
+      - name: metaGroupId
+        type: String
+        description: 元分组ID
+        nullable: false

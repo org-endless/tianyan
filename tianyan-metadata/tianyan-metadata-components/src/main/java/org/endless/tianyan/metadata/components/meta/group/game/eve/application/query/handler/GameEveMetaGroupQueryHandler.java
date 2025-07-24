@@ -1,0 +1,22 @@
+package org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.handler;
+
+import org.endless.tianyan.metadata.common.model.application.query.handler.TianyanMetadataQueryHandler;
+import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.transfer.GameEveMetaGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.transfer.GameEveMetaGroupFindMetaGroupIdRespQTransfer;
+
+/**
+ * GameEveMetaGroupQueryHandler
+ * <p>游戏EVE元分组领域查询处理器
+ * <p>
+ * create 2025/07/24 11:25
+ * <p>
+ * update 2025/07/24 11:25
+ *
+ * @author Deng Haozhi
+ * @see TianyanMetadataQueryHandler
+ * @since 0.0.1
+ */
+public interface GameEveMetaGroupQueryHandler extends TianyanMetadataQueryHandler {
+
+    GameEveMetaGroupFindMetaGroupIdRespQTransfer findMetaGroupIdByCode(GameEveMetaGroupFindByCodeReqQTransfer query);
+}

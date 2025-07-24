@@ -1,6 +1,7 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
 import org.endless.tianyan.manufacturing.common.model.domain.entity.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -20,9 +21,9 @@ import java.util.stream.Collectors;
  * BlueprintMaterialEntity
  * <p>蓝图物料实体
  * <p>
- * create 2025/07/24 09:52
+ * create 2025/07/24 10:42
  * <p>
- * update 2025/07/24 09:52
+ * update 2025/07/24 10:42
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingEntity

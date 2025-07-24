@@ -1,9 +1,9 @@
 package org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.spring;
 
-import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.*;
-import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.GameEveDataCommandHandler;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.GameEveDataQueryHandler;
+import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.GameEveDataDrivingAdapter;
 
 /**
  * SpringGameEveDataDrivingAdapter
@@ -32,5 +32,10 @@ public class SpringGameEveDataDrivingAdapter implements GameEveDataDrivingAdapte
     public SpringGameEveDataDrivingAdapter(GameEveDataCommandHandler gameEveDataCommandHandler, GameEveDataQueryHandler gameEveDataQueryHandler) {
         this.gameEveDataCommandHandler = gameEveDataCommandHandler;
         this.gameEveDataQueryHandler = gameEveDataQueryHandler;
+    }
+
+    @Override
+    public void load(GameEveDataLoadReqCTransfer command) {
+        gameEveDataCommandHandler.load(command);
     }
 }

@@ -1,6 +1,7 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
 import org.endless.tianyan.manufacturing.common.model.domain.entity.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -20,9 +21,9 @@ import java.util.stream.Collectors;
  * BlueprintAggregate
  * <p>蓝图聚合根
  * <p>
- * create 2025/07/24 09:52
+ * create 2025/07/24 10:42
  * <p>
- * update 2025/07/24 09:52
+ * update 2025/07/24 10:42
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingAggregate
@@ -42,6 +43,11 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
      * 资源项ID
      */
     private String itemId;
+
+    /**
+     * 蓝图类型
+     */
+    private BlueprintTypeEnum type;
 
     /**
      * 蓝图物料列表
@@ -82,6 +88,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
         return builder
                 .blueprintId(IdGenerator.of())
                 .itemId(builder.itemId)
+                .type(builder.type)
                 .materials(builder.materials == null ? new ArrayList<>() : new ArrayList<>(builder.materials))
                 .products(builder.products == null ? new ArrayList<>() : new ArrayList<>(builder.products))
                 .skills(builder.skills == null ? new ArrayList<>() : new ArrayList<>(builder.skills))
@@ -269,6 +276,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
     public BlueprintAggregate validate() {
         validateBlueprintId();
         validateItemId();
+        validateType();
         validateCycle();
         validateCreateUserId();
         validateModifyUserId();
@@ -285,6 +293,12 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new AggregateValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateType() {
+        if (type == null) {
+            throw new AggregateValidateException("蓝图类型不能为 null ");
         }
     }
 

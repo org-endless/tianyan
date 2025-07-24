@@ -37,6 +37,8 @@ enums:
         description: 市场分组
       - code: BLUEPRINT
         description: 蓝图
+      - code: META_GROUP
+        description: 元分组
 transfers:
   - name: GameEveDataLoadReqCTransfer
     adapterType: DRIVING
@@ -47,6 +49,16 @@ transfers:
       - name: dataType
         type: String
         description: 数据类型
+        nullable: false
+  - name: GameEveDataFileMetaGroupRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE数据文件元分组被动响应传输对象
+    fields:
+      - name: name
+        type: GameEveDataFileNameRespDTransfer
+        description: 元分组名称
         nullable: false
   - name: GameEveDataFileItemCategoryRespDTransfer
     adapterType: DRIVEN
@@ -483,7 +495,7 @@ transfers:
       - name: successRate
         type: String
         description: 产品成功率(8, 5)
-        nullable: false
+        nullable: true
   - name: GameEveBlueprintSkillReqDTransfer
     adapterType: DRIVEN
     cqrsType: COMMAND

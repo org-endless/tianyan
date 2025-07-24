@@ -1,13 +1,16 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.config;
 
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.impl.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.impl.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.spring.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.BlueprintCommandHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.impl.BlueprintCommandHandlerImpl;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintMaterialQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintProductQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintSkillQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.BlueprintQueryHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.impl.BlueprintQueryHandlerImpl;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.BlueprintRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.BlueprintDrivingAdapter;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.spring.SpringBlueprintDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +48,6 @@ public class BlueprintDrivingConfiguration {
     @Lazy
     @ConditionalOnMissingBean
     protected @Bean BlueprintQueryHandler blueprintQueryHandler(BlueprintQueryRepository blueprintQueryRepository, BlueprintMaterialQueryRepository blueprintMaterialQueryRepository, BlueprintSkillQueryRepository blueprintSkillQueryRepository, BlueprintProductQueryRepository blueprintProductQueryRepository) {
-        return new BlueprintQueryHandlerImpl(blueprintQueryRepository, blueprintMaterialQueryRepository, blueprintSkillQueryRepository, blueprintProductQueryRepository);
+        return new BlueprintQueryHandlerImpl(blueprintQueryRepository, blueprintMaterialQueryRepository, blueprintProductQueryRepository, blueprintSkillQueryRepository);
     }
 }

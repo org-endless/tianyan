@@ -1,13 +1,14 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.config;
 
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler.impl.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.impl.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.spring.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.BlueprintDrivingAdapter;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler.GameEveBlueprintCommandHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler.impl.GameEveBlueprintCommandHandlerImpl;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.GameEveBlueprintQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.GameEveBlueprintQueryHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.impl.GameEveBlueprintQueryHandlerImpl;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.GameEveBlueprintRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.GameEveBlueprintDrivingAdapter;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.spring.SpringGameEveBlueprintDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +39,8 @@ public class GameEveBlueprintDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveBlueprintCommandHandler gameEveBlueprintCommandHandler(GameEveBlueprintRepository repository) {
-        return new GameEveBlueprintCommandHandlerImpl(repository);
+    protected @Bean GameEveBlueprintCommandHandler gameEveBlueprintCommandHandler(GameEveBlueprintRepository repository, BlueprintDrivingAdapter blueprintDrivingAdapter) {
+        return new GameEveBlueprintCommandHandlerImpl(repository, blueprintDrivingAdapter);
     }
 
     @Lazy

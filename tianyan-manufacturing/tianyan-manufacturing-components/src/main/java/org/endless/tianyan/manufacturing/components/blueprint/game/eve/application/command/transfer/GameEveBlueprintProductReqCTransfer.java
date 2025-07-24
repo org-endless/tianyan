@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintProductReqCTransfer
  * <p>游戏EVE蓝图产品命令请求传输对象
  * <p>
- * create 2025/07/24 09:48
+ * create 2025/07/24 10:43
  * <p>
- * update 2025/07/24 09:48
+ * update 2025/07/24 10:43
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingCommandTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"itemId", "quantity"})
+@JSONType(orders = {"itemId", "quantity", "successRate"})
 public class GameEveBlueprintProductReqCTransfer implements TianyanManufacturingCommandTransfer {
 
     /**
@@ -44,10 +44,16 @@ public class GameEveBlueprintProductReqCTransfer implements TianyanManufacturing
      */
     private final Long quantity;
 
+    /**
+     * 产品成功率(8, 5)
+     */
+    private final String successRate;
+
     @Override
     public GameEveBlueprintProductReqCTransfer validate() {
         validateItemId();
         validateQuantity();
+        validateSuccessRate();
         return this;
     }
 
@@ -61,5 +67,9 @@ public class GameEveBlueprintProductReqCTransfer implements TianyanManufacturing
         if (quantity == null || quantity < 0) {
             throw new CommandTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
         }
+    }
+
+    private void validateSuccessRate() {
+        Decimal.validateRate(successRate);
     }
 }

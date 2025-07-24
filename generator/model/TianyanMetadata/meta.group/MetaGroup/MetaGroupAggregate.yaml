@@ -1,0 +1,68 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: meta.group
+domainName: MetaGroup
+aggregateName: MetaGroupAggregate
+description: 元分组
+fields:
+  - name: metaGroupId
+    type: String
+    description: 元分组ID
+    nullable: false
+  - name: nameZh
+    type: NameValue
+    description: 中文名称
+    nullable: false
+  - name: nameEn
+    type: NameValue
+    description: 英文名称
+    nullable: true
+values:
+  - name: NameValue
+    description: 名称
+    fields:
+      - name: fullName
+        type: String
+        description: 全称
+        nullable: false
+      - name: alias
+        type: String
+        description: 别名
+        nullable: true
+      - name: abbreviation
+        type: String
+        description: 简称
+        nullable: true
+transfers:
+  - name: MetaGroupCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 元分组创建命令请求传输对象
+    fields:
+      - name: fullNameZh
+        type: String
+        description: 中文全称
+        nullable: false
+      - name: fullNameEn
+        type: String
+        description: 英文全称
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: MetaGroupCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 元分组创建命令响应传输对象
+    fields:
+      - name: metaGroupId
+        type: String
+        description: 元分组ID
+        nullable: false

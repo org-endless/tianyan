@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.*;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -22,9 +23,9 @@ import java.util.stream.Collectors;
  * BlueprintRecord
  * <p>蓝图数据库记录实体
  * <p>
- * create 2025/07/24 09:52
+ * create 2025/07/24 10:42
  * <p>
- * update 2025/07/24 09:52
+ * update 2025/07/24 10:42
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord
@@ -48,6 +49,11 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
      * 资源项ID
      */
     private String itemId;
+
+    /**
+     * 蓝图类型
+     */
+    private BlueprintTypeEnum type;
 
     /**
      * 蓝图物料列表
@@ -112,6 +118,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
         return BlueprintRecord.builder()
                 .blueprintId(blueprintId)
                 .itemId(aggregate.getItemId())
+                .type(aggregate.getType())
                 .materials(aggregate.getMaterials() == null ? new ArrayList<>() : aggregate.getMaterials().stream()
                         .map(record -> BlueprintMaterialRecord.from(record, blueprintId)).collect(Collectors.toList()))
                 .products(aggregate.getProducts() == null ? new ArrayList<>() : aggregate.getProducts().stream()
@@ -131,6 +138,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
         return BlueprintAggregate.builder()
                 .blueprintId(blueprintId)
                 .itemId(itemId)
+                .type(type)
                 .materials(materials== null? new ArrayList<>() : materials.stream()
                         .map(BlueprintMaterialRecord::to).collect(Collectors.toList()))
                 .products(products== null? new ArrayList<>() : products.stream()
@@ -196,6 +204,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
     public BlueprintRecord validate() {
         validateBlueprintId();
         validateItemId();
+        validateType();
         validateCycle();
         validateCreateUserId();
         validateModifyUserId();
@@ -212,6 +221,12 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new DataRecordValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateType() {
+        if (type == null) {
+            throw new DataRecordValidateException("蓝图类型不能为 null ");
         }
     }
 

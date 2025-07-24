@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.*;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -22,9 +23,9 @@ import java.util.stream.Collectors;
  * BlueprintMaterialRecord
  * <p>蓝图物料数据库记录实体
  * <p>
- * create 2025/07/24 09:52
+ * create 2025/07/24 10:42
  * <p>
- * update 2025/07/24 09:52
+ * update 2025/07/24 10:42
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord

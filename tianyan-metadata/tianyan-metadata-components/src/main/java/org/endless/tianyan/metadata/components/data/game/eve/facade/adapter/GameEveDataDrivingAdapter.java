@@ -1,6 +1,7 @@
 package org.endless.tianyan.metadata.components.data.game.eve.facade.adapter;
 
-import org.endless.tianyan.metadata.common.model.facade.adapter.*;
+import org.endless.tianyan.metadata.common.model.facade.adapter.TianyanMetadataDrivingAdapter;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCTransfer;
 
 /**
  * GameEveDataDrivingAdapter
@@ -15,4 +16,6 @@ import org.endless.tianyan.metadata.common.model.facade.adapter.*;
  * @since 0.0.1
  */
 public interface GameEveDataDrivingAdapter extends TianyanMetadataDrivingAdapter {
+
+    void load(GameEveDataLoadReqCTransfer command);
 }

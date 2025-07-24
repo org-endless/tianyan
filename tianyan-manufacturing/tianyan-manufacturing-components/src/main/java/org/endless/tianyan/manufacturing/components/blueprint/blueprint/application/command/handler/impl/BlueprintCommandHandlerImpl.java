@@ -3,6 +3,7 @@ package org.endless.tianyan.manufacturing.components.blueprint.blueprint.applica
 import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
 import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.BlueprintCommandHandler;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCTransfer;
@@ -11,6 +12,7 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.e
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintMaterialEntity;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintProductEntity;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintSkillEntity;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.BlueprintTypeEnum;
 
 import java.util.Optional;
 
@@ -45,6 +47,7 @@ public class BlueprintCommandHandlerImpl implements BlueprintCommandHandler {
                 .orElseThrow(() -> new CommandReqTransferNullException("蓝图创建命令参数不能为空"));
         BlueprintAggregate aggregate = BlueprintAggregate.create(BlueprintAggregate.builder()
                 .itemId(command.getItemId())
+                .type(BlueprintTypeEnum.fromCode(command.getType()))
                 .materials(command.getMaterials() == null ? null : command.getMaterials().stream()
                         .map(material -> BlueprintMaterialEntity.create(BlueprintMaterialEntity.builder()
                                 .itemId(material.getItemId())
@@ -53,7 +56,8 @@ public class BlueprintCommandHandlerImpl implements BlueprintCommandHandler {
                 .products(command.getProducts() == null ? null : command.getProducts().stream()
                         .map(material -> BlueprintProductEntity.create(BlueprintProductEntity.builder()
                                 .itemId(material.getItemId())
-                                .quantity(material.getQuantity())))
+                                .quantity(material.getQuantity())
+                                .successRate(Decimal.format5Bit(material.getSuccessRate()))))
                         .toList())
                 .skills(command.getSkills() == null ? null : command.getSkills().stream()
                         .map(material -> BlueprintSkillEntity.create(BlueprintSkillEntity.builder()

@@ -56,6 +56,7 @@ public class GameEveBlueprintCommandHandlerImpl implements GameEveBlueprintComma
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE蓝图创建命令参数不能为空"));
         String blueprintId = blueprintDrivingAdapter.create(BlueprintCreateReqCTransfer.builder()
                         .itemId(command.getItemId())
+                        .type(command.getType())
                         .materials(CollectionUtils.isEmpty(command.getMaterials()) ? null : command.getMaterials().stream()
                                 .map(material -> BlueprintMaterialReqCTransfer.builder()
                                         .itemId(material.getItemId())

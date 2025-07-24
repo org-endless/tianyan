@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintSkillReqCTransfer
  * <p>游戏EVE蓝图技能命令请求传输对象
  * <p>
- * create 2025/07/24 09:48
+ * create 2025/07/24 10:43
  * <p>
- * update 2025/07/24 09:48
+ * update 2025/07/24 10:43
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingCommandTransfer
