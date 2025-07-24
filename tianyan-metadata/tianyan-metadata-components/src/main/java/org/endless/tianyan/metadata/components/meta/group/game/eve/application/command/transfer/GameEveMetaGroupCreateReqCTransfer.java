@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMetaGroupCreateReqCTransfer
  * <p>游戏EVE元分组创建命令请求传输对象
  * <p>
- * create 2025/07/24 11:29
+ * create 2025/07/24 20:25
  * <p>
- * update 2025/07/24 11:29
+ * update 2025/07/24 20:25
  *
  * @author Deng Haozhi
  * @see TianyanMetadataCommandTransfer
@@ -39,12 +39,12 @@ public class GameEveMetaGroupCreateReqCTransfer implements TianyanMetadataComman
     private final String code;
 
     /**
-     * 中文全称
+     * 元分组中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 英文全称
+     * 元分组英文全称
      */
     private final String fullNameEn;
 
@@ -57,7 +57,6 @@ public class GameEveMetaGroupCreateReqCTransfer implements TianyanMetadataComman
     public GameEveMetaGroupCreateReqCTransfer validate() {
         validateCode();
         validateFullNameZh();
-        validateFullNameEn();
         validateCreateUserId();
         return this;
     }
@@ -70,13 +69,7 @@ public class GameEveMetaGroupCreateReqCTransfer implements TianyanMetadataComman
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new CommandTransferValidateException("中文全称不能为空");
-        }
-    }
-
-    private void validateFullNameEn() {
-        if (!StringUtils.hasText(fullNameEn)) {
-            throw new CommandTransferValidateException("英文全称不能为空");
+            throw new CommandTransferValidateException("元分组中文全称不能为空");
         }
     }
 

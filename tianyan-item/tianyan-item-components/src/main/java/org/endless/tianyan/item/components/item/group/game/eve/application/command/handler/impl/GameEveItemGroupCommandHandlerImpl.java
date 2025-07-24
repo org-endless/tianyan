@@ -50,15 +50,15 @@ public class GameEveItemGroupCommandHandlerImpl implements GameEveItemGroupComma
                 .map(GameEveItemGroupCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分组创建命令参数不能为空"));
         String itemGroupId = itemGroupDrivingAdapter.create(ItemGroupCreateReqCTransfer.builder()
-                        .nameZh(command.getNameZh())
-                        .nameEn(command.getNameEn())
+                        .fullNameZh(command.getFullNameZh())
+                        .fullNameEn(command.getFullNameEn())
                         .createUserId(command.getCreateUserId())
                         .build().validate())
                 .validate().getItemGroupId();
         GameEveItemGroupAggregate aggregate = GameEveItemGroupAggregate.create(GameEveItemGroupAggregate.builder()
                 .itemGroupId(itemGroupId)
                 .code(command.getCode())
-                .gameEveItemCategoryId(command.getGameEveItemCategoryId())
+                .itemCategoryId(command.getItemCategoryId())
                 .isPublished(command.getIsPublished())
                 .isUseBasePrice(command.getIsUseBasePrice())
                 .createUserId(command.getCreateUserId()));

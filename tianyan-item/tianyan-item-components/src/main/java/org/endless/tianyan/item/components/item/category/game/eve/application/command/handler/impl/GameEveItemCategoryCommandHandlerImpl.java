@@ -50,8 +50,8 @@ public class GameEveItemCategoryCommandHandlerImpl implements GameEveItemCategor
                 .map(GameEveItemCategoryCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类创建命令参数不能为空"));
         String itemCategoryId = itemCategoryDrivingAdapter.create(ItemCategoryCreateReqCTransfer.builder()
-                        .nameZh(command.getNameZh())
-                        .nameEn(command.getNameEn())
+                        .fullNameZh(command.getFullNameZh())
+                        .fullNameEn(command.getFullNameEn())
                         .createUserId(command.getCreateUserId())
                         .build().validate())
                 .validate().getItemCategoryId();

@@ -45,9 +45,9 @@ public class ItemGroupCommandHandlerImpl implements ItemGroupCommandHandler {
                 .orElseThrow(() -> new CommandReqTransferNullException("资源项分组创建命令令参数不能为空"));
         ItemGroupAggregate aggregate = ItemGroupAggregate.create(ItemGroupAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameZh())))
+                        .fullName(command.getFullNameZh())))
                 .nameEn(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameEn())))
+                        .fullName(command.getFullNameEn())))
                 .createUserId(command.getCreateUserId()));
         itemGroupRepository.save(aggregate);
         return ItemGroupCreateRespCTransfer.builder()

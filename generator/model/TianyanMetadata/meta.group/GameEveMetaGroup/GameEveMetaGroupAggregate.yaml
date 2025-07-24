@@ -34,12 +34,12 @@ transfers:
         nullable: false
       - name: fullNameZh
         type: String
-        description: 中文全称
+        description: 元分组中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 英文全称
-        nullable: false
+        description: 元分组英文全称
+        nullable: true
       - name: createUserId
         type: String
         description: 创建用户ID

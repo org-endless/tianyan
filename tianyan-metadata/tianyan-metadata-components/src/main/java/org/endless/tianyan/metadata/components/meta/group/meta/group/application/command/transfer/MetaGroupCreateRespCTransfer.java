@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * MetaGroupCreateRespCTransfer
  * <p>元分组创建命令响应传输对象
  * <p>
- * create 2025/07/24 11:29
+ * create 2025/07/24 20:25
  * <p>
- * update 2025/07/24 11:29
+ * update 2025/07/24 20:25
  *
  * @author Deng Haozhi
  * @see TianyanMetadataCommandTransfer

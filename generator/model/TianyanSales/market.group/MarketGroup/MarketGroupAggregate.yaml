@@ -20,7 +20,7 @@ fields:
   - name: nameEn
     type: NameValue
     description: 英文名称
-    nullable: false
+    nullable: true
   - name: parentId
     type: String
     description: 父市场分组ID
@@ -48,13 +48,13 @@ transfers:
     messageType: REQUEST
     description: 市场分组创建命令请求传输对象
     fields:
-      - name: nameZhFullName
+      - name: fullNameZh
         type: String
-        description: 中文全称
+        description: 市场分组中文全称
         nullable: false
-      - name: nameEnFullName
+      - name: fullNameEn
         type: String
-        description: 英文全称
+        description: 市场分组英文全称
         nullable: false
       - name: parentId
         type: String

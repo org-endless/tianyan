@@ -81,7 +81,7 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
                 .filter(StringUtils::hasText)
                 .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE资源项分类编码不能为空"));
         return GameEveItemCategoryFindIdRespQTransfer.builder()
-                .gameEveItemCategoryId(gameEveItemCategoryMapper.findIdByCode(code)
+                .itemCategoryId(gameEveItemCategoryMapper.findIdByCode(code)
                         .orElseThrow(() -> new DataManagerNotFoundException("游戏EVE资源项分类编码不存在")))
                 .build().validate();
     }

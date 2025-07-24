@@ -45,9 +45,9 @@ public class ItemCategoryCommandHandlerImpl implements ItemCategoryCommandHandle
                 .orElseThrow(() -> new CommandReqTransferNullException("资源项分类创建命令参数不能为空"));
         ItemCategoryAggregate aggregate = ItemCategoryAggregate.create(ItemCategoryAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameZh())))
+                        .fullName(command.getFullNameZh())))
                 .nameEn(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameEn())))
+                        .fullName(command.getFullNameEn())))
                 .createUserId(command.getCreateUserId()));
         itemCategoryRepository.save(aggregate);
         return ItemCategoryCreateRespCTransfer.builder()
