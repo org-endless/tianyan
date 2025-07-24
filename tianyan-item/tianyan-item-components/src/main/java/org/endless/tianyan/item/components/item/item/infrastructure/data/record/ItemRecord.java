@@ -4,26 +4,28 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
+import org.endless.tianyan.item.components.item.item.domain.entity.*;
+import org.endless.tianyan.item.components.item.item.domain.value.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
+import org.endless.ddd.simplified.starter.common.config.utils.id.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
-import org.endless.ddd.simplified.starter.common.model.domain.type.MassUnitEnum;
-import org.endless.ddd.simplified.starter.common.model.domain.type.VolumeUnitEnum;
-import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
-import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate;
-import org.endless.tianyan.item.components.item.item.domain.value.MassValue;
-import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
-import org.endless.tianyan.item.components.item.item.domain.value.VolumeValue;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * ItemRecord
  * <p>资源项数据库记录实体
  * <p>
- * create 2025/07/24 16:46
+ * create 2025/07/24 20:01
  * <p>
- * update 2025/07/24 16:46
+ * update 2025/07/24 20:01
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -89,47 +91,7 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     private String nameEnAbbreviation;
 
     /**
-     * 质量数量是否科学计数
-     */
-    private Boolean massIsScientific;
-
-    /**
-     * 质量数量(20, 5)
-     */
-    private BigDecimal massQuantity;
-
-    /**
-     * 质量数量科学计数
-     */
-    private String massScientific;
-
-    /**
-     * 质量单位
-     */
-    private MassUnitEnum massUnit;
-
-    /**
-     * 体积数量是否科学计数
-     */
-    private Boolean volumeIsScientific;
-
-    /**
-     * 体积数量(20, 5)
-     */
-    private BigDecimal volumeQuantity;
-
-    /**
-     * 体积数量科学计数
-     */
-    private String volumeScientific;
-
-    /**
-     * 体积单位
-     */
-    private VolumeUnitEnum volumeUnit;
-
-    /**
-     * 描述
+     * 资源项描述
      */
     private String description;
 
@@ -178,14 +140,6 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                 .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getFullName())
                 .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAlias())
                 .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAbbreviation())
-                .massIsScientific(aggregate.getMass() == null ? null : aggregate.getMass().getIsScientific())
-                .massQuantity(aggregate.getMass() == null ? null : aggregate.getMass().getQuantity())
-                .massScientific(aggregate.getMass() == null ? null : aggregate.getMass().getScientific())
-                .massUnit(aggregate.getMass() == null ? null : aggregate.getMass().getUnit())
-                .volumeIsScientific(aggregate.getVolume() == null ? null : aggregate.getVolume().getIsScientific())
-                .volumeQuantity(aggregate.getVolume() == null ? null : aggregate.getVolume().getQuantity())
-                .volumeScientific(aggregate.getVolume() == null ? null : aggregate.getVolume().getScientific())
-                .volumeUnit(aggregate.getVolume() == null ? null : aggregate.getVolume().getUnit())
                 .description(aggregate.getDescription())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
@@ -210,18 +164,6 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                         .fullName(nameEnFullName)
                         .alias(nameEnAlias)
                         .abbreviation(nameEnAbbreviation)
-                        .innerBuild())
-                .mass(MassValue.builder()
-                        .isScientific(massIsScientific)
-                        .quantity(massQuantity)
-                        .scientific(massScientific)
-                        .unit(massUnit)
-                        .innerBuild())
-                .volume(VolumeValue.builder()
-                        .isScientific(volumeIsScientific)
-                        .quantity(volumeQuantity)
-                        .scientific(volumeScientific)
-                        .unit(volumeUnit)
                         .innerBuild())
                 .description(description)
                 .createUserId(createUserId)

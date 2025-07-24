@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * ItemAggregate
  * <p>资源项聚合根
  * <p>
- * create 2025/07/24 16:46
+ * create 2025/07/24 20:01
  * <p>
- * update 2025/07/24 16:46
+ * update 2025/07/24 20:01
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -65,17 +65,7 @@ public class ItemAggregate implements TianyanItemAggregate {
     private NameValue nameEn;
 
     /**
-     * 质量
-     */
-    private MassValue mass;
-
-    /**
-     * 体积
-     */
-    private VolumeValue volume;
-
-    /**
-     * 描述
+     * 资源项描述
      */
     private String description;
 
@@ -97,9 +87,6 @@ public class ItemAggregate implements TianyanItemAggregate {
     public static ItemAggregate create(ItemAggregateBuilder builder) {
         return builder
                 .itemId(IdGenerator.of())
-                .itemGroupId(builder.itemGroupId)
-                .nameZh(builder.nameZh)
-                .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
             .innerBuild()
