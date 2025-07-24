@@ -144,7 +144,7 @@ public class GameEveProfitService {
      * 每日销售量依赖每日产量，产能和销售相关联。
      * <p>Daily sales depends on daily production. Capacity and sales are related
      *
-     * @param gameEveItem    EVE物品对象 &nbsp&nbsp The EVE GameEveItem Object.
+     * @param gameEveItem    EVE资源项对象 &nbsp&nbsp The EVE GameEveItem Object.
      * @param gameEveFormula EVE蓝图对象 &nbsp&nbsp The EVE gameEveFormula Object.
      * @return java.math.BigDecimal
      **/
@@ -165,7 +165,7 @@ public class GameEveProfitService {
      * <p>Daily sales as a percentage of daily sales in the market. Get an estimate of daily sales based on the estimated proportion.
      * 每日销量提供查询接口
      *
-     * @param gameEveItem EVE物品对象 &nbsp&nbsp The EVE GameEveItem Object.
+     * @param gameEveItem EVE资源项对象 &nbsp&nbsp The EVE GameEveItem Object.
      * @return java.math.BigDecimal
      **/
     // protected BigDecimal getDailySales(GameEveItem gameEveItem) {

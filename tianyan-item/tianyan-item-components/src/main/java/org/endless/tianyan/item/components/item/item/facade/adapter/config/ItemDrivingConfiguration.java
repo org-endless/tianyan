@@ -16,11 +16,11 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * ItemDrivingConfiguration
- * <p>物品领域主动适配器配置类
+ * <p>资源项领域主动适配器配置类
  * <p>
- * create 2025/07/19 07:15
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 07:15
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @since 0.0.1

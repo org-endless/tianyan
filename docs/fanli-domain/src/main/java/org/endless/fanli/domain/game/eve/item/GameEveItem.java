@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveItem
- * <p>游戏EVE物品/商品实体类
+ * <p>游戏EVE资源项/商品实体类
  * <p>Game EVE item entities class.
  * <p>
  * <p>create 2023/03/07 1:28

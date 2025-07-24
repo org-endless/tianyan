@@ -11,12 +11,13 @@ import org.endless.tianyan.item.components.item.group.game.eve.infrastructure.da
 import org.endless.tianyan.item.components.item.group.game.eve.infrastructure.data.record.GameEveItemGroupRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
 /**
  * GameEveItemGroupDataManager
- * <p>游戏EVE物品分组聚合数据管理器
+ * <p>游戏EVE资源项分组聚合数据管理器
  * <p>
  * create 2025/07/21 16:03
  * <p>
@@ -33,7 +34,7 @@ import java.util.Optional;
 public class GameEveItemGroupDataManager implements GameEveItemGroupRepository, GameEveItemGroupQueryRepository, TianyanItemAggregateDataManager<GameEveItemGroupRecord, GameEveItemGroupAggregate> {
 
     /**
-     * 游戏EVE物品分组聚合 Mybatis-Plus 数据访问对象
+     * 游戏EVE资源项分组聚合 Mybatis-Plus 数据访问对象
      */
     private final GameEveItemGroupMapper gameEveItemGroupMapper;
 
@@ -42,11 +43,11 @@ public class GameEveItemGroupDataManager implements GameEveItemGroupRepository, 
     }
 
     @Override
-    @Log(message = "保存游戏EVE物品分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "保存游戏EVE资源项分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
     public GameEveItemGroupAggregate save(GameEveItemGroupAggregate aggregate) {
         Optional.ofNullable(aggregate)
                 .map(GameEveItemGroupAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE物品分组聚合数据不能为空"));
+                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE资源项分组聚合数据不能为空"));
         gameEveItemGroupMapper.save(GameEveItemGroupRecord.from(aggregate));
         return aggregate;
     }
@@ -69,5 +70,14 @@ public class GameEveItemGroupDataManager implements GameEveItemGroupRepository, 
     @Override
     public Optional<GameEveItemGroupAggregate> findByIdForUpdate(String s) {
         return Optional.empty();
+    }
+
+    @Override
+    @Log(message = "根据编码查询资源项分组ID数据", value = "#code", level = LogLevel.TRACE)
+    public Optional<String> findItemGroupIdByCode(String code) {
+        Optional.ofNullable(code)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE资源项分组编码不能为空"));
+        return gameEveItemGroupMapper.findItemGroupIdByCode(code);
     }
 }

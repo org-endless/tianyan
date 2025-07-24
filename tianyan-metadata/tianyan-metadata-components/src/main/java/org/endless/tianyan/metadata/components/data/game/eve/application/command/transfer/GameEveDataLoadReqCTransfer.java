@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveDataLoadReqCTransfer
  * <p>游戏EVE数据加载命令请求传输对象
  * <p>
- * create 2025/07/21 00:35
+ * create 2025/07/24 08:49
  * <p>
- * update 2025/07/21 00:35
+ * update 2025/07/24 08:49
  *
  * @author Deng Haozhi
  * @see TianyanMetadataCommandTransfer

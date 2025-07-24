@@ -2,9 +2,8 @@ package org.endless.fanli.common.type.ddd.item;
 
 /**
  * ItemService
- * <p>物品/商品服务模板类
+ * <p>资源项/商品服务模板类
  * <p>The item service model.
- *
  * <p>create 2023/05/13 21:36
  * <p>update 2023/05/28 00:19
  *

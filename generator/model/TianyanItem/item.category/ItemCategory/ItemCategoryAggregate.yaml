@@ -7,11 +7,11 @@ serviceSubPackage: components
 contextName: item.category
 domainName: ItemCategory
 aggregateName: ItemCategoryAggregate
-description: 物品分类
+description: 资源项分类
 fields:
   - name: itemCategoryId
     type: String
-    description: 物品分类ID
+    description: 资源项分类ID
     nullable: false
   - name: nameZh
     type: NameValue
@@ -42,15 +42,15 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 物品分类创建命令请求传输对象
+    description: 资源项分类创建命令请求传输对象
     fields:
       - name: nameZh
         type: String
-        description: 物品分类中文名称
+        description: 资源项分类中文名称
         nullable: false
       - name: nameEn
         type: String
-        description: 物品分类英文名称
+        description: 资源项分类英文名称
         nullable: false
       - name: createUserId
         type: String
@@ -60,9 +60,9 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: RESPONSE
-    description: 物品分类创建命令响应传输对象
+    description: 资源项分类创建命令响应传输对象
     fields:
       - name: itemCategoryId
         type: String
-        description: 物品分类ID
+        description: 资源项分类ID
         nullable: false

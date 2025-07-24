@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * GameEveItemGroupCommandHandlerImpl
- * <p>游戏EVE物品分组领域命令处理器
+ * <p>游戏EVE资源项分组领域命令处理器
  * <p>
  * create 2025/07/21 16:03
  * <p>
@@ -28,12 +28,12 @@ import java.util.Optional;
 public class GameEveItemGroupCommandHandlerImpl implements GameEveItemGroupCommandHandler {
 
     /**
-     * 游戏EVE物品分组聚合仓储接口
+     * 游戏EVE资源项分组聚合仓储接口
      */
     private final GameEveItemGroupRepository gameEveItemGroupRepository;
 
     /**
-     * 物品分组主动适配器接口
+     * 资源项分组主动适配器接口
      */
     private final ItemGroupDrivingAdapter itemGroupDrivingAdapter;
 
@@ -44,11 +44,11 @@ public class GameEveItemGroupCommandHandlerImpl implements GameEveItemGroupComma
 
     @Override
     @Transactional
-    @Log(message = "游戏EVE物品分组创建命令", value = "#command", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE资源项分组创建命令", value = "#command", level = LogLevel.TRACE)
     public void create(GameEveItemGroupCreateReqCTransfer command) {
         Optional.ofNullable(command)
                 .map(GameEveItemGroupCreateReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分组创建命令参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分组创建命令参数不能为空"));
         String itemGroupId = itemGroupDrivingAdapter.create(ItemGroupCreateReqCTransfer.builder()
                         .nameZh(command.getNameZh())
                         .nameEn(command.getNameEn())

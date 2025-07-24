@@ -3,7 +3,6 @@ package org.endless.tianyan.item.components.item.category.game.eve.application.c
 import org.endless.tianyan.item.common.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,11 +17,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemCategoryCreateReqCTransfer
- * <p>游戏EVE物品分类创建命令请求传输对象
+ * <p>游戏EVE资源项分类创建命令请求传输对象
  * <p>
- * create 2025/07/21 16:08
+ * create 2025/07/22 16:21
  * <p>
- * update 2025/07/21 16:08
+ * update 2025/07/22 16:21
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -35,22 +34,22 @@ import java.util.stream.Collectors;
 public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
-     * 游戏EVE物品分类编码
+     * 游戏EVE资源项分类编码
      */
     private final String code;
 
     /**
-     * 游戏EVE物品分类中文名称
+     * 游戏EVE资源项分类中文名称
      */
     private final String nameZh;
 
     /**
-     * 游戏EVE物品分类英文名称
+     * 游戏EVE资源项分类英文名称
      */
     private final String nameEn;
 
     /**
-     * 游戏EVE物品分类是否发布
+     * 游戏EVE资源项分类是否发布
      */
     private final Boolean isPublished;
 
@@ -71,25 +70,25 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new CommandTransferValidateException("游戏EVE物品分类编码不能为空");
+            throw new CommandTransferValidateException("游戏EVE资源项分类编码不能为空");
         }
     }
 
     private void validateNameZh() {
         if (!StringUtils.hasText(nameZh)) {
-            throw new CommandTransferValidateException("游戏EVE物品分类中文名称不能为空");
+            throw new CommandTransferValidateException("游戏EVE资源项分类中文名称不能为空");
         }
     }
 
     private void validateNameEn() {
         if (!StringUtils.hasText(nameEn)) {
-            throw new CommandTransferValidateException("游戏EVE物品分类英文名称不能为空");
+            throw new CommandTransferValidateException("游戏EVE资源项分类英文名称不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new CommandTransferValidateException("游戏EVE物品分类是否发布不能为 null ");
+            throw new CommandTransferValidateException("游戏EVE资源项分类是否发布不能为 null ");
         }
     }
 

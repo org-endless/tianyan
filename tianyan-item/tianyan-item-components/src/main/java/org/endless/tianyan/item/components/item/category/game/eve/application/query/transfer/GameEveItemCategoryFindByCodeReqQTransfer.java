@@ -1,24 +1,16 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer;
 
-import org.endless.tianyan.item.common.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryTransferValidateException;
+import org.endless.tianyan.item.common.model.application.query.transfer.TianyanItemQueryTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveItemCategoryFindByCodeReqQTransfer
- * <p>游戏EVE物品分类根据编码查询请求传输对象
+ * <p>游戏EVE资源项分类根据编码查询请求传输对象
  * <p>
  * create 2025/07/21 16:10
  * <p>
@@ -35,7 +27,7 @@ import java.util.stream.Collectors;
 public class GameEveItemCategoryFindByCodeReqQTransfer implements TianyanItemQueryTransfer {
 
     /**
-     * 游戏EVE物品分类编码
+     * 游戏EVE资源项分类编码
      */
     private final String code;
 
@@ -47,7 +39,7 @@ public class GameEveItemCategoryFindByCodeReqQTransfer implements TianyanItemQue
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new QueryTransferValidateException("游戏EVE物品分类编码不能为空");
+            throw new QueryTransferValidateException("游戏EVE资源项分类编码不能为空");
         }
     }
 }

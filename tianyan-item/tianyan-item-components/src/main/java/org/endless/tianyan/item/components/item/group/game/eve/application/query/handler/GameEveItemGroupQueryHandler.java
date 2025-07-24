@@ -1,11 +1,12 @@
 package org.endless.tianyan.item.components.item.group.game.eve.application.query.handler;
 
-import org.endless.tianyan.item.common.model.application.query.handler.*;
-import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.*;
+import org.endless.tianyan.item.common.model.application.query.handler.TianyanItemQueryHandler;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQTransfer;
 
 /**
  * GameEveItemGroupQueryHandler
- * <p>游戏EVE物品分组领域查询处理器
+ * <p>游戏EVE资源项分组领域查询处理器
  * <p>
  * create 2025/07/21 16:03
  * <p>
@@ -16,4 +17,7 @@ import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.*;
  * @since 0.0.1
  */
 public interface GameEveItemGroupQueryHandler extends TianyanItemQueryHandler {
+
+    GameEveItemGroupFindIdRespQTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQTransfer query);
+
 }

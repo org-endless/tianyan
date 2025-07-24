@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * ItemGroupCreateRespCTransfer
- * <p>物品分组创建命令响应传输对象
+ * <p>资源项分组创建命令响应传输对象
  * <p>
  * create 2025/07/21 16:19
  * <p>
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class ItemGroupCreateRespCTransfer implements TianyanItemCommandTransfer {
 
     /**
-     * 物品分组ID
+     * 资源项分组ID
      */
     private final String itemGroupId;
 
@@ -47,7 +47,7 @@ public class ItemGroupCreateRespCTransfer implements TianyanItemCommandTransfer 
 
     private void validateItemGroupId() {
         if (!StringUtils.hasText(itemGroupId)) {
-            throw new CommandTransferValidateException("物品分组ID不能为空");
+            throw new CommandTransferValidateException("资源项分组ID不能为空");
         }
     }
 }

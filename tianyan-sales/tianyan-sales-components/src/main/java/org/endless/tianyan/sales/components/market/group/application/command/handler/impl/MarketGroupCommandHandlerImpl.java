@@ -1,16 +1,25 @@
 package org.endless.tianyan.sales.components.market.group.application.command.handler.impl;
 
-import org.endless.tianyan.sales.components.market.group.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.group.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.*;
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.tianyan.sales.components.market.group.application.command.handler.MarketGroupCommandHandler;
+import org.endless.tianyan.sales.components.market.group.application.command.transfer.MarketGroupCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.group.application.command.transfer.MarketGroupCreateRespCTransfer;
+import org.endless.tianyan.sales.components.market.group.domain.anticorruption.MarketGroupRepository;
+import org.endless.tianyan.sales.components.market.group.domain.entity.MarketGroupAggregate;
+import org.endless.tianyan.sales.components.market.group.domain.value.NameValue;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * MarketGroupCommandHandlerImpl
  * <p>市场分组领域命令处理器
  * <p>
- * create 2025/07/22 09:08
+ * create 2025/07/22 16:05
  * <p>
- * update 2025/07/22 09:08
+ * update 2025/07/22 16:05
  *
  * @author Deng Haozhi
  * @see MarketGroupCommandHandler
@@ -25,5 +34,25 @@ public class MarketGroupCommandHandlerImpl implements MarketGroupCommandHandler 
 
     public MarketGroupCommandHandlerImpl(MarketGroupRepository marketGroupRepository) {
         this.marketGroupRepository = marketGroupRepository;
+    }
+
+    @Override
+    @Transactional
+    @Log(message = "市场分组创建命令", value = "#command", level = LogLevel.TRACE)
+    public MarketGroupCreateRespCTransfer create(MarketGroupCreateReqCTransfer command) {
+        Optional.ofNullable(command)
+                .map(MarketGroupCreateReqCTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("市场分组创建命令参数不能为空"));
+        MarketGroupAggregate aggregate = MarketGroupAggregate.create(MarketGroupAggregate.builder()
+                .nameZh(NameValue.create(NameValue.builder()
+                        .fullName(command.getNameZhFullName())))
+                .nameEn(NameValue.create(NameValue.builder()
+                        .fullName(command.getNameEnFullName())))
+                .parentId(command.getParentId())
+                .createUserId(command.getCreateUserId()));
+        marketGroupRepository.save(aggregate);
+        return MarketGroupCreateRespCTransfer.builder()
+                .marketGroupId(aggregate.getMarketGroupId())
+                .build().validate();
     }
 }

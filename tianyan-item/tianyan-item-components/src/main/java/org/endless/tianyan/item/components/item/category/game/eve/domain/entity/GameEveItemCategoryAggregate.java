@@ -1,26 +1,17 @@
 package org.endless.tianyan.item.components.item.category.game.eve.domain.entity;
 
-import org.endless.tianyan.item.common.model.domain.entity.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.value.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * GameEveItemCategoryAggregate
- * <p>游戏EVE物品分类聚合根
+ * <p>游戏EVE资源项分类聚合根
  * <p>
  * create 2025/07/20 22:44
  * <p>
@@ -36,22 +27,22 @@ import java.util.stream.Collectors;
 public class GameEveItemCategoryAggregate implements TianyanItemAggregate {
 
     /**
-     * 游戏EVE物品分类ID
+     * 游戏EVE资源项分类ID
      */
     private final String gameEveItemCategoryId;
 
     /**
-     * 物品分类ID
+     * 资源项分类ID
      */
     private String itemCategoryId;
 
     /**
-     * 游戏EVE物品分类编码
+     * 游戏EVE资源项分类编码
      */
     private String code;
 
     /**
-     * 游戏EVE物品分类是否发布
+     * 游戏EVE资源项分类是否发布
      */
     private Boolean isPublished;
 
@@ -79,16 +70,16 @@ public class GameEveItemCategoryAggregate implements TianyanItemAggregate {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public GameEveItemCategoryAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE物品分类聚合根>不能再次删除, ID: " + gameEveItemCategoryId);
+            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE资源项分类聚合根>不能再次删除, ID: " + gameEveItemCategoryId);
         }
         if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<游戏EVE物品分类聚合根>处于不可删除状态, ID: " + gameEveItemCategoryId);
+            throw new AggregateRemoveException("聚合根<游戏EVE资源项分类聚合根>处于不可删除状态, ID: " + gameEveItemCategoryId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -113,25 +104,25 @@ public class GameEveItemCategoryAggregate implements TianyanItemAggregate {
 
     private void validateGameEveItemCategoryId() {
         if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new AggregateValidateException("游戏EVE物品分类ID不能为空");
+            throw new AggregateValidateException("游戏EVE资源项分类ID不能为空");
         }
     }
 
     private void validateItemCategoryId() {
         if (!StringUtils.hasText(itemCategoryId)) {
-            throw new AggregateValidateException("物品分类ID不能为空");
+            throw new AggregateValidateException("资源项分类ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new AggregateValidateException("游戏EVE物品分类编码不能为空");
+            throw new AggregateValidateException("游戏EVE资源项分类编码不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new AggregateValidateException("游戏EVE物品分类是否发布不能为 null ");
+            throw new AggregateValidateException("游戏EVE资源项分类是否发布不能为 null ");
         }
     }
 

@@ -1,7 +1,8 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler;
 
-import org.endless.tianyan.sales.common.model.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.command.handler.TianyanSalesCommandHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.command.transfer.GameEveMarketGroupCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.domain.entity.GameEveMarketGroupAggregate;
 
 /**
  * GameEveMarketGroupCommandHandler
@@ -16,4 +17,7 @@ import org.endless.tianyan.sales.components.market.game.eve.group.domain.entity.
  * @since 0.0.1
  */
 public interface GameEveMarketGroupCommandHandler extends TianyanSalesCommandHandler<GameEveMarketGroupAggregate> {
+
+    void create(GameEveMarketGroupCreateReqCTransfer command);
+
 }

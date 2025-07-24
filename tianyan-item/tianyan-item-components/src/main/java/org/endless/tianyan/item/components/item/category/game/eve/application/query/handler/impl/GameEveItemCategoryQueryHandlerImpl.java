@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /**
  * GameEveItemCategoryQueryHandlerImpl
- * <p>游戏EVE物品分类领域查询处理器
+ * <p>游戏EVE资源项分类领域查询处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class GameEveItemCategoryQueryHandlerImpl implements GameEveItemCategoryQueryHandler {
 
     /**
-     * 游戏EVE物品分类聚合查询仓储接口
+     * 游戏EVE资源项分类聚合查询仓储接口
      */
     private final GameEveItemCategoryQueryRepository gameEveItemCategoryQueryRepository;
 
@@ -34,11 +34,11 @@ public class GameEveItemCategoryQueryHandlerImpl implements GameEveItemCategoryQ
     }
 
     @Override
-    @Log(message = "游戏EVE物品分类根据编码查询ID", value = "#command", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE资源项分类根据编码查询ID", value = "#command", level = LogLevel.TRACE)
     public GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分类根据编码查询ID参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类根据编码查询ID参数不能为空"));
         return gameEveItemCategoryQueryRepository.findIdByCode(query.getCode());
     }
 }

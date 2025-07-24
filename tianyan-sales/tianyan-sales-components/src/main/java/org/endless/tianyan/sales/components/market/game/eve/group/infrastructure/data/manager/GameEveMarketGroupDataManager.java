@@ -1,5 +1,8 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.infrastructure.data.manager;
 
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.sales.common.model.infrastructure.data.manager.TianyanSalesAggregateDataManager;
 import org.endless.tianyan.sales.components.market.game.eve.group.application.query.anticorruption.GameEveMarketGroupQueryRepository;
 import org.endless.tianyan.sales.components.market.game.eve.group.domain.anticorruption.GameEveMarketGroupRepository;
@@ -39,17 +42,22 @@ public class GameEveMarketGroupDataManager implements GameEveMarketGroupReposito
     }
 
     @Override
-    public GameEveMarketGroupAggregate save(GameEveMarketGroupAggregate gameEveMarketGroupAggregate) {
-        return null;
+    @Log(message = "保存游戏EVE市场分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    public GameEveMarketGroupAggregate save(GameEveMarketGroupAggregate aggregate) {
+        Optional.ofNullable(aggregate)
+                .map(GameEveMarketGroupAggregate::validate)
+                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE市场分组聚合数据不能为空"));
+        gameEveMarketGroupMapper.save(GameEveMarketGroupRecord.from(aggregate));
+        return aggregate;
     }
 
     @Override
-    public void remove(GameEveMarketGroupAggregate gameEveMarketGroupAggregate) {
+    public void remove(GameEveMarketGroupAggregate aggregate) {
 
     }
 
     @Override
-    public GameEveMarketGroupAggregate modify(GameEveMarketGroupAggregate gameEveMarketGroupAggregate) {
+    public GameEveMarketGroupAggregate modify(GameEveMarketGroupAggregate aggregate) {
         return null;
     }
 
@@ -61,5 +69,11 @@ public class GameEveMarketGroupDataManager implements GameEveMarketGroupReposito
     @Override
     public Optional<GameEveMarketGroupAggregate> findByIdForUpdate(String s) {
         return Optional.empty();
+    }
+
+    @Override
+    @Log(message = "游戏EVE市场分组根据编码查询市场分组ID", value = "#code", level = LogLevel.TRACE)
+    public Optional<String> findMarketGroupIdByCode(String code) {
+        return gameEveMarketGroupMapper.findMarketGroupIdByCode(code);
     }
 }

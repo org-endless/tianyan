@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * GameEveItemGroupDrivingConfiguration
- * <p>游戏EVE物品分组领域主动适配器配置类
+ * <p>游戏EVE资源项分组领域主动适配器配置类
  * <p>
  * create 2025/07/21 16:03
  * <p>

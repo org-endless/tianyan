@@ -12,7 +12,7 @@
     <artifactId>tianyan-item</artifactId>
     <packaging>pom</packaging>
     <name>tianyan-item</name>
-    <description>天演-物品服务</description>
+    <description>天演-资源项服务</description>
 
     <modules>
         <module>tianyan-item-common</module>

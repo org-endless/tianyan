@@ -7,12 +7,20 @@ serviceSubPackage: components
 contextName: item
 domainName: Item
 aggregateName: ItemAggregate
-description: 物品
+description: 资源项
 fields:
   - name: itemId
     type: String
-    description: 物品ID
+    description: 资源项ID
     nullable: false
+  - name: itemGroupId
+    type: String
+    description: 资源项分组ID
+    nullable: false
+  - name: marketGroupId
+    type: String
+    description: 市场分组ID
+    nullable: true
   - name: nameZh
     type: NameValue
     description: 中文名称
@@ -20,7 +28,19 @@ fields:
   - name: nameEn
     type: NameValue
     description: 英文名称
-    nullable: false
+    nullable: true
+  - name: mass
+    type: MassValue
+    description: 质量
+    nullable: true
+  - name: volume
+    type: VolumeValue
+    description: 体积
+    nullable: true
+  - name: description
+    type: String
+    description: 描述
+    nullable: true
 values:
   - name: NameValue
     description: 名称
@@ -37,3 +57,98 @@ values:
         type: String
         description: 简称
         nullable: true
+  - name: MassValue
+    description: 质量
+    fields:
+      - name: isScientific
+        type: Boolean
+        description: 质量数量是否科学计数
+        nullable: false
+      - name: quantity
+        type: BigDecimal
+        description: 质量数量(20, 5)
+        nullable: true
+      - name: scientific
+        type: String
+        description: 质量数量科学计数
+        nullable: true
+      - name: unit
+        type: MassUnitEnum
+        description: 质量单位
+        nullable: false
+  - name: VolumeValue
+    description: 体积
+    fields:
+      - name: isScientific
+        type: Boolean
+        description: 体积数量是否科学计数
+        nullable: false
+      - name: quantity
+        type: BigDecimal
+        description: 体积数量(20, 5)
+        nullable: true
+      - name: scientific
+        type: String
+        description: 体积数量科学计数
+        nullable: true
+      - name: unit
+        type: VolumeUnitEnum
+        description: 体积单位
+        nullable: false
+transfers:
+  - name: ItemCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 资源项创建命令请求传输对象
+    fields:
+      - name: itemGroupId
+        type: String
+        description: 资源项分组ID
+        nullable: false
+      - name: marketGroupId
+        type: String
+        description: 市场分组ID
+        nullable: true
+      - name: fullNameZh
+        type: String
+        description: 中文全称
+        nullable: false
+      - name: fullNameEn
+        type: String
+        description: 英文全称
+        nullable: true
+      - name: massQuantity
+        type: String
+        description: 质量数量
+        nullable: true
+      - name: massUnit
+        type: String
+        description: 质量单位
+        nullable: true
+      - name: volumeQuantity
+        type: String
+        description: 体积数量
+        nullable: true
+      - name: volumeUnit
+        type: String
+        description: 体积单位
+        nullable: true
+      - name: description
+        type: String
+        description: 描述
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: ItemCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 资源项创建命令响应传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false

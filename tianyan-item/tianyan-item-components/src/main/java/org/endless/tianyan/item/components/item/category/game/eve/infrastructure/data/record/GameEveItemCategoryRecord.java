@@ -4,25 +4,15 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.value.*;
-import org.endless.tianyan.item.components.item.category.game.eve.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
+import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveItemCategoryRecord
- * <p>游戏EVE物品分类数据库记录实体
+ * <p>游戏EVE资源项分类数据库记录实体
  * <p>
  * create 2025/07/21 14:46
  * <p>
@@ -41,23 +31,23 @@ import java.util.stream.Collectors;
 public class GameEveItemCategoryRecord implements TianyanItemRecord<GameEveItemCategoryAggregate> {
 
     /**
-     * 游戏EVE物品分类ID
+     * 游戏EVE资源项分类ID
      */
     @TableId
     private String gameEveItemCategoryId;
 
     /**
-     * 物品分类ID
+     * 资源项分类ID
      */
     private String itemCategoryId;
 
     /**
-     * 游戏EVE物品分类编码
+     * 游戏EVE资源项分类编码
      */
     private String code;
 
     /**
-     * 游戏EVE物品分类是否发布
+     * 游戏EVE资源项分类是否发布
      */
     private Boolean isPublished;
 
@@ -134,25 +124,25 @@ public class GameEveItemCategoryRecord implements TianyanItemRecord<GameEveItemC
 
     private void validateGameEveItemCategoryId() {
         if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new DataRecordValidateException("游戏EVE物品分类ID不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项分类ID不能为空");
         }
     }
 
     private void validateItemCategoryId() {
         if (!StringUtils.hasText(itemCategoryId)) {
-            throw new DataRecordValidateException("物品分类ID不能为空");
+            throw new DataRecordValidateException("资源项分类ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DataRecordValidateException("游戏EVE物品分类编码不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项分类编码不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new DataRecordValidateException("游戏EVE物品分类是否发布不能为 null ");
+            throw new DataRecordValidateException("游戏EVE资源项分类是否发布不能为 null ");
         }
     }
 

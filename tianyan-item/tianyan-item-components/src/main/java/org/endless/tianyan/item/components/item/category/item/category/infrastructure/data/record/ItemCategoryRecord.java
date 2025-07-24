@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * ItemCategoryRecord
- * <p>物品分类数据库记录实体
+ * <p>资源项分类数据库记录实体
  * <p>
  * create 2025/07/21 15:36
  * <p>
@@ -32,7 +32,7 @@ import org.springframework.util.StringUtils;
 public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggregate> {
 
     /**
-     * 物品分类ID
+     * 资源项分类ID
      */
     @TableId
     private String itemCategoryId;
@@ -149,7 +149,7 @@ public class ItemCategoryRecord implements TianyanItemRecord<ItemCategoryAggrega
 
     private void validateItemCategoryId() {
         if (!StringUtils.hasText(itemCategoryId)) {
-            throw new DataRecordValidateException("物品分类ID不能为空");
+            throw new DataRecordValidateException("资源项分类ID不能为空");
         }
     }
 

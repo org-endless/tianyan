@@ -2,7 +2,6 @@ package org.endless.tianyan.item.components.item.item.domain.entity;
 
 import org.endless.tianyan.item.common.model.domain.entity.*;
 import org.endless.tianyan.item.components.item.item.domain.value.*;
-import org.endless.tianyan.item.components.item.item.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -20,11 +19,11 @@ import java.util.stream.Collectors;
 
 /**
  * ItemAggregate
- * <p>物品聚合根
+ * <p>资源项聚合根
  * <p>
- * create 2025/07/21 15:37
+ * create 2025/07/23 01:33
  * <p>
- * update 2025/07/21 15:37
+ * update 2025/07/23 01:33
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -36,9 +35,19 @@ import java.util.stream.Collectors;
 public class ItemAggregate implements TianyanItemAggregate {
 
     /**
-     * 物品ID
+     * 资源项ID
      */
     private final String itemId;
+
+    /**
+     * 资源项分组ID
+     */
+    private String itemGroupId;
+
+    /**
+     * 市场分组ID
+     */
+    private String marketGroupId;
 
     /**
      * 中文名称
@@ -49,6 +58,21 @@ public class ItemAggregate implements TianyanItemAggregate {
      * 英文名称
      */
     private NameValue nameEn;
+
+    /**
+     * 质量
+     */
+    private MassValue mass;
+
+    /**
+     * 体积
+     */
+    private VolumeValue volume;
+
+    /**
+     * 描述
+     */
+    private String description;
 
     /**
      * 创建者ID
@@ -68,21 +92,21 @@ public class ItemAggregate implements TianyanItemAggregate {
     public static ItemAggregate create(ItemAggregateBuilder builder) {
         return builder
                 .itemId(IdGenerator.of())
+                .itemGroupId(builder.itemGroupId)
                 .nameZh(builder.nameZh)
-                .nameEn(builder.nameEn)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public ItemAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<物品聚合根>不能再次删除, ID: " + itemId);
+            throw new AggregateRemoveException("已经被删除的聚合根<资源项聚合根>不能再次删除, ID: " + itemId);
         }
         if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<物品聚合根>处于不可删除状态, ID: " + itemId);
+            throw new AggregateRemoveException("聚合根<资源项聚合根>处于不可删除状态, ID: " + itemId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -96,8 +120,8 @@ public class ItemAggregate implements TianyanItemAggregate {
     @Override
     public ItemAggregate validate() {
         validateItemId();
+        validateItemGroupId();
         validateNameZh();
-        validateNameEn();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -106,19 +130,19 @@ public class ItemAggregate implements TianyanItemAggregate {
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new AggregateValidateException("物品ID不能为空");
+            throw new AggregateValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateItemGroupId() {
+        if (!StringUtils.hasText(itemGroupId)) {
+            throw new AggregateValidateException("资源项分组ID不能为空");
         }
     }
 
     private void validateNameZh() {
         if (nameZh == null) {
             throw new AggregateValidateException("中文名称不能为 null ");
-        }
-    }
-
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new AggregateValidateException("英文名称不能为 null ");
         }
     }
 

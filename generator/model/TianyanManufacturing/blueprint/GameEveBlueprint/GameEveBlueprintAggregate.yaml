@@ -1,0 +1,140 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanManufacturing
+rootPath: tianyan-manufacturing/tianyan-manufacturing-components
+serviceSubPackage: components
+contextName: blueprint
+domainName: GameEveBlueprint
+aggregateName: GameEveBlueprintAggregate
+description: 游戏EVE蓝图
+fields:
+  - name: gameEveBlueprintId
+    type: String
+    description: 游戏EVE蓝图ID
+    nullable: false
+  - name: blueprintId
+    type: String
+    description: 蓝图ID
+    nullable: false
+  - name: code
+    type: String
+    description: 游戏EVE蓝图编码
+    nullable: false
+  - name: type
+    type: GameEveBlueprintTypeEnum
+    description: 游戏EVE蓝图类型
+    nullable: false
+  - name: maxProductionLimit
+    type: Integer
+    description: 游戏EVE蓝图最大生产次数
+    nullable: false
+enums:
+  - name: GameEveBlueprintTypeEnum
+    valueType: String
+    description: 游戏EVE蓝图类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: PRODUCTION
+        description: 生产
+      - code: INVENTION
+        description: 发明
+      - code: BLUEPRINT_COPYING
+        description: 蓝图复制
+      - code: BLUEPRINT_MATERIAL_IMPROVEMENT
+        description: 蓝图材料优化
+      - code: BLUEPRINT_CYCLE_IMPROVEMENT
+        description: 蓝图周期优化
+transfers:
+  - name: GameEveBlueprintCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE蓝图创建命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 游戏EVE资源项ID
+        nullable: false
+      - name: code
+        type: String
+        description: 游戏EVE蓝图编码
+        nullable: false
+      - name: type
+        type: String
+        description: 蓝图类型
+        nullable: false
+      - name: materials
+        type: List<GameEveBlueprintMaterialReqCTransfer>
+        description: 蓝图物料列表
+        nullable: true
+      - name: products
+        type: List<GameEveBlueprintProductReqCTransfer>
+        description: 蓝图产品列表
+        nullable: true
+      - name: skills
+        type: List<GameEveBlueprintSkillReqCTransfer>
+        description: 蓝图技能列表
+        nullable: true
+      - name: cycle
+        type: Long
+        description: 蓝图周期
+        nullable: false
+      - name: maxProductionLimit
+        type: Integer
+        description: 游戏EVE蓝图最大生产次数
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveBlueprintMaterialReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE蓝图物料命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图物料数量
+        nullable: false
+  - name: GameEveBlueprintProductReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE蓝图产品命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图产品数量
+        nullable: false
+  - name: GameEveBlueprintSkillReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE蓝图技能命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: level
+        type: String
+        description: 蓝图技能等级
+        nullable: false

@@ -21,7 +21,7 @@
 
 // /**
 //  * Item
-//  * <p>物品/商品模板
+//  * <p>资源项/商品模板
 //  * <p>The item model.
 //  * <p>
 //  * <p>create 2023/05/26 16:28
@@ -36,7 +36,7 @@
 // public class Item {
 
 //     /**
-//      * 复合编号：行业编号+"_"+物品/商品编号
+//      * 复合编号：行业编号+"_"+资源项/商品编号
 //      */
 //     @Id
 //     @NotEmpty
@@ -44,7 +44,7 @@
 //     private String id;
 
 //     /**
-//      * 物品/商品编号
+//      * 资源项/商品编号
 //      */
 //     @Indexed
 //     @NotEmpty
@@ -122,7 +122,7 @@
 //     private long updateTimeStamp;
 
 //     /**
-//      * 根据复合编号获取商品/物品编号
+//      * 根据复合编号获取商品/资源项编号
 //      * <p>Gets the item id based on the composite id.
 //      *
 //      * @param id id
@@ -155,7 +155,7 @@
 //      * 获取符合编号
 //      * <p>Gets the composite id.
 //      *
-//      * @param itemId     商品/物品编号
+//      * @param itemId     商品/资源项编号
 //      * @param industryId 行业编号
 //      * @return {@link String}
 //      */

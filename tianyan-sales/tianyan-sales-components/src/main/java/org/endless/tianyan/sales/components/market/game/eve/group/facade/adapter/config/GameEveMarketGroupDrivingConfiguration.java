@@ -1,13 +1,14 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.config;
 
-import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.impl.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.impl.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.spring.*;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.GameEveMarketGroupCommandHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.impl.GameEveMarketGroupCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.anticorruption.GameEveMarketGroupQueryRepository;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.GameEveMarketGroupQueryHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.impl.GameEveMarketGroupQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.game.eve.group.domain.anticorruption.GameEveMarketGroupRepository;
+import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.GameEveMarketGroupDrivingAdapter;
+import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.spring.SpringGameEveMarketGroupDrivingAdapter;
+import org.endless.tianyan.sales.components.market.group.facade.adapter.MarketGroupDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +39,8 @@ public class GameEveMarketGroupDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveMarketGroupCommandHandler gameEveMarketGroupCommandHandler(GameEveMarketGroupRepository repository) {
-        return new GameEveMarketGroupCommandHandlerImpl(repository);
+    protected @Bean GameEveMarketGroupCommandHandler gameEveMarketGroupCommandHandler(GameEveMarketGroupRepository repository, MarketGroupDrivingAdapter marketGroupDrivingAdapter) {
+        return new GameEveMarketGroupCommandHandlerImpl(repository, marketGroupDrivingAdapter);
     }
 
     @Lazy

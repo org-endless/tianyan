@@ -20,7 +20,7 @@ import java.util.Optional;
 
 /**
  * GameEveItemCategoryRestController
- * <p>游戏EVE物品分类领域Rest控制器
+ * <p>游戏EVE资源项分类领域Rest控制器
  * <p>
  * create 2025/07/21 15:05
  * <p>
@@ -36,7 +36,7 @@ import java.util.Optional;
 public class GameEveItemCategoryRestController implements TianyanItemRestController {
 
     /**
-     * 游戏EVE物品分类领域主动适配器
+     * 游戏EVE资源项分类领域主动适配器
      */
     private final GameEveItemCategoryDrivingAdapter gameEveItemCategoryDrivingAdapter;
 
@@ -45,29 +45,29 @@ public class GameEveItemCategoryRestController implements TianyanItemRestControl
     }
 
     @PostMapping("/command/create")
-    @Log(message = "游戏EVE物品分类创建", value = "#command")
+    @Log(message = "游戏EVE资源项分类创建", value = "#command")
     public ResponseEntity<RestResponse> create(@RequestBody GameEveItemCategoryCreateReqCTransfer command) {
         Optional.ofNullable(command)
                 .map(GameEveItemCategoryCreateReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分类创建参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类创建参数不能为空"));
         try {
             gameEveItemCategoryDrivingAdapter.create(command);
-            return response().success("游戏EVE物品分类创建成功");
+            return response().success("游戏EVE资源项分类创建成功");
         } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE物品分类创建失败", e);
+            throw new RestErrorException("游戏EVE资源项分类创建失败", e);
         }
     }
 
     @PostMapping("/query/find_id_by_code")
-    @Log(message = "游戏EVE物品分类根据编码查询ID", value = "#command")
+    @Log(message = "游戏EVE资源项分类根据编码查询ID", value = "#command")
     public ResponseEntity<RestResponse> findIdByCode(@RequestBody GameEveItemCategoryFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE物品分类根据编码查询ID参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类根据编码查询ID参数不能为空"));
         try {
-            return response().success("游戏EVE物品分类根据编码查询ID成功", gameEveItemCategoryDrivingAdapter.findIdByCode(query));
+            return response().success("游戏EVE资源项分类根据编码查询ID成功", gameEveItemCategoryDrivingAdapter.findIdByCode(query));
         } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE物品分类根据编码查询ID失败", e);
+            throw new RestErrorException("游戏EVE资源项分类根据编码查询ID失败", e);
         }
     }
 }

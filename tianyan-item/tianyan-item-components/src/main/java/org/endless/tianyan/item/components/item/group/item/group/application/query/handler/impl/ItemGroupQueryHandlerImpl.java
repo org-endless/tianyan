@@ -7,7 +7,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 
 /**
  * ItemGroupQueryHandlerImpl
- * <p>物品分组领域查询处理器
+ * <p>资源项分组领域查询处理器
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -20,7 +20,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 public class ItemGroupQueryHandlerImpl implements ItemGroupQueryHandler {
 
     /**
-     * 物品分组聚合查询仓储接口
+     * 资源项分组聚合查询仓储接口
      */
     private final ItemGroupQueryRepository itemGroupQueryRepository;
 

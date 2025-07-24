@@ -1,0 +1,164 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanManufacturing
+rootPath: tianyan-manufacturing/tianyan-manufacturing-components
+serviceSubPackage: components
+contextName: blueprint
+domainName: Blueprint
+aggregateName: BlueprintAggregate
+description: 蓝图
+fields:
+  - name: blueprintId
+    type: String
+    description: 蓝图ID
+    nullable: false
+  - name: itemId
+    type: String
+    description: 资源项ID
+    nullable: false
+  - name: materials
+    type: List<BlueprintMaterialEntity>
+    description: 蓝图物料列表
+    nullable: true
+  - name: products
+    type: List<BlueprintProductEntity>
+    description: 蓝图产品列表
+    nullable: true
+  - name: skills
+    type: List<BlueprintSkillEntity>
+    description: 蓝图所需技能列表
+    nullable: true
+  - name: cycle
+    type: Long
+    description: 周期
+    nullable: false
+entities:
+  - name: BlueprintMaterialEntity
+    description: 蓝图物料
+    fields:
+      - name: blueprintMaterialId
+        type: String
+        description: 蓝图物料ID
+        nullable: false
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图物料数量
+        nullable: false
+  - name: BlueprintProductEntity
+    description: 蓝图产品
+    fields:
+      - name: blueprintProductId
+        type: String
+        description: 蓝图产品ID
+        nullable: false
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图产品数量
+        nullable: false
+  - name: BlueprintSkillEntity
+    description: 蓝图技能
+    fields:
+      - name: blueprintSkillId
+        type: String
+        description: 蓝图技能ID
+        nullable: false
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: level
+        type: String
+        description: 蓝图技能等级
+        nullable: false
+transfers:
+  - name: BlueprintCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 蓝图创建命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: materials
+        type: List<BlueprintMaterialReqCTransfer>
+        description: 蓝图物料列表
+        nullable: true
+      - name: products
+        type: List<BlueprintProductReqCTransfer>
+        description: 蓝图产品列表
+        nullable: true
+      - name: skills
+        type: List<BlueprintSkillReqCTransfer>
+        description: 蓝图技能列表
+        nullable: true
+      - name: cycle
+        type: Long
+        description: 蓝图周期
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: BlueprintCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 蓝图创建命令响应传输对象
+    fields:
+      - name: blueprintId
+        type: String
+        description: 蓝图ID
+        nullable: false
+  - name: BlueprintMaterialReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 蓝图物料命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图物料数量
+        nullable: false
+  - name: BlueprintProductReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 蓝图产品命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: quantity
+        type: Long
+        description: 蓝图产品数量
+        nullable: false
+  - name: BlueprintSkillReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 蓝图技能命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: level
+        type: String
+        description: 蓝图技能等级
+        nullable: false

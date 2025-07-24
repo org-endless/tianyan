@@ -5,7 +5,7 @@ import org.endless.tianyan.item.components.item.category.item.category.domain.en
 
 /**
  * ItemCategoryQueryHandler
- * <p>物品分类领域查询处理器
+ * <p>资源项分类领域查询处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -16,4 +16,5 @@ import org.endless.tianyan.item.components.item.category.item.category.domain.en
  * @since 0.0.1
  */
 public interface ItemCategoryQueryHandler extends TianyanItemQueryHandler {
+
 }

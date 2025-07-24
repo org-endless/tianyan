@@ -1,0 +1,148 @@
+#------------------------Endless------------------------
+endless:
+  version: 0.0.1-SNAPSHOT
+  charset: UTF-8
+  springdoc-path: /springdoc
+#------------------------Server-------------------------
+server:
+  data-center-id: ${server-data-center-id} # 数据中心 ID
+  worker-id: ${server-worker-id} # 工作节点 ID
+  port: ${server-port} # 服务端口
+  tomcat:
+    connection-timeout: ${tomcat-connection-timeout} # 设置连接超时时间，单位为毫秒
+    max-threads: ${tomcat-max-threads} # 设置最大线程数
+    min-spare-threads: ${tomcat-min-spare-threads} # 设置最小闲置线程数
+    accept-count: ${tomcat-accept-count} # 设置最大请求队列数
+    max-http-header-size: ${tomcat-max-http-header-size} # 设置最大 HTTP 请求头大小，单位为字节
+    uri-encoding: ${tomcat-uri-encoding} # 设置 URI 编码格式
+  error:
+    whitelabel:
+      enabled: false # 禁用默认错误页面
+#------------------------SpringBankCardDrivenAdapter-------------------------
+spring:
+  application:
+    name: tianyan-manufacturing
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: false # 热部署功能
+  mvc:
+    throw-exception-if-no-handler-found: true # 未找到请求处理器时，抛出异常
+  web:
+    resources:
+      add-mappings: false # 禁用静态资源默认路径映射
+  http:
+    multipart:
+      max-file-size: ${http-multipart-max-file-size} # 限制单个文件的最大上传大小
+      max-request-size: ${http-multipart-max-request-size} # 限制整个请求的最大上传大小
+  servlet:
+    multipart:
+      enabled: ${servlet-multipart-enabled} # 启用文件上传功能
+      resolve-lazily: ${servlet-multipart-resolve-lazily} # 延迟解析 multipart 请求，减少内存占用
+      max-file-size: ${servlet-multipart-max-file-size} # 限制单个文件的最大上传大小
+      max-request-size: ${servlet-multipart-max-request-size} # 限制整个请求的最大上传大小
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${redis-host} # Redis 服务器的主机名或 IP 地址
+      port: ${redis-port} # Redis 服务器的端口，默认一般是 6379
+      database: ${redis-database} # 使用的 Redis 数据库索引，默认通常是 0
+      password: ${redis-password} # Redis 服务器的密码，如果启用了认证则需要
+      timeout: ${redis-timeout} # 连接超时时间，单位为毫秒（10秒）
+      ssl:
+        enabled: ${redis-ssl-enabled} # 是否启用 SSL 加密连接，如果 Redis 服务器启用了 SSL 则设置为 true
+      lettuce:
+        pool:
+          min-idle: ${redis-lettuce-pool-min-idle} # 连接池中最小空闲连接数
+          max-idle: ${redis-lettuce-pool-max-idle} # 连接池中最大空闲连接数
+          max-active: ${redis-lettuce-pool-max-active} # 连接池中最大活动连接数（并发连接数）
+          max-wait: ${redis-lettuce-pool-max-wait} # 从连接池获取连接的最大等待时间，-1 表示没有限制
+  datasource:
+    type: ${datasource-type}  # 指定 Druid 数据源类型
+    driver-class-name: ${datasource-driver-class-name}  # 设置数据库驱动类
+    url: ${datasource-url} # 数据库连接 URL
+    username: ${datasource-username}  # 数据库用户名
+    password: ${datasource-password}  # 数据库密码
+    druid:
+      initial-size: ${druid-initial-size}  # 初始化连接数
+      min-idle: ${druid-min-idle}  # 最小空闲连接数
+      max-active: ${druid-max-active}  # 最大活动连接数
+      max-wait: ${druid-max-wait}  # 获取连接的最大等待时间，单位为毫秒
+      validation-query: ${druid-validation-query}  # 连接验证查询
+      test-on-borrow: ${druid-test-on-borrow}  # 在获取连接时检查有效性
+      test-on-return: ${druid-test-on-return}  # 归还连接时进行检测
+      test-while-idle: ${druid-test-while-idle}  # 在空闲时检查连接有效性
+      time-between-eviction-runs-millis: ${druid-time-between-eviction-runs-millis}  # 运行空闲连接回收线程的时间间隔，单位为毫秒
+      min-evictable-idle-time-millis: ${druid-min-evictable-idle-time-millis}  # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
+      max-evictable-idle-time-millis: ${druid-max-evictable-idle-time-millis}  # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
+      filters: ${druid-filters}  # Druid 监控过滤器配置，开启统计和 log4j 记录
+      stat-view-servlet:
+        enabled: ${druid-stat-view-servlet-enabled}  # 是否启用 Druid 的监控页面
+      web-stat-filter:
+        enabled: ${druid-web-stat-filter-enabled}  # 是否启用 Druid 的 Web 统计过滤器
+      filter:
+        stat:
+          enabled: ${druid-filter-stat-enabled}  # 启用统计过滤器
+          log-slow-sql: ${druid-filter-stat-log-slow-sql}  # 启用慢SQL记录
+          slow-sql-millis: ${druid-filter-stat-slow-sql-millis}  # 记录执行时间超过1000毫秒的SQL
+          merge-sql: ${druid-filter-stat-merge-sql}  # 合并相似的SQL执行
+        wall:
+          config:
+            multi-statement-allow: ${druid-filter-wall-config-multi-statement-allow}  # 允许多条语句执行
+#------------------------Logging------------------------
+logging:
+  config: ${logging-config}
+#-------------------------Minio-------------------------
+minio:
+  endpoint: ${minio-endpoint} # MinIO 服务的访问地址，包含主机名/IP和端口号
+  accessKey: ${minio-accessKey} # MinIO 服务的访问密钥 ID，用于身份验证
+  secretKey: ${minio-secretKey} # MinIO 服务的访问密钥（从配置中读取），用于身份验证
+  bucket: ${minio-bucket} # 默认存储桶名称（从配置中读取），用于存储数据
+  # OkHttp连接池配置，用于控制与 MinIO 服务的连接管理
+  connect-pool:
+    max-idle: ${minio-connect-pool-max-idle} # 最大空闲连接数，设置较大值可以减少频繁连接创建和关闭
+    keep-alive: ${minio-connect-pool-keep-alive} # 空闲连接保活时间，单位为分钟，超过该时间未使用的连接将被关闭
+    timeout: ${minio-connect-pool-timeout} # 连接超时时间，单位为秒，超过该时间未能建立连接则会超时
+io:
+  netty:
+    noUnsafe: true # 禁用 Netty 的 Unsafe 代码，提升性能
+    noPreferDirect: true # 禁用 Netty 的直接缓冲区，提升性能
+#--------------------------TLog--------------------------
+tlog:
+  pattern: "[SpanId][$spanId][TraceId][$traceId]"
+  id-generator: org.endless.ddd.simplified.starter.common.utils.id.trace.TraceIdGenerator
+#-------------------------Mybatis------------------------
+mybatis-plus:
+  type-aliases-package: org.endless.**.mapper
+#------------------------Springdoc-----------------------
+springdoc:
+  api-docs:
+    path: ${endless.springdoc-path}/v3/api-docs # 自定义生成的 API 文档路径，默认为 /v3/api-docs
+    version: OPENAPI_3_1 # 设置 OpenAPI 版本为 3.1
+    groups:
+      enabled: true # 启用 API 文档分组功能
+  group-configs:
+    - group: tianyan-manufacturing-components # 自定义 API 文档分组名称
+      display-name: 天演 制造服务 核心组件 API # 自定义 API 文档分组显示名称
+      packages-to-scan: org.endless.tianyan.manufacturing.components # 自定义 API 文档扫描的包路径
+  writer-with-default-pretty-printer: true  # 使用默认的响应体格式化工具 PrettyPrinter
+  default-produces-media-type: MediaType.APPLICATION_JSON  # 设置默认的响应体类型为 JSON
+  show-login-endpoint: true # 显示 SpringBankCardDrivenAdapter Security 登录入口
+  default-support-form-data: true # 设置默认支持表单数据
+  swagger-ui:
+    enabled: true # 启用 Swagger UI 页面
+    path: ${endless.springdoc-path}/swagger-ui # 设置 Swagger UI 的访问路径
+    url: ${endless.springdoc-path}/v3/api-docs # 设置 Swagger UI 加载 OpenAPI 文档的路径
+    config-url: ${endless.springdoc-path}/v3/api-docs/swagger-config # 设置 Swagger UI 的配置路径
+    display-request-duration: true # 在 Swagger UI 上显示请求的持续时间（性能分析）
+    deep-linking: true # 启用深层链接，允许用户直接跳转到 API 定义的位置
+    doc-expansion: none # 控制 API 文档显示时，是否默认展开所有 API 操作，选择项包括：none、list、full
+    syntax-highlight:
+      theme: obsidian # 选择响应体的语法高亮主题
+    urls: # 自定义 Swagger UI 页面的 API 列表
+      - name: GYCDP Server 核心组件 API
+        url: ${endless.springdoc-path}/v3/api-docs/gycdp-server-components
+      - name: GYCDP Server 支撑组件 API
+        url: ${endless.springdoc-path}/v3/api-docs/gycdp-server-supporting

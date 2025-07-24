@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupRecord
  * <p>游戏EVE市场分组数据库记录实体
  * <p>
- * create 2025/07/22 09:09
+ * create 2025/07/22 16:25
  * <p>
- * update 2025/07/22 09:09
+ * update 2025/07/22 16:25
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -50,9 +50,9 @@ public class GameEveMarketGroupRecord implements TianyanSalesRecord<GameEveMarke
     private String marketGroupId;
 
     /**
-     * 游戏EVE市场分组描述
+     * 游戏EVE市场分组编码
      */
-    private String description;
+    private String code;
 
     /**
      * 创建者ID
@@ -91,7 +91,7 @@ public class GameEveMarketGroupRecord implements TianyanSalesRecord<GameEveMarke
         return GameEveMarketGroupRecord.builder()
                 .gameEveMarketGroupId(gameEveMarketGroupId)
                 .marketGroupId(aggregate.getMarketGroupId())
-                .description(aggregate.getDescription())
+                .code(aggregate.getCode())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -104,7 +104,7 @@ public class GameEveMarketGroupRecord implements TianyanSalesRecord<GameEveMarke
         return GameEveMarketGroupAggregate.builder()
                 .gameEveMarketGroupId(gameEveMarketGroupId)
                 .marketGroupId(marketGroupId)
-                .description(description)
+                .code(code)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -115,6 +115,7 @@ public class GameEveMarketGroupRecord implements TianyanSalesRecord<GameEveMarke
     public GameEveMarketGroupRecord validate() {
         validateGameEveMarketGroupId();
         validateMarketGroupId();
+        validateCode();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -130,6 +131,12 @@ public class GameEveMarketGroupRecord implements TianyanSalesRecord<GameEveMarke
     private void validateMarketGroupId() {
         if (!StringUtils.hasText(marketGroupId)) {
             throw new DataRecordValidateException("市场分组ID不能为空");
+        }
+    }
+
+    private void validateCode() {
+        if (!StringUtils.hasText(code)) {
+            throw new DataRecordValidateException("游戏EVE市场分组编码不能为空");
         }
     }
 

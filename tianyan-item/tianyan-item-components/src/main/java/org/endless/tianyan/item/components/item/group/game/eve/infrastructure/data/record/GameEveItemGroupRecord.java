@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemGroupRecord
- * <p>游戏EVE物品分组数据库记录实体
+ * <p>游戏EVE资源项分组数据库记录实体
  * <p>
  * create 2025/07/21 16:20
  * <p>
@@ -39,33 +39,33 @@ import java.util.stream.Collectors;
 public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGroupAggregate> {
 
     /**
-     * 游戏EVE物品分组ID
+     * 游戏EVE资源项分组ID
      */
     @TableId
     private String gameEveItemGroupId;
 
     /**
-     * 物品分组ID
+     * 资源项分组ID
      */
     private String itemGroupId;
 
     /**
-     * 游戏EVE物品分组编码
+     * 游戏EVE资源项分组编码
      */
     private String code;
 
     /**
-     * 游戏EVE物品分类ID
+     * 游戏EVE资源项分类ID
      */
     private String gameEveItemCategoryId;
 
     /**
-     * 游戏EVE物品分组是否发布
+     * 游戏EVE资源项分组是否发布
      */
     private Boolean isPublished;
 
     /**
-     * 游戏EVE物品分组是否使用基准价格
+     * 游戏EVE资源项分组是否使用基准价格
      */
     private Boolean isUseBasePrice;
 
@@ -148,37 +148,37 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
 
     private void validateGameEveItemGroupId() {
         if (!StringUtils.hasText(gameEveItemGroupId)) {
-            throw new DataRecordValidateException("游戏EVE物品分组ID不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项分组ID不能为空");
         }
     }
 
     private void validateItemGroupId() {
         if (!StringUtils.hasText(itemGroupId)) {
-            throw new DataRecordValidateException("物品分组ID不能为空");
+            throw new DataRecordValidateException("资源项分组ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DataRecordValidateException("游戏EVE物品分组编码不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项分组编码不能为空");
         }
     }
 
     private void validateGameEveItemCategoryId() {
         if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new DataRecordValidateException("游戏EVE物品分类ID不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项分类ID不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new DataRecordValidateException("游戏EVE物品分组是否发布不能为 null ");
+            throw new DataRecordValidateException("游戏EVE资源项分组是否发布不能为 null ");
         }
     }
 
     private void validateIsUseBasePrice() {
         if (isUseBasePrice == null) {
-            throw new DataRecordValidateException("游戏EVE物品分组是否使用基准价格不能为 null ");
+            throw new DataRecordValidateException("游戏EVE资源项分组是否使用基准价格不能为 null ");
         }
     }
 

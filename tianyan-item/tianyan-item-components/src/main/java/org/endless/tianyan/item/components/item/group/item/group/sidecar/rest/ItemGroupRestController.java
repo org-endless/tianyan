@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ItemGroupRestController
- * <p>物品分组领域Rest控制器
+ * <p>资源项分组领域Rest控制器
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ItemGroupRestController implements TianyanItemRestController {
 
     /**
-     * 物品分组领域主动适配器
+     * 资源项分组领域主动适配器
      */
     private final ItemGroupDrivingAdapter itemGroupDrivingAdapter;
 

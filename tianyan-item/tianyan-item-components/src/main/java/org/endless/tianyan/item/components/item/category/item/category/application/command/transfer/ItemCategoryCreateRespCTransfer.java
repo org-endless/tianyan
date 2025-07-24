@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * ItemCategoryCreateRespCTransfer
- * <p>物品分类创建命令响应传输对象
+ * <p>资源项分类创建命令响应传输对象
  * <p>
  * create 2025/07/20 22:55
  * <p>
@@ -27,7 +27,7 @@ import org.springframework.util.StringUtils;
 public class ItemCategoryCreateRespCTransfer implements TianyanItemCommandTransfer {
 
     /**
-     * 物品分类ID
+     * 资源项分类ID
      */
     private final String itemCategoryId;
 
@@ -39,7 +39,7 @@ public class ItemCategoryCreateRespCTransfer implements TianyanItemCommandTransf
 
     private void validateItemCategoryId() {
         if (!StringUtils.hasText(itemCategoryId)) {
-            throw new CommandTransferValidateException("物品分类ID不能为空");
+            throw new CommandTransferValidateException("资源项分类ID不能为空");
         }
     }
 }

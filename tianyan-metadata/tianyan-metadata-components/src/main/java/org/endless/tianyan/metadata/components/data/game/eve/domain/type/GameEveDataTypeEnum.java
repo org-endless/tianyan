@@ -10,9 +10,9 @@ import lombok.ToString;
  * GameEveDataTypeEnum
  * <p>游戏EVE数据类型枚举
  * <p>
- * create 2025/07/20 23:05
+ * create 2025/07/24 08:49
  * <p>
- * update 2025/07/20 23:05
+ * update 2025/07/24 08:49
  *
  * @author Deng Haozhi
  * @see TianyanMetadataEnum
@@ -23,9 +23,11 @@ import lombok.ToString;
 @ToString
 public enum GameEveDataTypeEnum implements TianyanMetadataEnum {
 
-    ITEM("ITEM", "物品"),
-    ITEM_CATEGORY("ITEM_CATEGORY", "物品分类"),
-    ITEM_GROUP("ITEM_GROUP", "物品分组");
+    ITEM("ITEM", "资源项"),
+    ITEM_CATEGORY("ITEM_CATEGORY", "资源项分类"),
+    ITEM_GROUP("ITEM_GROUP", "资源项分组"),
+    MARKET_GROUP("MARKET_GROUP", "市场分组"),
+    BLUEPRINT("BLUEPRINT", "蓝图");
 
     private final String code;
 

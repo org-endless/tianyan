@@ -52,7 +52,7 @@
 //     private String industryId;
 
 //     /**
-//      * 物品/商品编号
+//      * 资源项/商品编号
 //      */
 //     @NotEmpty
 //     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)

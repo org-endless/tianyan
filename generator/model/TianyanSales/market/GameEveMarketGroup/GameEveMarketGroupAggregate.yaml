@@ -17,7 +17,54 @@ fields:
     type: String
     description: 市场分组ID
     nullable: false
-  - name: description
+  - name: code
     type: String
-    description: 游戏EVE市场分组描述
-    nullable: true
+    description: 游戏EVE市场分组编码
+    nullable: false
+transfers:
+  - name: GameEveMarketGroupCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场分组创建命令请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE市场分组编码
+        nullable: false
+      - name: nameZhFullName
+        type: String
+        description: 中文全称
+        nullable: false
+      - name: nameEnFullName
+        type: String
+        description: 英文全称
+        nullable: false
+      - name: parentCode
+        type: String
+        description: 父市场分组编码
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveMarketGroupFindByCodeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE市场分组根据编码查询请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE市场分组编码
+        nullable: false
+  - name: GameEveMarketGroupFindIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE市场分组ID查询响应传输对象
+    fields:
+      - name: marketGroupId
+        type: String
+        description: 市场分组ID
+        nullable: false

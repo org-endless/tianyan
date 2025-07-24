@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * ItemCategoryCreateReqCTransfer
- * <p>物品分类创建命令请求传输对象
+ * <p>资源项分类创建命令请求传输对象
  * <p>
  * create 2025/07/20 22:55
  * <p>
@@ -27,12 +27,12 @@ import org.springframework.util.StringUtils;
 public class ItemCategoryCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
-     * 物品分类中文名称
+     * 资源项分类中文名称
      */
     private final String nameZh;
 
     /**
-     * 物品分类英文名称
+     * 资源项分类英文名称
      */
     private final String nameEn;
 
@@ -51,13 +51,13 @@ public class ItemCategoryCreateReqCTransfer implements TianyanItemCommandTransfe
 
     private void validateNameZh() {
         if (!StringUtils.hasText(nameZh)) {
-            throw new CommandTransferValidateException("物品分类中文名称不能为空");
+            throw new CommandTransferValidateException("资源项分类中文名称不能为空");
         }
     }
 
     private void validateNameEn() {
         if (!StringUtils.hasText(nameEn)) {
-            throw new CommandTransferValidateException("物品分类英文名称不能为空");
+            throw new CommandTransferValidateException("资源项分类英文名称不能为空");
         }
     }
 

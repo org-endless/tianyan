@@ -6,11 +6,11 @@ import org.endless.tianyan.item.components.item.item.domain.entity.*;
 
 /**
  * ItemQueryRepository
- * <p>物品聚合查询仓储接口
+ * <p>资源项聚合查询仓储接口
  * <p>
- * create 2025/07/19 07:15
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 07:15
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @see ItemRepository
@@ -18,4 +18,5 @@ import org.endless.tianyan.item.components.item.item.domain.entity.*;
  * @since 0.0.1
  */
 public interface ItemQueryRepository extends ItemRepository, TianyanItemQueryRepository<ItemAggregate> {
+
 }

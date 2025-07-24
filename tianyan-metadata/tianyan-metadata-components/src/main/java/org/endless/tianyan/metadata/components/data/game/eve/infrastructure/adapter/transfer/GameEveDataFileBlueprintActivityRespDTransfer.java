@@ -1,0 +1,68 @@
+package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
+
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
+import com.alibaba.fastjson2.annotation.JSONType;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * GameEveDataFileBlueprintActivityRespDTransfer
+ * <p>游戏EVE数据文件蓝图工序被动响应传输对象
+ * <p>
+ * create 2025/07/24 08:51
+ * <p>
+ * update 2025/07/24 08:51
+ *
+ * @author Deng Haozhi
+ * @see TianyanMetadataDrivenTransfer
+ * @since 0.0.1
+ */
+@Getter
+@ToString
+@Builder
+@JSONType(orders = {"time", "materials", "products", "skills"})
+public class GameEveDataFileBlueprintActivityRespDTransfer implements TianyanMetadataDrivenTransfer {
+
+    /**
+     * 工序耗时
+     */
+    private final Long time;
+
+    /**
+     * 工序物料列表
+     */
+    private final List<GameEveDataFileBlueprintItemRespDTransfer> materials;
+
+    /**
+     * 工序产品列表
+     */
+    private final List<GameEveDataFileBlueprintItemRespDTransfer> products;
+
+    /**
+     * 工序技能列表
+     */
+    private final List<GameEveDataFileBlueprintSkillRespDTransfer> skills;
+
+    @Override
+    public GameEveDataFileBlueprintActivityRespDTransfer validate() {
+        validateTime();
+        return this;
+    }
+
+    private void validateTime() {
+        if (time == null || time < 0) {
+            throw new DrivenTransferValidateException("工序耗时不能为 null 或小于 0，当前值为: " + time);
+        }
+    }
+}

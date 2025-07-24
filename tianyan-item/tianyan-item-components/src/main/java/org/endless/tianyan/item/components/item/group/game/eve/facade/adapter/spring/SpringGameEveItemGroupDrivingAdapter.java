@@ -3,11 +3,13 @@ package org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.s
 import org.endless.tianyan.item.components.item.group.game.eve.application.command.handler.GameEveItemGroupCommandHandler;
 import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.application.query.handler.GameEveItemGroupQueryHandler;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.GameEveItemGroupDrivingAdapter;
 
 /**
  * SpringGameEveItemGroupDrivingAdapter
- * <p>游戏EVE物品分组领域主动适配器Spring实现类
+ * <p>游戏EVE资源项分组领域主动适配器Spring实现类
  * <p>
  * create 2025/07/21 16:03
  * <p>
@@ -20,12 +22,12 @@ import org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.Ga
 public class SpringGameEveItemGroupDrivingAdapter implements GameEveItemGroupDrivingAdapter {
 
     /**
-     * 游戏EVE物品分组领域命令处理器
+     * 游戏EVE资源项分组领域命令处理器
      */
     private final GameEveItemGroupCommandHandler gameEveItemGroupCommandHandler;
 
     /**
-     * 游戏EVE物品分组领域查询处理器
+     * 游戏EVE资源项分组领域查询处理器
      */
     private final GameEveItemGroupQueryHandler gameEveItemGroupQueryHandler;
 
@@ -37,5 +39,10 @@ public class SpringGameEveItemGroupDrivingAdapter implements GameEveItemGroupDri
     @Override
     public void create(GameEveItemGroupCreateReqCTransfer command) {
         gameEveItemGroupCommandHandler.create(command);
+    }
+
+    @Override
+    public GameEveItemGroupFindIdRespQTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQTransfer query) {
+        return gameEveItemGroupQueryHandler.findItemGroupIdByCode(query);
     }
 }

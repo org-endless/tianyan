@@ -40,6 +40,7 @@
     <modules>
         <module>tianyan-finance</module>
         <module>tianyan-item</module>
+        <module>tianyan-manufacturing</module>
         <module>tianyan-sales</module>
         <module>tianyan-metadata</module>
         <module>tianyan-web-gateway</module>

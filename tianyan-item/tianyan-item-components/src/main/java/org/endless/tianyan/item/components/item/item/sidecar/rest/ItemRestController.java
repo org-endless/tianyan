@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ItemRestController
- * <p>物品领域Rest控制器
+ * <p>资源项领域Rest控制器
  * <p>
- * create 2025/07/19 07:15
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 07:15
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @see TianyanItemRestController
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Lazy
 @RestController
-@RequestMapping("/item/item")
+@RequestMapping("/item")
 public class ItemRestController implements TianyanItemRestController {
 
     /**
-     * 物品领域主动适配器
+     * 资源项领域主动适配器
      */
     private final ItemDrivingAdapter itemDrivingAdapter;
 

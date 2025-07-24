@@ -1,7 +1,6 @@
 package org.endless.tianyan.item.components.item.game.eve.domain.entity;
 
 import org.endless.tianyan.item.common.model.domain.entity.*;
-import org.endless.tianyan.item.components.item.game.eve.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -19,11 +18,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemAggregate
- * <p>游戏EVE物品聚合根
+ * <p>游戏EVE资源项聚合根
  * <p>
- * create 2025/07/19 09:28
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 09:28
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -35,19 +34,24 @@ import java.util.stream.Collectors;
 public class GameEveItemAggregate implements TianyanItemAggregate {
 
     /**
-     * 游戏EVE物品ID
+     * 游戏EVE资源项ID
      */
     private final String gameEveItemId;
 
     /**
-     * 物品ID
+     * 资源项ID
      */
     private String itemId;
 
     /**
-     * 游戏EVE物品编码
+     * 游戏EVE资源项编码
      */
     private String code;
+
+    /**
+     * 游戏EVE资源项是否发布
+     */
+    private Boolean isPublished;
 
     /**
      * 创建者ID
@@ -69,19 +73,20 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
                 .gameEveItemId(IdGenerator.of())
                 .itemId(builder.itemId)
                 .code(builder.code)
+                .isPublished(builder.isPublished)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public GameEveItemAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE物品聚合根>不能再次删除, ID: " + gameEveItemId);
+            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE资源项聚合根>不能再次删除, ID: " + gameEveItemId);
         }
         if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<游戏EVE物品聚合根>处于不可删除状态, ID: " + gameEveItemId);
+            throw new AggregateRemoveException("聚合根<游戏EVE资源项聚合根>处于不可删除状态, ID: " + gameEveItemId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -97,6 +102,7 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
         validateGameEveItemId();
         validateItemId();
         validateCode();
+        validateIsPublished();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -105,19 +111,25 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
 
     private void validateGameEveItemId() {
         if (!StringUtils.hasText(gameEveItemId)) {
-            throw new AggregateValidateException("游戏EVE物品ID不能为空");
+            throw new AggregateValidateException("游戏EVE资源项ID不能为空");
         }
     }
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new AggregateValidateException("物品ID不能为空");
+            throw new AggregateValidateException("资源项ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new AggregateValidateException("游戏EVE物品编码不能为空");
+            throw new AggregateValidateException("游戏EVE资源项编码不能为空");
+        }
+    }
+
+    private void validateIsPublished() {
+        if (isPublished == null) {
+            throw new AggregateValidateException("游戏EVE资源项是否发布不能为 null ");
         }
     }
 

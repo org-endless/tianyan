@@ -7,7 +7,7 @@ import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.
 
 /**
  * GameEveItemCategoryQueryRepository
- * <p>游戏EVE物品分类聚合查询仓储接口
+ * <p>游戏EVE资源项分类聚合查询仓储接口
  * <p>
  * create 2025/07/20 22:39
  * <p>

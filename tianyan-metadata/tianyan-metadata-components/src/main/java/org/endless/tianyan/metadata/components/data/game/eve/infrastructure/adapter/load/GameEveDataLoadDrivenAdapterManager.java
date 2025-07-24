@@ -1,5 +1,6 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load;
 
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption.GameEveDataLoadDrivenAdapter;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEveDataTypeEnum;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
@@ -12,9 +13,8 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 
 /**
@@ -34,7 +34,7 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
 
     private final static Pattern SCANNER_PATTERN = Pattern.compile("^\\d{1,10}:$", Pattern.MULTILINE);
 
-    private final static Integer PAGE_SIZE = 100;
+    private final static Integer MAX_TASK_SIZE = 100;
 
     private final GameEveDataLoadTaskFactory gameEveDataLoadTaskFactory;
 
@@ -45,24 +45,33 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
     @Override
     public void load(GameEveDataTypeEnum dataType) {
         GameEveDataLoadTask task = gameEveDataLoadTaskFactory.get(dataType);
-        try (Scanner scanner = new Scanner(new FileSystemResource(task.getFilePath()).getInputStream())) {
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new FileSystemResource(task.filePath()).getInputStream())) {
             scanner.useDelimiter(SCANNER_PATTERN);
             Map<String, Object> dataMap = new HashMap<>();
             while (scanner.hasNext()) {
                 String itemId = scanner.findInLine(SCANNER_PATTERN).replace(":", "").trim();
                 Yaml yaml = new Yaml(new Constructor(Object.class, new LoaderOptions()));
                 dataMap.put(itemId, yaml.load(scanner.next()));
-                if (dataMap.size() >= PAGE_SIZE) {
-                    task.execute(new HashMap<>(dataMap));
+                if (dataMap.size() >= task.pageSize()) {
+                    futures.add(task.execute(new HashMap<>(dataMap)));
                     dataMap.clear();
+                }
+                if (futures.size() >= MAX_TASK_SIZE) {
+                    CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+                    futures.clear();
                 }
             }
             if (!dataMap.isEmpty()) {
-                task.execute(new HashMap<>(dataMap));
+                futures.add(task.execute(new HashMap<>(dataMap)));
                 dataMap.clear();
             }
+            if (!futures.isEmpty()) {
+                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+            }
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DrivenAdapterManagerException("加载数据失败", e);
         }
     }
 }

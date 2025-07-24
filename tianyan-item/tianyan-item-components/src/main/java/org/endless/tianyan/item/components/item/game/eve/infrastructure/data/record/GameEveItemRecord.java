@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
 import org.endless.tianyan.item.components.item.game.eve.domain.entity.*;
-import org.endless.tianyan.item.components.item.game.eve.domain.type.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -21,11 +20,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemRecord
- * <p>游戏EVE物品数据库记录实体
+ * <p>游戏EVE资源项数据库记录实体
  * <p>
- * create 2025/07/19 09:28
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 09:28
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -40,20 +39,25 @@ import java.util.stream.Collectors;
 public class GameEveItemRecord implements TianyanItemRecord<GameEveItemAggregate> {
 
     /**
-     * 游戏EVE物品ID
+     * 游戏EVE资源项ID
      */
     @TableId
     private String gameEveItemId;
 
     /**
-     * 物品ID
+     * 资源项ID
      */
     private String itemId;
 
     /**
-     * 游戏EVE物品编码
+     * 游戏EVE资源项编码
      */
     private String code;
+
+    /**
+     * 游戏EVE资源项是否发布
+     */
+    private Boolean isPublished;
 
     /**
      * 创建者ID
@@ -93,6 +97,7 @@ public class GameEveItemRecord implements TianyanItemRecord<GameEveItemAggregate
                 .gameEveItemId(gameEveItemId)
                 .itemId(aggregate.getItemId())
                 .code(aggregate.getCode())
+                .isPublished(aggregate.getIsPublished())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -106,6 +111,7 @@ public class GameEveItemRecord implements TianyanItemRecord<GameEveItemAggregate
                 .gameEveItemId(gameEveItemId)
                 .itemId(itemId)
                 .code(code)
+                .isPublished(isPublished)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -117,6 +123,7 @@ public class GameEveItemRecord implements TianyanItemRecord<GameEveItemAggregate
         validateGameEveItemId();
         validateItemId();
         validateCode();
+        validateIsPublished();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -125,19 +132,25 @@ public class GameEveItemRecord implements TianyanItemRecord<GameEveItemAggregate
 
     private void validateGameEveItemId() {
         if (!StringUtils.hasText(gameEveItemId)) {
-            throw new DataRecordValidateException("游戏EVE物品ID不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项ID不能为空");
         }
     }
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new DataRecordValidateException("物品ID不能为空");
+            throw new DataRecordValidateException("资源项ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DataRecordValidateException("游戏EVE物品编码不能为空");
+            throw new DataRecordValidateException("游戏EVE资源项编码不能为空");
+        }
+    }
+
+    private void validateIsPublished() {
+        if (isPublished == null) {
+            throw new DataRecordValidateException("游戏EVE资源项是否发布不能为 null ");
         }
     }
 

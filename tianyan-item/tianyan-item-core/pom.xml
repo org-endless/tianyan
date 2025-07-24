@@ -12,7 +12,7 @@
     <artifactId>tianyan-item-core</artifactId>
     <packaging>jar</packaging>
     <name>tianyan-item-core</name>
-    <description>天演-物品服务-核心启动模块</description>
+    <description>天演-资源项服务-核心启动模块</description>
 
     <dependencies>
         <dependency>

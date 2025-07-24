@@ -4,9 +4,9 @@ import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenReqTransferNullException;
 import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
 import org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest.TianyanMetadataItemRestClient;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.category.transfer.GameEveItemCategoryFindByCodeReqDTransfer;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.category.transfer.GameEveItemCategoryFindIdRespDTransfer;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveDataItemCategoryCreateReqDTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCategoryCreateReqDTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCategoryFindByCodeReqDTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCategoryFindIdRespDTransfer;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -35,24 +35,24 @@ public class GameEveDataItemCategoryRestClient implements TianyanMetadataItemRes
         this.restClient = restClient;
     }
 
-    public void create(GameEveDataItemCategoryCreateReqDTransfer command) {
+    public void create(GameEveItemCategoryCreateReqDTransfer command) {
         Optional.ofNullable(command)
-                .map(GameEveDataItemCategoryCreateReqDTransfer::validate)
-                .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE物品分类创建请求参数不能为空"));
+                .map(GameEveItemCategoryCreateReqDTransfer::validate)
+                .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE资源项分类创建请求参数不能为空"));
         post(restClient, "/item/category/game/eve/command/create", command, null);
     }
 
-    public Optional<String> findIdByCode(String code) {
+    public Optional<String> findGameEveItemCategoryIdByCode(String code) {
         Optional.ofNullable(code)
                 .filter(StringUtils::hasText)
-                .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE物品分类编码不能为空"));
+                .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE资源项分类编码不能为空"));
         return Optional.ofNullable(post(
                 restClient,
                 "/item/category/game/eve/query/find_id_by_code",
                 GameEveItemCategoryFindByCodeReqDTransfer.builder()
                         .code(code).build().validate(),
                 GameEveItemCategoryFindIdRespDTransfer.class)
-                .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE物品分类根据编码查询ID响应数据为空"))
+                .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项分类根据编码查询ID响应数据为空"))
                 .validate()
                 .getGameEveItemCategoryId());
     }

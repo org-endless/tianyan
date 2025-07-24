@@ -8,7 +8,7 @@ import org.endless.tianyan.item.components.item.category.item.category.facade.ad
 
 /**
  * SpringItemCategoryDrivingAdapter
- * <p>物品分类领域主动适配器Spring实现类
+ * <p>资源项分类领域主动适配器Spring实现类
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -21,12 +21,12 @@ import org.endless.tianyan.item.components.item.category.item.category.facade.ad
 public class SpringItemCategoryDrivingAdapter implements ItemCategoryDrivingAdapter {
 
     /**
-     * 物品分类领域命令处理器
+     * 资源项分类领域命令处理器
      */
     private final ItemCategoryCommandHandler itemCategoryCommandHandler;
 
     /**
-     * 物品分类领域查询处理器
+     * 资源项分类领域查询处理器
      */
     private final ItemCategoryQueryHandler itemCategoryQueryHandler;
 

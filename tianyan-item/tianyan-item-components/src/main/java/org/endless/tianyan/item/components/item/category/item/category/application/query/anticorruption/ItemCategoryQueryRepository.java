@@ -6,7 +6,7 @@ import org.endless.tianyan.item.components.item.category.item.category.domain.en
 
 /**
  * ItemCategoryQueryRepository
- * <p>物品分类聚合查询仓储接口
+ * <p>资源项分类聚合查询仓储接口
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -18,4 +18,5 @@ import org.endless.tianyan.item.components.item.category.item.category.domain.en
  * @since 0.0.1
  */
 public interface ItemCategoryQueryRepository extends ItemCategoryRepository, TianyanItemQueryRepository<ItemCategoryAggregate> {
+
 }

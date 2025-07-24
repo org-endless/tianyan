@@ -7,11 +7,11 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 
 /**
  * ItemQueryHandlerImpl
- * <p>物品领域查询处理器
+ * <p>资源项领域查询处理器
  * <p>
- * create 2025/07/19 07:15
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 07:15
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @see ItemQueryHandler
@@ -20,7 +20,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 public class ItemQueryHandlerImpl implements ItemQueryHandler {
 
     /**
-     * 物品聚合查询仓储接口
+     * 资源项聚合查询仓储接口
      */
     private final ItemQueryRepository itemQueryRepository;
 

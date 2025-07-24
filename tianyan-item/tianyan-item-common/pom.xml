@@ -12,7 +12,7 @@
     <artifactId>tianyan-item-common</artifactId>
     <packaging>jar</packaging>
     <name>tianyan-item-common</name>
-    <description>天演-物品服务-公共模块</description>
+    <description>天演-资源项服务-公共模块</description>
 
     <dependencies>
         <!-- Starters -->

@@ -30,7 +30,7 @@
 // public class Formula {
 
 //     /**
-//      * 复合编号：行业编号+"_"+配方类别+"_"+物品/商品编号
+//      * 复合编号：行业编号+"_"+配方类别+"_"+资源项/商品编号
 //      * 配方类别根据场景在子类中定义
 //      */
 //     @Id
@@ -39,7 +39,7 @@
 //     private String id;
 
 //     /**
-//      * 物品/商品编号
+//      * 资源项/商品编号
 //      */
 //     @NotEmpty
 //     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)
@@ -113,7 +113,7 @@
 //     public static class Material {
 
 //         /**
-//          * 物品/商品编号
+//          * 资源项/商品编号
 //          */
 //         @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)
 //         private String itemId;
@@ -131,7 +131,7 @@
 //     public static class Skill {
 
 //         /**
-//          * 物品/商品编号
+//          * 资源项/商品编号
 //          */
 //         @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)
 //         private String itemId;

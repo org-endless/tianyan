@@ -24,7 +24,7 @@ import static org.endless.erp.share.constant.ConstantResource.PAGE_SIZE;
 
 /**
  * GameEveItemService
- * <p>游戏EVE物品/商品服务类
+ * <p>游戏EVE资源项/商品服务类
  * <p>Game EVE item services.
  * <p>
  * <p>create 2023/03/07 1:28
@@ -53,7 +53,7 @@ public class GameEveItemService implements ItemService {
     }
 
     /**
-     * 加载游戏EVE物品/商品数据文件
+     * 加载游戏EVE资源项/商品数据文件
      * <p>Load the game EVE item data load.
      *
      * @param file 文件路径 (File path)
@@ -154,7 +154,7 @@ public class GameEveItemService implements ItemService {
     // }
 
     /**
-     * 分页查询并生成已发布的物品/商品编号数据流
+     * 分页查询并生成已发布的资源项/商品编号数据流
      * <p>Query and generate a published item id data stream pageable.
      *
      * @param pageable 分页
@@ -166,7 +166,7 @@ public class GameEveItemService implements ItemService {
 
 
     /**
-     * 查询并计算已发布的物品/商品数量
+     * 查询并计算已发布的资源项/商品数量
      * <p>Query and calculate the number of items that have been released.
      *
      * @return long

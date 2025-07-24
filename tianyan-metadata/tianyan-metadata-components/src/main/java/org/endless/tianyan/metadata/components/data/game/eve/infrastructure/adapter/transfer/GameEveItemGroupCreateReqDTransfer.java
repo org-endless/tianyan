@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemGroupCreateReqDTransfer
- * <p>游戏EVE物品分组创建命令被动请求传输对象
+ * <p>游戏EVE资源项分组创建命令被动请求传输对象
  * <p>
- * create 2025/07/21 16:53
+ * create 2025/07/24 08:51
  * <p>
- * update 2025/07/21 16:53
+ * update 2025/07/24 08:51
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -35,32 +35,32 @@ import java.util.stream.Collectors;
 public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
-     * 游戏EVE物品分组编码
+     * 游戏EVE资源项分组编码
      */
     private final String code;
 
     /**
-     * 游戏EVE物品分类ID
+     * 游戏EVE资源项分类ID
      */
     private final String gameEveItemCategoryId;
 
     /**
-     * 游戏EVE物品分组中文名称
+     * 游戏EVE资源项分组中文名称
      */
     private final String nameZh;
 
     /**
-     * 游戏EVE物品分组英文名称
+     * 游戏EVE资源项分组英文名称
      */
     private final String nameEn;
 
     /**
-     * 游戏EVE物品分组是否发布
+     * 游戏EVE资源项分组是否发布
      */
     private final Boolean isPublished;
 
     /**
-     * 游戏EVE物品分组是否使用基准价格
+     * 游戏EVE资源项分组是否使用基准价格
      */
     private final Boolean isUseBasePrice;
 
@@ -83,37 +83,37 @@ public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDriven
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DrivenTransferValidateException("游戏EVE物品分组编码不能为空");
+            throw new DrivenTransferValidateException("游戏EVE资源项分组编码不能为空");
         }
     }
 
     private void validateGameEveItemCategoryId() {
         if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new DrivenTransferValidateException("游戏EVE物品分类ID不能为空");
+            throw new DrivenTransferValidateException("游戏EVE资源项分类ID不能为空");
         }
     }
 
     private void validateNameZh() {
         if (!StringUtils.hasText(nameZh)) {
-            throw new DrivenTransferValidateException("游戏EVE物品分组中文名称不能为空");
+            throw new DrivenTransferValidateException("游戏EVE资源项分组中文名称不能为空");
         }
     }
 
     private void validateNameEn() {
         if (!StringUtils.hasText(nameEn)) {
-            throw new DrivenTransferValidateException("游戏EVE物品分组英文名称不能为空");
+            throw new DrivenTransferValidateException("游戏EVE资源项分组英文名称不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new DrivenTransferValidateException("游戏EVE物品分组是否发布不能为 null ");
+            throw new DrivenTransferValidateException("游戏EVE资源项分组是否发布不能为 null ");
         }
     }
 
     private void validateIsUseBasePrice() {
         if (isUseBasePrice == null) {
-            throw new DrivenTransferValidateException("游戏EVE物品分组是否使用基准价格不能为 null ");
+            throw new DrivenTransferValidateException("游戏EVE资源项分组是否使用基准价格不能为 null ");
         }
     }
 

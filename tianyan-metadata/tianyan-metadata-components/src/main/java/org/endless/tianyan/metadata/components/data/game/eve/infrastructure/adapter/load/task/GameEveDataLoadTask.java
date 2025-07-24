@@ -4,6 +4,7 @@ import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMe
 import org.springframework.scheduling.annotation.Async;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * GameEveDataLoadTask
@@ -19,7 +20,9 @@ import java.util.Map;
 public interface GameEveDataLoadTask extends TianyanMetadataDrivenAdapter {
 
     @Async("virtualThreadExecutor")
-    void execute(Map<String, Object> dataMap);
+    CompletableFuture<Void> execute(Map<String, Object> dataMap);
 
-    String getFilePath();
+    String filePath();
+
+    Integer pageSize();
 }

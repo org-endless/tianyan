@@ -7,7 +7,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 
 /**
  * ItemCategoryQueryHandlerImpl
- * <p>物品分类领域查询处理器
+ * <p>资源项分类领域查询处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -20,7 +20,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 public class ItemCategoryQueryHandlerImpl implements ItemCategoryQueryHandler {
 
     /**
-     * 物品分类聚合查询仓储接口
+     * 资源项分类聚合查询仓储接口
      */
     private final ItemCategoryQueryRepository itemCategoryQueryRepository;
 

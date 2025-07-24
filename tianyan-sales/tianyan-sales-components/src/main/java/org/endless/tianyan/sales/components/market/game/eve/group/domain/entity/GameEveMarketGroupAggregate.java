@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupAggregate
  * <p>游戏EVE市场分组聚合根
  * <p>
- * create 2025/07/22 09:09
+ * create 2025/07/22 16:25
  * <p>
- * update 2025/07/22 09:09
+ * update 2025/07/22 16:25
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -44,9 +44,9 @@ public class GameEveMarketGroupAggregate implements TianyanSalesAggregate {
     private String marketGroupId;
 
     /**
-     * 游戏EVE市场分组描述
+     * 游戏EVE市场分组编码
      */
-    private String description;
+    private String code;
 
     /**
      * 创建者ID
@@ -67,6 +67,7 @@ public class GameEveMarketGroupAggregate implements TianyanSalesAggregate {
         return builder
                 .gameEveMarketGroupId(IdGenerator.of())
                 .marketGroupId(builder.marketGroupId)
+                .code(builder.code)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
@@ -94,6 +95,7 @@ public class GameEveMarketGroupAggregate implements TianyanSalesAggregate {
     public GameEveMarketGroupAggregate validate() {
         validateGameEveMarketGroupId();
         validateMarketGroupId();
+        validateCode();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -109,6 +111,12 @@ public class GameEveMarketGroupAggregate implements TianyanSalesAggregate {
     private void validateMarketGroupId() {
         if (!StringUtils.hasText(marketGroupId)) {
             throw new AggregateValidateException("市场分组ID不能为空");
+        }
+    }
+
+    private void validateCode() {
+        if (!StringUtils.hasText(code)) {
+            throw new AggregateValidateException("游戏EVE市场分组编码不能为空");
         }
     }
 

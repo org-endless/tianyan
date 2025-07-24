@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 
 /**
  * Item
- * <p>物品/商品模板
+ * <p>资源项/商品模板
  * <p>The item model.
  * <p>
  * <p>create 2023/05/26 16:28
@@ -31,14 +31,14 @@ import java.math.BigDecimal;
 public class Item {
 
     /**
-     * 编号：行业编号+"_"+物品/商品编号
+     * 编号：行业编号+"_"+资源项/商品编号
      */
     @NotEmpty
     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)
     private String id;
 
     /**
-     * 物品/商品编号
+     * 资源项/商品编号
      */
     @NotEmpty
     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)
@@ -118,7 +118,7 @@ public class Item {
     private long updateTimeStamp;
 
     /**
-     * 根据复合编号获取商品/物品编号
+     * 根据复合编号获取商品/资源项编号
      * <p>Gets the item id based on the composite id.
      *
      * @param id id
@@ -151,7 +151,7 @@ public class Item {
      * 获取符合编号
      * <p>Gets the composite id.
      *
-     * @param itemId     商品/物品编号
+     * @param itemId     商品/资源项编号
      * @param industryId 行业编号
      * @return {@link String}
      */

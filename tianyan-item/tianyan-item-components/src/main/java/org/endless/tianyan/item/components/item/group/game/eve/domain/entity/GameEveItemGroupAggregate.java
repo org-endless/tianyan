@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemGroupAggregate
- * <p>游戏EVE物品分组聚合根
+ * <p>游戏EVE资源项分组聚合根
  * <p>
  * create 2025/07/21 16:20
  * <p>
@@ -34,32 +34,32 @@ import java.util.stream.Collectors;
 public class GameEveItemGroupAggregate implements TianyanItemAggregate {
 
     /**
-     * 游戏EVE物品分组ID
+     * 游戏EVE资源项分组ID
      */
     private final String gameEveItemGroupId;
 
     /**
-     * 物品分组ID
+     * 资源项分组ID
      */
     private String itemGroupId;
 
     /**
-     * 游戏EVE物品分组编码
+     * 游戏EVE资源项分组编码
      */
     private String code;
 
     /**
-     * 游戏EVE物品分类ID
+     * 游戏EVE资源项分类ID
      */
     private String gameEveItemCategoryId;
 
     /**
-     * 游戏EVE物品分组是否发布
+     * 游戏EVE资源项分组是否发布
      */
     private Boolean isPublished;
 
     /**
-     * 游戏EVE物品分组是否使用基准价格
+     * 游戏EVE资源项分组是否使用基准价格
      */
     private Boolean isUseBasePrice;
 
@@ -89,16 +89,16 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public GameEveItemGroupAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE物品分组聚合根>不能再次删除, ID: " + gameEveItemGroupId);
+            throw new AggregateRemoveException("已经被删除的聚合根<游戏EVE资源项分组聚合根>不能再次删除, ID: " + gameEveItemGroupId);
         }
         if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<游戏EVE物品分组聚合根>处于不可删除状态, ID: " + gameEveItemGroupId);
+            throw new AggregateRemoveException("聚合根<游戏EVE资源项分组聚合根>处于不可删除状态, ID: " + gameEveItemGroupId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -125,37 +125,37 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
 
     private void validateGameEveItemGroupId() {
         if (!StringUtils.hasText(gameEveItemGroupId)) {
-            throw new AggregateValidateException("游戏EVE物品分组ID不能为空");
+            throw new AggregateValidateException("游戏EVE资源项分组ID不能为空");
         }
     }
 
     private void validateItemGroupId() {
         if (!StringUtils.hasText(itemGroupId)) {
-            throw new AggregateValidateException("物品分组ID不能为空");
+            throw new AggregateValidateException("资源项分组ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new AggregateValidateException("游戏EVE物品分组编码不能为空");
+            throw new AggregateValidateException("游戏EVE资源项分组编码不能为空");
         }
     }
 
     private void validateGameEveItemCategoryId() {
         if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new AggregateValidateException("游戏EVE物品分类ID不能为空");
+            throw new AggregateValidateException("游戏EVE资源项分类ID不能为空");
         }
     }
 
     private void validateIsPublished() {
         if (isPublished == null) {
-            throw new AggregateValidateException("游戏EVE物品分组是否发布不能为 null ");
+            throw new AggregateValidateException("游戏EVE资源项分组是否发布不能为 null ");
         }
     }
 
     private void validateIsUseBasePrice() {
         if (isUseBasePrice == null) {
-            throw new AggregateValidateException("游戏EVE物品分组是否使用基准价格不能为 null ");
+            throw new AggregateValidateException("游戏EVE资源项分组是否使用基准价格不能为 null ");
         }
     }
 

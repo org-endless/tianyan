@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 /**
  * GameEveItemMongoRepository
- * <p>游戏EVE物品/商品数据库接口
+ * <p>游戏EVE资源项/商品数据库接口
  * <p>Game EVE item database interface.
  * <p>
  * <p>create 2023/5/15 23:43
@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 public interface GameEveItemMongoRepository extends MongoRepository<GameEveItem, String> {
 
     /**
-     * 分页查询并生成已发布的物品/商品编号数据流
+     * 分页查询并生成已发布的资源项/商品编号数据流
      * <p>Query and generate a published item id data stream pageable.
      *
      * @param pageable 分页
@@ -38,7 +38,7 @@ public interface GameEveItemMongoRepository extends MongoRepository<GameEveItem,
     Slice<GameEveItem> findItemIdSliceByPublished(Pageable pageable);
 
     /**
-     * 查询并计算已发布的物品/商品数量
+     * 查询并计算已发布的资源项/商品数量
      * <p>Query and calculate the number of items that have been released.
      *
      * @return long

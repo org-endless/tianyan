@@ -7,28 +7,96 @@ serviceSubPackage: components
 contextName: item
 domainName: GameEveItem
 aggregateName: GameEveItemAggregate
-description: 游戏EVE物品
+description: 游戏EVE资源项
 fields:
   - name: gameEveItemId
     type: String
-    description: 游戏EVE物品ID
+    description: 游戏EVE资源项ID
     nullable: false
   - name: itemId
     type: String
-    description: 物品ID
+    description: 资源项ID
     nullable: false
   - name: code
     type: String
-    description: 游戏EVE物品编码
+    description: 游戏EVE资源项编码
+    nullable: false
+  - name: isPublished
+    type: Boolean
+    description: 游戏EVE资源项是否发布
     nullable: false
 transfers:
-  - name: GameEveItemLoadReqCTransfer
+  - name: GameEveItemCreateReqCTransfer
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 游戏EVE物品加载命令请求传输对象
+    description: 游戏EVE资源项创建命令请求传输对象
     fields:
+      - name: code
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
+      - name: itemGroupId
+        type: String
+        description: 资源项分组ID
+        nullable: false
+      - name: marketGroupId
+        type: String
+        description: 市场分组ID
+        nullable: true
+      - name: fullNameZh
+        type: String
+        description: 中文全称
+        nullable: false
+      - name: fullNameEn
+        type: String
+        description: 英文全称
+        nullable: true
+      - name: massQuantity
+        type: String
+        description: 质量数量
+        nullable: true
+      - name: massUnit
+        type: String
+        description: 质量单位
+        nullable: true
+      - name: volumeQuantity
+        type: String
+        description: 体积数量
+        nullable: true
+      - name: volumeUnit
+        type: String
+        description: 体积单位
+        nullable: true
+      - name: description
+        type: String
+        description: 描述
+        nullable: true
+      - name: isPublished
+        type: Boolean
+        description: 游戏EVE资源项是否发布
+        nullable: false
       - name: createUserId
         type: String
         description: 创建用户ID
+        nullable: false
+  - name: GameEveItemFindByCodeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE根据编码查询请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE编码
+        nullable: false
+  - name: GameEveItemFindItemIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE资源项ID查询响应传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
         nullable: false

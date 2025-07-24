@@ -19,7 +19,7 @@ import java.util.Optional;
 
 /**
  * GameEveItemCategoryDataManager
- * <p>游戏EVE物品分类聚合数据管理器
+ * <p>游戏EVE资源项分类聚合数据管理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -36,7 +36,7 @@ import java.util.Optional;
 public class GameEveItemCategoryDataManager implements GameEveItemCategoryRepository, GameEveItemCategoryQueryRepository, TianyanItemAggregateDataManager<GameEveItemCategoryRecord, GameEveItemCategoryAggregate> {
 
     /**
-     * 游戏EVE物品分类聚合 Mybatis-Plus 数据访问对象
+     * 游戏EVE资源项分类聚合 Mybatis-Plus 数据访问对象
      */
     private final GameEveItemCategoryMapper gameEveItemCategoryMapper;
 
@@ -45,11 +45,11 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
     }
 
     @Override
-    @Log(message = "保存游戏EVE物品分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "保存游戏EVE资源项分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
     public GameEveItemCategoryAggregate save(GameEveItemCategoryAggregate aggregate) {
         Optional.ofNullable(aggregate)
                 .map(GameEveItemCategoryAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE物品分类聚合数据不能为空"));
+                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE资源项分类聚合数据不能为空"));
         gameEveItemCategoryMapper.save(GameEveItemCategoryRecord.from(aggregate));
         return aggregate;
     }
@@ -75,14 +75,14 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
     }
 
     @Override
-    @Log(message = "游戏EVE物品分类根据编码查询ID数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE资源项分类根据编码查询ID数据", value = "#aggregate", level = LogLevel.TRACE)
     public GameEveItemCategoryFindIdRespQTransfer findIdByCode(String code) {
         Optional.ofNullable(code)
                 .filter(StringUtils::hasText)
-                .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE物品分类编码不能为空"));
+                .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE资源项分类编码不能为空"));
         return GameEveItemCategoryFindIdRespQTransfer.builder()
                 .gameEveItemCategoryId(gameEveItemCategoryMapper.findIdByCode(code)
-                        .orElseThrow(() -> new DataManagerNotFoundException("游戏EVE物品分类编码不存在")))
+                        .orElseThrow(() -> new DataManagerNotFoundException("游戏EVE资源项分类编码不存在")))
                 .build().validate();
     }
 }

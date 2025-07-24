@@ -12,7 +12,7 @@
     <artifactId>tianyan-item-components</artifactId>
     <packaging>jar</packaging>
     <name>tianyan-item-components</name>
-    <description>天演-物品服务-核心域组件</description>
+    <description>天演-资源项服务-核心域组件</description>
 
     <dependencies>
         <dependency>

@@ -5,7 +5,7 @@ import org.endless.tianyan.item.components.item.group.item.group.domain.entity.*
 
 /**
  * ItemGroupQueryHandler
- * <p>物品分组领域查询处理器
+ * <p>资源项分组领域查询处理器
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -16,4 +16,5 @@ import org.endless.tianyan.item.components.item.group.item.group.domain.entity.*
  * @since 0.0.1
  */
 public interface ItemGroupQueryHandler extends TianyanItemQueryHandler {
+
 }

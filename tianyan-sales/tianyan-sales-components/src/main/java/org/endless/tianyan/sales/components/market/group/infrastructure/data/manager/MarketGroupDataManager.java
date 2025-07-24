@@ -1,5 +1,8 @@
 package org.endless.tianyan.sales.components.market.group.infrastructure.data.manager;
 
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.sales.common.model.infrastructure.data.manager.TianyanSalesAggregateDataManager;
 import org.endless.tianyan.sales.components.market.group.application.query.anticorruption.MarketGroupQueryRepository;
 import org.endless.tianyan.sales.components.market.group.domain.anticorruption.MarketGroupRepository;
@@ -8,6 +11,7 @@ import org.endless.tianyan.sales.components.market.group.infrastructure.data.per
 import org.endless.tianyan.sales.components.market.group.infrastructure.data.record.MarketGroupRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -15,9 +19,9 @@ import java.util.Optional;
  * MarketGroupDataManager
  * <p>市场分组聚合数据管理器
  * <p>
- * create 2025/07/22 09:08
+ * create 2025/07/22 16:05
  * <p>
- * update 2025/07/22 09:08
+ * update 2025/07/22 16:05
  *
  * @author Deng Haozhi
  * @see MarketGroupRepository
@@ -39,17 +43,22 @@ public class MarketGroupDataManager implements MarketGroupRepository, MarketGrou
     }
 
     @Override
-    public MarketGroupAggregate save(MarketGroupAggregate marketGroupAggregate) {
-        return null;
+    @Log(message = "保存市场分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    public MarketGroupAggregate save(MarketGroupAggregate aggregate) {
+        Optional.ofNullable(aggregate)
+                .map(MarketGroupAggregate::validate)
+                .orElseThrow(() -> new DataManagerRequestNullException("保存市场分组聚合数据不能为空"));
+        marketGroupMapper.save(MarketGroupRecord.from(aggregate));
+        return aggregate;
     }
 
     @Override
-    public void remove(MarketGroupAggregate marketGroupAggregate) {
+    public void remove(MarketGroupAggregate aggregate) {
 
     }
 
     @Override
-    public MarketGroupAggregate modify(MarketGroupAggregate marketGroupAggregate) {
+    public MarketGroupAggregate modify(MarketGroupAggregate aggregate) {
         return null;
     }
 
@@ -61,5 +70,14 @@ public class MarketGroupDataManager implements MarketGroupRepository, MarketGrou
     @Override
     public Optional<MarketGroupAggregate> findByIdForUpdate(String s) {
         return Optional.empty();
+    }
+
+    @Override
+    @Log(message = "根据ID查询是否存在市场分组数据", value = "#parentId", level = LogLevel.TRACE)
+    public Boolean existsById(String parentId) {
+        Optional.ofNullable(parentId)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("根据ID查询是否存在市场分组数据不能为空"));
+        return marketGroupMapper.existsById(parentId);
     }
 }

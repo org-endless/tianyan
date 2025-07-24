@@ -16,7 +16,7 @@ import java.util.Optional;
 
 /**
  * ItemGroupDataManager
- * <p>物品分组聚合数据管理器
+ * <p>资源项分组聚合数据管理器
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -33,7 +33,7 @@ import java.util.Optional;
 public class ItemGroupDataManager implements ItemGroupRepository, ItemGroupQueryRepository, TianyanItemAggregateDataManager<ItemGroupRecord, ItemGroupAggregate> {
 
     /**
-     * 物品分组聚合 Mybatis-Plus 数据访问对象
+     * 资源项分组聚合 Mybatis-Plus 数据访问对象
      */
     private final ItemGroupMapper itemGroupMapper;
 
@@ -42,11 +42,11 @@ public class ItemGroupDataManager implements ItemGroupRepository, ItemGroupQuery
     }
 
     @Override
-    @Log(message = "保存物品分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "保存资源项分组聚合数据", value = "#aggregate", level = LogLevel.TRACE)
     public ItemGroupAggregate save(ItemGroupAggregate aggregate) {
         Optional.ofNullable(aggregate)
                 .map(ItemGroupAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存物品分组聚合数据不能为空"));
+                .orElseThrow(() -> new DataManagerRequestNullException("保存资源项分组聚合数据不能为空"));
         itemGroupMapper.save(ItemGroupRecord.from(aggregate));
         return aggregate;
     }

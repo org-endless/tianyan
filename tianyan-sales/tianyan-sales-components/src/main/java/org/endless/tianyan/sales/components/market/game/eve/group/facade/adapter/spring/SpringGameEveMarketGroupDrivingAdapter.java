@@ -1,9 +1,11 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.command.handler.GameEveMarketGroupCommandHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.command.transfer.GameEveMarketGroupCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.GameEveMarketGroupQueryHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindIdRespQTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.facade.adapter.GameEveMarketGroupDrivingAdapter;
 
 /**
  * SpringGameEveMarketGroupDrivingAdapter
@@ -32,5 +34,15 @@ public class SpringGameEveMarketGroupDrivingAdapter implements GameEveMarketGrou
     public SpringGameEveMarketGroupDrivingAdapter(GameEveMarketGroupCommandHandler gameEveMarketGroupCommandHandler, GameEveMarketGroupQueryHandler gameEveMarketGroupQueryHandler) {
         this.gameEveMarketGroupCommandHandler = gameEveMarketGroupCommandHandler;
         this.gameEveMarketGroupQueryHandler = gameEveMarketGroupQueryHandler;
+    }
+
+    @Override
+    public void create(GameEveMarketGroupCreateReqCTransfer command) {
+        gameEveMarketGroupCommandHandler.create(command);
+    }
+
+    @Override
+    public GameEveMarketGroupFindIdRespQTransfer findMarketGroupIdByCode(GameEveMarketGroupFindByCodeReqQTransfer query) {
+        return gameEveMarketGroupQueryHandler.findMarketGroupIdByCode(query);
     }
 }

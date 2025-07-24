@@ -1,9 +1,15 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.impl;
 
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.anticorruption.GameEveMarketGroupQueryRepository;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler.GameEveMarketGroupQueryHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindIdRespQTransfer;
+
+import java.util.Optional;
 
 /**
  * GameEveMarketGroupQueryHandlerImpl
@@ -26,5 +32,17 @@ public class GameEveMarketGroupQueryHandlerImpl implements GameEveMarketGroupQue
 
     public GameEveMarketGroupQueryHandlerImpl(GameEveMarketGroupQueryRepository gameEveMarketGroupQueryRepository) {
         this.gameEveMarketGroupQueryRepository = gameEveMarketGroupQueryRepository;
+    }
+
+    @Override
+    @Log(message = "游戏EVE市场根据编码查询市场分组ID", value = "#query", level = LogLevel.TRACE)
+    public GameEveMarketGroupFindIdRespQTransfer findMarketGroupIdByCode(GameEveMarketGroupFindByCodeReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveMarketGroupFindByCodeReqQTransfer::validate)
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE市场根据编码查询市场分组ID参数不能为空"));
+        return GameEveMarketGroupFindIdRespQTransfer.builder()
+                .marketGroupId(gameEveMarketGroupQueryRepository.findMarketGroupIdByCode(query.getCode())
+                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE市场分组不存在")))
+                .build().validate();
     }
 }

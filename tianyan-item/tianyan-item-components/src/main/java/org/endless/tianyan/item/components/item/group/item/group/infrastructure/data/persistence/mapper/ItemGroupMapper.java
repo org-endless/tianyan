@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Lazy;
 
 /**
  * ItemGroupMapper
- * <p>物品分组聚合 Mybatis-Plus 数据访问对象
+ * <p>资源项分组聚合 Mybatis-Plus 数据访问对象
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -21,4 +21,5 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface ItemGroupMapper extends TianyanItemMapper<ItemGroupRecord> {
+
 }

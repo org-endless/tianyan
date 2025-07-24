@@ -33,7 +33,7 @@
 // public class SaleHistory {
 
 //     /**
-//      * 复合编号：行业编号+"_"+日期+"_"+物品/商品编号
+//      * 复合编号：行业编号+"_"+日期+"_"+资源项/商品编号
 //      */
 //     @Id
 //     @NotEmpty
@@ -41,7 +41,7 @@
 //     private String id;
 
 //     /**
-//      * 物品/商品编号
+//      * 资源项/商品编号
 //      */
 //     @NotEmpty
 //     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)

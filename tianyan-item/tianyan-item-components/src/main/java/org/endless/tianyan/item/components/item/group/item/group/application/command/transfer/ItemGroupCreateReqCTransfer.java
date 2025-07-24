@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * ItemGroupCreateReqCTransfer
- * <p>物品分组创建命令请求传输对象
+ * <p>资源项分组创建命令请求传输对象
  * <p>
  * create 2025/07/21 16:19
  * <p>

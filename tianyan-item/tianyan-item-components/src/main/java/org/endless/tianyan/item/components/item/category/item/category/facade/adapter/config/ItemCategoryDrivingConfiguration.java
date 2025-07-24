@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * ItemCategoryDrivingConfiguration
- * <p>物品分类领域主动适配器配置类
+ * <p>资源项分类领域主动适配器配置类
  * <p>
  * create 2025/07/20 22:39
  * <p>

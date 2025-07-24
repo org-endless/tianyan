@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * ItemCategoryAggregate
- * <p>物品分类聚合根
+ * <p>资源项分类聚合根
  * <p>
  * create 2025/07/21 15:22
  * <p>
@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
 public class ItemCategoryAggregate implements TianyanItemAggregate {
 
     /**
-     * 物品分类ID
+     * 资源项分类ID
      */
     private final String itemCategoryId;
 
@@ -71,10 +71,10 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
 
     public ItemCategoryAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<物品分类聚合根>不能再次删除, ID: " + itemCategoryId);
+            throw new AggregateRemoveException("已经被删除的聚合根<资源项分类聚合根>不能再次删除, ID: " + itemCategoryId);
         }
         if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<物品分类聚合根>处于不可删除状态, ID: " + itemCategoryId);
+            throw new AggregateRemoveException("聚合根<资源项分类聚合根>处于不可删除状态, ID: " + itemCategoryId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -98,7 +98,7 @@ public class ItemCategoryAggregate implements TianyanItemAggregate {
 
     private void validateItemCategoryId() {
         if (!StringUtils.hasText(itemCategoryId)) {
-            throw new AggregateValidateException("物品分类ID不能为空");
+            throw new AggregateValidateException("资源项分类ID不能为空");
         }
     }
 

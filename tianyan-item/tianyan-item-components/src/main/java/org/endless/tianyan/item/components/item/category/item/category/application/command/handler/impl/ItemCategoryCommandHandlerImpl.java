@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * ItemCategoryCommandHandlerImpl
- * <p>物品分类领域命令处理器
+ * <p>资源项分类领域命令处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -28,7 +28,7 @@ import java.util.Optional;
 public class ItemCategoryCommandHandlerImpl implements ItemCategoryCommandHandler {
 
     /**
-     * 物品分类聚合仓储接口
+     * 资源项分类聚合仓储接口
      */
     private final ItemCategoryRepository itemCategoryRepository;
 
@@ -38,11 +38,11 @@ public class ItemCategoryCommandHandlerImpl implements ItemCategoryCommandHandle
 
     @Override
     @Transactional
-    @Log(message = "物品分类创建命令", value = "#command", level = LogLevel.TRACE)
+    @Log(message = "资源项分类创建命令", value = "#command", level = LogLevel.TRACE)
     public ItemCategoryCreateRespCTransfer create(ItemCategoryCreateReqCTransfer command) {
         Optional.ofNullable(command)
                 .map(ItemCategoryCreateReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("物品分类创建命令参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("资源项分类创建命令参数不能为空"));
         ItemCategoryAggregate aggregate = ItemCategoryAggregate.create(ItemCategoryAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
                         .fullName(command.getNameZh())))

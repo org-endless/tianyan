@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * ItemGroupCommandHandlerImpl
- * <p>物品分组领域命令处理器
+ * <p>资源项分组领域命令处理器
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -28,7 +28,7 @@ import java.util.Optional;
 public class ItemGroupCommandHandlerImpl implements ItemGroupCommandHandler {
 
     /**
-     * 物品分组聚合仓储接口
+     * 资源项分组聚合仓储接口
      */
     private final ItemGroupRepository itemGroupRepository;
 
@@ -38,11 +38,11 @@ public class ItemGroupCommandHandlerImpl implements ItemGroupCommandHandler {
 
     @Override
     @Transactional
-    @Log(message = "物品分类创建命令", value = "#command", level = LogLevel.TRACE)
+    @Log(message = "资源项分组创建命令", value = "#command", level = LogLevel.TRACE)
     public ItemGroupCreateRespCTransfer create(ItemGroupCreateReqCTransfer command) {
         Optional.ofNullable(command)
                 .map(ItemGroupCreateReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("物品分类创建命令令参数不能为空"));
+                .orElseThrow(() -> new CommandReqTransferNullException("资源项分组创建命令令参数不能为空"));
         ItemGroupAggregate aggregate = ItemGroupAggregate.create(ItemGroupAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
                         .fullName(command.getNameZh())))

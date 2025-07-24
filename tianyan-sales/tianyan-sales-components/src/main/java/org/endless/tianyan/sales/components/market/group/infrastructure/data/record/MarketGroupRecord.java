@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
  * MarketGroupRecord
  * <p>市场分组数据库记录实体
  * <p>
- * create 2025/07/22 09:08
+ * create 2025/07/22 16:05
  * <p>
- * update 2025/07/22 09:08
+ * update 2025/07/22 16:05
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord

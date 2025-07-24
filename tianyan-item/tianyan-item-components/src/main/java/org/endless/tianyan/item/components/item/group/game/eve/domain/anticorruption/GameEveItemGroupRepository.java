@@ -5,7 +5,7 @@ import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.*;
 
 /**
  * GameEveItemGroupRepository
- * <p>游戏EVE物品分组聚合仓储接口
+ * <p>游戏EVE资源项分组聚合仓储接口
  * <p>
  * create 2025/07/21 16:03
  * <p>
@@ -16,4 +16,5 @@ import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.*;
  * @since 0.0.1
  */
 public interface GameEveItemGroupRepository extends TianyanItemRepository<GameEveItemGroupAggregate> {
+
 }

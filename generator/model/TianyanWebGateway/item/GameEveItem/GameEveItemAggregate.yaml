@@ -7,11 +7,11 @@ serviceSubPackage: components
 contextName: item
 domainName: GameEveItem
 aggregateName: GameEveItemAggregate
-description: 游戏EVE物品
+description: 游戏EVE资源项
 fields:
   - name: gameEveItemId
     type: String
-    description: 游戏EVE物品ID
+    description: 游戏EVE资源项ID
     nullable: false
 enums:
   - name: TestEnum

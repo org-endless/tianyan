@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 /**
  * ItemGroupRecord
- * <p>物品分组数据库记录实体
+ * <p>资源项分组数据库记录实体
  * <p>
  * create 2025/07/21 16:04
  * <p>
@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 public class ItemGroupRecord implements TianyanItemRecord<ItemGroupAggregate> {
 
     /**
-     * 物品分组ID
+     * 资源项分组ID
      */
     @TableId
     private String itemGroupId;
@@ -157,7 +157,7 @@ public class ItemGroupRecord implements TianyanItemRecord<ItemGroupAggregate> {
 
     private void validateItemGroupId() {
         if (!StringUtils.hasText(itemGroupId)) {
-            throw new DataRecordValidateException("物品分组ID不能为空");
+            throw new DataRecordValidateException("资源项分组ID不能为空");
         }
     }
 

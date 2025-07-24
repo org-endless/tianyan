@@ -20,7 +20,7 @@ import org.endless.ddd.simplified.starter.common.model.sidecar.rest.AbstractRest
 public class TianyanItemRestResponse extends AbstractRestResponse {
 
 
-    private static final String SERVICE_DESCRIPTION = "天演-物品服务";
+    private static final String SERVICE_DESCRIPTION = "天演-资源项服务";
 
     @Override
     public TianyanItemRestResponse createInstance(String status, String errorCode, String message, Object data) {

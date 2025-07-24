@@ -1,13 +1,14 @@
 package org.endless.tianyan.item.components.item.game.eve.facade.adapter.config;
 
-import org.endless.tianyan.item.components.item.game.eve.application.command.handler.*;
-import org.endless.tianyan.item.components.item.game.eve.application.command.handler.impl.*;
-import org.endless.tianyan.item.components.item.game.eve.application.query.handler.*;
-import org.endless.tianyan.item.components.item.game.eve.application.query.handler.impl.*;
-import org.endless.tianyan.item.components.item.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.item.components.item.game.eve.facade.adapter.*;
-import org.endless.tianyan.item.components.item.game.eve.facade.adapter.spring.*;
+import org.endless.tianyan.item.components.item.game.eve.application.command.handler.GameEveItemCommandHandler;
+import org.endless.tianyan.item.components.item.game.eve.application.command.handler.impl.GameEveItemCommandHandlerImpl;
+import org.endless.tianyan.item.components.item.game.eve.application.query.anticorruption.GameEveItemQueryRepository;
+import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
+import org.endless.tianyan.item.components.item.game.eve.application.query.handler.impl.GameEveItemQueryHandlerImpl;
+import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.GameEveItemRepository;
+import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
+import org.endless.tianyan.item.components.item.game.eve.facade.adapter.spring.SpringGameEveItemDrivingAdapter;
+import org.endless.tianyan.item.components.item.item.facade.adapter.ItemDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +17,11 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * GameEveItemDrivingConfiguration
- * <p>游戏EVE物品领域主动适配器配置类
+ * <p>游戏EVE资源项领域主动适配器配置类
  * <p>
- * create 2025/07/19 09:28
+ * create 2025/07/23 01:04
  * <p>
- * update 2025/07/19 09:28
+ * update 2025/07/23 01:04
  *
  * @author Deng Haozhi
  * @since 0.0.1
@@ -38,8 +39,8 @@ public class GameEveItemDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveItemCommandHandler gameEveItemCommandHandler(GameEveItemRepository repository) {
-        return new GameEveItemCommandHandlerImpl(repository);
+    protected @Bean GameEveItemCommandHandler gameEveItemCommandHandler(GameEveItemRepository repository, ItemDrivingAdapter itemDrivingAdapter) {
+        return new GameEveItemCommandHandlerImpl(repository, itemDrivingAdapter);
     }
 
     @Lazy

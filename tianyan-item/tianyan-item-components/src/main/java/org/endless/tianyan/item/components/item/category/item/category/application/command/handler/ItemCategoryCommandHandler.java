@@ -7,7 +7,7 @@ import org.endless.tianyan.item.components.item.category.item.category.domain.en
 
 /**
  * ItemCategoryCommandHandler
- * <p>物品分类领域命令处理器
+ * <p>资源项分类领域命令处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 /**
  * ItemCategoryDataManager
- * <p>物品分类聚合数据管理器
+ * <p>资源项分类聚合数据管理器
  * <p>
  * create 2025/07/20 22:39
  * <p>
@@ -33,7 +33,7 @@ import java.util.Optional;
 public class ItemCategoryDataManager implements ItemCategoryRepository, ItemCategoryQueryRepository, TianyanItemAggregateDataManager<ItemCategoryRecord, ItemCategoryAggregate> {
 
     /**
-     * 物品分类聚合 Mybatis-Plus 数据访问对象
+     * 资源项分类聚合 Mybatis-Plus 数据访问对象
      */
     private final ItemCategoryMapper itemCategoryMapper;
 
@@ -42,11 +42,11 @@ public class ItemCategoryDataManager implements ItemCategoryRepository, ItemCate
     }
 
     @Override
-    @Log(message = "保存物品分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "保存资源项分类聚合数据", value = "#aggregate", level = LogLevel.TRACE)
     public ItemCategoryAggregate save(ItemCategoryAggregate aggregate) {
         Optional.ofNullable(aggregate)
                 .map(ItemCategoryAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存物品分类聚合数据不能为空"));
+                .orElseThrow(() -> new DataManagerRequestNullException("保存资源项分类聚合数据不能为空"));
         itemCategoryMapper.save(ItemCategoryRecord.from(aggregate));
         return aggregate;
     }

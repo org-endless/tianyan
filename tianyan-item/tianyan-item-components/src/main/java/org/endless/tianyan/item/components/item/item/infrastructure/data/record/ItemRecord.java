@@ -4,29 +4,26 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.item.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.item.components.item.item.domain.entity.*;
-import org.endless.tianyan.item.components.item.item.domain.value.*;
-import org.endless.tianyan.item.components.item.item.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.simplified.starter.common.model.domain.type.MassUnitEnum;
+import org.endless.ddd.simplified.starter.common.model.domain.type.VolumeUnitEnum;
+import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
+import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate;
+import org.endless.tianyan.item.components.item.item.domain.value.MassValue;
+import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
+import org.endless.tianyan.item.components.item.item.domain.value.VolumeValue;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ItemRecord
- * <p>物品数据库记录实体
+ * <p>资源项数据库记录实体
  * <p>
- * create 2025/07/21 15:37
+ * create 2025/07/23 08:58
  * <p>
- * update 2025/07/21 15:37
+ * update 2025/07/23 08:58
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -41,10 +38,20 @@ import java.util.stream.Collectors;
 public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
 
     /**
-     * 物品ID
+     * 资源项ID
      */
     @TableId
     private String itemId;
+
+    /**
+     * 资源项分组ID
+     */
+    private String itemGroupId;
+
+    /**
+     * 市场分组ID
+     */
+    private String marketGroupId;
 
     /**
      * 全称
@@ -75,6 +82,51 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
      * 简称
      */
     private String nameEnAbbreviation;
+
+    /**
+     * 质量数量是否科学计数
+     */
+    private Boolean massIsScientific;
+
+    /**
+     * 质量数量(20, 5)
+     */
+    private BigDecimal massQuantity;
+
+    /**
+     * 质量数量科学计数
+     */
+    private String massScientific;
+
+    /**
+     * 质量单位
+     */
+    private MassUnitEnum massUnit;
+
+    /**
+     * 体积数量是否科学计数
+     */
+    private Boolean volumeIsScientific;
+
+    /**
+     * 体积数量(20, 5)
+     */
+    private BigDecimal volumeQuantity;
+
+    /**
+     * 体积数量科学计数
+     */
+    private String volumeScientific;
+
+    /**
+     * 体积单位
+     */
+    private VolumeUnitEnum volumeUnit;
+
+    /**
+     * 描述
+     */
+    private String description;
 
     /**
      * 创建者ID
@@ -112,12 +164,23 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
         String itemId = aggregate.getItemId();
         return ItemRecord.builder()
                 .itemId(itemId)
+                .itemGroupId(aggregate.getItemGroupId())
+                .marketGroupId(aggregate.getMarketGroupId())
                 .nameZhFullName(aggregate.getNameZh().getFullName())
                 .nameZhAlias(aggregate.getNameZh().getAlias())
                 .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEnFullName(aggregate.getNameEn().getFullName())
-                .nameEnAlias(aggregate.getNameEn().getAlias())
-                .nameEnAbbreviation(aggregate.getNameEn().getAbbreviation())
+                .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getFullName())
+                .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAlias())
+                .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAbbreviation())
+                .massIsScientific(aggregate.getMass() == null ? null : aggregate.getMass().getIsScientific())
+                .massQuantity(aggregate.getMass() == null ? null : aggregate.getMass().getQuantity())
+                .massScientific(aggregate.getMass() == null ? null : aggregate.getMass().getScientific())
+                .massUnit(aggregate.getMass() == null ? null : aggregate.getMass().getUnit())
+                .volumeIsScientific(aggregate.getVolume() == null ? null : aggregate.getVolume().getIsScientific())
+                .volumeQuantity(aggregate.getVolume() == null ? null : aggregate.getVolume().getQuantity())
+                .volumeScientific(aggregate.getVolume() == null ? null : aggregate.getVolume().getScientific())
+                .volumeUnit(aggregate.getVolume() == null ? null : aggregate.getVolume().getUnit())
+                .description(aggregate.getDescription())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -129,6 +192,8 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
         validate();
         return ItemAggregate.builder()
                 .itemId(itemId)
+                .itemGroupId(itemGroupId)
+                .marketGroupId(marketGroupId)
                 .nameZh(NameValue.builder()
                         .fullName(nameZhFullName)
                         .alias(nameZhAlias)
@@ -139,6 +204,19 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                         .alias(nameEnAlias)
                         .abbreviation(nameEnAbbreviation)
                         .innerBuild())
+                .mass(MassValue.builder()
+                        .isScientific(massIsScientific)
+                        .quantity(massQuantity)
+                        .scientific(massScientific)
+                        .unit(massUnit)
+                        .innerBuild())
+                .volume(VolumeValue.builder()
+                        .isScientific(volumeIsScientific)
+                        .quantity(volumeQuantity)
+                        .scientific(volumeScientific)
+                        .unit(volumeUnit)
+                        .innerBuild())
+                .description(description)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -148,8 +226,8 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     @Override
     public ItemRecord validate() {
         validateItemId();
+        validateItemGroupId();
         validateNameZhFullName();
-        validateNameEnFullName();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -158,18 +236,18 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new DataRecordValidateException("物品ID不能为空");
+            throw new DataRecordValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateItemGroupId() {
+        if (!StringUtils.hasText(itemGroupId)) {
+            throw new DataRecordValidateException("资源项分组ID不能为空");
         }
     }
 
     private void validateNameZhFullName() {
         if (!StringUtils.hasText(nameZhFullName)) {
-            throw new DataRecordValidateException("全称不能为空");
-        }
-    }
-
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
             throw new DataRecordValidateException("全称不能为空");
         }
     }

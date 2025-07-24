@@ -6,7 +6,7 @@ import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.
 
 /**
  * GameEveItemCategoryCommandHandler
- * <p>游戏EVE物品分类领域命令处理器
+ * <p>游戏EVE资源项分类领域命令处理器
  * <p>
  * create 2025/07/20 22:39
  * <p>

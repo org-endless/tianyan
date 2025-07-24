@@ -7,19 +7,19 @@ serviceSubPackage: components
 contextName: item.group
 domainName: ItemGroup
 aggregateName: ItemGroupAggregate
-description: 物品分组
+description: 资源项分组
 fields:
   - name: itemGroupId
     type: String
-    description: 物品分组ID
+    description: 资源项分组ID
     nullable: false
   - name: nameZh
     type: NameValue
-    description: 物品分组中文名称
+    description: 资源项分组中文名称
     nullable: false
   - name: nameEn
     type: NameValue
-    description: 物品分组英文名称
+    description: 资源项分组英文名称
     nullable: false
 values:
   - name: NameValue
@@ -42,7 +42,7 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 物品分组创建命令请求传输对象
+    description: 资源项分组创建命令请求传输对象
     fields:
       - name: nameZh
         type: String
@@ -60,9 +60,9 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: RESPONSE
-    description: 物品分组创建命令响应传输对象
+    description: 资源项分组创建命令响应传输对象
     fields:
       - name: itemGroupId
         type: String
-        description: 物品分组ID
+        description: 资源项分组ID
         nullable: false

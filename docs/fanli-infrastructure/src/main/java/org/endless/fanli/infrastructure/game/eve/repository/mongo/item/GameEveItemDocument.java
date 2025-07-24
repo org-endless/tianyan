@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 
 /**
  * GameEveItem
- * <p>游戏EVE物品/商品文档类，映射数据文档game.eve.item
+ * <p>游戏EVE资源项/商品文档类，映射数据文档game.eve.item
  * <p>Game EVE item class mapping the data document named game.eve.item.
  * <p>
  * <p>create 2023/03/07 1:28
@@ -33,9 +33,9 @@ import java.math.BigDecimal;
 @Validated
 @Document("game.eve.item")
 public class GameEveItemDocument {
-    
+
     /**
-     * 编号：应用程序编号+"_"+物品/商品编号
+     * 编号：应用程序编号+"_"+资源项/商品编号
      * <p>id: applicationId + "_" + itemId
      */
     @NotEmpty
@@ -43,7 +43,7 @@ public class GameEveItemDocument {
     private String id;
 
     /**
-     * 物品/商品编号
+     * 资源项/商品编号
      */
     @NotEmpty
     @Pattern(regexp = Regular.ID, message = Regular.ID_MESSAGE)

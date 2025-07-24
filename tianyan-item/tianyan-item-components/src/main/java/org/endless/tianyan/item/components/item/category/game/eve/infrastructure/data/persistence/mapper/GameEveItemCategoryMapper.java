@@ -10,7 +10,7 @@ import java.util.Optional;
 
 /**
  * GameEveItemCategoryMapper
- * <p>游戏EVE物品分类聚合 Mybatis-Plus 数据访问对象
+ * <p>游戏EVE资源项分类聚合 Mybatis-Plus 数据访问对象
  * <p>
  * create 2025/07/20 22:39
  * <p>

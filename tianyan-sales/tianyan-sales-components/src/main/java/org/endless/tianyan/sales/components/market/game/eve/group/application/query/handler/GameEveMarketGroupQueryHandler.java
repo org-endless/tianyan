@@ -1,7 +1,8 @@
 package org.endless.tianyan.sales.components.market.game.eve.group.application.query.handler;
 
-import org.endless.tianyan.sales.common.model.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.game.eve.group.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.handler.TianyanSalesQueryHandler;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.sales.components.market.game.eve.group.application.query.transfer.GameEveMarketGroupFindIdRespQTransfer;
 
 /**
  * GameEveMarketGroupQueryHandler
@@ -16,4 +17,7 @@ import org.endless.tianyan.sales.components.market.game.eve.group.domain.entity.
  * @since 0.0.1
  */
 public interface GameEveMarketGroupQueryHandler extends TianyanSalesQueryHandler {
+
+    GameEveMarketGroupFindIdRespQTransfer findMarketGroupIdByCode(GameEveMarketGroupFindByCodeReqQTransfer query);
+
 }
