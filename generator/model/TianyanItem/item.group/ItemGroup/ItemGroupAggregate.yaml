@@ -20,7 +20,7 @@ fields:
   - name: nameEn
     type: NameValue
     description: 资源项分组英文名称
-    nullable: false
+    nullable: true
 values:
   - name: NameValue
     description: 名称

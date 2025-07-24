@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemGroupAggregate
  * <p>游戏EVE资源项分组聚合根
  * <p>
- * create 2025/07/21 16:20
+ * create 2025/07/24 20:20
  * <p>
- * update 2025/07/21 16:20
+ * update 2025/07/24 20:20
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -44,14 +44,14 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
     private String itemGroupId;
 
     /**
+     * 资源项分类ID
+     */
+    private String itemCategoryId;
+
+    /**
      * 游戏EVE资源项分组编码
      */
     private String code;
-
-    /**
-     * 游戏EVE资源项分类ID
-     */
-    private String gameEveItemCategoryId;
 
     /**
      * 游戏EVE资源项分组是否发布
@@ -81,16 +81,10 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
     public static GameEveItemGroupAggregate create(GameEveItemGroupAggregateBuilder builder) {
         return builder
                 .gameEveItemGroupId(IdGenerator.of())
-                .itemGroupId(builder.itemGroupId)
-                .code(builder.code)
-                .gameEveItemCategoryId(builder.gameEveItemCategoryId)
-                .isPublished(builder.isPublished)
-                .isUseBasePrice(builder.isUseBasePrice)
-                .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-                .innerBuild()
-                .validate();
+            .innerBuild()
+            .validate();
     }
 
     public GameEveItemGroupAggregate remove(String modifyUserId) {
@@ -113,8 +107,8 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
     public GameEveItemGroupAggregate validate() {
         validateGameEveItemGroupId();
         validateItemGroupId();
+        validateItemCategoryId();
         validateCode();
-        validateGameEveItemCategoryId();
         validateIsPublished();
         validateIsUseBasePrice();
         validateCreateUserId();
@@ -135,15 +129,15 @@ public class GameEveItemGroupAggregate implements TianyanItemAggregate {
         }
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
-            throw new AggregateValidateException("游戏EVE资源项分组编码不能为空");
+    private void validateItemCategoryId() {
+        if (!StringUtils.hasText(itemCategoryId)) {
+            throw new AggregateValidateException("资源项分类ID不能为空");
         }
     }
 
-    private void validateGameEveItemCategoryId() {
-        if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new AggregateValidateException("游戏EVE资源项分类ID不能为空");
+    private void validateCode() {
+        if (!StringUtils.hasText(code)) {
+            throw new AggregateValidateException("游戏EVE资源项分组编码不能为空");
         }
     }
 

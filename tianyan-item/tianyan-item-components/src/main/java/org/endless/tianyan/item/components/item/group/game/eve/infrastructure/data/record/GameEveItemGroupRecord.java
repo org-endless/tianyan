@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * GameEveItemGroupRecord
  * <p>游戏EVE资源项分组数据库记录实体
  * <p>
- * create 2025/07/21 16:20
+ * create 2025/07/24 20:20
  * <p>
- * update 2025/07/21 16:20
+ * update 2025/07/24 20:20
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -50,14 +50,14 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
     private String itemGroupId;
 
     /**
+     * 资源项分类ID
+     */
+    private String itemCategoryId;
+
+    /**
      * 游戏EVE资源项分组编码
      */
     private String code;
-
-    /**
-     * 游戏EVE资源项分类ID
-     */
-    private String gameEveItemCategoryId;
 
     /**
      * 游戏EVE资源项分组是否发布
@@ -106,8 +106,8 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
         return GameEveItemGroupRecord.builder()
                 .gameEveItemGroupId(gameEveItemGroupId)
                 .itemGroupId(aggregate.getItemGroupId())
+                .itemCategoryId(aggregate.getItemCategoryId())
                 .code(aggregate.getCode())
-                .gameEveItemCategoryId(aggregate.getGameEveItemCategoryId())
                 .isPublished(aggregate.getIsPublished())
                 .isUseBasePrice(aggregate.getIsUseBasePrice())
                 .createUserId(aggregate.getCreateUserId())
@@ -122,8 +122,8 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
         return GameEveItemGroupAggregate.builder()
                 .gameEveItemGroupId(gameEveItemGroupId)
                 .itemGroupId(itemGroupId)
+                .itemCategoryId(itemCategoryId)
                 .code(code)
-                .gameEveItemCategoryId(gameEveItemCategoryId)
                 .isPublished(isPublished)
                 .isUseBasePrice(isUseBasePrice)
                 .createUserId(createUserId)
@@ -136,8 +136,8 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
     public GameEveItemGroupRecord validate() {
         validateGameEveItemGroupId();
         validateItemGroupId();
+        validateItemCategoryId();
         validateCode();
-        validateGameEveItemCategoryId();
         validateIsPublished();
         validateIsUseBasePrice();
         validateCreateUserId();
@@ -158,15 +158,15 @@ public class GameEveItemGroupRecord implements TianyanItemRecord<GameEveItemGrou
         }
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
-            throw new DataRecordValidateException("游戏EVE资源项分组编码不能为空");
+    private void validateItemCategoryId() {
+        if (!StringUtils.hasText(itemCategoryId)) {
+            throw new DataRecordValidateException("资源项分类ID不能为空");
         }
     }
 
-    private void validateGameEveItemCategoryId() {
-        if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new DataRecordValidateException("游戏EVE资源项分类ID不能为空");
+    private void validateCode() {
+        if (!StringUtils.hasText(code)) {
+            throw new DataRecordValidateException("游戏EVE资源项分组编码不能为空");
         }
     }
 
