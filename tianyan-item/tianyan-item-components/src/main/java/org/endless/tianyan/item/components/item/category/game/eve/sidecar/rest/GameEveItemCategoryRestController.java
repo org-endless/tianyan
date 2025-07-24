@@ -58,14 +58,14 @@ public class GameEveItemCategoryRestController implements TianyanItemRestControl
         }
     }
 
-    @PostMapping("/query/find_id_by_code")
+    @PostMapping("/query/find_item_category_id_by_code")
     @Log(message = "游戏EVE资源项分类根据编码查询ID", value = "#command")
-    public ResponseEntity<RestResponse> findIdByCode(@RequestBody GameEveItemCategoryFindByCodeReqQTransfer query) {
+    public ResponseEntity<RestResponse> findItemCategoryIdByCode(@RequestBody GameEveItemCategoryFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类根据编码查询ID参数不能为空"));
         try {
-            return response().success("游戏EVE资源项分类根据编码查询ID成功", gameEveItemCategoryDrivingAdapter.findIdByCode(query));
+            return response().success("游戏EVE资源项分类根据编码查询ID成功", gameEveItemCategoryDrivingAdapter.findItemCategoryIdByCode(query));
         } catch (JSONException | NullPointerException e) {
             throw new RestErrorException("游戏EVE资源项分类根据编码查询ID失败", e);
         }

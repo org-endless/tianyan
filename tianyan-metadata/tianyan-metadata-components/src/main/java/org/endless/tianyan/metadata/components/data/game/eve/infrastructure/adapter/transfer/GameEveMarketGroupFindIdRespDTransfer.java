@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupFindIdRespDTransfer
  * <p>游戏EVE市场分组ID查询被动响应传输对象
  * <p>
- * create 2025/07/24 19:53
+ * create 2025/07/24 20:58
  * <p>
- * update 2025/07/24 19:53
+ * update 2025/07/24 20:58
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer

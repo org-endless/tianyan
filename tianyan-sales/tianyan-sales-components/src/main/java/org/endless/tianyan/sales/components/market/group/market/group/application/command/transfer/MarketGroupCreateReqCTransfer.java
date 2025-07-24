@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * MarketGroupCreateReqCTransfer
  * <p>市场分组创建命令请求传输对象
  * <p>
- * create 2025/07/24 17:36
+ * create 2025/07/24 20:31
  * <p>
- * update 2025/07/24 17:36
+ * update 2025/07/24 20:31
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer
@@ -31,18 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"nameZhFullName", "nameEnFullName", "parentId", "createUserId"})
+@JSONType(orders = {"fullNameZh", "fullNameEn", "parentId", "createUserId"})
 public class MarketGroupCreateReqCTransfer implements TianyanSalesCommandTransfer {
 
     /**
-     * 中文全称
+     * 市场分组中文全称
      */
-    private final String nameZhFullName;
+    private final String fullNameZh;
 
     /**
-     * 英文全称
+     * 市场分组英文全称
      */
-    private final String nameEnFullName;
+    private final String fullNameEn;
 
     /**
      * 父市场分组ID
@@ -56,21 +56,21 @@ public class MarketGroupCreateReqCTransfer implements TianyanSalesCommandTransfe
 
     @Override
     public MarketGroupCreateReqCTransfer validate() {
-        validateNameZhFullName();
-        validateNameEnFullName();
+        validateFullNameZh();
+        validateFullNameEn();
         validateCreateUserId();
         return this;
     }
 
-    private void validateNameZhFullName() {
-        if (!StringUtils.hasText(nameZhFullName)) {
-            throw new CommandTransferValidateException("中文全称不能为空");
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
+            throw new CommandTransferValidateException("市场分组中文全称不能为空");
         }
     }
 
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
-            throw new CommandTransferValidateException("英文全称不能为空");
+    private void validateFullNameEn() {
+        if (!StringUtils.hasText(fullNameEn)) {
+            throw new CommandTransferValidateException("市场分组英文全称不能为空");
         }
     }
 

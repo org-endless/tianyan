@@ -42,7 +42,7 @@ public class SpringGameEveItemCategoryDrivingAdapter implements GameEveItemCateg
     }
 
     @Override
-    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
-        return gameEveItemCategoryQueryHandler.findIdByCode(query);
+    public GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
+        return gameEveItemCategoryQueryHandler.findItemCategoryIdByCode(query);
     }
 }

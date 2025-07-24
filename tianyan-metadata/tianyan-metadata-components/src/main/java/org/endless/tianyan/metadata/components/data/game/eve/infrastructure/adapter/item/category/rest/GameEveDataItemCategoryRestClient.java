@@ -42,18 +42,18 @@ public class GameEveDataItemCategoryRestClient implements TianyanMetadataItemRes
         post(restClient, "/item/category/game/eve/command/create", command, null);
     }
 
-    public Optional<String> findGameEveItemCategoryIdByCode(String code) {
+    public Optional<String> findItemCategoryIdByCode(String code) {
         Optional.ofNullable(code)
                 .filter(StringUtils::hasText)
                 .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE资源项分类编码不能为空"));
         return Optional.ofNullable(post(
                 restClient,
-                "/item/category/game/eve/query/find_id_by_code",
+                "/item/category/game/eve/query/find_item_category_id_by_code",
                 GameEveItemCategoryFindByCodeReqDTransfer.builder()
                         .code(code).build().validate(),
                 GameEveItemCategoryFindIdRespDTransfer.class)
                 .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项分类根据编码查询ID响应数据为空"))
                 .validate()
-                .getGameEveItemCategoryId());
+                .getItemCategoryId());
     }
 }

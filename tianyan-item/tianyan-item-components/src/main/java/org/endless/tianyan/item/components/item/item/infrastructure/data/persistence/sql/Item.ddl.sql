@@ -18,6 +18,6 @@ CREATE TABLE item (
     modify_at            BIGINT       NOT NULL COMMENT '修改时间',
     remove_at            BIGINT       NULL DEFAULT 0 COMMENT '删除时间'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT '资源项表';
-CREATE INDEX idx_meta_group_id ON item (meta_group_id);
-CREATE INDEX idx_item_group_id ON item (item_group_id);
-CREATE INDEX idx_market_group_id ON item (market_group_id);
+CREATE INDEX idx_item_meta_group_id ON item (meta_group_id);
+CREATE INDEX idx_item_item_group_id ON item (item_group_id);
+CREATE INDEX idx_item_market_group_id ON item (market_group_id);

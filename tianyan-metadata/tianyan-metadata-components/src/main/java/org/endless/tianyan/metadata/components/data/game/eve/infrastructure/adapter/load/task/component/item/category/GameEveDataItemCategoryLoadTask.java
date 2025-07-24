@@ -11,6 +11,7 @@ import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adap
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 import java.util.Optional;
@@ -46,10 +47,11 @@ public class GameEveDataItemCategoryLoadTask implements GameEveDataLoadTask {
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {
-                    GameEveDataFileItemCategoryRespDTransfer itemCategory = TypeUtils.cast(value, GameEveDataFileItemCategoryRespDTransfer.class).validate();
+                    GameEveDataFileItemCategoryRespDTransfer itemCategory = TypeUtils.cast(value, GameEveDataFileItemCategoryRespDTransfer.class)
+                            .validate();
                     gameEveDataItemCategoryRestClient.create(GameEveItemCategoryCreateReqDTransfer.builder()
                             .code(key)
-                            .fullNameZh(itemCategory.getName().getZh() == null ? itemCategory.getName().getEn() : itemCategory.getName().getZh())
+                            .fullNameZh(StringUtils.hasText(itemCategory.getName().getZh()) ? itemCategory.getName().getEn() : itemCategory.getName().getZh())
                             .fullNameEn(itemCategory.getName().getEn())
                             .isPublished(itemCategory.getPublished())
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)

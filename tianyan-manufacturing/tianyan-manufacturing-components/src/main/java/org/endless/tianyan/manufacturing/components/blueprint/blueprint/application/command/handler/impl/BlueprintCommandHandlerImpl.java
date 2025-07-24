@@ -13,7 +13,9 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.e
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintProductEntity;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintSkillEntity;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.BlueprintTypeEnum;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -40,6 +42,7 @@ public class BlueprintCommandHandlerImpl implements BlueprintCommandHandler {
     }
 
     @Override
+    @Transactional
     @Log(message = "蓝图创建命令", value = "#command", level = LogLevel.TRACE)
     public BlueprintCreateRespCTransfer create(BlueprintCreateReqCTransfer command) {
         Optional.ofNullable(command)
@@ -51,18 +54,21 @@ public class BlueprintCommandHandlerImpl implements BlueprintCommandHandler {
                 .materials(command.getMaterials() == null ? null : command.getMaterials().stream()
                         .map(material -> BlueprintMaterialEntity.create(BlueprintMaterialEntity.builder()
                                 .itemId(material.getItemId())
-                                .quantity(material.getQuantity())))
+                                .quantity(material.getQuantity())
+                                .createUserId(command.getCreateUserId())))
                         .toList())
                 .products(command.getProducts() == null ? null : command.getProducts().stream()
                         .map(material -> BlueprintProductEntity.create(BlueprintProductEntity.builder()
                                 .itemId(material.getItemId())
                                 .quantity(material.getQuantity())
-                                .successRate(Decimal.format5Bit(material.getSuccessRate()))))
+                                .successRate(material.getSuccessRate() == null ? new BigDecimal("1.00000") : Decimal.format5Bit(material.getSuccessRate()))
+                                .createUserId(command.getCreateUserId())))
                         .toList())
                 .skills(command.getSkills() == null ? null : command.getSkills().stream()
                         .map(material -> BlueprintSkillEntity.create(BlueprintSkillEntity.builder()
                                 .itemId(material.getItemId())
-                                .level(material.getLevel())))
+                                .level(material.getLevel())
+                                .createUserId(command.getCreateUserId())))
                         .toList())
                 .cycle(command.getCycle())
                 .createUserId(command.getCreateUserId()));

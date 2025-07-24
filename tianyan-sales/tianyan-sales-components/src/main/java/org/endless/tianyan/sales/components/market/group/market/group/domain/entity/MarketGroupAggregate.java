@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * MarketGroupAggregate
  * <p>市场分组聚合根
  * <p>
- * create 2025/07/24 17:36
+ * create 2025/07/24 20:31
  * <p>
- * update 2025/07/24 17:36
+ * update 2025/07/24 20:31
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -98,7 +98,6 @@ public class MarketGroupAggregate implements TianyanSalesAggregate {
     public MarketGroupAggregate validate() {
         validateMarketGroupId();
         validateNameZh();
-        validateNameEn();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -114,12 +113,6 @@ public class MarketGroupAggregate implements TianyanSalesAggregate {
     private void validateNameZh() {
         if (nameZh == null) {
             throw new AggregateValidateException("中文名称不能为 null ");
-        }
-    }
-
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new AggregateValidateException("英文名称不能为 null ");
         }
     }
 

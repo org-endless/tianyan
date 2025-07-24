@@ -15,4 +15,4 @@ CREATE TABLE item_group_game_eve (
     UNIQUE KEY (item_group_id, remove_at),
     UNIQUE KEY (code, remove_at)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT '游戏EVE资源项分组表';
-CREATE INDEX idx_game_eve_item_category_id ON item_group_game_eve (game_eve_item_category_id);
+CREATE INDEX idx_game_eve_item_category_id ON item_group_game_eve (item_category_id);

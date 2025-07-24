@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCreateReqDTransfer
  * <p>游戏EVE资源项创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 19:53
+ * create 2025/07/24 20:58
  * <p>
- * update 2025/07/24 19:53
+ * update 2025/07/24 20:58
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "isPublished", "createUserId"})
+@JSONType(orders = {"code", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "isPublished", "createUserId"})
 public class GameEveItemCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
@@ -55,37 +55,17 @@ public class GameEveItemCreateReqDTransfer implements TianyanMetadataDrivenTrans
     private final String marketGroupId;
 
     /**
-     * 中文全称
+     * 资源项中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 英文全称
+     * 资源项英文全称
      */
     private final String fullNameEn;
 
     /**
-     * 质量数量
-     */
-    private final String massQuantity;
-
-    /**
-     * 质量单位
-     */
-    private final String massUnit;
-
-    /**
-     * 体积数量
-     */
-    private final String volumeQuantity;
-
-    /**
-     * 体积单位
-     */
-    private final String volumeUnit;
-
-    /**
-     * 描述
+     * 资源项描述
      */
     private final String description;
 
@@ -123,7 +103,7 @@ public class GameEveItemCreateReqDTransfer implements TianyanMetadataDrivenTrans
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new DrivenTransferValidateException("中文全称不能为空");
+            throw new DrivenTransferValidateException("资源项中文全称不能为空");
         }
     }
 

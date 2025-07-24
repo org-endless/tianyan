@@ -2,11 +2,9 @@ package org.endless.tianyan.item.components.item.category.game.eve.infrastructur
 
 import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
 import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerNotFoundException;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
 import org.endless.tianyan.item.components.item.category.game.eve.infrastructure.data.persistence.mapper.GameEveItemCategoryMapper;
@@ -76,13 +74,10 @@ public class GameEveItemCategoryDataManager implements GameEveItemCategoryReposi
 
     @Override
     @Log(message = "游戏EVE资源项分类根据编码查询ID数据", value = "#aggregate", level = LogLevel.TRACE)
-    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(String code) {
+    public Optional<String> findItemCategoryIdByCode(String code) {
         Optional.ofNullable(code)
                 .filter(StringUtils::hasText)
                 .orElseThrow(() -> new DataManagerRequestNullException("游戏EVE资源项分类编码不能为空"));
-        return GameEveItemCategoryFindIdRespQTransfer.builder()
-                .itemCategoryId(gameEveItemCategoryMapper.findIdByCode(code)
-                        .orElseThrow(() -> new DataManagerNotFoundException("游戏EVE资源项分类编码不存在")))
-                .build().validate();
+        return gameEveItemCategoryMapper.findItemCategoryIdByCode(code);
     }
 }

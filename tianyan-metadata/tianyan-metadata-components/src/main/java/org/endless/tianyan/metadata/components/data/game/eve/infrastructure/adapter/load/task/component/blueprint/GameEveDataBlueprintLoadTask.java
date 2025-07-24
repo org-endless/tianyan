@@ -47,11 +47,10 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
         Optional.ofNullable(dataMap)
                 .filter(m -> !CollectionUtils.isEmpty(m))
                 .orElseThrow(() -> new DrivenAdapterManagerException("蓝图数据列表为空，无法执行数据加载任务"));
-        
+
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {
-
                     GameEveDataFileBlueprintRespDTransfer blueprint = TypeUtils.cast(value, GameEveDataFileBlueprintRespDTransfer.class).validate();
                     String itemId = gameEveDataItemRestClient.findItemIdByCode(blueprint.getBlueprintTypeID());
                     GameEveDataFileBlueprintActivityRespDTransfer manufacturing = blueprint.getActivities().getManufacturing();
@@ -74,7 +73,6 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
                     if (blueprintCycleImprovement != null) {
                         createActivity(itemId, blueprint.getBlueprintTypeID(), "BLUEPRINT_CYCLE_IMPROVEMENT", null, blueprintCycleImprovement);
                     }
-                    log.info("加载蓝图数据成功，key:{}, value:{}", key, blueprint);
                 } catch (Exception e) {
                     log.error("加载蓝图数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
                 }
@@ -122,5 +120,4 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
                 .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                 .build().validate());
     }
-
 }

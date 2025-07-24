@@ -3,6 +3,7 @@ package org.endless.tianyan.item.components.item.category.game.eve.application.q
 import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
 import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.GameEveItemCategoryQueryHandler;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
@@ -35,10 +36,13 @@ public class GameEveItemCategoryQueryHandlerImpl implements GameEveItemCategoryQ
 
     @Override
     @Log(message = "游戏EVE资源项分类根据编码查询ID", value = "#command", level = LogLevel.TRACE)
-    public GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
+    public GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类根据编码查询ID参数不能为空"));
-        return gameEveItemCategoryQueryRepository.findIdByCode(query.getCode());
+        return GameEveItemCategoryFindIdRespQTransfer.builder()
+                .itemCategoryId(gameEveItemCategoryQueryRepository.findItemCategoryIdByCode(query.getCode())
+                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项分类不存在")))
+                .build().validate();
     }
 }

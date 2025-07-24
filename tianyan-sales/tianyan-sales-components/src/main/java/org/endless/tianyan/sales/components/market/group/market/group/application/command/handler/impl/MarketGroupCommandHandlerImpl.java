@@ -45,9 +45,9 @@ public class MarketGroupCommandHandlerImpl implements MarketGroupCommandHandler 
                 .orElseThrow(() -> new CommandReqTransferNullException("市场分组创建命令参数不能为空"));
         MarketGroupAggregate aggregate = MarketGroupAggregate.create(MarketGroupAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameZhFullName())))
+                        .fullName(command.getFullNameZh())))
                 .nameEn(NameValue.create(NameValue.builder()
-                        .fullName(command.getNameEnFullName())))
+                        .fullName(command.getFullNameEn())))
                 .parentId(command.getParentId())
                 .createUserId(command.getCreateUserId()));
         marketGroupRepository.save(aggregate);

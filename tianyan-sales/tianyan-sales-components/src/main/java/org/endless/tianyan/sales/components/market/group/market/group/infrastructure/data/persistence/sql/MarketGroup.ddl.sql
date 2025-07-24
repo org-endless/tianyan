@@ -4,7 +4,7 @@ CREATE TABLE market_group (
     name_zh_full_name    VARCHAR(255) NOT NULL COMMENT '全称',
     name_zh_alias        VARCHAR(255) NULL COMMENT '别名',
     name_zh_abbreviation VARCHAR(255) NULL COMMENT '简称',
-    name_en_full_name    VARCHAR(255) NOT NULL COMMENT '全称',
+    name_en_full_name    VARCHAR(255) NULL COMMENT '全称',
     name_en_alias        VARCHAR(255) NULL COMMENT '别名',
     name_en_abbreviation VARCHAR(255) NULL COMMENT '简称',
     parent_id            VARCHAR(255) NULL COMMENT '父市场分组ID',

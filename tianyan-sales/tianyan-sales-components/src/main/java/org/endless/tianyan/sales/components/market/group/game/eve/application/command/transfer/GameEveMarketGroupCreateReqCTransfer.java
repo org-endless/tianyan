@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupCreateReqCTransfer
  * <p>游戏EVE市场分组创建命令请求传输对象
  * <p>
- * create 2025/07/24 17:37
+ * create 2025/07/24 20:33
  * <p>
- * update 2025/07/24 17:37
+ * update 2025/07/24 20:33
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "nameZhFullName", "nameEnFullName", "parentCode", "createUserId"})
+@JSONType(orders = {"code", "fullNameZh", "fullNameEn", "parentCode", "createUserId"})
 public class GameEveMarketGroupCreateReqCTransfer implements TianyanSalesCommandTransfer {
 
     /**
@@ -39,14 +39,14 @@ public class GameEveMarketGroupCreateReqCTransfer implements TianyanSalesCommand
     private final String code;
 
     /**
-     * 中文全称
+     * 市场分组中文全称
      */
-    private final String nameZhFullName;
+    private final String fullNameZh;
 
     /**
-     * 英文全称
+     * 市场分组英文全称
      */
-    private final String nameEnFullName;
+    private final String fullNameEn;
 
     /**
      * 父市场分组编码
@@ -61,8 +61,8 @@ public class GameEveMarketGroupCreateReqCTransfer implements TianyanSalesCommand
     @Override
     public GameEveMarketGroupCreateReqCTransfer validate() {
         validateCode();
-        validateNameZhFullName();
-        validateNameEnFullName();
+        validateFullNameZh();
+        validateFullNameEn();
         validateCreateUserId();
         return this;
     }
@@ -73,15 +73,15 @@ public class GameEveMarketGroupCreateReqCTransfer implements TianyanSalesCommand
         }
     }
 
-    private void validateNameZhFullName() {
-        if (!StringUtils.hasText(nameZhFullName)) {
-            throw new CommandTransferValidateException("中文全称不能为空");
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
+            throw new CommandTransferValidateException("市场分组中文全称不能为空");
         }
     }
 
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
-            throw new CommandTransferValidateException("英文全称不能为空");
+    private void validateFullNameEn() {
+        if (!StringUtils.hasText(fullNameEn)) {
+            throw new CommandTransferValidateException("市场分组英文全称不能为空");
         }
     }
 

@@ -58,8 +58,8 @@ public class GameEveMarketGroupCommandHandlerImpl implements GameEveMarketGroupC
                     .marketGroupId(parentId).build().validate());
         }
         String marketGroupId = marketGroupDrivingAdapter.create(MarketGroupCreateReqCTransfer.builder()
-                .nameZhFullName(command.getNameZhFullName())
-                .nameEnFullName(command.getNameEnFullName())
+                .fullNameZh(command.getFullNameZh())
+                .fullNameEn(command.getFullNameEn())
                 .parentId(command.getParentCode())
                 .createUserId(command.getCreateUserId())
                 .build().validate()).validate().getMarketGroupId();

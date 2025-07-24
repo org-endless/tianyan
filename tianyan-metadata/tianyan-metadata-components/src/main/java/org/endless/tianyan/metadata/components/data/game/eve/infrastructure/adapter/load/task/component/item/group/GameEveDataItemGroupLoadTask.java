@@ -51,11 +51,11 @@ public class GameEveDataItemGroupLoadTask implements GameEveDataLoadTask {
             dataMap.forEach((key, value) -> {
                 try {
                     GameEveDataFileItemGroupRespDTransfer itemGroup = TypeUtils.cast(value, GameEveDataFileItemGroupRespDTransfer.class).validate();
-                    String categoryId = gameEveDataItemCategoryRestClient.findGameEveItemCategoryIdByCode(itemGroup.getCategoryID())
+                    String itemCategoryId = gameEveDataItemCategoryRestClient.findItemCategoryIdByCode(itemGroup.getCategoryID())
                             .orElseThrow(() -> new DrivenAdapterManagerException("资源项分类不存在，无法执行数据加载任务"));
                     gameEveDataItemGroupRestClient.create(GameEveItemGroupCreateReqDTransfer.builder()
                             .code(key)
-                            .gameEveItemCategoryId(categoryId)
+                            .itemCategoryId(itemCategoryId)
                             .fullNameZh(itemGroup.getName().getZh() == null ? itemGroup.getName().getEn() : itemGroup.getName().getZh())
                             .fullNameEn(itemGroup.getName().getEn())
                             .isPublished(itemGroup.getPublished())
@@ -63,7 +63,7 @@ public class GameEveDataItemGroupLoadTask implements GameEveDataLoadTask {
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                             .build().validate());
                 } catch (Exception e) {
-                    log.error("加载资源项分组数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
+                    log.error("加载资源项分组数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage(), e);
                 }
             });
         });

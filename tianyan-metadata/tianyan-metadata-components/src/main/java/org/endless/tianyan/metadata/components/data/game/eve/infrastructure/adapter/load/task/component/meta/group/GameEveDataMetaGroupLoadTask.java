@@ -46,10 +46,11 @@ public class GameEveDataMetaGroupLoadTask implements GameEveDataLoadTask {
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {
-                    GameEveDataFileMarketGroupRespDTransfer metaGroup = TypeUtils.cast(value, GameEveDataFileMarketGroupRespDTransfer.class).validate();
+                    GameEveDataFileMarketGroupRespDTransfer metaGroup = TypeUtils.cast(value, GameEveDataFileMarketGroupRespDTransfer.class)
+                            .validate();
                     gameEveDataMetaGroupDrivenAdapter.create(GameEveMetaGroupCreateReqCTransfer.builder()
                             .code(key)
-                            .fullNameZh(metaGroup.getNameID().getZh())
+                            .fullNameZh(metaGroup.getNameID().getZh() == null ? metaGroup.getNameID().getEn() : metaGroup.getNameID().getZh())
                             .fullNameEn(metaGroup.getNameID().getEn())
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                             .build().validate());
@@ -67,6 +68,6 @@ public class GameEveDataMetaGroupLoadTask implements GameEveDataLoadTask {
 
     @Override
     public Integer pageSize() {
-        return 10;
+        return 100;
     }
 }

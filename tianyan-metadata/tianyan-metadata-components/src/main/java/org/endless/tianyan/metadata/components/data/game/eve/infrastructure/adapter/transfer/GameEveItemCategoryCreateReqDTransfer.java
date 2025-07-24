@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryCreateReqDTransfer
  * <p>游戏EVE资源项分类创建被动请求传输对象
  * <p>
- * create 2025/07/24 19:53
+ * create 2025/07/24 20:58
  * <p>
- * update 2025/07/24 19:53
+ * update 2025/07/24 20:58
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -40,12 +40,12 @@ public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDri
     private final String code;
 
     /**
-     * 游戏EVE资源项分类中文名称
+     * 资源项分类中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 游戏EVE资源项分类英文名称
+     * 资源项分类英文全称
      */
     private final String fullNameEn;
 
@@ -77,13 +77,13 @@ public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDri
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new DrivenTransferValidateException("游戏EVE资源项分类中文名称不能为空");
+            throw new DrivenTransferValidateException("资源项分类中文全称不能为空");
         }
     }
 
     private void validateFullNameEn() {
         if (!StringUtils.hasText(fullNameEn)) {
-            throw new DrivenTransferValidateException("游戏EVE资源项分类英文名称不能为空");
+            throw new DrivenTransferValidateException("资源项分类英文全称不能为空");
         }
     }
 

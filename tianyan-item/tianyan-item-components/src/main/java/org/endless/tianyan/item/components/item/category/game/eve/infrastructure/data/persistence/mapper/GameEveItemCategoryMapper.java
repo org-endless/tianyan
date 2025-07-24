@@ -24,11 +24,11 @@ import java.util.Optional;
 @Mapper
 public interface GameEveItemCategoryMapper extends TianyanItemMapper<GameEveItemCategoryRecord> {
 
-    default Optional<String> findIdByCode(String code) {
+    default Optional<String> findItemCategoryIdByCode(String code) {
         QueryWrapper<GameEveItemCategoryRecord> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()
-                .select(GameEveItemCategoryRecord::getGameEveItemCategoryId)
+                .select(GameEveItemCategoryRecord::getItemCategoryId)
                 .eq(GameEveItemCategoryRecord::getCode, code);
-        return findFirstByWrapper(queryWrapper).map(GameEveItemCategoryRecord::getGameEveItemCategoryId);
+        return findFirstByWrapper(queryWrapper).map(GameEveItemCategoryRecord::getItemCategoryId);
     }
 }

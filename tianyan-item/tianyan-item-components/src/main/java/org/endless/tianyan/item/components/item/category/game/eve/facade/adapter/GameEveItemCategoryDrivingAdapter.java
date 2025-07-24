@@ -22,6 +22,6 @@ public interface GameEveItemCategoryDrivingAdapter extends TianyanItemDrivingAda
 
     void create(GameEveItemCategoryCreateReqCTransfer command);
 
-    GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
+    GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
 
 }

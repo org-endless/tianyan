@@ -36,8 +36,6 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
 
     private final static Pattern SCANNER_PATTERN = Pattern.compile("^\\d{1,10}:$", Pattern.MULTILINE);
 
-    private final static Integer MAX_TASK_SIZE = 100;
-
     private static final Logger log = LoggerFactory.getLogger(GameEveDataLoadDrivenAdapterManager.class);
 
     private final GameEveDataLoadTaskFactory gameEveDataLoadTaskFactory;
@@ -61,7 +59,7 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
                     futures.add(task.execute(new HashMap<>(dataMap)));
                     dataMap.clear();
                 }
-                if (futures.size() >= MAX_TASK_SIZE) {
+                if (futures.size() >= task.pageSize() / 10) {
                     CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
                     futures.clear();
                 }

@@ -38,7 +38,6 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
         this.gameEveDataMarketGroupRestClient = gameEveDataMarketGroupRestClient;
     }
 
-
     @Override
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
         Optional.ofNullable(dataMap)
@@ -98,7 +97,6 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
                                     });
                         })
                         .toList();
-                // 等待当前层所有任务完成
                 CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
                 processed += currentLayer.size();
                 for (String currentId : currentLayer) {

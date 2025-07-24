@@ -4,7 +4,7 @@ groupId: org.endless
 serviceName: TianyanSales
 rootPath: tianyan-sales/tianyan-sales-components
 serviceSubPackage: components
-contextName: market.group
+contextName: sales
 domainName: GameEveMarketGroup
 aggregateName: GameEveMarketGroupAggregate
 description: 游戏EVE市场分组
@@ -32,13 +32,13 @@ transfers:
         type: String
         description: 游戏EVE市场分组编码
         nullable: false
-      - name: fullNameZh
+      - name: nameZhFullName
         type: String
-        description: 市场分组中文全称
+        description: 中文全称
         nullable: false
-      - name: fullNameEn
+      - name: nameEnFullName
         type: String
-        description: 市场分组英文全称
+        description: 英文全称
         nullable: false
       - name: parentCode
         type: String

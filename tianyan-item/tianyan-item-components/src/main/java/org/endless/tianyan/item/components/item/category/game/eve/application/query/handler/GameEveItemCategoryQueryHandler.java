@@ -18,6 +18,6 @@ import org.endless.tianyan.item.components.item.category.game.eve.application.qu
  */
 public interface GameEveItemCategoryQueryHandler extends TianyanItemQueryHandler {
 
-    GameEveItemCategoryFindIdRespQTransfer findIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
+    GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
 
 }

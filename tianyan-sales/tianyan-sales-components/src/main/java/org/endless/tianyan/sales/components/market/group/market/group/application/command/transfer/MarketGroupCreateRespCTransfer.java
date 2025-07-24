@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * MarketGroupCreateRespCTransfer
  * <p>市场分组创建命令响应传输对象
  * <p>
- * create 2025/07/24 17:36
+ * create 2025/07/24 20:31
  * <p>
- * update 2025/07/24 17:36
+ * update 2025/07/24 20:31
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer

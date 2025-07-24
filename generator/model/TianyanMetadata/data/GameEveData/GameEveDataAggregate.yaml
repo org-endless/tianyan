@@ -322,7 +322,7 @@ transfers:
         type: String
         description: 游戏EVE资源项分组编码
         nullable: false
-      - name: gameEveItemCategoryId
+      - name: itemCategoryId
         type: String
         description: 资源项分类ID
         nullable: false
@@ -548,9 +548,9 @@ transfers:
     messageType: RESPONSE
     description: 游戏EVE资源项分类ID查询被动响应传输对象
     fields:
-      - name: gameEveItemCategoryId
+      - name: itemCategoryId
         type: String
-        description: 游戏EVE资源项分类ID
+        description: 资源项分类ID
         nullable: false
   - name: GameEveItemGroupFindIdRespDTransfer
     adapterType: DRIVEN
