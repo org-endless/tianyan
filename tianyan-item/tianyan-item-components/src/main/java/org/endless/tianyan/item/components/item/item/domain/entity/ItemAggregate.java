@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * ItemAggregate
  * <p>资源项聚合根
  * <p>
- * create 2025/07/23 01:33
+ * create 2025/07/24 16:27
  * <p>
- * update 2025/07/23 01:33
+ * update 2025/07/24 16:27
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -38,6 +38,11 @@ public class ItemAggregate implements TianyanItemAggregate {
      * 资源项ID
      */
     private final String itemId;
+
+    /**
+     * 元分组ID
+     */
+    private String metaGroupId;
 
     /**
      * 资源项分组ID
@@ -92,13 +97,14 @@ public class ItemAggregate implements TianyanItemAggregate {
     public static ItemAggregate create(ItemAggregateBuilder builder) {
         return builder
                 .itemId(IdGenerator.of())
+                .metaGroupId(builder.metaGroupId)
                 .itemGroupId(builder.itemGroupId)
                 .nameZh(builder.nameZh)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-                .innerBuild()
-                .validate();
+            .innerBuild()
+            .validate();
     }
 
     public ItemAggregate remove(String modifyUserId) {
@@ -120,6 +126,7 @@ public class ItemAggregate implements TianyanItemAggregate {
     @Override
     public ItemAggregate validate() {
         validateItemId();
+        validateMetaGroupId();
         validateItemGroupId();
         validateNameZh();
         validateCreateUserId();
@@ -131,6 +138,12 @@ public class ItemAggregate implements TianyanItemAggregate {
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new AggregateValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateMetaGroupId() {
+        if (!StringUtils.hasText(metaGroupId)) {
+            throw new AggregateValidateException("元分组ID不能为空");
         }
     }
 

@@ -56,9 +56,11 @@ public class GameEveDataItemLoadTask implements GameEveDataLoadTask {
             for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
+                log.info("加载资源项分类数据，key:{}, value:{}", key, value);
                 try {
                     GameEveDataFileItemRespDTransfer item = TypeUtils.cast(value, GameEveDataFileItemRespDTransfer.class).validate();
-                    if (item.getGroupID() == null || item.getMarketGroupID() == null || item.getName() == null || item.getPublished() == null) {
+                    if (item.getGroupID() == null || item.getName() == null || item.getPublished() == null) {
+                        log.error("加载资源项分类数据失败，key:{}, item:{}", key, item);
                         continue;
                     }
                     gameEveDataItemRestClient.create(GameEveItemCreateReqDTransfer.builder()

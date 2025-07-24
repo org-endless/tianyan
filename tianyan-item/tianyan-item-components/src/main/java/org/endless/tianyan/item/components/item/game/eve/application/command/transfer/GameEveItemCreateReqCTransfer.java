@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveItemCreateReqCTransfer
  * <p>游戏EVE资源项创建命令请求传输对象
  * <p>
- * create 2025/07/23 01:33
+ * create 2025/07/24 16:27
  * <p>
- * update 2025/07/23 01:33
+ * update 2025/07/24 16:27
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -30,13 +30,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "isPublished", "createUserId"})
+@JSONType(orders = {"code", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "isPublished", "createUserId"})
 public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
      * 游戏EVE资源项编码
      */
     private final String code;
+
+    /**
+     * 元分组ID
+     */
+    private final String metaGroupId;
 
     /**
      * 资源项分组ID
@@ -96,6 +101,7 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
     @Override
     public GameEveItemCreateReqCTransfer validate() {
         validateCode();
+        validateMetaGroupId();
         validateItemGroupId();
         validateFullNameZh();
         validateIsPublished();
@@ -106,6 +112,12 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
             throw new CommandTransferValidateException("游戏EVE资源项编码不能为空");
+        }
+    }
+
+    private void validateMetaGroupId() {
+        if (!StringUtils.hasText(metaGroupId)) {
+            throw new CommandTransferValidateException("元分组ID不能为空");
         }
     }
 

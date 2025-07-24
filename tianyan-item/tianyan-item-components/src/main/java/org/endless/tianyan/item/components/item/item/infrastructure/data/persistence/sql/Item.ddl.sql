@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
     item_id              VARCHAR(255)   NOT NULL PRIMARY KEY COMMENT '资源项ID',
+    meta_group_id        VARCHAR(255)   NOT NULL COMMENT '元分组ID',
     item_group_id        VARCHAR(255)   NOT NULL COMMENT '资源项分组ID',
     market_group_id      VARCHAR(255)   NULL COMMENT '市场分组ID',
     name_zh_full_name    VARCHAR(255)   NOT NULL COMMENT '全称',
@@ -25,5 +26,6 @@ CREATE TABLE item (
     modify_at            BIGINT         NOT NULL COMMENT '修改时间',
     remove_at            BIGINT         NULL DEFAULT 0 COMMENT '删除时间'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT '资源项表';
+CREATE INDEX idx_meta_group_id ON item (meta_group_id);
 CREATE INDEX idx_item_group_id ON item (item_group_id);
 CREATE INDEX idx_market_group_id ON item (market_group_id);

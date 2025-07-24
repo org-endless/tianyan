@@ -120,6 +120,10 @@ transfers:
         type: GameEveDataFileNameRespDTransfer
         description: 资源项名称
         nullable: false
+      - name: metaGroupID
+        type: String
+        description: 元分组ID
+        nullable: true
       - name: groupID
         type: String
         description: 资源项分组ID

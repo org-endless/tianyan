@@ -13,6 +13,10 @@ fields:
     type: String
     description: 资源项ID
     nullable: false
+  - name: metaGroupId
+    type: String
+    description: 元分组ID
+    nullable: true
   - name: itemGroupId
     type: String
     description: 资源项分组ID
@@ -102,6 +106,10 @@ transfers:
     messageType: REQUEST
     description: 资源项创建命令请求传输对象
     fields:
+      - name: metaGroupId
+        type: String
+        description: 元分组ID
+        nullable: true
       - name: itemGroupId
         type: String
         description: 资源项分组ID

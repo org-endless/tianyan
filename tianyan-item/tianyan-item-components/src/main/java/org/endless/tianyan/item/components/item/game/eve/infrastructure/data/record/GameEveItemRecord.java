@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * GameEveItemRecord
  * <p>游戏EVE资源项数据库记录实体
  * <p>
- * create 2025/07/23 01:04
+ * create 2025/07/24 16:27
  * <p>
- * update 2025/07/23 01:04
+ * update 2025/07/24 16:27
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord

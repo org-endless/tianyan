@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveDataFileItemRespDTransfer
  * <p>游戏EVE数据文件资源项被动响应传输对象
  * <p>
- * create 2025/07/24 11:50
+ * create 2025/07/24 16:32
  * <p>
- * update 2025/07/24 11:50
+ * update 2025/07/24 16:32
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,13 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"name", "groupID", "marketGroupID", "basePrice", "published"})
+@JSONType(orders = {"name", "metaGroupID", "groupID", "marketGroupID", "basePrice", "published"})
 public class GameEveDataFileItemRespDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
      * 资源项名称
      */
     private final GameEveDataFileNameRespDTransfer name;
+
+    /**
+     * 元分组ID
+     */
+    private final String metaGroupID;
 
     /**
      * 资源项分组ID
@@ -62,6 +67,7 @@ public class GameEveDataFileItemRespDTransfer implements TianyanMetadataDrivenTr
     @Override
     public GameEveDataFileItemRespDTransfer validate() {
         validateName();
+        validateMetaGroupID();
         validateGroupID();
         validatePublished();
         return this;
@@ -70,6 +76,12 @@ public class GameEveDataFileItemRespDTransfer implements TianyanMetadataDrivenTr
     private void validateName() {
         if (name == null) {
             throw new DrivenTransferValidateException("资源项名称不能为 null ");
+        }
+    }
+
+    private void validateMetaGroupID() {
+        if (!StringUtils.hasText(metaGroupID)) {
+            throw new DrivenTransferValidateException("元分组ID不能为空");
         }
     }
 

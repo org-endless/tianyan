@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemAggregate
  * <p>游戏EVE资源项聚合根
  * <p>
- * create 2025/07/23 01:04
+ * create 2025/07/24 16:27
  * <p>
- * update 2025/07/23 01:04
+ * update 2025/07/24 16:27
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -77,8 +77,8 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-                .innerBuild()
-                .validate();
+            .innerBuild()
+            .validate();
     }
 
     public GameEveItemAggregate remove(String modifyUserId) {

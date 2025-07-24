@@ -44,6 +44,7 @@ public class ItemCommandHandlerImpl implements ItemCommandHandler {
                 .map(ItemCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("资源项创建参数不能为空"));
         ItemAggregate aggregate = ItemAggregate.create(ItemAggregate.builder()
+                .metaGroupId(command.getMetaGroupId())
                 .itemGroupId(command.getItemGroupId())
                 .marketGroupId(command.getMarketGroupId())
                 .nameZh(NameValue.create(NameValue.builder()

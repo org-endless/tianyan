@@ -47,6 +47,7 @@ public class GameEveItemCommandHandlerImpl implements GameEveItemCommandHandler 
                 .map(GameEveItemCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项创建参数不能为空"));
         String itemId = itemDrivingAdapter.create(ItemCreateReqCTransfer.builder()
+                        .metaGroupId(command.getMetaGroupId())
                         .itemGroupId(command.getItemGroupId())
                         .marketGroupId(command.getMarketGroupId())
                         .fullNameZh(command.getFullNameZh())

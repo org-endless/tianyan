@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * ItemCreateReqCTransfer
  * <p>资源项创建命令请求传输对象
  * <p>
- * create 2025/07/23 01:33
+ * create 2025/07/24 16:46
  * <p>
- * update 2025/07/23 01:33
+ * update 2025/07/24 16:46
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -31,8 +31,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "createUserId"})
+@JSONType(orders = {"metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "createUserId"})
 public class ItemCreateReqCTransfer implements TianyanItemCommandTransfer {
+
+    /**
+     * 元分组ID
+     */
+    private final String metaGroupId;
 
     /**
      * 资源项分组ID

@@ -21,9 +21,9 @@ import java.math.BigDecimal;
  * ItemRecord
  * <p>资源项数据库记录实体
  * <p>
- * create 2025/07/23 08:58
+ * create 2025/07/24 16:27
  * <p>
- * update 2025/07/23 08:58
+ * update 2025/07/24 16:27
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -42,6 +42,11 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
      */
     @TableId
     private String itemId;
+
+    /**
+     * 元分组ID
+     */
+    private String metaGroupId;
 
     /**
      * 资源项分组ID
@@ -164,6 +169,7 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
         String itemId = aggregate.getItemId();
         return ItemRecord.builder()
                 .itemId(itemId)
+                .metaGroupId(aggregate.getMetaGroupId())
                 .itemGroupId(aggregate.getItemGroupId())
                 .marketGroupId(aggregate.getMarketGroupId())
                 .nameZhFullName(aggregate.getNameZh().getFullName())
@@ -192,6 +198,7 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
         validate();
         return ItemAggregate.builder()
                 .itemId(itemId)
+                .metaGroupId(metaGroupId)
                 .itemGroupId(itemGroupId)
                 .marketGroupId(marketGroupId)
                 .nameZh(NameValue.builder()
@@ -226,6 +233,7 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     @Override
     public ItemRecord validate() {
         validateItemId();
+        validateMetaGroupId();
         validateItemGroupId();
         validateNameZhFullName();
         validateCreateUserId();
@@ -237,6 +245,12 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
             throw new DataRecordValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validateMetaGroupId() {
+        if (!StringUtils.hasText(metaGroupId)) {
+            throw new DataRecordValidateException("元分组ID不能为空");
         }
     }
 

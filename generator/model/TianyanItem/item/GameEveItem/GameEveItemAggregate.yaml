@@ -36,6 +36,10 @@ transfers:
         type: String
         description: 游戏EVE资源项编码
         nullable: false
+      - name: metaGroupId
+        type: String
+        description: 元分组ID
+        nullable: false
       - name: itemGroupId
         type: String
         description: 资源项分组ID
