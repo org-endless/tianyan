@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
  * ItemGroupRecord
  * <p>资源项分组数据库记录实体
  * <p>
- * create 2025/07/21 16:04
+ * create 2025/07/24 20:23
  * <p>
- * update 2025/07/21 16:04
+ * update 2025/07/24 20:23
  *
  * @author Deng Haozhi
  * @see TianyanItemRecord
@@ -114,9 +114,9 @@ public class ItemGroupRecord implements TianyanItemRecord<ItemGroupAggregate> {
                 .nameZhFullName(aggregate.getNameZh().getFullName())
                 .nameZhAlias(aggregate.getNameZh().getAlias())
                 .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEnFullName(aggregate.getNameEn().getFullName())
-                .nameEnAlias(aggregate.getNameEn().getAlias())
-                .nameEnAbbreviation(aggregate.getNameEn().getAbbreviation())
+                .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getFullName())
+                .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAlias())
+                .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAbbreviation())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -148,7 +148,6 @@ public class ItemGroupRecord implements TianyanItemRecord<ItemGroupAggregate> {
     public ItemGroupRecord validate() {
         validateItemGroupId();
         validateNameZhFullName();
-        validateNameEnFullName();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -163,12 +162,6 @@ public class ItemGroupRecord implements TianyanItemRecord<ItemGroupAggregate> {
 
     private void validateNameZhFullName() {
         if (!StringUtils.hasText(nameZhFullName)) {
-            throw new DataRecordValidateException("全称不能为空");
-        }
-    }
-
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
             throw new DataRecordValidateException("全称不能为空");
         }
     }

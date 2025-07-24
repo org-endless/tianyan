@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * ItemGroupAggregate
  * <p>资源项分组聚合根
  * <p>
- * create 2025/07/21 16:04
+ * create 2025/07/24 20:23
  * <p>
- * update 2025/07/21 16:04
+ * update 2025/07/24 20:23
  *
  * @author Deng Haozhi
  * @see TianyanItemAggregate
@@ -67,13 +67,10 @@ public class ItemGroupAggregate implements TianyanItemAggregate {
     public static ItemGroupAggregate create(ItemGroupAggregateBuilder builder) {
         return builder
                 .itemGroupId(IdGenerator.of())
-                .nameZh(builder.nameZh)
-                .nameEn(builder.nameEn)
-                .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-                .innerBuild()
-                .validate();
+            .innerBuild()
+            .validate();
     }
 
     public ItemGroupAggregate remove(String modifyUserId) {
@@ -96,7 +93,6 @@ public class ItemGroupAggregate implements TianyanItemAggregate {
     public ItemGroupAggregate validate() {
         validateItemGroupId();
         validateNameZh();
-        validateNameEn();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -112,12 +108,6 @@ public class ItemGroupAggregate implements TianyanItemAggregate {
     private void validateNameZh() {
         if (nameZh == null) {
             throw new AggregateValidateException("资源项分组中文名称不能为 null ");
-        }
-    }
-
-    private void validateNameEn() {
-        if (nameEn == null) {
-            throw new AggregateValidateException("资源项分组英文名称不能为 null ");
         }
     }
 
