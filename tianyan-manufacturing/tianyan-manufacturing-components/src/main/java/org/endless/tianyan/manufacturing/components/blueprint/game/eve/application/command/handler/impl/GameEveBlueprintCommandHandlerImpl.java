@@ -47,7 +47,6 @@ public class GameEveBlueprintCommandHandlerImpl implements GameEveBlueprintComma
         this.blueprintDrivingAdapter = blueprintDrivingAdapter;
     }
 
-
     @Override
     @Transactional
     @Log(message = "游戏EVE蓝图创建命令", value = "#command", level = LogLevel.TRACE)
@@ -88,5 +87,4 @@ public class GameEveBlueprintCommandHandlerImpl implements GameEveBlueprintComma
                 .createUserId(command.getCreateUserId()));
         gameEveBlueprintRepository.save(aggregate);
     }
-
 }

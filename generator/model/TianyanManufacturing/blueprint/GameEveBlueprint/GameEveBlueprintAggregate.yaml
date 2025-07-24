@@ -124,6 +124,10 @@ transfers:
         type: Long
         description: 蓝图产品数量
         nullable: false
+      - name: successRate
+        type: String
+        description: 产品成功率(8, 5)
+        nullable: false
   - name: GameEveBlueprintSkillReqCTransfer
     adapterType: DRIVING
     cqrsType: COMMAND

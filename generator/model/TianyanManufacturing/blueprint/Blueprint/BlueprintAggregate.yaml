@@ -64,6 +64,10 @@ entities:
         type: Long
         description: 蓝图产品数量
         nullable: false
+      - name: successRate
+        type: Bigdecimal
+        description: 蓝图产品成功率(8, 5)
+        nullable: false
   - name: BlueprintSkillEntity
     description: 蓝图技能
     fields:
@@ -147,6 +151,10 @@ transfers:
       - name: quantity
         type: Long
         description: 蓝图产品数量
+        nullable: false
+      - name: successRate
+        type: String
+        description: 产品成功率(8, 5)
         nullable: false
   - name: BlueprintSkillReqCTransfer
     adapterType: DRIVING

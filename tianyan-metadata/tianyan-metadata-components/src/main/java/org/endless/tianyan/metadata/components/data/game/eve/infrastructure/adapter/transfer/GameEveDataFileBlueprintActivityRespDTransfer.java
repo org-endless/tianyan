@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveDataFileBlueprintActivityRespDTransfer
  * <p>游戏EVE数据文件蓝图工序被动响应传输对象
  * <p>
- * create 2025/07/24 08:51
+ * create 2025/07/24 10:31
  * <p>
- * update 2025/07/24 08:51
+ * update 2025/07/24 10:31
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -42,12 +42,12 @@ public class GameEveDataFileBlueprintActivityRespDTransfer implements TianyanMet
     /**
      * 工序物料列表
      */
-    private final List<GameEveDataFileBlueprintItemRespDTransfer> materials;
+    private final List<GameEveDataFileBlueprintMaterialRespDTransfer> materials;
 
     /**
      * 工序产品列表
      */
-    private final List<GameEveDataFileBlueprintItemRespDTransfer> products;
+    private final List<GameEveDataFileBlueprintProductRespDTransfer> products;
 
     /**
      * 工序技能列表

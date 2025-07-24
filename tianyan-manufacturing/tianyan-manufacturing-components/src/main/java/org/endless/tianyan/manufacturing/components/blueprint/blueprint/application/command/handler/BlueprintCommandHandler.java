@@ -1,7 +1,9 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler;
 
-import org.endless.tianyan.manufacturing.common.model.application.command.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
+import org.endless.tianyan.manufacturing.common.model.application.command.handler.TianyanManufacturingCommandHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintAggregate;
 
 /**
  * BlueprintCommandHandler
@@ -16,4 +18,7 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.e
  * @since 0.0.1
  */
 public interface BlueprintCommandHandler extends TianyanManufacturingCommandHandler<BlueprintAggregate> {
+
+    BlueprintCreateRespCTransfer create(BlueprintCreateReqCTransfer command);
+
 }

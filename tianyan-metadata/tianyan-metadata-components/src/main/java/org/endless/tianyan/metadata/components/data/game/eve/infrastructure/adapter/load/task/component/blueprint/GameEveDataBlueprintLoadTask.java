@@ -57,11 +57,11 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer invention = blueprint.getActivities().getInvention();
                     if (invention != null) {
-                        createActivity(key, "INVENTION", blueprint.getMaxProductionLimit(), invention);
+                        createActivity(key, "INVENTION", null, invention);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer blueprintCopying = blueprint.getActivities().getCopying();
                     if (blueprintCopying != null) {
-                        createActivity(key, "BLUEPRINT_COPYING", blueprint.getMaxProductionLimit(), blueprintCopying);
+                        createActivity(key, "BLUEPRINT_COPYING", null, blueprintCopying);
                     }
                     GameEveDataFileBlueprintActivityRespDTransfer blueprintMaterialImprovement = blueprint.getActivities().getResearch_material();
                     if (blueprintMaterialImprovement != null) {
@@ -89,11 +89,12 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
         return 100;
     }
 
-    private void createActivity(String code, String type, Integer maxProductionLimit, GameEveDataFileBlueprintActivityRespDTransfer activity) {
+    private void createActivity(String itemId, String code, String type, Integer maxProductionLimit, GameEveDataFileBlueprintActivityRespDTransfer activity) {
         List<GameEveDataFileBlueprintItemRespDTransfer> materials = activity.getMaterials();
         List<GameEveDataFileBlueprintItemRespDTransfer> products = activity.getProducts();
         List<GameEveDataFileBlueprintSkillRespDTransfer> skills = activity.getSkills();
         gameEveDataBlueprintRestClient.create(GameEveBlueprintCreateReqDTransfer.builder()
+                .itemId(itemId)
                 .code(code)
                 .type(type)
                 .materials(CollectionUtils.isEmpty(materials) ? null : materials.stream()

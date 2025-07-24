@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintAggregate
  * <p>游戏EVE蓝图聚合根
  * <p>
- * create 2025/07/24 09:18
+ * create 2025/07/24 09:58
  * <p>
- * update 2025/07/24 09:18
+ * update 2025/07/24 09:58
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingAggregate
@@ -80,7 +80,6 @@ public class GameEveBlueprintAggregate implements TianyanManufacturingAggregate 
                 .blueprintId(builder.blueprintId)
                 .code(builder.code)
                 .type(builder.type)
-                .maxProductionLimit(builder.maxProductionLimit)
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
@@ -110,7 +109,6 @@ public class GameEveBlueprintAggregate implements TianyanManufacturingAggregate 
         validateBlueprintId();
         validateCode();
         validateType();
-        validateMaxProductionLimit();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -138,12 +136,6 @@ public class GameEveBlueprintAggregate implements TianyanManufacturingAggregate 
     private void validateType() {
         if (type == null) {
             throw new AggregateValidateException("游戏EVE蓝图类型不能为 null ");
-        }
-    }
-
-    private void validateMaxProductionLimit() {
-        if (maxProductionLimit == null || maxProductionLimit < 0) {
-            throw new AggregateValidateException("游戏EVE蓝图最大生产次数不能为 null 或小于 0，当前值为: " + maxProductionLimit);
         }
     }
 

@@ -1,9 +1,10 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.spring;
 
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.BlueprintCommandHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.BlueprintQueryHandler;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.BlueprintDrivingAdapter;
 
 /**
  * SpringBlueprintDrivingAdapter
@@ -32,5 +33,10 @@ public class SpringBlueprintDrivingAdapter implements BlueprintDrivingAdapter {
     public SpringBlueprintDrivingAdapter(BlueprintCommandHandler blueprintCommandHandler, BlueprintQueryHandler blueprintQueryHandler) {
         this.blueprintCommandHandler = blueprintCommandHandler;
         this.blueprintQueryHandler = blueprintQueryHandler;
+    }
+
+    @Override
+    public BlueprintCreateRespCTransfer create(BlueprintCreateReqCTransfer command) {
+        return blueprintCommandHandler.create(command);
     }
 }

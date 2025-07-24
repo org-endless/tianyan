@@ -4,7 +4,7 @@ CREATE TABLE blueprint_game_eve (
     blueprint_id          VARCHAR(255) NOT NULL COMMENT '蓝图ID',
     code                  VARCHAR(255) NOT NULL COMMENT '游戏EVE蓝图编码',
     type                  VARCHAR(255) NOT NULL COMMENT '游戏EVE蓝图类型',
-    max_production_limit  INT          NOT NULL COMMENT '游戏EVE蓝图最大生产次数',
+    max_production_limit  INT          NULL COMMENT '游戏EVE蓝图最大生产次数',
     create_user_id        VARCHAR(255) NOT NULL COMMENT '创建者ID',
     modify_user_id        VARCHAR(255) NOT NULL COMMENT '修改者ID',
     is_removed            BOOLEAN      NOT NULL COMMENT '是否已删除',

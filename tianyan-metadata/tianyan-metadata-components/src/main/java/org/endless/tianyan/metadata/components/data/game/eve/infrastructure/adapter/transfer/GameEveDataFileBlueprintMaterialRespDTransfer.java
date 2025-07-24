@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * GameEveItemCategoryFindIdRespDTransfer
- * <p>游戏EVE资源项分类ID查询被动响应传输对象
+ * GameEveDataFileBlueprintMaterialRespDTransfer
+ * <p>游戏EVE数据文件蓝图物料被动响应传输对象
  * <p>
  * create 2025/07/24 10:31
  * <p>
@@ -31,23 +31,35 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"gameEveItemCategoryId"})
-public class GameEveItemCategoryFindIdRespDTransfer implements TianyanMetadataDrivenTransfer {
+@JSONType(orders = {"quantity", "typeID"})
+public class GameEveDataFileBlueprintMaterialRespDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
-     * 游戏EVE资源项分类ID
+     * 蓝图物料数量
      */
-    private final String gameEveItemCategoryId;
+    private final Long quantity;
+
+    /**
+     * 资源项编码
+     */
+    private final String typeID;
 
     @Override
-    public GameEveItemCategoryFindIdRespDTransfer validate() {
-        validateGameEveItemCategoryId();
+    public GameEveDataFileBlueprintMaterialRespDTransfer validate() {
+        validateQuantity();
+        validateTypeID();
         return this;
     }
 
-    private void validateGameEveItemCategoryId() {
-        if (!StringUtils.hasText(gameEveItemCategoryId)) {
-            throw new DrivenTransferValidateException("游戏EVE资源项分类ID不能为空");
+    private void validateQuantity() {
+        if (quantity == null || quantity < 0) {
+            throw new DrivenTransferValidateException("蓝图物料数量不能为 null 或小于 0，当前值为: " + quantity);
+        }
+    }
+
+    private void validateTypeID() {
+        if (!StringUtils.hasText(typeID)) {
+            throw new DrivenTransferValidateException("资源项编码不能为空");
         }
     }
 }

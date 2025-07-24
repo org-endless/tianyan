@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintRecord
  * <p>游戏EVE蓝图数据库记录实体
  * <p>
- * create 2025/07/24 09:18
+ * create 2025/07/24 09:58
  * <p>
- * update 2025/07/24 09:18
+ * update 2025/07/24 09:58
  *
  * @author Deng Haozhi
  * @see TianyanManufacturingRecord
@@ -132,7 +132,6 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
         validateBlueprintId();
         validateCode();
         validateType();
-        validateMaxProductionLimit();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -160,12 +159,6 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
     private void validateType() {
         if (type == null) {
             throw new DataRecordValidateException("游戏EVE蓝图类型不能为 null ");
-        }
-    }
-
-    private void validateMaxProductionLimit() {
-        if (maxProductionLimit == null || maxProductionLimit < 0) {
-            throw new DataRecordValidateException("游戏EVE蓝图最大生产次数不能为 null 或小于 0，当前值为: " + maxProductionLimit);
         }
     }
 

@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintCreateReqDTransfer
  * <p>游戏EVE蓝图创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 08:51
+ * create 2025/07/24 10:31
  * <p>
- * update 2025/07/24 08:51
+ * update 2025/07/24 10:31
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,8 +31,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "type", "materials", "products", "skills", "cycle", "maxProductionLimit", "createUserId"})
+@JSONType(orders = {"itemId", "code", "type", "materials", "products", "skills", "cycle", "maxProductionLimit", "createUserId"})
 public class GameEveBlueprintCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
+
+    /**
+     * 资源项ID
+     */
+    private final String itemId;
 
     /**
      * 游戏EVE蓝图编码
@@ -76,11 +81,18 @@ public class GameEveBlueprintCreateReqDTransfer implements TianyanMetadataDriven
 
     @Override
     public GameEveBlueprintCreateReqDTransfer validate() {
+        validateItemId();
         validateCode();
         validateType();
         validateCycle();
         validateCreateUserId();
         return this;
+    }
+
+    private void validateItemId() {
+        if (!StringUtils.hasText(itemId)) {
+            throw new DrivenTransferValidateException("资源项ID不能为空");
+        }
     }
 
     private void validateCode() {

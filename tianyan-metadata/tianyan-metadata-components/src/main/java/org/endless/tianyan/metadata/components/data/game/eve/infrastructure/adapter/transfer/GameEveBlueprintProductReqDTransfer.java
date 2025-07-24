@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintProductReqDTransfer
  * <p>游戏EVE蓝图产品命令被动请求传输对象
  * <p>
- * create 2025/07/24 08:51
+ * create 2025/07/24 10:31
  * <p>
- * update 2025/07/24 08:51
+ * update 2025/07/24 10:31
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"itemId", "quantity"})
+@JSONType(orders = {"itemId", "quantity", "successRate"})
 public class GameEveBlueprintProductReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
@@ -44,10 +44,16 @@ public class GameEveBlueprintProductReqDTransfer implements TianyanMetadataDrive
      */
     private final Long quantity;
 
+    /**
+     * 产品成功率(8, 5)
+     */
+    private final String successRate;
+
     @Override
     public GameEveBlueprintProductReqDTransfer validate() {
         validateItemId();
         validateQuantity();
+        validateSuccessRate();
         return this;
     }
 
@@ -61,5 +67,9 @@ public class GameEveBlueprintProductReqDTransfer implements TianyanMetadataDrive
         if (quantity == null || quantity < 0) {
             throw new DrivenTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
         }
+    }
+
+    private void validateSuccessRate() {
+        Decimal.validateRate(successRate);
     }
 }

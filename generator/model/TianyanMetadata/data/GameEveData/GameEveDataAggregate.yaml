@@ -209,31 +209,49 @@ transfers:
         description: 工序耗时
         nullable: false
       - name: materials
-        type: List<GameEveDataFileBlueprintItemRespDTransfer>
+        type: List<GameEveDataFileBlueprintMaterialRespDTransfer>
         description: 工序物料列表
         nullable: true
       - name: products
-        type: List<GameEveDataFileBlueprintItemRespDTransfer>
+        type: List<GameEveDataFileBlueprintProductRespDTransfer>
         description: 工序产品列表
         nullable: true
       - name: skills
         type: List<GameEveDataFileBlueprintSkillRespDTransfer>
         description: 工序技能列表
         nullable: true
-  - name: GameEveDataFileBlueprintItemRespDTransfer
+  - name: GameEveDataFileBlueprintMaterialRespDTransfer
     adapterType: DRIVEN
     cqrsType: COMMAND
     messageType: RESPONSE
-    description: 游戏EVE数据文件蓝图资源项被动响应传输对象
+    description: 游戏EVE数据文件蓝图物料被动响应传输对象
     fields:
       - name: quantity
         type: Long
-        description: 资源项数量
+        description: 蓝图物料数量
         nullable: false
       - name: typeID
         type: String
         description: 资源项编码
         nullable: false
+  - name: GameEveDataFileBlueprintProductRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE数据文件蓝图产品被动响应传输对象
+    fields:
+      - name: quantity
+        type: Long
+        description: 蓝图产品数量
+        nullable: false
+      - name: typeID
+        type: String
+        description: 资源项编码
+        nullable: false
+      - name: probability
+        type: String
+        description: 成功率
+        nullable: true
   - name: GameEveDataFileBlueprintSkillRespDTransfer
     adapterType: DRIVEN
     cqrsType: COMMAND
@@ -394,6 +412,10 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE蓝图创建命令被动请求传输对象
     fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
       - name: code
         type: String
         description: 游戏EVE蓝图编码
@@ -453,6 +475,10 @@ transfers:
       - name: quantity
         type: Long
         description: 蓝图产品数量
+        nullable: false
+      - name: successRate
+        type: String
+        description: 产品成功率(8, 5)
         nullable: false
   - name: GameEveBlueprintSkillReqDTransfer
     adapterType: DRIVEN
