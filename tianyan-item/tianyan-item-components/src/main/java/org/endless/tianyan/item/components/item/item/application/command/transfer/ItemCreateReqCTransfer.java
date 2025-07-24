@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * ItemCreateReqCTransfer
  * <p>资源项创建命令请求传输对象
  * <p>
- * create 2025/07/24 16:46
+ * create 2025/07/24 20:00
  * <p>
- * update 2025/07/24 16:46
+ * update 2025/07/24 20:00
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "massQuantity", "massUnit", "volumeQuantity", "volumeUnit", "description", "createUserId"})
+@JSONType(orders = {"metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "createUserId"})
 public class ItemCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
@@ -50,34 +50,14 @@ public class ItemCreateReqCTransfer implements TianyanItemCommandTransfer {
     private final String marketGroupId;
 
     /**
-     * 中文全称
+     * 资源项中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 英文全称
+     * 资源项英文全称
      */
     private final String fullNameEn;
-
-    /**
-     * 质量数量
-     */
-    private final String massQuantity;
-
-    /**
-     * 质量单位
-     */
-    private final String massUnit;
-
-    /**
-     * 体积数量
-     */
-    private final String volumeQuantity;
-
-    /**
-     * 体积单位
-     */
-    private final String volumeUnit;
 
     /**
      * 描述
@@ -105,7 +85,7 @@ public class ItemCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new CommandTransferValidateException("中文全称不能为空");
+            throw new CommandTransferValidateException("资源项中文全称不能为空");
         }
     }
 

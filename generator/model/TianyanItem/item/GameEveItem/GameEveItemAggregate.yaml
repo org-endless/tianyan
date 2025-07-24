@@ -50,31 +50,15 @@ transfers:
         nullable: true
       - name: fullNameZh
         type: String
-        description: 中文全称
+        description: 资源项中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 英文全称
-        nullable: true
-      - name: massQuantity
-        type: String
-        description: 质量数量
-        nullable: true
-      - name: massUnit
-        type: String
-        description: 质量单位
-        nullable: true
-      - name: volumeQuantity
-        type: String
-        description: 体积数量
-        nullable: true
-      - name: volumeUnit
-        type: String
-        description: 体积单位
+        description: 资源项英文全称
         nullable: true
       - name: description
         type: String
-        description: 描述
+        description: 资源项描述
         nullable: true
       - name: isPublished
         type: Boolean

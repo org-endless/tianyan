@@ -36,13 +36,13 @@ transfers:
         type: String
         description: 游戏EVE资源项分类编码
         nullable: false
-      - name: nameZh
+      - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分类中文名称
+        description: 游戏EVE资源项分类中文全称
         nullable: false
-      - name: nameEn
+      - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分类英文名称
+        description: 游戏EVE资源项分类英文全称
         nullable: false
       - name: isPublished
         type: Boolean

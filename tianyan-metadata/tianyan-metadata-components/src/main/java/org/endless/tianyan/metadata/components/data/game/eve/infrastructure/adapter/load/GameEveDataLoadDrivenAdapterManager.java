@@ -5,6 +5,8 @@ import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorrupti
 import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEveDataTypeEnum;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.factory.GameEveDataLoadTaskFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
@@ -35,6 +37,8 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
     private final static Pattern SCANNER_PATTERN = Pattern.compile("^\\d{1,10}:$", Pattern.MULTILINE);
 
     private final static Integer MAX_TASK_SIZE = 100;
+
+    private static final Logger log = LoggerFactory.getLogger(GameEveDataLoadDrivenAdapterManager.class);
 
     private final GameEveDataLoadTaskFactory gameEveDataLoadTaskFactory;
 

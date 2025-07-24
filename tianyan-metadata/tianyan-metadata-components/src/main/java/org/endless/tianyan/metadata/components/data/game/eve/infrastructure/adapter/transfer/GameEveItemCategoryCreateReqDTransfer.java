@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryCreateReqDTransfer
  * <p>游戏EVE资源项分类创建被动请求传输对象
  * <p>
- * create 2025/07/24 17:12
+ * create 2025/07/24 19:53
  * <p>
- * update 2025/07/24 17:12
+ * update 2025/07/24 19:53
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "nameZh", "nameEn", "isPublished", "createUserId"})
+@JSONType(orders = {"code", "fullNameZh", "fullNameEn", "isPublished", "createUserId"})
 public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
@@ -42,12 +42,12 @@ public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDri
     /**
      * 游戏EVE资源项分类中文名称
      */
-    private final String nameZh;
+    private final String fullNameZh;
 
     /**
      * 游戏EVE资源项分类英文名称
      */
-    private final String nameEn;
+    private final String fullNameEn;
 
     /**
      * 游戏EVE资源项分类是否发布
@@ -62,8 +62,8 @@ public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDri
     @Override
     public GameEveItemCategoryCreateReqDTransfer validate() {
         validateCode();
-        validateNameZh();
-        validateNameEn();
+        validateFullNameZh();
+        validateFullNameEn();
         validateIsPublished();
         validateCreateUserId();
         return this;
@@ -75,14 +75,14 @@ public class GameEveItemCategoryCreateReqDTransfer implements TianyanMetadataDri
         }
     }
 
-    private void validateNameZh() {
-        if (!StringUtils.hasText(nameZh)) {
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
             throw new DrivenTransferValidateException("游戏EVE资源项分类中文名称不能为空");
         }
     }
 
-    private void validateNameEn() {
-        if (!StringUtils.hasText(nameEn)) {
+    private void validateFullNameEn() {
+        if (!StringUtils.hasText(fullNameEn)) {
             throw new DrivenTransferValidateException("游戏EVE资源项分类英文名称不能为空");
         }
     }

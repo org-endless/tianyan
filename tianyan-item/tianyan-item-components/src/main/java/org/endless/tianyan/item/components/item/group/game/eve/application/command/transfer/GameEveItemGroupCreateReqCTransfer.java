@@ -1,20 +1,27 @@
 package org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer;
 
+import org.endless.tianyan.item.common.model.application.command.transfer.*;
+import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
-import org.endless.tianyan.item.common.model.application.command.transfer.TianyanItemCommandTransfer;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * GameEveItemGroupCreateReqCTransfer
  * <p>游戏EVE资源项分组创建命令请求传输对象
  * <p>
- * create 2025/07/21 16:14
+ * create 2025/07/24 19:57
  * <p>
- * update 2025/07/21 16:14
+ * update 2025/07/24 19:57
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -23,7 +30,7 @@ import org.springframework.util.StringUtils;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "gameEveItemCategoryId", "nameZh", "nameEn", "isPublished", "isUseBasePrice", "createUserId"})
+@JSONType(orders = {"code", "gameEveItemCategoryId", "fullNameZh", "fullNameEn", "isPublished", "isUseBasePrice", "createUserId"})
 public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
@@ -37,14 +44,14 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
     private final String gameEveItemCategoryId;
 
     /**
-     * 游戏EVE资源项分组中文名称
+     * 游戏EVE资源项分组中文全称
      */
-    private final String nameZh;
+    private final String fullNameZh;
 
     /**
-     * 游戏EVE资源项分组英文名称
+     * 游戏EVE资源项分组英文全称
      */
-    private final String nameEn;
+    private final String fullNameEn;
 
     /**
      * 游戏EVE资源项分组是否发布
@@ -65,8 +72,7 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
     public GameEveItemGroupCreateReqCTransfer validate() {
         validateCode();
         validateGameEveItemCategoryId();
-        validateNameZh();
-        validateNameEn();
+        validateFullNameZh();
         validateIsPublished();
         validateIsUseBasePrice();
         validateCreateUserId();
@@ -85,15 +91,9 @@ public class GameEveItemGroupCreateReqCTransfer implements TianyanItemCommandTra
         }
     }
 
-    private void validateNameZh() {
-        if (!StringUtils.hasText(nameZh)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分组中文名称不能为空");
-        }
-    }
-
-    private void validateNameEn() {
-        if (!StringUtils.hasText(nameEn)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分组英文名称不能为空");
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
+            throw new CommandTransferValidateException("游戏EVE资源项分组中文全称不能为空");
         }
     }
 

@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupCreateReqDTransfer
  * <p>游戏EVE市场分组创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 17:12
+ * create 2025/07/24 19:53
  * <p>
- * update 2025/07/24 17:12
+ * update 2025/07/24 19:53
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "nameZhFullName", "nameEnFullName", "parentCode", "createUserId"})
+@JSONType(orders = {"code", "fullNameZh", "fullNameEn", "parentCode", "createUserId"})
 public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
@@ -42,12 +42,12 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
     /**
      * 游戏EVE市场分组中文全称
      */
-    private final String nameZhFullName;
+    private final String fullNameZh;
 
     /**
      * 游戏EVE市场分组英文全称
      */
-    private final String nameEnFullName;
+    private final String fullNameEn;
 
     /**
      * 父市场分组编码
@@ -62,8 +62,8 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
     @Override
     public GameEveMarketGroupCreateReqDTransfer validate() {
         validateCode();
-        validateNameZhFullName();
-        validateNameEnFullName();
+        validateFullNameZh();
+        validateFullNameEn();
         validateCreateUserId();
         return this;
     }
@@ -74,14 +74,14 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
         }
     }
 
-    private void validateNameZhFullName() {
-        if (!StringUtils.hasText(nameZhFullName)) {
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
             throw new DrivenTransferValidateException("游戏EVE市场分组中文全称不能为空");
         }
     }
 
-    private void validateNameEnFullName() {
-        if (!StringUtils.hasText(nameEnFullName)) {
+    private void validateFullNameEn() {
+        if (!StringUtils.hasText(fullNameEn)) {
             throw new DrivenTransferValidateException("游戏EVE市场分组英文全称不能为空");
         }
     }

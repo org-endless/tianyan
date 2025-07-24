@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * ItemGroupCreateReqCTransfer
  * <p>资源项分组创建命令请求传输对象
  * <p>
- * create 2025/07/21 16:19
+ * create 2025/07/24 19:57
  * <p>
- * update 2025/07/21 16:19
+ * update 2025/07/24 19:57
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -31,18 +31,18 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"nameZh", "nameEn", "createUserId"})
+@JSONType(orders = {"fullNameZh", "fullNameEn", "createUserId"})
 public class ItemGroupCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
-     * 中文名称
+     * 资源项分组中文全称
      */
-    private final String nameZh;
+    private final String fullNameZh;
 
     /**
-     * 英文名称
+     * 资源项分组英文全称
      */
-    private final String nameEn;
+    private final String fullNameEn;
 
     /**
      * 创建用户ID
@@ -51,21 +51,14 @@ public class ItemGroupCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     @Override
     public ItemGroupCreateReqCTransfer validate() {
-        validateNameZh();
-        validateNameEn();
+        validateFullNameZh();
         validateCreateUserId();
         return this;
     }
 
-    private void validateNameZh() {
-        if (!StringUtils.hasText(nameZh)) {
-            throw new CommandTransferValidateException("中文名称不能为空");
-        }
-    }
-
-    private void validateNameEn() {
-        if (!StringUtils.hasText(nameEn)) {
-            throw new CommandTransferValidateException("英文名称不能为空");
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
+            throw new CommandTransferValidateException("资源项分组中文全称不能为空");
         }
     }
 

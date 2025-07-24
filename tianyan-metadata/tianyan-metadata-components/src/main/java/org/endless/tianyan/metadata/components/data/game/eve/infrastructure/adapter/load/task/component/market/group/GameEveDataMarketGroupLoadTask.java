@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.GameEveDataMarketGroupRestClient;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.rest.GameEveDataMarketGroupRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveDataFileMarketGroupRespDTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveMarketGroupCreateReqDTransfer;
 import org.springframework.context.annotation.Lazy;
@@ -52,8 +52,8 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
                     sourceMap.put(key,
                             GameEveMarketGroupCreateReqDTransfer.builder()
                                     .code(key)
-                                    .nameZhFullName(marketGroup.getNameID().getZh())
-                                    .nameEnFullName(marketGroup.getNameID().getEn())
+                                    .fullNameZh(marketGroup.getNameID().getZh() == null ? marketGroup.getNameID().getEn() : marketGroup.getNameID().getZh())
+                                    .fullNameEn(marketGroup.getNameID().getEn())
                                     .parentCode(marketGroup.getParentGroupID())
                                     .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                                     .build().validate());
@@ -87,11 +87,15 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
                     currentLayer.add(queue.poll());
                 }
 
-                List<CompletableFuture<?>> futures = currentLayer.stream()
+                List<CompletableFuture<Void>> futures = currentLayer.stream()
+                        .filter(currentCode -> !ROOT.equals(currentCode))
                         .map(currentCode -> {
-                            if (ROOT.equals(currentCode)) return CompletableFuture.completedFuture(null);
                             GameEveMarketGroupCreateReqDTransfer current = sourceMap.get(currentCode);
-                            return gameEveDataMarketGroupRestClient.create(current);
+                            return gameEveDataMarketGroupRestClient.create(current)
+                                    .exceptionally(ex -> {
+                                        log.error("加载蓝图数据失败，currentCode:{},dataMap:{},  current:{}, error:{}", currentCode, dataMap.get(currentCode), current, ex.getMessage());
+                                        return null;
+                                    });
                         })
                         .toList();
                 // 等待当前层所有任务完成
@@ -120,6 +124,6 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
 
     @Override
     public Integer pageSize() {
-        return 2000;
+        return 10000;
     }
 }

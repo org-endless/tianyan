@@ -48,14 +48,14 @@ transfers:
         type: String
         description: 游戏EVE资源项分类ID
         nullable: false
-      - name: nameZh
+      - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分组中文名称
+        description: 游戏EVE资源项分组中文全称
         nullable: false
-      - name: nameEn
+      - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分组英文名称
-        nullable: false
+        description: 游戏EVE资源项分组英文全称
+        nullable: true
       - name: isPublished
         type: Boolean
         description: 游戏EVE资源项分组是否发布

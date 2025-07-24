@@ -49,8 +49,8 @@ public class GameEveDataItemCategoryLoadTask implements GameEveDataLoadTask {
                     GameEveDataFileItemCategoryRespDTransfer itemCategory = TypeUtils.cast(value, GameEveDataFileItemCategoryRespDTransfer.class).validate();
                     gameEveDataItemCategoryRestClient.create(GameEveItemCategoryCreateReqDTransfer.builder()
                             .code(key)
-                            .nameZh(itemCategory.getName().getZh())
-                            .nameEn(itemCategory.getName().getEn())
+                            .fullNameZh(itemCategory.getName().getZh() == null ? itemCategory.getName().getEn() : itemCategory.getName().getZh())
+                            .fullNameEn(itemCategory.getName().getEn())
                             .isPublished(itemCategory.getPublished())
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                             .build().validate());

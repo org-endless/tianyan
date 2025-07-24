@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemCreateReqDTransfer
  * <p>游戏EVE资源项创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 17:12
+ * create 2025/07/24 19:53
  * <p>
- * update 2025/07/24 17:12
+ * update 2025/07/24 19:53
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer

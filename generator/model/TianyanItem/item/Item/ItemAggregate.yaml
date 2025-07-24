@@ -33,17 +33,9 @@ fields:
     type: NameValue
     description: 英文名称
     nullable: true
-  - name: mass
-    type: MassValue
-    description: 质量
-    nullable: true
-  - name: volume
-    type: VolumeValue
-    description: 体积
-    nullable: true
   - name: description
     type: String
-    description: 描述
+    description: 资源项描述
     nullable: true
 values:
   - name: NameValue
@@ -61,44 +53,6 @@ values:
         type: String
         description: 简称
         nullable: true
-  - name: MassValue
-    description: 质量
-    fields:
-      - name: isScientific
-        type: Boolean
-        description: 质量数量是否科学计数
-        nullable: false
-      - name: quantity
-        type: BigDecimal
-        description: 质量数量(20, 5)
-        nullable: true
-      - name: scientific
-        type: String
-        description: 质量数量科学计数
-        nullable: true
-      - name: unit
-        type: MassUnitEnum
-        description: 质量单位
-        nullable: false
-  - name: VolumeValue
-    description: 体积
-    fields:
-      - name: isScientific
-        type: Boolean
-        description: 体积数量是否科学计数
-        nullable: false
-      - name: quantity
-        type: BigDecimal
-        description: 体积数量(20, 5)
-        nullable: true
-      - name: scientific
-        type: String
-        description: 体积数量科学计数
-        nullable: true
-      - name: unit
-        type: VolumeUnitEnum
-        description: 体积单位
-        nullable: false
 transfers:
   - name: ItemCreateReqCTransfer
     adapterType: DRIVING
@@ -120,27 +74,11 @@ transfers:
         nullable: true
       - name: fullNameZh
         type: String
-        description: 中文全称
+        description: 资源项中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 英文全称
-        nullable: true
-      - name: massQuantity
-        type: String
-        description: 质量数量
-        nullable: true
-      - name: massUnit
-        type: String
-        description: 质量单位
-        nullable: true
-      - name: volumeQuantity
-        type: String
-        description: 体积数量
-        nullable: true
-      - name: volumeUnit
-        type: String
-        description: 体积单位
+        description: 资源项英文全称
         nullable: true
       - name: description
         type: String

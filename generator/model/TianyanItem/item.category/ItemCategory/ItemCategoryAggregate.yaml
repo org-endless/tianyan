@@ -20,7 +20,7 @@ fields:
   - name: nameEn
     type: NameValue
     description: 英文名称
-    nullable: false
+    nullable: true
 values:
   - name: NameValue
     description: 名称
@@ -44,14 +44,14 @@ transfers:
     messageType: REQUEST
     description: 资源项分类创建命令请求传输对象
     fields:
-      - name: nameZh
+      - name: fullNameZh
         type: String
-        description: 资源项分类中文名称
+        description: 资源项分类中文全称
         nullable: false
-      - name: nameEn
+      - name: fullNameEn
         type: String
-        description: 资源项分类英文名称
-        nullable: false
+        description: 资源项分类英文全称
+        nullable: true
       - name: createUserId
         type: String
         description: 创建用户ID

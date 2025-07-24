@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * ItemGroupCreateRespCTransfer
  * <p>资源项分组创建命令响应传输对象
  * <p>
- * create 2025/07/21 16:19
+ * create 2025/07/24 19:57
  * <p>
- * update 2025/07/21 16:19
+ * update 2025/07/24 19:57
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer

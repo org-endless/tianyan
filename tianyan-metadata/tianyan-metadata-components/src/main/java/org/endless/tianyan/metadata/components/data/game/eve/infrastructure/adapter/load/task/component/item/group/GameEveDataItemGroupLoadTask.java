@@ -56,13 +56,13 @@ public class GameEveDataItemGroupLoadTask implements GameEveDataLoadTask {
                     gameEveDataItemGroupRestClient.create(GameEveItemGroupCreateReqDTransfer.builder()
                             .code(key)
                             .gameEveItemCategoryId(categoryId)
-                            .nameZh(itemGroup.getName().getZh())
-                            .nameEn(itemGroup.getName().getEn())
+                            .fullNameZh(itemGroup.getName().getZh() == null ? itemGroup.getName().getEn() : itemGroup.getName().getZh())
+                            .fullNameEn(itemGroup.getName().getEn())
                             .isPublished(itemGroup.getPublished())
                             .isUseBasePrice(itemGroup.getUseBasePrice())
                             .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                             .build().validate());
-                } catch (DrivenAdapterManagerException e) {
+                } catch (Exception e) {
                     log.error("加载资源项分组数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
                 }
             });

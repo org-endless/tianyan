@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemGroupCreateReqDTransfer
  * <p>游戏EVE资源项分组创建命令被动请求传输对象
  * <p>
- * create 2025/07/24 17:12
+ * create 2025/07/24 19:53
  * <p>
- * update 2025/07/24 17:12
+ * update 2025/07/24 19:53
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "gameEveItemCategoryId", "nameZh", "nameEn", "isPublished", "isUseBasePrice", "createUserId"})
+@JSONType(orders = {"code", "gameEveItemCategoryId", "fullNameZh", "fullNameEn", "isPublished", "isUseBasePrice", "createUserId"})
 public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
@@ -47,12 +47,12 @@ public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDriven
     /**
      * 游戏EVE资源项分组中文名称
      */
-    private final String nameZh;
+    private final String fullNameZh;
 
     /**
      * 游戏EVE资源项分组英文名称
      */
-    private final String nameEn;
+    private final String fullNameEn;
 
     /**
      * 游戏EVE资源项分组是否发布
@@ -73,8 +73,8 @@ public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDriven
     public GameEveItemGroupCreateReqDTransfer validate() {
         validateCode();
         validateGameEveItemCategoryId();
-        validateNameZh();
-        validateNameEn();
+        validateFullNameZh();
+        validateFullNameEn();
         validateIsPublished();
         validateIsUseBasePrice();
         validateCreateUserId();
@@ -93,14 +93,14 @@ public class GameEveItemGroupCreateReqDTransfer implements TianyanMetadataDriven
         }
     }
 
-    private void validateNameZh() {
-        if (!StringUtils.hasText(nameZh)) {
+    private void validateFullNameZh() {
+        if (!StringUtils.hasText(fullNameZh)) {
             throw new DrivenTransferValidateException("游戏EVE资源项分组中文名称不能为空");
         }
     }
 
-    private void validateNameEn() {
-        if (!StringUtils.hasText(nameEn)) {
+    private void validateFullNameEn() {
+        if (!StringUtils.hasText(fullNameEn)) {
             throw new DrivenTransferValidateException("游戏EVE资源项分组英文名称不能为空");
         }
     }

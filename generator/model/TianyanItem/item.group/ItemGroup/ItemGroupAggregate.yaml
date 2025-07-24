@@ -44,14 +44,14 @@ transfers:
     messageType: REQUEST
     description: 资源项分组创建命令请求传输对象
     fields:
-      - name: nameZh
+      - name: fullNameZh
         type: String
-        description: 中文名称
+        description: 资源项分组中文全称
         nullable: false
-      - name: nameEn
+      - name: fullNameEn
         type: String
-        description: 英文名称
-        nullable: false
+        description: 资源项分组英文全称
+        nullable: true
       - name: createUserId
         type: String
         description: 创建用户ID

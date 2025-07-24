@@ -47,6 +47,7 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
         Optional.ofNullable(dataMap)
                 .filter(m -> !CollectionUtils.isEmpty(m))
                 .orElseThrow(() -> new DrivenAdapterManagerException("蓝图数据列表为空，无法执行数据加载任务"));
+        
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {
