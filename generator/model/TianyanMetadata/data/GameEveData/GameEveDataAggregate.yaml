@@ -298,11 +298,11 @@ transfers:
         nullable: false
       - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分类中文名称
+        description: 资源项分类中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分类英文名称
+        description: 资源项分类英文全称
         nullable: false
       - name: isPublished
         type: Boolean
@@ -324,15 +324,15 @@ transfers:
         nullable: false
       - name: gameEveItemCategoryId
         type: String
-        description: 游戏EVE资源项分类ID
+        description: 资源项分类ID
         nullable: false
       - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分组中文名称
+        description: 资源项分组中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分组英文名称
+        description: 资源项分组英文全称
         nullable: false
       - name: isPublished
         type: Boolean
@@ -358,11 +358,11 @@ transfers:
         nullable: false
       - name: fullNameZh
         type: String
-        description: 游戏EVE市场分组中文全称
+        description: 市场分组中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 游戏EVE市场分组英文全称
+        description: 市场分组英文全称
         nullable: false
       - name: parentCode
         type: String
@@ -396,31 +396,15 @@ transfers:
         nullable: true
       - name: fullNameZh
         type: String
-        description: 中文全称
+        description: 资源项中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 英文全称
-        nullable: true
-      - name: massQuantity
-        type: String
-        description: 质量数量
-        nullable: true
-      - name: massUnit
-        type: String
-        description: 质量单位
-        nullable: true
-      - name: volumeQuantity
-        type: String
-        description: 体积数量
-        nullable: true
-      - name: volumeUnit
-        type: String
-        description: 体积单位
+        description: 资源项英文全称
         nullable: true
       - name: description
         type: String
-        description: 描述
+        description: 资源项描述
         nullable: true
       - name: isPublished
         type: Boolean
@@ -438,7 +422,7 @@ transfers:
     fields:
       - name: itemId
         type: String
-        description: 资源项ID
+        description: 蓝图资源项ID
         nullable: false
       - name: code
         type: String

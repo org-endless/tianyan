@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * ItemCreateReqCTransfer
  * <p>资源项创建命令请求传输对象
  * <p>
- * create 2025/07/24 20:00
+ * create 2025/07/24 20:14
  * <p>
- * update 2025/07/24 20:00
+ * update 2025/07/24 20:14
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -60,7 +60,7 @@ public class ItemCreateReqCTransfer implements TianyanItemCommandTransfer {
     private final String fullNameEn;
 
     /**
-     * 描述
+     * 资源项描述
      */
     private final String description;
 

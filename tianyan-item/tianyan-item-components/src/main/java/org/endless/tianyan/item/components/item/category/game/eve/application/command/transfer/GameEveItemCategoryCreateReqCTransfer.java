@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryCreateReqCTransfer
  * <p>游戏EVE资源项分类创建命令请求传输对象
  * <p>
- * create 2025/07/24 19:56
+ * create 2025/07/24 20:15
  * <p>
- * update 2025/07/24 19:56
+ * update 2025/07/24 20:15
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -39,12 +39,12 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
     private final String code;
 
     /**
-     * 游戏EVE资源项分类中文全称
+     * 资源项分类中文全称
      */
     private final String fullNameZh;
 
     /**
-     * 游戏EVE资源项分类英文全称
+     * 资源项分类英文全称
      */
     private final String fullNameEn;
 
@@ -76,13 +76,13 @@ public class GameEveItemCategoryCreateReqCTransfer implements TianyanItemCommand
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分类中文全称不能为空");
+            throw new CommandTransferValidateException("资源项分类中文全称不能为空");
         }
     }
 
     private void validateFullNameEn() {
         if (!StringUtils.hasText(fullNameEn)) {
-            throw new CommandTransferValidateException("游戏EVE资源项分类英文全称不能为空");
+            throw new CommandTransferValidateException("资源项分类英文全称不能为空");
         }
     }
 

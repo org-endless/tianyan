@@ -38,11 +38,11 @@ transfers:
         nullable: false
       - name: fullNameZh
         type: String
-        description: 游戏EVE资源项分类中文全称
+        description: 资源项分类中文全称
         nullable: false
       - name: fullNameEn
         type: String
-        description: 游戏EVE资源项分类英文全称
+        description: 资源项分类英文全称
         nullable: false
       - name: isPublished
         type: Boolean

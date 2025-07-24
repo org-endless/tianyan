@@ -82,7 +82,7 @@ transfers:
         nullable: true
       - name: description
         type: String
-        description: 描述
+        description: 资源项描述
         nullable: true
       - name: createUserId
         type: String
