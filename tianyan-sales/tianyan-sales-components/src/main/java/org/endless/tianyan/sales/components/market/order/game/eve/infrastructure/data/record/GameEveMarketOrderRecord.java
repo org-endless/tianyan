@@ -4,19 +4,27 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.endless.tianyan.sales.common.model.infrastructure.data.record.*;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
+import org.endless.ddd.simplified.starter.common.config.utils.id.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
-import org.endless.tianyan.sales.common.model.infrastructure.data.record.TianyanSalesRecord;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * GameEveMarketOrderRecord
  * <p>游戏EVE市场订单数据库记录实体
  * <p>
- * create 2025/07/25 16:33
+ * create 2025/07/26 07:14
  * <p>
- * update 2025/07/25 16:33
+ * update 2025/07/26 07:14
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -49,7 +57,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
     /**
      * 游戏EVE市场订单范围
      */
-    private String range;
+    private String orderRange;
 
     /**
      * 游戏EVE市场订单星系ID
@@ -99,7 +107,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
                 .gameEveMarketOrderId(gameEveMarketOrderId)
                 .marketOrderId(aggregate.getMarketOrderId())
                 .code(aggregate.getCode())
-                .range(aggregate.getRange())
+                .orderRange(aggregate.getOrderRange())
                 .systemId(aggregate.getSystemId())
                 .stationId(aggregate.getStationId())
                 .createUserId(aggregate.getCreateUserId())
@@ -115,7 +123,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
                 .gameEveMarketOrderId(gameEveMarketOrderId)
                 .marketOrderId(marketOrderId)
                 .code(code)
-                .range(range)
+                .orderRange(orderRange)
                 .systemId(systemId)
                 .stationId(stationId)
                 .createUserId(createUserId)
@@ -129,7 +137,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
         validateGameEveMarketOrderId();
         validateMarketOrderId();
         validateCode();
-        validateRange();
+        validateOrderRange();
         validateSystemId();
         validateStationId();
         validateCreateUserId();
@@ -156,8 +164,8 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
         }
     }
 
-    private void validateRange() {
-        if (!StringUtils.hasText(range)) {
+    private void validateOrderRange() {
+        if (!StringUtils.hasText(orderRange)) {
             throw new DataRecordValidateException("游戏EVE市场订单范围不能为空");
         }
     }

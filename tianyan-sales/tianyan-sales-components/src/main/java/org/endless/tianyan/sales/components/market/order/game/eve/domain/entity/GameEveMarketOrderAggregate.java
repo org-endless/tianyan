@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * <p>
  * create 2025/07/25 16:33
  * <p>
- * update 2025/07/25 16:33
+ * update 2025/07/26 07:14
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -44,7 +44,7 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     /**
      * 游戏EVE市场订单范围
      */
-    private String range;
+    private String orderRange;
 
     /**
      * 游戏EVE市场订单星系ID
@@ -94,7 +94,7 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
 
     public GameEveMarketOrderAggregate modify(GameEveMarketOrderAggregateBuilder builder) {
         this.code = builder.code == null ? this.code : builder.code;
-        this.range = builder.range == null ? this.range : builder.range;
+        this.orderRange = builder.orderRange == null ? this.orderRange : builder.orderRange;
         this.systemId = builder.systemId == null ? this.systemId : builder.systemId;
         this.stationId = builder.stationId == null ? this.stationId : builder.stationId;
         this.modifyUserId = builder.modifyUserId;
@@ -110,7 +110,7 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
         validateGameEveMarketOrderId();
         validateMarketOrderId();
         validateCode();
-        validateRange();
+        validateOrderRange();
         validateSystemId();
         validateStationId();
         validateCreateUserId();
@@ -137,8 +137,8 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
         }
     }
 
-    private void validateRange() {
-        if (!StringUtils.hasText(range)) {
+    private void validateOrderRange() {
+        if (!StringUtils.hasText(orderRange)) {
             throw new AggregateValidateException("游戏EVE市场订单范围不能为空");
         }
     }
