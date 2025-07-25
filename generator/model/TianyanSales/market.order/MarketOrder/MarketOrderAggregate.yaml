@@ -116,3 +116,51 @@ transfers:
         type: String
         description: 市场订单ID
         nullable: false
+  - name: MarketOrderMofidyReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场订单修改命令请求传输对象
+    fields:
+      - name: totalQuantity
+        type: String
+        description: 市场订单总数(20, 5)
+        nullable: false
+      - name: remainQuantity
+        type: String
+        description: 市场订单剩余数量(20, 5)
+        nullable: false
+      - name: minQuantity
+        type: String
+        description: 市场订单最小交易数量(20, 5)
+        nullable: false
+      - name: price
+        type: String
+        description: 市场订单价格(17, 2)
+        nullable: false
+      - name: issuedAt
+        type: String
+        description: 市场订单创建时间(yyyy-MM-dd HH:mm:ss:SSS)
+        nullable: false
+      - name: expireAt
+        type: String
+        description: 市场订单过期时间(yyyy-MM-dd HH:mm:ss:SSS)
+        nullable: true
+      - name: modifyUserId
+        type: String
+        description: 修改用户ID
+        nullable: false
+  - name: MarketOrderRemoveReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场订单删除命令请求传输对象
+    fields:
+      - name: marketOrderId
+        type: String
+        description: 市场订单ID
+        nullable: false
+      - name: modifyUserId
+        type: String
+        description: 修改用户ID
+        nullable: false

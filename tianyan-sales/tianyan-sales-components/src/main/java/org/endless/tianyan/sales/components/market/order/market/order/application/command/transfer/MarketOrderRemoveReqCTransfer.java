@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * MarketOrderCreateRespCTransfer
- * <p>游戏EVE市场订单创建命令响应传输对象
+ * MarketOrderRemoveReqCTransfer
+ * <p>游戏EVE市场订单删除命令请求传输对象
  * <p>
  * create 2025/07/25 16:29
  * <p>
@@ -32,23 +32,35 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"marketOrderId"})
-public class MarketOrderCreateRespCTransfer implements TianyanSalesCommandTransfer {
+@JSONType(orders = {"marketOrderId", "modifyUserId"})
+public class MarketOrderRemoveReqCTransfer implements TianyanSalesCommandTransfer {
 
     /**
      * 市场订单ID
      */
     private final String marketOrderId;
 
+    /**
+     * 修改用户ID
+     */
+    private final String modifyUserId;
+
     @Override
-    public MarketOrderCreateRespCTransfer validate() {
+    public MarketOrderRemoveReqCTransfer validate() {
         validateMarketOrderId();
+        validateModifyUserId();
         return this;
     }
 
     private void validateMarketOrderId() {
         if (!StringUtils.hasText(marketOrderId)) {
             throw new CommandTransferValidateException("市场订单ID不能为空");
+        }
+    }
+
+    private void validateModifyUserId() {
+        if (!StringUtils.hasText(modifyUserId)) {
+            throw new CommandTransferValidateException("修改用户ID不能为空");
         }
     }
 }

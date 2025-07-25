@@ -3,7 +3,6 @@ package org.endless.tianyan.sales.components.market.order.game.eve.infrastructur
 import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.value.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMarketOrderESIFindPageReqDTransfer
  * <p>游戏EVE市场订单信息查询被动请求传输对象
  * <p>
- * create 2025/07/25 15:19
+ * create 2025/07/25 16:04
  * <p>
- * update 2025/07/25 15:19
+ * update 2025/07/25 16:04
  *
  * @author Deng Haozhi
  * @see TianyanSalesDrivenTransfer
@@ -31,13 +30,8 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"datasource", "regionId", "orderType", "gameEveItemCode", "page"})
+@JSONType(orders = {"regionId", "orderType", "gameEveItemCode", "page"})
 public class GameEveMarketOrderESIFindPageReqDTransfer implements TianyanSalesDrivenTransfer {
-
-    /**
-     * 游戏EVE数据源
-     */
-    private final String datasource;
 
     /**
      * 游戏EVE星域编码
@@ -61,18 +55,11 @@ public class GameEveMarketOrderESIFindPageReqDTransfer implements TianyanSalesDr
 
     @Override
     public GameEveMarketOrderESIFindPageReqDTransfer validate() {
-        validateDatasource();
         validateRegionId();
         validateOrderType();
         validateGameEveItemCode();
         validatePage();
         return this;
-    }
-
-    private void validateDatasource() {
-        if (!StringUtils.hasText(datasource)) {
-            throw new DrivenTransferValidateException("游戏EVE数据源不能为空");
-        }
     }
 
     private void validateRegionId() {

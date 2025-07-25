@@ -36,7 +36,7 @@ public class SpringGameEveMarketOrderESIRestClient implements GameEveMarketOrder
     @Override
     public FindPageRespTransfer findMarketOrderPage(GameEveMarketOrderESIFindPageReqDTransfer query) {
         ResponseEntity<List<GameEveMarketOrderESIFindProfileRespDTransfer>> response = exchange(restClient, GameEveMarketOrderESIExchangeTransfer.class)
-                .findMarketOrderProfiles(query.getRegionId(), query.getDatasource(), query.getOrderType(), query.getGameEveItemCode(), query.getPage());
+                .findMarketOrderProfiles(query.getRegionId(), DATASOURCE, query.getOrderType(), query.getGameEveItemCode(), query.getPage());
         return FindPageRespTransfer.builder()
                 .rows(response.getBody())
                 .pageNum(query.getPage())

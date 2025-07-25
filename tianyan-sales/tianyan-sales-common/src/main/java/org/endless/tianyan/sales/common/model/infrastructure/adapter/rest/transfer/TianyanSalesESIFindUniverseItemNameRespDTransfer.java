@@ -1,23 +1,15 @@
-package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer;
+package org.endless.tianyan.sales.common.model.infrastructure.adapter.rest.transfer;
 
-import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.value.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenTransferValidateException;
+import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.TianyanSalesDrivenTransfer;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
- * GameEveMarketOrderFindUniverseItemNameRespDTransfer
+ * TianyanSalesESIFindUniverseItemNameRespDTransfer
  * <p>游戏EVE市场订单信宇宙资源项信息查询被动响应传输对象
  * <p>
  * create 2025/07/25 15:19
@@ -32,7 +24,7 @@ import java.util.stream.Collectors;
 @ToString
 @Builder
 @JSONType(orders = {"category", "id", "name"})
-public class GameEveMarketOrderFindUniverseItemNameRespDTransfer implements TianyanSalesDrivenTransfer {
+public class TianyanSalesESIFindUniverseItemNameRespDTransfer implements TianyanSalesDrivenTransfer {
 
     /**
      * 游戏EVE宇宙资源项分类名称
@@ -50,7 +42,7 @@ public class GameEveMarketOrderFindUniverseItemNameRespDTransfer implements Tian
     private final String name;
 
     @Override
-    public GameEveMarketOrderFindUniverseItemNameRespDTransfer validate() {
+    public TianyanSalesESIFindUniverseItemNameRespDTransfer validate() {
         validateCategory();
         validateId();
         validateName();

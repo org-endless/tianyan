@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.endless.tianyan.sales.common.model.infrastructure.data.record.*;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.value.*;
 import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
 import org.endless.ddd.simplified.starter.common.config.utils.id.*;
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
@@ -23,9 +22,9 @@ import java.util.stream.Collectors;
  * GameEveMarketOrderRecord
  * <p>游戏EVE市场订单数据库记录实体
  * <p>
- * create 2025/07/25 11:19
+ * create 2025/07/25 15:54
  * <p>
- * update 2025/07/25 11:19
+ * update 2025/07/25 15:54
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -51,29 +50,19 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
     private String code;
 
     /**
-     * 订单范围
+     * 游戏EVE市场订单范围
      */
     private String range;
 
     /**
-     * 游戏EVE市场订单星系编码
+     * 游戏EVE市场订单星系ID
      */
-    private String systemCode;
+    private String systemId;
 
     /**
-     * 游戏EVE市场订单星系中文名称
+     * 游戏EVE市场订单空间站ID
      */
-    private String systemNameZh;
-
-    /**
-     * 游戏EVE市场订单空间站编码
-     */
-    private String locationCode;
-
-    /**
-     * 游戏EVE市场订单空间站中文名称
-     */
-    private String locationNameZh;
+    private String stationId;
 
     /**
      * 创建者ID
@@ -113,10 +102,8 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
                 .gameEveMarketOrderId(gameEveMarketOrderId)
                 .code(aggregate.getCode())
                 .range(aggregate.getRange())
-                .systemCode(aggregate.getSystem().getCode())
-                .systemNameZh(aggregate.getSystem().getNameZh())
-                .locationCode(aggregate.getLocation().getCode())
-                .locationNameZh(aggregate.getLocation().getNameZh())
+                .systemId(aggregate.getSystemId())
+                .stationId(aggregate.getStationId())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
                 .isRemoved(aggregate.getIsRemoved())
@@ -130,14 +117,8 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
                 .gameEveMarketOrderId(gameEveMarketOrderId)
                 .code(code)
                 .range(range)
-                .system(GameEveMarketOrderSystemValue.builder()
-                        .code(systemCode)
-                        .nameZh(systemNameZh)
-                        .innerBuild())
-                .location(GameEveMarketOrderLocationValue.builder()
-                        .code(locationCode)
-                        .nameZh(locationNameZh)
-                        .innerBuild())
+                .systemId(systemId)
+                .stationId(stationId)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
                 .isRemoved(isRemoved)
@@ -149,10 +130,8 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
         validateGameEveMarketOrderId();
         validateCode();
         validateRange();
-        validateSystemCode();
-        validateSystemNameZh();
-        validateLocationCode();
-        validateLocationNameZh();
+        validateSystemId();
+        validateStationId();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -173,31 +152,19 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
 
     private void validateRange() {
         if (!StringUtils.hasText(range)) {
-            throw new DataRecordValidateException("订单范围不能为空");
+            throw new DataRecordValidateException("游戏EVE市场订单范围不能为空");
         }
     }
 
-    private void validateSystemCode() {
-        if (!StringUtils.hasText(systemCode)) {
-            throw new DataRecordValidateException("游戏EVE市场订单星系编码不能为空");
+    private void validateSystemId() {
+        if (!StringUtils.hasText(systemId)) {
+            throw new DataRecordValidateException("游戏EVE市场订单星系ID不能为空");
         }
     }
 
-    private void validateSystemNameZh() {
-        if (!StringUtils.hasText(systemNameZh)) {
-            throw new DataRecordValidateException("游戏EVE市场订单星系中文名称不能为空");
-        }
-    }
-
-    private void validateLocationCode() {
-        if (!StringUtils.hasText(locationCode)) {
-            throw new DataRecordValidateException("游戏EVE市场订单空间站编码不能为空");
-        }
-    }
-
-    private void validateLocationNameZh() {
-        if (!StringUtils.hasText(locationNameZh)) {
-            throw new DataRecordValidateException("游戏EVE市场订单空间站中文名称不能为空");
+    private void validateStationId() {
+        if (!StringUtils.hasText(stationId)) {
+            throw new DataRecordValidateException("游戏EVE市场订单空间站ID不能为空");
         }
     }
 

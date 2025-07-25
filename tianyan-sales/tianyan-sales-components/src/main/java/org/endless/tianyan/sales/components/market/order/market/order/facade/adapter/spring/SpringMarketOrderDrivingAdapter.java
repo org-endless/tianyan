@@ -1,9 +1,10 @@
 package org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.MarketOrderCommandHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 
 /**
  * SpringMarketOrderDrivingAdapter
@@ -32,5 +33,10 @@ public class SpringMarketOrderDrivingAdapter implements MarketOrderDrivingAdapte
     public SpringMarketOrderDrivingAdapter(MarketOrderCommandHandler marketOrderCommandHandler, MarketOrderQueryHandler marketOrderQueryHandler) {
         this.marketOrderCommandHandler = marketOrderCommandHandler;
         this.marketOrderQueryHandler = marketOrderQueryHandler;
+    }
+
+    @Override
+    public MarketOrderCreateRespCTransfer create(MarketOrderCreateReqCTransfer command) {
+        return null;
     }
 }

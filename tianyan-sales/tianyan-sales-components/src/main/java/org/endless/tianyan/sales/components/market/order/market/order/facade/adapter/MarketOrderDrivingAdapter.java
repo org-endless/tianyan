@@ -19,4 +19,6 @@ import org.endless.tianyan.sales.components.market.order.market.order.applicatio
 public interface MarketOrderDrivingAdapter extends TianyanSalesDrivingAdapter {
 
     MarketOrderCreateRespCTransfer create(MarketOrderCreateReqCTransfer command);
+
+    MarketOrderCreateRespCTransfer modify(MarketOrderCreateReqCTransfer command);
 }

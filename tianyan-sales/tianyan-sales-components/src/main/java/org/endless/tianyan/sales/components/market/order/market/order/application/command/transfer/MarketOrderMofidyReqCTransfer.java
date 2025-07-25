@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * MarketOrderCreateReqCTransfer
- * <p>游戏EVE市场订单创建命令请求传输对象
+ * MarketOrderMofidyReqCTransfer
+ * <p>游戏EVE市场订单修改命令请求传输对象
  * <p>
  * create 2025/07/25 16:29
  * <p>
@@ -32,13 +32,8 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"type", "totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "createUserId"})
-public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfer {
-
-    /**
-     * 市场订单类型
-     */
-    private final String type;
+@JSONType(orders = {"totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "modifyUserId"})
+public class MarketOrderMofidyReqCTransfer implements TianyanSalesCommandTransfer {
 
     /**
      * 市场订单总数(20, 5)
@@ -71,26 +66,19 @@ public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfe
     private final String expireAt;
 
     /**
-     * 创建用户ID
+     * 修改用户ID
      */
-    private final String createUserId;
+    private final String modifyUserId;
 
     @Override
-    public MarketOrderCreateReqCTransfer validate() {
-        validateType();
+    public MarketOrderMofidyReqCTransfer validate() {
         validateTotalQuantity();
         validateRemainQuantity();
         validateMinQuantity();
         validatePrice();
         validateIssuedAt();
-        validateCreateUserId();
+        validateModifyUserId();
         return this;
-    }
-
-    private void validateType() {
-        if (!StringUtils.hasText(type)) {
-            throw new CommandTransferValidateException("市场订单类型不能为空");
-        }
     }
 
     private void validateTotalQuantity() {
@@ -123,9 +111,9 @@ public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfe
         }
     }
 
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new CommandTransferValidateException("创建用户ID不能为空");
+    private void validateModifyUserId() {
+        if (!StringUtils.hasText(modifyUserId)) {
+            throw new CommandTransferValidateException("修改用户ID不能为空");
         }
     }
 }

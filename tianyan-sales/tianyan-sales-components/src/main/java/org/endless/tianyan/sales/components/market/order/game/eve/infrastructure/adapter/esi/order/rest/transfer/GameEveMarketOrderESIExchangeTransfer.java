@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.order.rest.transfer;
 
-import org.endless.tianyan.sales.common.model.infrastructure.adapter.rest.transfer.TianyanSalesEsiExchangeTransfer;
+import org.endless.tianyan.sales.common.model.infrastructure.adapter.rest.transfer.TianyanSalesESIExchangeTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindProfileRespDTransfer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +17,10 @@ import java.util.List;
  * update 2025/07/25 11:38
  *
  * @author Deng Haozhi
- * @see TianyanSalesEsiExchangeTransfer
+ * @see TianyanSalesESIExchangeTransfer
  * @since 2.0.0
  */
-public interface GameEveMarketOrderESIExchangeTransfer extends TianyanSalesEsiExchangeTransfer {
+public interface GameEveMarketOrderESIExchangeTransfer extends TianyanSalesESIExchangeTransfer {
 
     @GetExchange("/markets/{region_id}/orders/")
     ResponseEntity<List<GameEveMarketOrderESIFindProfileRespDTransfer>> findMarketOrderProfiles(

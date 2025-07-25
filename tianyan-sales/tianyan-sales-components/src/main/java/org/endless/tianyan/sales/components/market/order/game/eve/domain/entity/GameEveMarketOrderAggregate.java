@@ -7,17 +7,15 @@ import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.value.GameEveMarketOrderLocationValue;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.value.GameEveMarketOrderSystemValue;
 import org.springframework.util.StringUtils;
 
 /**
  * GameEveMarketOrderAggregate
  * <p>游戏EVE市场订单聚合根
  * <p>
- * create 2025/07/25 11:19
+ * create 2025/07/25 15:54
  * <p>
- * update 2025/07/25 11:19
+ * update 2025/07/25 15:54
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -39,19 +37,19 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     private String code;
 
     /**
-     * 订单范围
+     * 游戏EVE市场订单范围
      */
     private String range;
 
     /**
-     * 游戏EVE市场订单星系
+     * 游戏EVE市场订单星系ID
      */
-    private GameEveMarketOrderSystemValue system;
+    private String systemId;
 
     /**
      * 游戏EVE市场订单空间站
      */
-    private GameEveMarketOrderLocationValue location;
+    private String stationId;
 
     /**
      * 创建者ID
@@ -92,8 +90,8 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     public GameEveMarketOrderAggregate modify(GameEveMarketOrderAggregateBuilder builder, String modifyUserId) {
         this.code = builder.code == null ? this.code : builder.code;
         this.range = builder.range == null ? this.range : builder.range;
-        this.system = builder.system == null ? this.system : builder.system;
-        this.location = builder.location == null ? this.location : builder.location;
+        this.systemId = builder.systemId == null ? this.systemId : builder.systemId;
+        this.stationId = builder.stationId == null ? this.stationId : builder.stationId;
         this.modifyUserId = modifyUserId;
         return this.validate();
     }
@@ -107,8 +105,8 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
         validateGameEveMarketOrderId();
         validateCode();
         validateRange();
-        validateSystem();
-        validateLocation();
+        validateSystemId();
+        validateStationId();
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
@@ -129,19 +127,19 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
 
     private void validateRange() {
         if (!StringUtils.hasText(range)) {
-            throw new AggregateValidateException("订单范围不能为空");
+            throw new AggregateValidateException("游戏EVE市场订单范围不能为空");
         }
     }
 
-    private void validateSystem() {
-        if (system == null) {
-            throw new AggregateValidateException("游戏EVE市场订单星系不能为 null ");
+    private void validateSystemId() {
+        if (!StringUtils.hasText(systemId)) {
+            throw new AggregateValidateException("游戏EVE市场订单星系ID不能为空");
         }
     }
 
-    private void validateLocation() {
-        if (location == null) {
-            throw new AggregateValidateException("游戏EVE市场订单空间站不能为 null ");
+    private void validateStationId() {
+        if (!StringUtils.hasText(stationId)) {
+            throw new AggregateValidateException("游戏EVE市场订单空间站ID不能为空");
         }
     }
 
