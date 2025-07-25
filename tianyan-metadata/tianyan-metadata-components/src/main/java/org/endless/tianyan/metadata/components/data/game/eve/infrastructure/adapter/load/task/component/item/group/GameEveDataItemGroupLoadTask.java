@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Deng Haozhi
  * @see GameEveDataLoadTask
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Slf4j
 @Lazy

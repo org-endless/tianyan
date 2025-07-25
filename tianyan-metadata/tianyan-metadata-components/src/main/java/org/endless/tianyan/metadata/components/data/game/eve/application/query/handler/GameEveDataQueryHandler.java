@@ -1,7 +1,6 @@
 package org.endless.tianyan.metadata.components.data.game.eve.application.query.handler;
 
-import org.endless.tianyan.metadata.common.model.application.query.handler.*;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.handler.TianyanMetadataQueryHandler;
 
 /**
  * GameEveDataQueryHandler
@@ -16,4 +15,5 @@ import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.*;
  * @since 0.0.1
  */
 public interface GameEveDataQueryHandler extends TianyanMetadataQueryHandler {
+
 }

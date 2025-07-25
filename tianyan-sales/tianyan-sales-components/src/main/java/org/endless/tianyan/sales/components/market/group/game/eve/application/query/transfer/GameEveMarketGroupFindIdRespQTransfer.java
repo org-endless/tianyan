@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupFindIdRespQTransfer
  * <p>游戏EVE市场分组ID查询响应传输对象
  * <p>
- * create 2025/07/24 17:37
+ * create 2025/07/26 05:28
  * <p>
- * update 2025/07/24 17:37
+ * update 2025/07/26 05:28
  *
  * @author Deng Haozhi
  * @see TianyanSalesQueryTransfer

@@ -1,16 +1,14 @@
 package org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.manager;
 
-import org.endless.tianyan.finance.common.model.infrastructure.data.manager.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.entity.*;
-import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.*;
+import org.endless.tianyan.finance.common.model.infrastructure.data.manager.TianyanFinanceAggregateDataManager;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.TaxQueryRepository;
+import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.TaxRepository;
+import org.endless.tianyan.finance.components.taxation.tax.domain.entity.TaxAggregate;
+import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.persistence.mapper.TaxMapper;
+import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.record.TaxRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 /**

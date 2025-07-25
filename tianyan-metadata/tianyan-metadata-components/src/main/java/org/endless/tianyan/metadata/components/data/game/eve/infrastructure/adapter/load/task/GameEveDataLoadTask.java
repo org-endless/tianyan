@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface GameEveDataLoadTask extends TianyanMetadataDrivenAdapter {
 

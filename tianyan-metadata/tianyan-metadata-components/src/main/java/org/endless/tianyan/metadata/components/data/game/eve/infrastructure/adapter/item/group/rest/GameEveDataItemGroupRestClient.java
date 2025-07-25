@@ -23,7 +23,7 @@ import java.util.Optional;
  *
  * @author Deng Haozhi
  * @see RestClientAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Lazy
 @Component
@@ -50,7 +50,7 @@ public class GameEveDataItemGroupRestClient implements TianyanMetadataItemRestCl
                 restClient,
                 "/item/group/game/eve/query/find_item_group_id_by_code",
                 GameEveItemGroupFindByCodeReqDTransfer.builder()
-                        .code(code)
+                        .gameEveItemGroupCode(code)
                         .build().validate(),
                 GameEveItemGroupFindIdRespDTransfer.class)
                 .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项分组根据编码查询ID响应数据为空"))

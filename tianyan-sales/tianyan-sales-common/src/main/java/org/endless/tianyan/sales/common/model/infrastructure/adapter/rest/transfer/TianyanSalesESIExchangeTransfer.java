@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author Deng Haozhi
  * @see DrivenTransfer
- * @since 2.0.0
+ * @since 0.0.1
  */
 @HttpExchange(url = "https://ali-esi.evepc.163.com/latest", contentType = "application/json", accept = "application/json")
 public interface TianyanSalesESIExchangeTransfer extends RestExchangeTransfer {

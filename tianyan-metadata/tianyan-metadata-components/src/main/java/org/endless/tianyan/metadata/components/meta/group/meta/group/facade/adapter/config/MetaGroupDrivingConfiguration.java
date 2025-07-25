@@ -1,13 +1,13 @@
 package org.endless.tianyan.metadata.components.meta.group.meta.group.facade.adapter.config;
 
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.command.handler.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.command.handler.impl.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.impl.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.facade.adapter.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.facade.adapter.spring.*;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.command.handler.MetaGroupCommandHandler;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.command.handler.impl.MetaGroupCommandHandlerImpl;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.anticorruption.MetaGroupQueryRepository;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.MetaGroupQueryHandler;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.impl.MetaGroupQueryHandlerImpl;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.anticorruption.MetaGroupRepository;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.facade.adapter.MetaGroupDrivingAdapter;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.facade.adapter.spring.SpringMetaGroupDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

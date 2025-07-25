@@ -1,8 +1,7 @@
 package org.endless.tianyan.finance.components.taxation.tax.sidecar.rest;
 
-import org.endless.tianyan.finance.common.model.sidecar.rest.*;
-import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.*;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.*;
+import org.endless.tianyan.finance.common.model.sidecar.rest.TianyanFinanceRestController;
+import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.TaxDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

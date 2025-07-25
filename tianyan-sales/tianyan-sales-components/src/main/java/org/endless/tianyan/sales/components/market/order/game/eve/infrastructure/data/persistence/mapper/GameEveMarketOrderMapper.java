@@ -24,10 +24,10 @@ import java.util.List;
 @Mapper
 public interface GameEveMarketOrderMapper extends TianyanSalesMapper<GameEveMarketOrderRecord> {
 
-    default List<GameEveMarketOrderRecord> findAllByCode(String code) {
+    default List<GameEveMarketOrderRecord> findAllByMarketOrderIds(List<String> marketOrderIds) {
         QueryWrapper<GameEveMarketOrderRecord> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()
-                .eq(GameEveMarketOrderRecord::getCode, code)
+                .in(GameEveMarketOrderRecord::getMarketOrderId, marketOrderIds)
                 .orderByAsc(GameEveMarketOrderRecord::getGameEveMarketOrderId);
         return findAllByWrapper(queryWrapper);
     }

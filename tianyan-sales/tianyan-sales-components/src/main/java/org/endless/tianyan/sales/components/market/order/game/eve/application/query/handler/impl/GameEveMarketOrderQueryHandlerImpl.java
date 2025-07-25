@@ -1,9 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl;
 
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderQueryRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
 
 /**
  * GameEveMarketOrderQueryHandlerImpl

@@ -4,6 +4,8 @@ import org.endless.tianyan.item.components.item.game.eve.application.command.han
 import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateReqCTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindCodeRespQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindItemIdRespQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
 
@@ -44,5 +46,10 @@ public class SpringGameEveItemDrivingAdapter implements GameEveItemDrivingAdapte
     @Override
     public GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query) {
         return gameEveItemQueryHandler.findItemIdByCode(query);
+    }
+
+    @Override
+    public GameEveItemFindCodeRespQTransfer findCodeByItemId(GameEveItemFindByItemIdReqQTransfer query) {
+        return gameEveItemQueryHandler.findCodeByItemId(query);
     }
 }

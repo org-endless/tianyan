@@ -1,7 +1,8 @@
 package org.endless.tianyan.sales.components.market.order.market.order.application.query.handler;
 
-import org.endless.tianyan.sales.common.model.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.handler.TianyanSalesQueryHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindIdsRespQTransfer;
 
 /**
  * MarketOrderQueryHandler
@@ -16,4 +17,7 @@ import org.endless.tianyan.sales.components.market.order.market.order.domain.ent
  * @since 0.0.1
  */
 public interface MarketOrderQueryHandler extends TianyanSalesQueryHandler {
+
+    MarketOrderFindIdsRespQTransfer findIdsByItemId(MarketOrderFindByItemIdReqQTransfer query);
+
 }

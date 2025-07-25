@@ -78,7 +78,13 @@ public class GameEveMarketOrderDataManager implements GameEveMarketOrderReposito
     }
 
     @Override
-    public List<GameEveMarketOrderAggregate> findAllByCode(String code) {
-        return gameEveMarketOrderMapper.findAllByCode(code).stream().map(GameEveMarketOrderRecord::to).toList();
+    @Log(message = "根据市场订单ID列表查询游戏EVE市场订单聚合数据列表", value = "#aggregate", level = LogLevel.TRACE)
+    public List<GameEveMarketOrderAggregate> findAllByMarketOrderIds(List<String> marketOrderIds) {
+        Optional.ofNullable(marketOrderIds)
+                .filter(l -> !CollectionUtils.isEmpty(l))
+                .orElseThrow(() -> new DataManagerRequestNullException("根据市场订单ID列表查询游戏EVE市场订单聚合数据列表不能为空"));
+        return gameEveMarketOrderMapper.findAllByMarketOrderIds(marketOrderIds)
+                .stream().map(GameEveMarketOrderRecord::to).toList();
     }
+
 }

@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMarketGroupFindByCodeReqQTransfer
  * <p>游戏EVE市场分组根据编码查询请求传输对象
  * <p>
- * create 2025/07/24 17:37
+ * create 2025/07/26 05:28
  * <p>
- * update 2025/07/24 17:37
+ * update 2025/07/26 05:28
  *
  * @author Deng Haozhi
  * @see TianyanSalesQueryTransfer
@@ -30,22 +30,22 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code"})
+@JSONType(orders = {"gameEveMarketGroupCode"})
 public class GameEveMarketGroupFindByCodeReqQTransfer implements TianyanSalesQueryTransfer {
 
     /**
      * 游戏EVE市场分组编码
      */
-    private final String code;
+    private final String gameEveMarketGroupCode;
 
     @Override
     public GameEveMarketGroupFindByCodeReqQTransfer validate() {
-        validateCode();
+        validateGameEveMarketGroupCode();
         return this;
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
+    private void validateGameEveMarketGroupCode() {
+        if (!StringUtils.hasText(gameEveMarketGroupCode)) {
             throw new QueryTransferValidateException("游戏EVE市场分组编码不能为空");
         }
     }

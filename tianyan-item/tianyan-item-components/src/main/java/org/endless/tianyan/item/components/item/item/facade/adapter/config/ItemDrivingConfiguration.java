@@ -1,13 +1,13 @@
 package org.endless.tianyan.item.components.item.item.facade.adapter.config;
 
-import org.endless.tianyan.item.components.item.item.application.command.handler.*;
-import org.endless.tianyan.item.components.item.item.application.command.handler.impl.*;
-import org.endless.tianyan.item.components.item.item.application.query.handler.*;
-import org.endless.tianyan.item.components.item.item.application.query.handler.impl.*;
-import org.endless.tianyan.item.components.item.item.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.item.domain.anticorruption.*;
-import org.endless.tianyan.item.components.item.item.facade.adapter.*;
-import org.endless.tianyan.item.components.item.item.facade.adapter.spring.*;
+import org.endless.tianyan.item.components.item.item.application.command.handler.ItemCommandHandler;
+import org.endless.tianyan.item.components.item.item.application.command.handler.impl.ItemCommandHandlerImpl;
+import org.endless.tianyan.item.components.item.item.application.query.anticorruption.ItemQueryRepository;
+import org.endless.tianyan.item.components.item.item.application.query.handler.ItemQueryHandler;
+import org.endless.tianyan.item.components.item.item.application.query.handler.impl.ItemQueryHandlerImpl;
+import org.endless.tianyan.item.components.item.item.domain.anticorruption.ItemRepository;
+import org.endless.tianyan.item.components.item.item.facade.adapter.ItemDrivingAdapter;
+import org.endless.tianyan.item.components.item.item.facade.adapter.spring.SpringItemDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

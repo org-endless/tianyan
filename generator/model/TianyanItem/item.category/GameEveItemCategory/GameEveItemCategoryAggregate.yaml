@@ -58,7 +58,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项分类根据编码查询请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemCategoryCode
         type: String
         description: 游戏EVE资源项分类编码
         nullable: false

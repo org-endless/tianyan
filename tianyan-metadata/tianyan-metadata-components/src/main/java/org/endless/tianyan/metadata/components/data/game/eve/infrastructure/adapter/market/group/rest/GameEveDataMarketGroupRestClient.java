@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Deng Haozhi
  * @see TianyanMetadataSalesRestClient
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface GameEveDataMarketGroupRestClient extends TianyanMetadataSalesRestClient {
 

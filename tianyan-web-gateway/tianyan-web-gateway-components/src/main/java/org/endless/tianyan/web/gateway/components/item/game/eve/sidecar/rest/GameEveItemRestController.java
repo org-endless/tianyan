@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.components.item.game.eve.sidecar.rest;
 
-import org.endless.tianyan.web.gateway.common.model.sidecar.rest.*;
+import org.endless.tianyan.web.gateway.common.model.sidecar.rest.TianyanWebGatewayRestController;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

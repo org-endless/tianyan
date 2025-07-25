@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMetadataRepository;
+import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.GameEveDataAggregate;
 
 /**
  * GameEveDataRepository
@@ -16,4 +16,5 @@ import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.*;
  * @since 0.0.1
  */
 public interface GameEveDataRepository extends TianyanMetadataRepository<GameEveDataAggregate> {
+
 }

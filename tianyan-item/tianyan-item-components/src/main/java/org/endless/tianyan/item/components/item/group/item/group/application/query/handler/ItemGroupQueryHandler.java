@@ -1,7 +1,6 @@
 package org.endless.tianyan.item.components.item.group.item.group.application.query.handler;
 
-import org.endless.tianyan.item.common.model.application.query.handler.*;
-import org.endless.tianyan.item.components.item.group.item.group.domain.entity.*;
+import org.endless.tianyan.item.common.model.application.query.handler.TianyanItemQueryHandler;
 
 /**
  * ItemGroupQueryHandler

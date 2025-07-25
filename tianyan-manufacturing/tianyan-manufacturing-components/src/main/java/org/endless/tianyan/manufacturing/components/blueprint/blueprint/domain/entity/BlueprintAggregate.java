@@ -1,17 +1,18 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
-import org.endless.tianyan.manufacturing.common.model.domain.entity.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateAddItemException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveItemException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingAggregate;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.BlueprintTypeEnum;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -96,8 +97,8 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public BlueprintAggregate remove(String modifyUserId) {
@@ -130,7 +131,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
 
     public BlueprintAggregate addMaterials(List<BlueprintMaterialEntity> materials, String modifyUserId) {
         if (CollectionUtils.isEmpty(materials)) {
-                throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintMaterialEntity> 不能为空");
+            throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintMaterialEntity> 不能为空");
         }
         this.materials.addAll(materials);
         this.modifyUserId = modifyUserId;
@@ -148,7 +149,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
 
     public BlueprintAggregate addProducts(List<BlueprintProductEntity> products, String modifyUserId) {
         if (CollectionUtils.isEmpty(products)) {
-                throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintProductEntity> 不能为空");
+            throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintProductEntity> 不能为空");
         }
         this.products.addAll(products);
         this.modifyUserId = modifyUserId;
@@ -166,7 +167,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
 
     public BlueprintAggregate addSkills(List<BlueprintSkillEntity> skills, String modifyUserId) {
         if (CollectionUtils.isEmpty(skills)) {
-                throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintSkillEntity> 不能为空");
+            throw new AggregateAddItemException("聚合根要添加的子实体列表 List<BlueprintSkillEntity> 不能为空");
         }
         this.skills.addAll(skills);
         this.modifyUserId = modifyUserId;

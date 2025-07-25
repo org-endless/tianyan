@@ -9,6 +9,7 @@ import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse
 import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
 import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateReqCTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +70,19 @@ public class GameEveItemRestController implements TianyanItemRestController {
             return response().success("游戏EVE资源项根据编码查询资源项ID成功", gameEveItemDrivingAdapter.findItemIdByCode(query));
         } catch (JSONException | NullPointerException e) {
             throw new RestErrorException("游戏EVE资源项根据编码查询资源项ID失败", e);
+        }
+    }
+
+    @PostMapping("/query/find_code_by_item_id")
+    @Log(message = "游戏EVE资源项根据资源项ID查询编码", value = "#query")
+    public ResponseEntity<RestResponse> findCodeByItemId(@RequestBody GameEveItemFindByItemIdReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveItemFindByItemIdReqQTransfer::validate)
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据资源项ID查询编码参数不能为空"));
+        try {
+            return response().success("游戏EVE资源项根据资源项ID查询编码成功", gameEveItemDrivingAdapter.findCodeByItemId(query));
+        } catch (JSONException | NullPointerException e) {
+            throw new RestErrorException("游戏EVE资源项根据资源项ID查询编码失败", e);
         }
     }
 }

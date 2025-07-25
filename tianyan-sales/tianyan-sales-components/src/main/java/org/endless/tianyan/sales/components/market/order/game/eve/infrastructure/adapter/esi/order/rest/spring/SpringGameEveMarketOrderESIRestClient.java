@@ -5,6 +5,8 @@ import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.order.rest.transfer.GameEveMarketOrderESIExchangeTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindPageReqDTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindProfileRespDTransfer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -21,11 +23,13 @@ import java.util.List;
  *
  * @author Deng Haozhi
  * @see GameEveMarketOrderESIRestClient
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Lazy
 @Component
 public class SpringGameEveMarketOrderESIRestClient implements GameEveMarketOrderESIRestClient {
+
+    private static final Logger log = LoggerFactory.getLogger(SpringGameEveMarketOrderESIRestClient.class);
 
     private final RestClient restClient;
 

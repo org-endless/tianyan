@@ -13,7 +13,7 @@ import org.endless.tianyan.metadata.components.meta.group.game.eve.application.q
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface GameEveDataMetaGroupDrivenAdapter extends TianyanMetadataDrivenAdapter {
 

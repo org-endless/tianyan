@@ -4,17 +4,15 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordAddItemException;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.TianyanManufacturingRecord;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintAggregate;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.BlueprintTypeEnum;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -139,11 +137,11 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
                 .blueprintId(blueprintId)
                 .itemId(itemId)
                 .type(type)
-                .materials(materials== null? new ArrayList<>() : materials.stream()
+                .materials(materials == null ? new ArrayList<>() : materials.stream()
                         .map(BlueprintMaterialRecord::to).collect(Collectors.toList()))
-                .products(products== null? new ArrayList<>() : products.stream()
+                .products(products == null ? new ArrayList<>() : products.stream()
                         .map(BlueprintProductRecord::to).collect(Collectors.toList()))
-                .skills(skills== null? new ArrayList<>() : skills.stream()
+                .skills(skills == null ? new ArrayList<>() : skills.stream()
                         .map(BlueprintSkillRecord::to).collect(Collectors.toList()))
                 .cycle(cycle)
                 .createUserId(createUserId)
@@ -162,7 +160,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
 
     public BlueprintRecord addMaterials(List<BlueprintMaterialRecord> materials) {
         if (CollectionUtils.isEmpty(materials)) {
-                throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintMaterialRecord> 不能为空");
+            throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintMaterialRecord> 不能为空");
         }
         this.materials.addAll(materials);
         return this;
@@ -178,7 +176,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
 
     public BlueprintRecord addProducts(List<BlueprintProductRecord> products) {
         if (CollectionUtils.isEmpty(products)) {
-                throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintProductRecord> 不能为空");
+            throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintProductRecord> 不能为空");
         }
         this.products.addAll(products);
         return this;
@@ -194,7 +192,7 @@ public class BlueprintRecord implements TianyanManufacturingRecord<BlueprintAggr
 
     public BlueprintRecord addSkills(List<BlueprintSkillRecord> skills) {
         if (CollectionUtils.isEmpty(skills)) {
-                throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintSkillRecord> 不能为空");
+            throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<BlueprintSkillRecord> 不能为空");
         }
         this.skills.addAll(skills);
         return this;

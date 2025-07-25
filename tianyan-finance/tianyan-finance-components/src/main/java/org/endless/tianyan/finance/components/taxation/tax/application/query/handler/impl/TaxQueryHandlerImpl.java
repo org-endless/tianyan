@@ -1,9 +1,7 @@
 package org.endless.tianyan.finance.components.taxation.tax.application.query.handler.impl;
 
-import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.TaxQueryRepository;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.TaxQueryHandler;
 
 /**
  * TaxQueryHandlerImpl

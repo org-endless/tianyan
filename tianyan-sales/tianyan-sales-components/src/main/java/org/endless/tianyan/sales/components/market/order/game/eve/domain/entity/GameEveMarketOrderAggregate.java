@@ -92,12 +92,12 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
         return this;
     }
 
-    public GameEveMarketOrderAggregate modify(GameEveMarketOrderAggregateBuilder builder, String modifyUserId) {
+    public GameEveMarketOrderAggregate modify(GameEveMarketOrderAggregateBuilder builder) {
         this.code = builder.code == null ? this.code : builder.code;
         this.range = builder.range == null ? this.range : builder.range;
         this.systemId = builder.systemId == null ? this.systemId : builder.systemId;
         this.stationId = builder.stationId == null ? this.stationId : builder.stationId;
-        this.modifyUserId = modifyUserId;
+        this.modifyUserId = builder.modifyUserId;
         return this.validate();
     }
 

@@ -54,7 +54,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE市场分组根据编码查询请求传输对象
     fields:
-      - name: code
+      - name: gameEveMarketGroupCode
         type: String
         description: 游戏EVE市场分组编码
         nullable: false

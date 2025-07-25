@@ -1,7 +1,6 @@
 package org.endless.tianyan.finance.components.taxation.tax.application.query.handler;
 
-import org.endless.tianyan.finance.common.model.application.query.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.entity.*;
+import org.endless.tianyan.finance.common.model.application.query.handler.TianyanFinanceQueryHandler;
 
 /**
  * TaxQueryHandler

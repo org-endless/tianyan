@@ -1,9 +1,10 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.impl;
 
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintMaterialQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintProductQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintSkillQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.BlueprintQueryHandler;
 
 /**
  * BlueprintQueryHandlerImpl

@@ -1,7 +1,6 @@
 package org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler;
 
-import org.endless.tianyan.metadata.common.model.application.query.handler.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.handler.TianyanMetadataQueryHandler;
 
 /**
  * MetaGroupQueryHandler
@@ -16,4 +15,5 @@ import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.enti
  * @since 0.0.1
  */
 public interface MetaGroupQueryHandler extends TianyanMetadataQueryHandler {
+
 }

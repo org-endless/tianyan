@@ -74,9 +74,19 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE根据编码查询请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemCode
         type: String
-        description: 游戏EVE编码
+        description: 游戏EVE资源项编码
+        nullable: false
+  - name: GameEveItemFindByItemIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE根据资源项ID查询请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
         nullable: false
   - name: GameEveItemFindItemIdRespQTransfer
     adapterType: DRIVING
@@ -87,4 +97,14 @@ transfers:
       - name: itemId
         type: String
         description: 资源项ID
+        nullable: false
+  - name: GameEveItemFindCodeRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE资源项编码查询响应传输对象
+    fields:
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
         nullable: false

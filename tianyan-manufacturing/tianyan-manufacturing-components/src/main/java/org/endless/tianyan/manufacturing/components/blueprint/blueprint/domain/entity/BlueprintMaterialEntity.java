@@ -1,21 +1,13 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
-import org.endless.tianyan.manufacturing.common.model.domain.entity.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.EntityRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.EntityValidateException;
+import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingEntity;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * BlueprintMaterialEntity
@@ -72,8 +64,8 @@ public class BlueprintMaterialEntity implements TianyanManufacturingEntity {
                 .createUserId(builder.createUserId)
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     protected BlueprintMaterialEntity remove(String modifyUserId) {

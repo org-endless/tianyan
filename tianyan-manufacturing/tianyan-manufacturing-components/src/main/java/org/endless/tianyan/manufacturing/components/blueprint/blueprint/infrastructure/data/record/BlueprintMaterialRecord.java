@@ -4,20 +4,11 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.TianyanManufacturingRecord;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintMaterialEntity;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * BlueprintMaterialRecord

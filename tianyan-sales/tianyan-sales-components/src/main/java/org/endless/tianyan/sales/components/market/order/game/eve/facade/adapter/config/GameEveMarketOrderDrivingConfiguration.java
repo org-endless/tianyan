@@ -6,9 +6,11 @@ import org.endless.tianyan.sales.components.market.order.game.eve.application.qu
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl.GameEveMarketOrderQueryHandlerImpl;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderDrivenAdapter;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderItemDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderRepository;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.spring.SpringGameEveMarketOrderDrivingAdapter;
+import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +41,12 @@ public class GameEveMarketOrderDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveMarketOrderCommandHandler gameEveMarketOrderCommandHandler(GameEveMarketOrderRepository repository, GameEveMarketOrderDrivenAdapter gameEveMarketOrderDrivenAdapter) {
-        return new GameEveMarketOrderCommandHandlerImpl(repository, gameEveMarketOrderDrivenAdapter);
+    protected @Bean GameEveMarketOrderCommandHandler gameEveMarketOrderCommandHandler(
+            GameEveMarketOrderRepository repository,
+            MarketOrderDrivingAdapter marketOrderDrivingAdapter,
+            GameEveMarketOrderDrivenAdapter gameEveMarketOrderDrivenAdapter,
+            GameEveMarketOrderItemDrivenAdapter gameEveMarketOrderItemDrivenAdapter) {
+        return new GameEveMarketOrderCommandHandlerImpl(repository, marketOrderDrivingAdapter, gameEveMarketOrderDrivenAdapter, gameEveMarketOrderItemDrivenAdapter);
     }
 
     @Lazy

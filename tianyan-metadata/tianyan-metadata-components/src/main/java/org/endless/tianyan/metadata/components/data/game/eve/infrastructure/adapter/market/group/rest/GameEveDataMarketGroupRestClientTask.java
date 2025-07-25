@@ -23,7 +23,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Deng Haozhi
  * @see TianyanMetadataItemRestClient
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Lazy
 @Component
@@ -40,9 +40,7 @@ public class GameEveDataMarketGroupRestClientTask implements GameEveDataMarketGr
         Optional.ofNullable(command)
                 .map(GameEveMarketGroupCreateReqDTransfer::validate)
                 .orElseThrow(() -> new DrivenReqTransferNullException("游戏EVE资源项分组创建请求参数不能为空"));
-        return CompletableFuture.runAsync(() -> {
-            post(restClient, "/market/group/game/eve/command/create", command, null);
-        });
+        return CompletableFuture.runAsync(() -> post(restClient, "/market/group/game/eve/command/create", command, null));
     }
 
     @Override
@@ -54,7 +52,7 @@ public class GameEveDataMarketGroupRestClientTask implements GameEveDataMarketGr
                 restClient,
                 "/market/group/game/eve/query/find_market_group_id_by_code",
                 GameEveMarketGroupFindByCodeReqDTransfer.builder()
-                        .code(code)
+                        .gameEveMarketGroupCode(code)
                         .build().validate(),
                 GameEveMarketGroupFindIdRespDTransfer.class)
                 .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE市场分组分类根据编码查询ID响应数据为空"))

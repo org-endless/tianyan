@@ -1,9 +1,8 @@
 package org.endless.tianyan.finance.components.taxation.tax.facade.adapter.spring;
 
-import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.TaxCommandHandler;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.TaxQueryHandler;
+import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.TaxDrivingAdapter;
 
 /**
  * SpringTaxDrivingAdapter

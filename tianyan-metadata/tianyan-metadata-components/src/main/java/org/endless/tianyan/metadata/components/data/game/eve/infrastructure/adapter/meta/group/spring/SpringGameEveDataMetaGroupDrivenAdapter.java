@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * update 2025/07/24 11:52
  *
  * @author Deng Haozhi
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Lazy
 @Component

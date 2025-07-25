@@ -1,9 +1,8 @@
 package org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.finance.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.finance.common.model.infrastructure.data.persistence.mapper.TianyanFinanceMapper;
+import org.endless.tianyan.finance.components.taxation.tax.infrastructure.data.record.TaxRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**

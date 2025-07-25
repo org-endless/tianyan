@@ -1,8 +1,7 @@
 package org.endless.tianyan.finance.components.taxation.tax.application.command.handler.impl;
 
-import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.*;
+import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.TaxCommandHandler;
+import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.TaxRepository;
 
 /**
  * TaxCommandHandlerImpl

@@ -41,7 +41,7 @@ public class GameEveMarketGroupQueryHandlerImpl implements GameEveMarketGroupQue
                 .map(GameEveMarketGroupFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE市场根据编码查询市场分组ID参数不能为空"));
         return GameEveMarketGroupFindIdRespQTransfer.builder()
-                .marketGroupId(gameEveMarketGroupQueryRepository.findMarketGroupIdByCode(query.getCode())
+                .marketGroupId(gameEveMarketGroupQueryRepository.findMarketGroupIdByCode(query.getGameEveMarketGroupCode())
                         .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE市场分组不存在")))
                 .build().validate();
     }

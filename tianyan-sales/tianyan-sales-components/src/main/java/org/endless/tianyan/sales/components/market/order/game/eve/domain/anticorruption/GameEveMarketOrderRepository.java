@@ -21,5 +21,5 @@ public interface GameEveMarketOrderRepository extends TianyanSalesRepository<Gam
 
     void upsert(List<GameEveMarketOrderAggregate> aggregates);
 
-    List<GameEveMarketOrderAggregate> findAllByCode(String code);
+    List<GameEveMarketOrderAggregate> findAllByMarketOrderIds(List<String> marketOrderIds);
 }

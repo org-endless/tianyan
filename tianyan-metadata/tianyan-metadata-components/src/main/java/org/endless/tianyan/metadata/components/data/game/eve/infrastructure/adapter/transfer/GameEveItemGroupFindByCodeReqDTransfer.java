@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveItemGroupFindByCodeReqDTransfer
  * <p>游戏EVE资源项分组根据编码查询被动请求传输对象
  * <p>
- * create 2025/07/24 20:58
+ * create 2025/07/26 05:23
  * <p>
- * update 2025/07/24 20:58
+ * update 2025/07/26 05:23
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer
@@ -31,22 +31,22 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code"})
+@JSONType(orders = {"gameEveItemGroupCode"})
 public class GameEveItemGroupFindByCodeReqDTransfer implements TianyanMetadataDrivenTransfer {
 
     /**
      * 游戏EVE资源项分组编码
      */
-    private final String code;
+    private final String gameEveItemGroupCode;
 
     @Override
     public GameEveItemGroupFindByCodeReqDTransfer validate() {
-        validateCode();
+        validateGameEveItemGroupCode();
         return this;
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
+    private void validateGameEveItemGroupCode() {
+        if (!StringUtils.hasText(gameEveItemGroupCode)) {
             throw new DrivenTransferValidateException("游戏EVE资源项分组编码不能为空");
         }
     }

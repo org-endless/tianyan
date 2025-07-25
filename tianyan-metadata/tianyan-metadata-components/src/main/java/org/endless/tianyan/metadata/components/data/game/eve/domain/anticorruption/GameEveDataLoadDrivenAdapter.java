@@ -12,7 +12,7 @@ import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEve
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface GameEveDataLoadDrivenAdapter extends TianyanMetadataDrivenAdapter {
 

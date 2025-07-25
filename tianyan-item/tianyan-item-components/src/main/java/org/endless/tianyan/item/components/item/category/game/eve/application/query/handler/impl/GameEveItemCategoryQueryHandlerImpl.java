@@ -41,7 +41,7 @@ public class GameEveItemCategoryQueryHandlerImpl implements GameEveItemCategoryQ
                 .map(GameEveItemCategoryFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类根据编码查询ID参数不能为空"));
         return GameEveItemCategoryFindIdRespQTransfer.builder()
-                .itemCategoryId(gameEveItemCategoryQueryRepository.findItemCategoryIdByCode(query.getCode())
+                .itemCategoryId(gameEveItemCategoryQueryRepository.findItemCategoryIdByCode(query.getGameEveItemCategoryCode())
                         .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项分类不存在")))
                 .build().validate();
     }

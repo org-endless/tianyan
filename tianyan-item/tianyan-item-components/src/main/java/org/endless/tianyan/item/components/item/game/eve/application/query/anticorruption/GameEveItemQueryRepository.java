@@ -22,4 +22,6 @@ import java.util.Optional;
 public interface GameEveItemQueryRepository extends GameEveItemRepository, TianyanItemQueryRepository<GameEveItemAggregate> {
 
     Optional<String> findItemIdByCode(String code);
+
+    Optional<String> findCodeByItemId(String itemId);
 }

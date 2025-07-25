@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption;
 
-import org.endless.tianyan.sales.common.model.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.*;
+import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 
 /**
  * MarketOrderRepository

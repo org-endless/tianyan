@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.components.item.item.domain.anticorruption;
 
-import org.endless.tianyan.item.common.model.domain.anticorruption.*;
-import org.endless.tianyan.item.components.item.item.domain.entity.*;
+import org.endless.tianyan.item.common.model.domain.anticorruption.TianyanItemRepository;
+import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate;
 
 /**
  * ItemRepository

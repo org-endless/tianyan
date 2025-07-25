@@ -1,17 +1,12 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.manager;
 
-import org.endless.tianyan.manufacturing.common.model.infrastructure.data.manager.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.*;
+import org.endless.tianyan.manufacturing.common.model.infrastructure.data.manager.TianyanManufacturingEntityDataManager;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintMaterialQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintMaterialEntity;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.persistence.mapper.BlueprintMaterialMapper;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.record.BlueprintMaterialRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * BlueprintMaterialDataManager

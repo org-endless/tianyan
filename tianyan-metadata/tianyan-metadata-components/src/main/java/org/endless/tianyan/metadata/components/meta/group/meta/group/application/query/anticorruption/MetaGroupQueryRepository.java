@@ -1,8 +1,8 @@
 package org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.anticorruption.TianyanMetadataQueryRepository;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.anticorruption.MetaGroupRepository;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.entity.MetaGroupAggregate;
 
 /**
  * MetaGroupQueryRepository
@@ -18,4 +18,5 @@ import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.enti
  * @since 0.0.1
  */
 public interface MetaGroupQueryRepository extends MetaGroupRepository, TianyanMetadataQueryRepository<MetaGroupAggregate> {
+
 }

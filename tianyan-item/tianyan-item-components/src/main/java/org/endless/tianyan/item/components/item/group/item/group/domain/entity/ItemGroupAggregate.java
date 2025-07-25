@@ -1,21 +1,14 @@
 package org.endless.tianyan.item.components.item.group.item.group.domain.entity;
 
-import org.endless.tianyan.item.common.model.domain.entity.*;
-import org.endless.tianyan.item.components.item.group.item.group.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
+import org.endless.tianyan.item.components.item.group.item.group.domain.value.NameValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * ItemGroupAggregate

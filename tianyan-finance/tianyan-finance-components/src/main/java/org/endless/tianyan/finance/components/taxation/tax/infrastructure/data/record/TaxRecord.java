@@ -4,20 +4,11 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.finance.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.entity.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;
+import org.endless.tianyan.finance.components.taxation.tax.domain.entity.TaxAggregate;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * TaxRecord

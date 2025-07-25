@@ -5,6 +5,8 @@ import org.endless.tianyan.sales.components.market.order.market.order.applicatio
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindIdsRespQTransfer;
 
 /**
  * MarketOrderDrivingAdapter
@@ -25,4 +27,6 @@ public interface MarketOrderDrivingAdapter extends TianyanSalesDrivingAdapter {
     void modify(MarketOrderModifyReqCTransfer command);
 
     void remove(MarketOrderRemoveReqCTransfer command);
+
+    MarketOrderFindIdsRespQTransfer findIdsByItemId(MarketOrderFindByItemIdReqQTransfer query);
 }

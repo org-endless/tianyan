@@ -1,13 +1,13 @@
 package org.endless.tianyan.finance.components.taxation.tax.facade.adapter.config;
 
-import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.impl.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.impl.*;
-import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.*;
-import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.spring.*;
+import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.TaxCommandHandler;
+import org.endless.tianyan.finance.components.taxation.tax.application.command.handler.impl.TaxCommandHandlerImpl;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption.TaxQueryRepository;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.TaxQueryHandler;
+import org.endless.tianyan.finance.components.taxation.tax.application.query.handler.impl.TaxQueryHandlerImpl;
+import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.TaxRepository;
+import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.TaxDrivingAdapter;
+import org.endless.tianyan.finance.components.taxation.tax.facade.adapter.spring.SpringTaxDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

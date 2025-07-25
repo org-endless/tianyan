@@ -14,10 +14,10 @@ import java.util.List;
  *
  * @author Deng Haozhi
  * @see TianyanSalesDrivenAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface GameEveMarketOrderDrivenAdapter extends TianyanSalesDrivenAdapter {
 
-    List<GameEveMarketOrderAggregate> fetch(List<GameEveMarketOrderAggregate> existedAggregates, String gameEveItemCode, String createUserId);
+    List<GameEveMarketOrderAggregate> fetch(List<GameEveMarketOrderAggregate> existedAggregates, String itemId, String gameEveItemCode, String createUserId);
 
 }

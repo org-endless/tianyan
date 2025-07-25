@@ -1,19 +1,12 @@
 package org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.transfer;
 
-import org.endless.tianyan.metadata.common.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryTransferValidateException;
+import org.endless.tianyan.metadata.common.model.application.query.transfer.TianyanMetadataQueryTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveMetaGroupFindByCodeReqQTransfer

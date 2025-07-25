@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
  * GameEveBlueprintMaterialReqDTransfer
  * <p>游戏EVE蓝图物料命令被动请求传输对象
  * <p>
- * create 2025/07/24 20:58
+ * create 2025/07/26 05:23
  * <p>
- * update 2025/07/24 20:58
+ * update 2025/07/26 05:23
  *
  * @author Deng Haozhi
  * @see TianyanMetadataDrivenTransfer

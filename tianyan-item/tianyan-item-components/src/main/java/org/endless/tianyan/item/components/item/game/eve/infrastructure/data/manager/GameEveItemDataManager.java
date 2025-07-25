@@ -72,8 +72,14 @@ public class GameEveItemDataManager implements GameEveItemRepository, GameEveIte
     }
 
     @Override
-    @Log(message = "游戏EVE资源项根据编码查询资源项ID数据", value = "#aggregate", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE资源项根据编码查询资源项ID数据", value = "#code", level = LogLevel.TRACE)
     public Optional<String> findItemIdByCode(String code) {
         return gameEveItemMapper.findItemIdByCode(code);
+    }
+
+    @Override
+    @Log(message = "游戏EVE资源项根据资源项ID查询编码数据", value = "#itemId", level = LogLevel.TRACE)
+    public Optional<String> findCodeByItemId(String itemId) {
+        return gameEveItemMapper.findCodeByItemId(itemId);
     }
 }

@@ -1,9 +1,7 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.impl;
 
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.GameEveBlueprintQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.GameEveBlueprintQueryHandler;
 
 /**
  * GameEveBlueprintQueryHandlerImpl

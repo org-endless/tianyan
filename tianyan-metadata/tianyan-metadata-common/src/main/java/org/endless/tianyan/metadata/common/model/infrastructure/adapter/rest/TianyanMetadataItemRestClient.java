@@ -15,7 +15,7 @@ import java.util.Optional;
  * update 2025/07/21 16:55
  *
  * @author Deng Haozhi
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface TianyanMetadataItemRestClient extends TianyanMetadataRestClient {
 

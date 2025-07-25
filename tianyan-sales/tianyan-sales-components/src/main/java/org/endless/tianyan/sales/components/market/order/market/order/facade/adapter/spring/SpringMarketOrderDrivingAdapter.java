@@ -6,6 +6,8 @@ import org.endless.tianyan.sales.components.market.order.market.order.applicatio
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindIdsRespQTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 
 /**
@@ -50,5 +52,10 @@ public class SpringMarketOrderDrivingAdapter implements MarketOrderDrivingAdapte
     @Override
     public void remove(MarketOrderRemoveReqCTransfer command) {
         marketOrderCommandHandler.remove(command);
+    }
+
+    @Override
+    public MarketOrderFindIdsRespQTransfer findIdsByItemId(MarketOrderFindByItemIdReqQTransfer query) {
+        return marketOrderQueryHandler.findIdsByItemId(query);
     }
 }

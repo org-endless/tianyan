@@ -508,7 +508,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项分类根据编码查询被动请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemCategoryCode
         type: String
         description: 游戏EVE资源项分类编码
         nullable: false
@@ -518,7 +518,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项分组根据编码查询被动请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemGroupCode
         type: String
         description: 游戏EVE资源项分组编码
         nullable: false
@@ -528,7 +528,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE市场分组根据编码查询被动请求传输对象
     fields:
-      - name: code
+      - name: gameEveMarketGroupCode
         type: String
         description: 游戏EVE市场分组编码
         nullable: false
@@ -538,7 +538,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项根据编码查询被动请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemCode
         type: String
         description: 游戏EVE资源项编码
         nullable: false

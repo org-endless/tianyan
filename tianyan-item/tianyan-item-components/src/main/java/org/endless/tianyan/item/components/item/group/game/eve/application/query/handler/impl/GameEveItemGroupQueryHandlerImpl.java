@@ -41,7 +41,7 @@ public class GameEveItemGroupQueryHandlerImpl implements GameEveItemGroupQueryHa
                 .map(GameEveItemGroupFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("根据编码查询资源项分组ID参数不能为空"));
         return GameEveItemGroupFindIdRespQTransfer.builder()
-                .itemGroupId(gameEveItemGroupQueryRepository.findItemGroupIdByCode(query.getCode())
+                .itemGroupId(gameEveItemGroupQueryRepository.findItemGroupIdByCode(query.getGameEveItemGroupCode())
                         .orElseThrow(() -> new QueryHandlerNotFoundException("资源项分组不存在")))
                 .build().validate();
     }

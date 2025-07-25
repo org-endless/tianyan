@@ -1,8 +1,8 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption;
 
-import org.endless.tianyan.manufacturing.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.*;
+import org.endless.tianyan.manufacturing.common.model.application.query.anticorruption.TianyanManufacturingQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.GameEveBlueprintRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.GameEveBlueprintAggregate;
 
 /**
  * GameEveBlueprintQueryRepository
@@ -18,4 +18,5 @@ import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.en
  * @since 0.0.1
  */
 public interface GameEveBlueprintQueryRepository extends GameEveBlueprintRepository, TianyanManufacturingQueryRepository<GameEveBlueprintAggregate> {
+
 }

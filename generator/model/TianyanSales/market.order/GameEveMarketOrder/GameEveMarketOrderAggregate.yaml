@@ -40,19 +40,39 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE市场订单获取命令请求传输对象
     fields:
-      - name: gameEveItemCode
+      - name: itemId
         type: String
-        description: 游戏EVE资源项编码
+        description: 资源项ID
         nullable: false
       - name: createUserId
         type: String
         description: 用户创建ID
         nullable: false
+  - name: GameEveMarketOrderItemFindByIdReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 资源项根据ID查询被动请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+  - name: GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 资源项游戏EVE编码查询被动响应传输对象
+    fields:
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
   - name: GameEveMarketOrderESIFindPageReqDTransfer
     adapterType: DRIVEN
     cqrsType: QUERY
     messageType: REQUEST
-    description: 游戏EVE市场订单信息查询被动请求传输对象
+    description: ESI市场订单信息查询被动请求传输对象
     fields:
       - name: regionId
         type: String
@@ -74,7 +94,7 @@ transfers:
     adapterType: DRIVEN
     cqrsType: QUERY
     messageType: RESPONSE
-    description: 游戏EVE市场订单信息查询被动响应传输对象
+    description: ESI市场订单信息查询被动响应传输对象
     fields:
       - name: order_id
         type: String

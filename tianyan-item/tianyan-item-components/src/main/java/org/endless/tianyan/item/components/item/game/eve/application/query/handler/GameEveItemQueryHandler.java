@@ -2,6 +2,8 @@ package org.endless.tianyan.item.components.item.game.eve.application.query.hand
 
 import org.endless.tianyan.item.common.model.application.query.handler.TianyanItemQueryHandler;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindCodeRespQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindItemIdRespQTransfer;
 
 /**
@@ -19,5 +21,7 @@ import org.endless.tianyan.item.components.item.game.eve.application.query.trans
 public interface GameEveItemQueryHandler extends TianyanItemQueryHandler {
 
     GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query);
+
+    GameEveItemFindCodeRespQTransfer findCodeByItemId(GameEveItemFindByItemIdReqQTransfer query);
 
 }

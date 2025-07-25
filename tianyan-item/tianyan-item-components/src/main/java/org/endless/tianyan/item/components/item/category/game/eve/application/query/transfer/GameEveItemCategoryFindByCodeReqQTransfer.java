@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveItemCategoryFindByCodeReqQTransfer
  * <p>游戏EVE资源项分类根据编码查询请求传输对象
  * <p>
- * create 2025/07/24 20:18
+ * create 2025/07/26 05:25
  * <p>
- * update 2025/07/24 20:18
+ * update 2025/07/26 05:25
  *
  * @author Deng Haozhi
  * @see TianyanItemQueryTransfer
@@ -30,22 +30,22 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code"})
+@JSONType(orders = {"gameEveItemCategoryCode"})
 public class GameEveItemCategoryFindByCodeReqQTransfer implements TianyanItemQueryTransfer {
 
     /**
      * 游戏EVE资源项分类编码
      */
-    private final String code;
+    private final String gameEveItemCategoryCode;
 
     @Override
     public GameEveItemCategoryFindByCodeReqQTransfer validate() {
-        validateCode();
+        validateGameEveItemCategoryCode();
         return this;
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
+    private void validateGameEveItemCategoryCode() {
+        if (!StringUtils.hasText(gameEveItemCategoryCode)) {
             throw new QueryTransferValidateException("游戏EVE资源项分类编码不能为空");
         }
     }

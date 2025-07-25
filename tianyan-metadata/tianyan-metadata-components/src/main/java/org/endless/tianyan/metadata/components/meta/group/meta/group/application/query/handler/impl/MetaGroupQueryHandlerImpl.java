@@ -1,9 +1,7 @@
 package org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.impl;
 
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.anticorruption.MetaGroupQueryRepository;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.application.query.handler.MetaGroupQueryHandler;
 
 /**
  * MetaGroupQueryHandlerImpl

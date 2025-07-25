@@ -1,8 +1,8 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption;
 
-import org.endless.tianyan.manufacturing.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.*;
+import org.endless.tianyan.manufacturing.common.model.application.query.anticorruption.TianyanManufacturingQueryRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.BlueprintRepository;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintAggregate;
 
 /**
  * BlueprintQueryRepository
@@ -18,4 +18,5 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.e
  * @since 0.0.1
  */
 public interface BlueprintQueryRepository extends BlueprintRepository, TianyanManufacturingQueryRepository<BlueprintAggregate> {
+
 }

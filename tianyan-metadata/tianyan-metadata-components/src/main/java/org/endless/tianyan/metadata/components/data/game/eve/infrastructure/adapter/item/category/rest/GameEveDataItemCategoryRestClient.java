@@ -23,7 +23,7 @@ import java.util.Optional;
  *
  * @author Deng Haozhi
  * @see RestClientAdapter
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Lazy
 @Component
@@ -50,7 +50,7 @@ public class GameEveDataItemCategoryRestClient implements TianyanMetadataItemRes
                 restClient,
                 "/item/category/game/eve/query/find_item_category_id_by_code",
                 GameEveItemCategoryFindByCodeReqDTransfer.builder()
-                        .code(code).build().validate(),
+                        .gameEveItemCategoryCode(code).build().validate(),
                 GameEveItemCategoryFindIdRespDTransfer.class)
                 .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项分类根据编码查询ID响应数据为空"))
                 .validate()

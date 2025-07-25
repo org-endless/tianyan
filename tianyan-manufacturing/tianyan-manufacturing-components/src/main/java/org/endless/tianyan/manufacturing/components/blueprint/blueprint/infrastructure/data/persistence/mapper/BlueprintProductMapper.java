@@ -1,9 +1,8 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.manufacturing.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.manufacturing.common.model.infrastructure.data.persistence.mapper.TianyanManufacturingMapper;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastructure.data.record.BlueprintProductRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**
@@ -21,4 +20,5 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface BlueprintProductMapper extends TianyanManufacturingMapper<BlueprintProductRecord> {
+
 }

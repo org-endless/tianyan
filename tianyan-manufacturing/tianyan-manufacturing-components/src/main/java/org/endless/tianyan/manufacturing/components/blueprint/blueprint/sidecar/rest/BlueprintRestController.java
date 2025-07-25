@@ -1,8 +1,7 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.sidecar.rest;
 
-import org.endless.tianyan.manufacturing.common.model.sidecar.rest.*;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.*;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.*;
+import org.endless.tianyan.manufacturing.common.model.sidecar.rest.TianyanManufacturingRestController;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.BlueprintDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

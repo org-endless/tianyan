@@ -74,7 +74,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项分组根据编码查询请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemGroupCode
         type: String
         description: 游戏EVE资源项分组编码
         nullable: false

@@ -31,4 +31,12 @@ public interface GameEveItemMapper extends TianyanItemMapper<GameEveItemRecord> 
                 .eq(GameEveItemRecord::getCode, code);
         return findFirstByWrapper(queryWrapper).map(GameEveItemRecord::getItemId);
     }
+
+    default Optional<String> findCodeByItemId(String itemId) {
+        QueryWrapper<GameEveItemRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .select(GameEveItemRecord::getCode)
+                .eq(GameEveItemRecord::getItemId, itemId);
+        return findFirstByWrapper(queryWrapper).map(GameEveItemRecord::getCode);
+    }
 }

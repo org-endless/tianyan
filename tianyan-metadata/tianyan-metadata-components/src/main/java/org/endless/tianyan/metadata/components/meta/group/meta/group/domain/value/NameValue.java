@@ -1,15 +1,11 @@
 package org.endless.tianyan.metadata.components.meta.group.meta.group.domain.value;
 
-import org.endless.tianyan.metadata.common.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.value.ValueValidateException;
+import org.endless.tianyan.metadata.common.model.domain.value.TianyanMetadataValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 /**
  * NameValue
@@ -46,8 +42,8 @@ public class NameValue implements TianyanMetadataValue {
     public static NameValue create(NameValueBuilder builder) {
         return builder
                 .fullName(builder.fullName)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

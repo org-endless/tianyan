@@ -1,8 +1,8 @@
 package org.endless.tianyan.finance.components.taxation.tax.application.query.anticorruption;
 
-import org.endless.tianyan.finance.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.entity.*;
+import org.endless.tianyan.finance.common.model.application.query.anticorruption.TianyanFinanceQueryRepository;
+import org.endless.tianyan.finance.components.taxation.tax.domain.anticorruption.TaxRepository;
+import org.endless.tianyan.finance.components.taxation.tax.domain.entity.TaxAggregate;
 
 /**
  * TaxQueryRepository

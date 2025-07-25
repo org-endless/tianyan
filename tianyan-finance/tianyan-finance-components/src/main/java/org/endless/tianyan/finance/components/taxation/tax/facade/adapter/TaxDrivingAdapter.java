@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.components.taxation.tax.facade.adapter;
 
-import org.endless.tianyan.finance.common.model.facade.adapter.*;
+import org.endless.tianyan.finance.common.model.facade.adapter.TianyanFinanceDrivingAdapter;
 
 /**
  * TaxDrivingAdapter

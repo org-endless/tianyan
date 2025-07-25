@@ -1,8 +1,7 @@
 package org.endless.tianyan.item.components.item.group.item.group.sidecar.rest;
 
-import org.endless.tianyan.item.common.model.sidecar.rest.*;
-import org.endless.tianyan.item.components.item.group.item.group.facade.adapter.*;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.*;
+import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
+import org.endless.tianyan.item.components.item.group.item.group.facade.adapter.ItemGroupDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

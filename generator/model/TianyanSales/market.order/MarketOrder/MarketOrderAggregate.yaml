@@ -76,7 +76,7 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 游戏EVE市场订单创建命令请求传输对象
+    description: 市场订单创建命令请求传输对象
     fields:
       - name: itemId
         type: String
@@ -118,7 +118,7 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: RESPONSE
-    description: 游戏EVE市场订单创建命令响应传输对象
+    description: 市场订单创建命令响应传输对象
     fields:
       - name: marketOrderId
         type: String
@@ -128,7 +128,7 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 游戏EVE市场订单修改命令请求传输对象
+    description: 市场订单修改命令请求传输对象
     fields:
       - name: marketOrderId
         type: String
@@ -166,7 +166,7 @@ transfers:
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
-    description: 游戏EVE市场订单删除命令请求传输对象
+    description: 市场订单删除命令请求传输对象
     fields:
       - name: marketOrderId
         type: String
@@ -176,3 +176,23 @@ transfers:
         type: String
         description: 修改用户ID
         nullable: false
+  - name: MarketOrderFindByItemIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE市场订单根据资源项ID查询请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+  - name: MarketOrderFindIdsRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE市场订单ID查询响应传输对象
+    fields:
+      - name: marketOrderIds
+        type: ' List<String>'
+        description: 市场订单ID列表
+        nullable: true

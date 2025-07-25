@@ -16,6 +16,7 @@ import org.endless.tianyan.sales.components.market.order.market.order.domain.ant
 import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderQuantityValue;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -46,12 +47,14 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
     }
 
     @Override
+    @Transactional
     @Log(message = "市场订单创建命令", value = "#command", level = LogLevel.TRACE)
     public MarketOrderCreateRespCTransfer create(MarketOrderCreateReqCTransfer command) {
         Optional.ofNullable(command)
                 .map(MarketOrderCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("市场订单创建命令参数不能为空"));
         MarketOrderAggregate aggregate = MarketOrderAggregate.create(MarketOrderAggregate.builder()
+                .itemId(command.getItemId())
                 .type(MarketOrderTypeEnum.fromCode(command.getType()))
                 .quantity(MarketOrderQuantityValue.create(MarketOrderQuantityValue.builder()
                         .total(Decimal.format5Bit(command.getTotalQuantity()))
@@ -68,6 +71,7 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
     }
 
     @Override
+    @Transactional
     @Log(message = "市场订单修改命令", value = "#command", level = LogLevel.TRACE)
     public void modify(MarketOrderModifyReqCTransfer command) {
         Optional.ofNullable(command)
@@ -88,6 +92,7 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
     }
 
     @Override
+    @Transactional
     @Log(message = "市场订单删除命令", value = "#command", level = LogLevel.TRACE)
     public void remove(MarketOrderRemoveReqCTransfer command) {
         Optional.ofNullable(command)

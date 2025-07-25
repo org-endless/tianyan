@@ -4,20 +4,12 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.metadata.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.entity.*;
-import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.data.record.TianyanMetadataRecord;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.entity.MetaGroupAggregate;
+import org.endless.tianyan.metadata.components.meta.group.meta.group.domain.value.NameValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * MetaGroupRecord

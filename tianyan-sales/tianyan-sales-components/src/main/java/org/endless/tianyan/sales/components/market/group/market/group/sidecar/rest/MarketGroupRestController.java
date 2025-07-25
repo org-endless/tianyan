@@ -1,8 +1,7 @@
 package org.endless.tianyan.sales.components.market.group.market.group.sidecar.rest;
 
-import org.endless.tianyan.sales.common.model.sidecar.rest.*;
-import org.endless.tianyan.sales.components.market.group.market.group.facade.adapter.*;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.*;
+import org.endless.tianyan.sales.common.model.sidecar.rest.TianyanSalesRestController;
+import org.endless.tianyan.sales.components.market.group.market.group.facade.adapter.MarketGroupDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

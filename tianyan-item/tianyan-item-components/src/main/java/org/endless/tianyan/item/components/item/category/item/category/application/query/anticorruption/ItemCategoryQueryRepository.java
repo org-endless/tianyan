@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.category.item.category.application.query.anticorruption;
 
-import org.endless.tianyan.item.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.anticorruption.*;
-import org.endless.tianyan.item.components.item.category.item.category.domain.entity.*;
+import org.endless.tianyan.item.common.model.application.query.anticorruption.TianyanItemQueryRepository;
+import org.endless.tianyan.item.components.item.category.item.category.domain.anticorruption.ItemCategoryRepository;
+import org.endless.tianyan.item.components.item.category.item.category.domain.entity.ItemCategoryAggregate;
 
 /**
  * ItemCategoryQueryRepository

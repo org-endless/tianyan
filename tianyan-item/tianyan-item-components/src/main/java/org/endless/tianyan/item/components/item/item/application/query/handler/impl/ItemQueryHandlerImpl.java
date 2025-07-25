@@ -1,9 +1,7 @@
 package org.endless.tianyan.item.components.item.item.application.query.handler.impl;
 
-import org.endless.tianyan.item.components.item.item.application.query.handler.*;
-import org.endless.tianyan.item.components.item.item.application.query.anticorruption.*;
-import org.endless.tianyan.item.components.item.item.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.item.components.item.item.application.query.anticorruption.ItemQueryRepository;
+import org.endless.tianyan.item.components.item.item.application.query.handler.ItemQueryHandler;
 
 /**
  * ItemQueryHandlerImpl

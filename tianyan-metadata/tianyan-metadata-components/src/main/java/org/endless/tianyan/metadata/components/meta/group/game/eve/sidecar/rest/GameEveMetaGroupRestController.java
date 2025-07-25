@@ -1,8 +1,7 @@
 package org.endless.tianyan.metadata.components.meta.group.game.eve.sidecar.rest;
 
-import org.endless.tianyan.metadata.common.model.sidecar.rest.*;
-import org.endless.tianyan.metadata.components.meta.group.game.eve.facade.adapter.*;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.*;
+import org.endless.tianyan.metadata.common.model.sidecar.rest.TianyanMetadataRestController;
+import org.endless.tianyan.metadata.components.meta.group.game.eve.facade.adapter.GameEveMetaGroupDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

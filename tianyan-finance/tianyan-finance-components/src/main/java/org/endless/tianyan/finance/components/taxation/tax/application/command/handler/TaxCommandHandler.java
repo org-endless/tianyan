@@ -1,7 +1,7 @@
 package org.endless.tianyan.finance.components.taxation.tax.application.command.handler;
 
-import org.endless.tianyan.finance.common.model.application.command.handler.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.entity.*;
+import org.endless.tianyan.finance.common.model.application.command.handler.TianyanFinanceCommandHandler;
+import org.endless.tianyan.finance.components.taxation.tax.domain.entity.TaxAggregate;
 
 /**
  * TaxCommandHandler

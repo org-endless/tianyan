@@ -1,9 +1,15 @@
 package org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.impl;
 
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.anticorruption.MarketOrderQueryRepository;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindIdsRespQTransfer;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Optional;
 
 /**
  * MarketOrderQueryHandlerImpl
@@ -26,5 +32,18 @@ public class MarketOrderQueryHandlerImpl implements MarketOrderQueryHandler {
 
     public MarketOrderQueryHandlerImpl(MarketOrderQueryRepository marketOrderQueryRepository) {
         this.marketOrderQueryRepository = marketOrderQueryRepository;
+    }
+
+    @Override
+    @Log(message = "市场订单根据资源项ID查询ID列表", value = "#query", level = LogLevel.TRACE)
+    public MarketOrderFindIdsRespQTransfer findIdsByItemId(MarketOrderFindByItemIdReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(MarketOrderFindByItemIdReqQTransfer::validate)
+                .orElseThrow(() -> new QueryReqTransferNullException("市场订单根据资源项ID查询ID列表参数不能为空"));
+        return MarketOrderFindIdsRespQTransfer.builder()
+                .marketOrderIds(Optional.ofNullable(marketOrderQueryRepository.findIdsByItemId(query.getItemId()))
+                        .filter(l -> !CollectionUtils.isEmpty(l))
+                        .orElse(null))
+                .build().validate();
     }
 }

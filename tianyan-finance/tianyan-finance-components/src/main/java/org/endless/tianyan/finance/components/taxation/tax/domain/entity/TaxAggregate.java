@@ -1,21 +1,13 @@
 package org.endless.tianyan.finance.components.taxation.tax.domain.entity;
 
-import org.endless.tianyan.finance.common.model.domain.entity.*;
-import org.endless.tianyan.finance.components.taxation.tax.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceAggregate;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * TaxAggregate

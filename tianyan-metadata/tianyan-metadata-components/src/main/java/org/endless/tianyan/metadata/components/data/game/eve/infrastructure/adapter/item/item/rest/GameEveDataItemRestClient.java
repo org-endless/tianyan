@@ -21,7 +21,7 @@ import java.util.Optional;
  *
  * @author Deng Haozhi
  * @see TianyanMetadataItemRestClient
- * @since 2.0.0
+ * @since 0.0.1
  */
 @Component
 public class GameEveDataItemRestClient implements TianyanMetadataItemRestClient {
@@ -47,7 +47,7 @@ public class GameEveDataItemRestClient implements TianyanMetadataItemRestClient 
                         restClient,
                         "/item/game/eve/query/find_item_id_by_code",
                         GameEveItemFindByCodeReqDTransfer.builder()
-                                .code(code).build().validate(),
+                                .gameEveItemCode(code).build().validate(),
                         GameEveItemFindIdRespDTransfer.class)
                         .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项根据编码查询ID响应数据为空"))
                         .validate()

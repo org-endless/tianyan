@@ -1,7 +1,6 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler;
 
-import org.endless.tianyan.sales.common.model.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.handler.TianyanSalesQueryHandler;
 
 /**
  * GameEveMarketOrderQueryHandler

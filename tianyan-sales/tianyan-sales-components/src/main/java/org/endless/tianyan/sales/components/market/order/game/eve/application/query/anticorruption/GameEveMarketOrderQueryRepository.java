@@ -1,8 +1,8 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption;
 
-import org.endless.tianyan.sales.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.anticorruption.TianyanSalesQueryRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
 
 /**
  * GameEveMarketOrderQueryRepository

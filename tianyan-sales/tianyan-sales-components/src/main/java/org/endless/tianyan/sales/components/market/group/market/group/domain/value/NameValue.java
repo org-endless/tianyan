@@ -1,15 +1,11 @@
 package org.endless.tianyan.sales.components.market.group.market.group.domain.value;
 
-import org.endless.tianyan.sales.common.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.value.ValueValidateException;
+import org.endless.tianyan.sales.common.model.domain.value.TianyanSalesValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 /**
  * NameValue

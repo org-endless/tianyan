@@ -1,10 +1,10 @@
 package org.endless.tianyan.finance.components.taxation.tax.domain.type;
 
-import org.endless.tianyan.finance.common.model.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.type.*;
-import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.type.EnumException;
+import org.endless.tianyan.finance.common.model.domain.type.TianyanFinanceEnum;
 
 /**
  * TestEnum

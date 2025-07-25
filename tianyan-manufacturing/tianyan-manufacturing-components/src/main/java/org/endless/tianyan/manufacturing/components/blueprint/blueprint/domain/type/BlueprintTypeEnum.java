@@ -1,10 +1,10 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type;
 
-import org.endless.tianyan.manufacturing.common.model.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.type.*;
-import lombok.Getter;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.type.EnumException;
+import org.endless.tianyan.manufacturing.common.model.domain.type.TianyanManufacturingEnum;
 
 /**
  * BlueprintTypeEnum

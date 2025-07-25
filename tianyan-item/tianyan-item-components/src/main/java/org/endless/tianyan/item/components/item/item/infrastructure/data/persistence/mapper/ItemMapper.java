@@ -1,9 +1,8 @@
 package org.endless.tianyan.item.components.item.item.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.item.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.item.components.item.item.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.item.common.model.infrastructure.data.persistence.mapper.TianyanItemMapper;
+import org.endless.tianyan.item.components.item.item.infrastructure.data.record.ItemRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**

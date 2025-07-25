@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveMarketOrderESIFindProfileRespDTransfer
- * <p>游戏EVE市场订单信息查询被动响应传输对象
+ * <p>ESI市场订单信息查询被动响应传输对象
  * <p>
- * create 2025/07/25 16:04
+ * create 2025/07/26 04:50
  * <p>
- * update 2025/07/25 16:04
+ * update 2025/07/26 04:50
  *
  * @author Deng Haozhi
  * @see TianyanSalesDrivenTransfer

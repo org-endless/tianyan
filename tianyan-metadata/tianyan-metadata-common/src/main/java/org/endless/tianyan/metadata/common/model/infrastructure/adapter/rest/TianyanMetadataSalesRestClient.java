@@ -16,7 +16,7 @@ import java.util.Optional;
  *
  * @author Deng Haozhi
  * @see TianyanMetadataRestClient
- * @since 2.0.0
+ * @since 0.0.1
  */
 public interface TianyanMetadataSalesRestClient extends TianyanMetadataRestClient {
 

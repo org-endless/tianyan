@@ -1,7 +1,6 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler;
 
-import org.endless.tianyan.manufacturing.common.model.application.query.handler.*;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.*;
+import org.endless.tianyan.manufacturing.common.model.application.query.handler.TianyanManufacturingQueryHandler;
 
 /**
  * GameEveBlueprintQueryHandler
@@ -16,4 +15,5 @@ import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.en
  * @since 0.0.1
  */
 public interface GameEveBlueprintQueryHandler extends TianyanManufacturingQueryHandler {
+
 }

@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -71,7 +72,7 @@ public class MarketOrderDataManager implements MarketOrderRepository, MarketOrde
     }
 
     @Override
-    @Log(message = "修改市场订单聚合数据", value = "#id", level = LogLevel.TRACE)
+    @Log(message = "根据ID查询市场订单聚合数据", value = "#id", level = LogLevel.TRACE)
     public Optional<MarketOrderAggregate> findById(String id) {
         Optional.ofNullable(id)
                 .filter(StringUtils::hasText)
@@ -82,5 +83,10 @@ public class MarketOrderDataManager implements MarketOrderRepository, MarketOrde
     @Override
     public Optional<MarketOrderAggregate> findByIdForUpdate(String id) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<String> findIdsByItemId(String itemId) {
+        return marketOrderMapper.findIdsByItemId(itemId);
     }
 }

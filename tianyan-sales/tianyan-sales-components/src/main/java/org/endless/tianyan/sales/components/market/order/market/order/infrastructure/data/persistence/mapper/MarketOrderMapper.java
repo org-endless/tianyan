@@ -1,10 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.market.order.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.sales.components.market.order.market.order.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.TianyanSalesMapper;
+import org.endless.tianyan.sales.components.market.order.market.order.infrastructure.data.record.MarketOrderRecord;
 import org.springframework.context.annotation.Lazy;
+
+import java.util.List;
 
 /**
  * MarketOrderMapper
@@ -21,4 +23,14 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface MarketOrderMapper extends TianyanSalesMapper<MarketOrderRecord> {
+
+    default List<String> findIdsByItemId(String itemId) {
+        QueryWrapper<MarketOrderRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .select(MarketOrderRecord::getMarketOrderId)
+                .eq(MarketOrderRecord::getItemId, itemId)
+                .orderByAsc(MarketOrderRecord::getMarketOrderId);
+        return findAllByWrapper(queryWrapper).stream()
+                .map(MarketOrderRecord::getMarketOrderId).toList();
+    }
 }
