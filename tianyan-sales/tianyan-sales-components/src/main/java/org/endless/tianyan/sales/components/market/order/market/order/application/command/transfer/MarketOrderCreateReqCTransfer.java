@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * MarketOrderCreateReqCTransfer
  * <p>游戏EVE市场订单创建命令请求传输对象
  * <p>
- * create 2025/07/25 17:39
+ * create 2025/07/26 02:54
  * <p>
- * update 2025/07/25 17:39
+ * update 2025/07/26 02:54
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer
@@ -32,8 +32,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"type", "totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "createUserId"})
+@JSONType(orders = {"itemId", "type", "totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "createUserId"})
 public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfer {
+
+    /**
+     * 资源项ID
+     */
+    private final String itemId;
 
     /**
      * 市场订单类型
@@ -77,6 +82,7 @@ public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfe
 
     @Override
     public MarketOrderCreateReqCTransfer validate() {
+        validateItemId();
         validateType();
         validateTotalQuantity();
         validateRemainQuantity();
@@ -85,6 +91,12 @@ public class MarketOrderCreateReqCTransfer implements TianyanSalesCommandTransfe
         validateIssuedAt();
         validateCreateUserId();
         return this;
+    }
+
+    private void validateItemId() {
+        if (!StringUtils.hasText(itemId)) {
+            throw new CommandTransferValidateException("资源项ID不能为空");
+        }
     }
 
     private void validateType() {

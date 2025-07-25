@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
  * MarketOrderRecord
  * <p>市场订单数据库记录实体
  * <p>
- * create 2025/07/25 13:28
+ * create 2025/07/26 02:54
  * <p>
- * update 2025/07/25 13:28
+ * update 2025/07/26 02:54
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -45,6 +45,11 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
      */
     @TableId
     private String marketOrderId;
+
+    /**
+     * 资源项ID
+     */
+    private String itemId;
 
     /**
      * 市场订单类型
@@ -117,6 +122,7 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
         String marketOrderId = aggregate.getMarketOrderId();
         return MarketOrderRecord.builder()
                 .marketOrderId(marketOrderId)
+                .itemId(aggregate.getItemId())
                 .type(aggregate.getType())
                 .quantityTotal(aggregate.getQuantity().getTotal())
                 .quantityRemain(aggregate.getQuantity().getRemain())
@@ -135,6 +141,7 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
         validate();
         return MarketOrderAggregate.builder()
                 .marketOrderId(marketOrderId)
+                .itemId(itemId)
                 .type(type)
                 .quantity(MarketOrderQuantityValue.builder()
                         .total(quantityTotal)
@@ -153,6 +160,7 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
     @Override
     public MarketOrderRecord validate() {
         validateMarketOrderId();
+        validateItemId();
         validateType();
         validateQuantityTotal();
         validateQuantityRemain();
@@ -168,6 +176,12 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
     private void validateMarketOrderId() {
         if (!StringUtils.hasText(marketOrderId)) {
             throw new DataRecordValidateException("市场订单ID不能为空");
+        }
+    }
+
+    private void validateItemId() {
+        if (!StringUtils.hasText(itemId)) {
+            throw new DataRecordValidateException("资源项ID不能为空");
         }
     }
 

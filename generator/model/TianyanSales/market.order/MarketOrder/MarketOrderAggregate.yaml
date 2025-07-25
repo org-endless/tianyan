@@ -78,6 +78,10 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE市场订单创建命令请求传输对象
     fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
       - name: type
         type: String
         description: 市场订单类型

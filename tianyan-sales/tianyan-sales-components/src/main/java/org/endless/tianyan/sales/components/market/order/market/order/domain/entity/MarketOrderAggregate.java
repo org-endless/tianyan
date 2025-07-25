@@ -17,9 +17,9 @@ import java.math.BigDecimal;
  * MarketOrderAggregate
  * <p>市场订单聚合根
  * <p>
- * create 2025/07/25 13:28
+ * create 2025/07/26 02:54
  * <p>
- * update 2025/07/25 13:28
+ * update 2025/07/26 02:54
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -34,6 +34,11 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
      * 市场订单ID
      */
     private final String marketOrderId;
+
+    /**
+     * 资源项ID
+     */
+    private String itemId;
 
     /**
      * 市场订单类型
@@ -112,6 +117,7 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
     @Override
     public MarketOrderAggregate validate() {
         validateMarketOrderId();
+        validateItemId();
         validateType();
         validateQuantity();
         validatePrice();
@@ -125,6 +131,12 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
     private void validateMarketOrderId() {
         if (!StringUtils.hasText(marketOrderId)) {
             throw new AggregateValidateException("市场订单ID不能为空");
+        }
+    }
+
+    private void validateItemId() {
+        if (!StringUtils.hasText(itemId)) {
+            throw new AggregateValidateException("资源项ID不能为空");
         }
     }
 
