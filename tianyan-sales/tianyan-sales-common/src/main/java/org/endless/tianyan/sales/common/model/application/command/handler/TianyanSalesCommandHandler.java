@@ -16,4 +16,6 @@ import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregat
  */
 public interface TianyanSalesCommandHandler<A extends TianyanSalesAggregate> extends CommandHandler<A> {
 
+    String TIANYAN_SALES_USER_ID = "TIANYAN_SALES_0000000000";
+
 }

@@ -11,6 +11,7 @@ CREATE TABLE market_order_game_eve (
     is_removed               BOOLEAN      NOT NULL COMMENT '是否已删除',
     create_at                BIGINT       NOT NULL COMMENT '创建时间',
     modify_at                BIGINT       NOT NULL COMMENT '修改时间',
-    remove_at                BIGINT       NULL DEFAULT 0 COMMENT '删除时间'
+    remove_at                BIGINT       NULL DEFAULT 0 COMMENT '删除时间',
+    UNIQUE KEY (market_order_id, remove_at)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT '游戏EVE市场订单表';
 CREATE INDEX idx_game_eve_market_order_code ON market_order_game_eve (code);
