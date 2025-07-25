@@ -1,6 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler;
 
 import org.endless.tianyan.sales.common.model.application.command.handler.TianyanSalesCommandHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
 
 /**
@@ -17,4 +18,5 @@ import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.
  */
 public interface GameEveMarketOrderCommandHandler extends TianyanSalesCommandHandler<GameEveMarketOrderAggregate> {
 
+    void fetch(GameEveMarketOrderFetchReqCTransfer command);
 }

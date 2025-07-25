@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
 
 /**
  * SpringGameEveMarketOrderDrivingAdapter
@@ -32,5 +32,10 @@ public class SpringGameEveMarketOrderDrivingAdapter implements GameEveMarketOrde
     public SpringGameEveMarketOrderDrivingAdapter(GameEveMarketOrderCommandHandler gameEveMarketOrderCommandHandler, GameEveMarketOrderQueryHandler gameEveMarketOrderQueryHandler) {
         this.gameEveMarketOrderCommandHandler = gameEveMarketOrderCommandHandler;
         this.gameEveMarketOrderQueryHandler = gameEveMarketOrderQueryHandler;
+    }
+
+    @Override
+    public void fetch(GameEveMarketOrderFetchReqCTransfer command) {
+        gameEveMarketOrderCommandHandler.fetch(command);
     }
 }

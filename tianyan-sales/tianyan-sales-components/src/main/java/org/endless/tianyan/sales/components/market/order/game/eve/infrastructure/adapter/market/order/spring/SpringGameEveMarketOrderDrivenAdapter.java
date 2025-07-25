@@ -10,16 +10,14 @@ import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindPageReqDTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindProfileRespDTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -75,6 +73,18 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                     .build().validate()).validate();
             aggregates.addAll(from(page.getRows(), exeistMap, gameEveItemCode, createUserId));
         }
+        Set<String> newCodes = aggregates.stream()
+                .map(GameEveMarketOrderAggregate::getCode)
+                .collect(Collectors.toSet());
+        exeistMap.keySet().stream()
+                .filter(code -> !newCodes.contains(code))
+                .forEach(code -> {
+                    marketOrderDrivingAdapter.remove(MarketOrderRemoveReqCTransfer.builder()
+                            .marketOrderId(exeistMap.get(code).getMarketOrderId())
+                            .marketOrderId(createUserId)
+                            .build().validate());
+                    aggregates.add(exeistMap.get(code).remove(createUserId));
+                });
         return aggregates;
     }
 
@@ -90,27 +100,34 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                             .range(profile.getRange())
                             .systemId(profile.getSystem_id())
                             .stationId(profile.getLocation_id());
-
-                    if (!StringUtils.hasText(marketOrderId)) {
-                        throw new DrivenAdapterManagerException("创建市场订单失败，资源项编码为: " + gameEveItemCode);
-                    }
-
                     if (exeistMap.containsKey(profile.getOrder_id())) {
+                        marketOrderDrivingAdapter.modify(MarketOrderModifyReqCTransfer.builder()
+                                .marketOrderId(exeistMap.get(profile.getOrder_id()).getMarketOrderId())
+                                .totalQuantity(String.valueOf(profile.getVolume_total()))
+                                .remainQuantity(String.valueOf(profile.getVolume_remain()))
+                                .minQuantity(String.valueOf(profile.getMin_volume()))
+                                .price(String.valueOf(profile.getPrice()))
+                                .issuedAt(DateTime.from(TimeStamp.fromISO(profile.getIssued()), dateTimePattern))
+                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY - TimeStamp.now(), dateTimePattern))
+                                .modifyUserId(createUserId)
+                                .build().validate());
                         return exeistMap.get(profile.getOrder_id()).modify(gameEveMarketOrderAggregateBuilder, createUserId);
                     } else {
-                        String marketOrderId = marketOrderDrivingAdapter.create(MarketOrderCreateReqCTransfer.builder()
-                                        .type(profile.getIs_buy_order() ? "BUY" : "SELL")
-                                        .totalQuantity(String.valueOf(profile.getVolume_total()))
-                                        .remainQuantity(String.valueOf(profile.getVolume_remain()))
-                                        .minQuantity(String.valueOf(profile.getMin_volume()))
-                                        .price(String.valueOf(profile.getPrice()))
-                                        .issuedAt(DateTime.from(TimeStamp.fromISO(profile.getIssued()), dateTimePattern))
-                                        .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY - TimeStamp.now(), dateTimePattern))
-                                        .createUserId(createUserId)
-                                        .build().validate())
-                                .validate()
-                                .getMarketOrderId();
-                        return GameEveMarketOrderAggregate.create(builder);
+                        String marketOrderId = Optional.ofNullable(marketOrderDrivingAdapter.create(MarketOrderCreateReqCTransfer.builder()
+                                                .type(profile.getIs_buy_order() ? "BUY" : "SELL")
+                                                .totalQuantity(String.valueOf(profile.getVolume_total()))
+                                                .remainQuantity(String.valueOf(profile.getVolume_remain()))
+                                                .minQuantity(String.valueOf(profile.getMin_volume()))
+                                                .price(String.valueOf(profile.getPrice()))
+                                                .issuedAt(DateTime.from(TimeStamp.fromISO(profile.getIssued()), dateTimePattern))
+                                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY - TimeStamp.now(), dateTimePattern))
+                                                .createUserId(createUserId)
+                                                .build().validate())
+                                        .validate()
+                                        .getMarketOrderId())
+                                .orElseThrow(() -> new DrivenAdapterManagerException("创建市场订单失败，资源项编码为: " + gameEveItemCode));
+                        return GameEveMarketOrderAggregate.create(gameEveMarketOrderAggregateBuilder
+                                .marketOrderId(marketOrderId));
                     }
                 })
                 .toList();

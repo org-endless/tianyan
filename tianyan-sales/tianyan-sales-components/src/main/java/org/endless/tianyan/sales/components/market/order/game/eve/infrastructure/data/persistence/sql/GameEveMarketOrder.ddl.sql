@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS market_order_game_eve;
 CREATE TABLE market_order_game_eve (
     game_eve_market_order_id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT '游戏EVE市场订单ID',
+    market_order_id          VARCHAR(255) NOT NULL COMMENT '市场订单ID',
     code                     VARCHAR(255) NOT NULL COMMENT '游戏EVE市场订单编号',
     `range`                  VARCHAR(255) NOT NULL COMMENT '游戏EVE市场订单范围',
     system_id                VARCHAR(255) NOT NULL COMMENT '游戏EVE市场订单星系ID',

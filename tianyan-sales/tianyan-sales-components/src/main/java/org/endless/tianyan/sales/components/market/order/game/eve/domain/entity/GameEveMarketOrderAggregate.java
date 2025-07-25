@@ -13,9 +13,9 @@ import org.springframework.util.StringUtils;
  * GameEveMarketOrderAggregate
  * <p>游戏EVE市场订单聚合根
  * <p>
- * create 2025/07/25 15:54
+ * create 2025/07/25 16:33
  * <p>
- * update 2025/07/25 15:54
+ * update 2025/07/25 16:33
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -30,6 +30,11 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
      * 游戏EVE市场订单ID
      */
     private final String gameEveMarketOrderId;
+
+    /**
+     * 市场订单ID
+     */
+    private String marketOrderId;
 
     /**
      * 游戏EVE市场订单编号
@@ -47,7 +52,7 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     private String systemId;
 
     /**
-     * 游戏EVE市场订单空间站
+     * 游戏EVE市场订单空间站ID
      */
     private String stationId;
 
@@ -103,6 +108,7 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     @Override
     public GameEveMarketOrderAggregate validate() {
         validateGameEveMarketOrderId();
+        validateMarketOrderId();
         validateCode();
         validateRange();
         validateSystemId();
@@ -116,6 +122,12 @@ public class GameEveMarketOrderAggregate implements TianyanSalesAggregate {
     private void validateGameEveMarketOrderId() {
         if (!StringUtils.hasText(gameEveMarketOrderId)) {
             throw new AggregateValidateException("游戏EVE市场订单ID不能为空");
+        }
+    }
+
+    private void validateMarketOrderId() {
+        if (!StringUtils.hasText(marketOrderId)) {
+            throw new AggregateValidateException("市场订单ID不能为空");
         }
     }
 

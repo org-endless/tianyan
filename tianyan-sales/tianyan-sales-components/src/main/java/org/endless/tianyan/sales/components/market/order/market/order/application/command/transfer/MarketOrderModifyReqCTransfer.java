@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * MarketOrderMofidyReqCTransfer
+ * MarketOrderModifyReqCTransfer
  * <p>游戏EVE市场订单修改命令请求传输对象
  * <p>
- * create 2025/07/25 16:29
+ * create 2025/07/25 17:39
  * <p>
- * update 2025/07/25 16:29
+ * update 2025/07/25 17:39
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer
@@ -32,8 +32,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "modifyUserId"})
-public class MarketOrderMofidyReqCTransfer implements TianyanSalesCommandTransfer {
+@JSONType(orders = {"marketOrderId", "totalQuantity", "remainQuantity", "minQuantity", "price", "issuedAt", "expireAt", "modifyUserId"})
+public class MarketOrderModifyReqCTransfer implements TianyanSalesCommandTransfer {
+
+    /**
+     * 市场订单ID
+     */
+    private final String marketOrderId;
 
     /**
      * 市场订单总数(20, 5)
@@ -71,7 +76,8 @@ public class MarketOrderMofidyReqCTransfer implements TianyanSalesCommandTransfe
     private final String modifyUserId;
 
     @Override
-    public MarketOrderMofidyReqCTransfer validate() {
+    public MarketOrderModifyReqCTransfer validate() {
+        validateMarketOrderId();
         validateTotalQuantity();
         validateRemainQuantity();
         validateMinQuantity();
@@ -79,6 +85,12 @@ public class MarketOrderMofidyReqCTransfer implements TianyanSalesCommandTransfe
         validateIssuedAt();
         validateModifyUserId();
         return this;
+    }
+
+    private void validateMarketOrderId() {
+        if (!StringUtils.hasText(marketOrderId)) {
+            throw new CommandTransferValidateException("市场订单ID不能为空");
+        }
     }
 
     private void validateTotalQuantity() {

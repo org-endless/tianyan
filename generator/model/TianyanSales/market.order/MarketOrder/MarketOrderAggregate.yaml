@@ -116,12 +116,16 @@ transfers:
         type: String
         description: 市场订单ID
         nullable: false
-  - name: MarketOrderMofidyReqCTransfer
+  - name: MarketOrderModifyReqCTransfer
     adapterType: DRIVING
     cqrsType: COMMAND
     messageType: REQUEST
     description: 游戏EVE市场订单修改命令请求传输对象
     fields:
+      - name: marketOrderId
+        type: String
+        description: 市场订单ID
+        nullable: false
       - name: totalQuantity
         type: String
         description: 市场订单总数(20, 5)

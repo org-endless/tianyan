@@ -1,7 +1,9 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption;
 
-import org.endless.tianyan.sales.common.model.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.*;
+import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
+
+import java.util.List;
 
 /**
  * GameEveMarketOrderRepository
@@ -16,4 +18,8 @@ import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.
  * @since 0.0.1
  */
 public interface GameEveMarketOrderRepository extends TianyanSalesRepository<GameEveMarketOrderAggregate> {
+
+    void upsert(List<GameEveMarketOrderAggregate> aggregates);
+
+    List<GameEveMarketOrderAggregate> findAllByCode(String code);
 }

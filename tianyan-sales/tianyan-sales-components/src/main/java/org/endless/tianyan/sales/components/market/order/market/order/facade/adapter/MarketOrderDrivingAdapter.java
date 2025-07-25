@@ -3,6 +3,8 @@ package org.endless.tianyan.sales.components.market.order.market.order.facade.ad
 import org.endless.tianyan.sales.common.model.facade.adapter.TianyanSalesDrivingAdapter;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
 
 /**
  * MarketOrderDrivingAdapter
@@ -20,5 +22,7 @@ public interface MarketOrderDrivingAdapter extends TianyanSalesDrivingAdapter {
 
     MarketOrderCreateRespCTransfer create(MarketOrderCreateReqCTransfer command);
 
-    MarketOrderCreateRespCTransfer modify(MarketOrderCreateReqCTransfer command);
+    void modify(MarketOrderModifyReqCTransfer command);
+
+    void remove(MarketOrderRemoveReqCTransfer command);
 }

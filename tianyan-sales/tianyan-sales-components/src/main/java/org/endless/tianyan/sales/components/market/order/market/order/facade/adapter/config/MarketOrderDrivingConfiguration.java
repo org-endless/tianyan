@@ -1,13 +1,14 @@
 package org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.config;
 
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.impl.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.impl.*;
-import org.endless.tianyan.sales.components.market.order.market.order.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.spring.*;
+import org.endless.ddd.simplified.starter.common.config.endless.EndlessAutoConfiguration;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.MarketOrderCommandHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.impl.MarketOrderCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.anticorruption.MarketOrderQueryRepository;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.impl.MarketOrderQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderRepository;
+import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
+import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.spring.SpringMarketOrderDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +39,8 @@ public class MarketOrderDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean MarketOrderCommandHandler marketOrderCommandHandler(MarketOrderRepository repository) {
-        return new MarketOrderCommandHandlerImpl(repository);
+    protected @Bean MarketOrderCommandHandler marketOrderCommandHandler(MarketOrderRepository repository, EndlessAutoConfiguration configuration) {
+        return new MarketOrderCommandHandlerImpl(repository, configuration);
     }
 
     @Lazy

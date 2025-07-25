@@ -13,6 +13,10 @@ fields:
     type: String
     description: 游戏EVE市场订单ID
     nullable: false
+  - name: marketOrderId
+    type: String
+    description: 市场订单ID
+    nullable: false
   - name: code
     type: String
     description: 游戏EVE市场订单编号
@@ -30,6 +34,20 @@ fields:
     description: 游戏EVE市场订单空间站ID
     nullable: false
 transfers:
+  - name: GameEveMarketOrderFetchReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场订单获取命令请求传输对象
+    fields:
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 用户创建ID
+        nullable: false
   - name: GameEveMarketOrderESIFindPageReqDTransfer
     adapterType: DRIVEN
     cqrsType: QUERY

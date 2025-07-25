@@ -1,10 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.TianyanSalesMapper;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.data.record.GameEveMarketOrderRecord;
 import org.springframework.context.annotation.Lazy;
+
+import java.util.List;
 
 /**
  * GameEveMarketOrderMapper
@@ -21,4 +23,12 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface GameEveMarketOrderMapper extends TianyanSalesMapper<GameEveMarketOrderRecord> {
+
+    default List<GameEveMarketOrderRecord> findAllByCode(String code) {
+        QueryWrapper<GameEveMarketOrderRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .eq(GameEveMarketOrderRecord::getCode, code)
+                .orderByAsc(GameEveMarketOrderRecord::getGameEveMarketOrderId);
+        return findAllByWrapper(queryWrapper);
+    }
 }

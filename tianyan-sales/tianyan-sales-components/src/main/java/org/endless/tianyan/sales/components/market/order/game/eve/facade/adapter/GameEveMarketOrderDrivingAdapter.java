@@ -1,6 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter;
 
-import org.endless.tianyan.sales.common.model.facade.adapter.*;
+import org.endless.tianyan.sales.common.model.facade.adapter.TianyanSalesDrivingAdapter;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
 
 /**
  * GameEveMarketOrderDrivingAdapter
@@ -15,4 +16,7 @@ import org.endless.tianyan.sales.common.model.facade.adapter.*;
  * @since 0.0.1
  */
 public interface GameEveMarketOrderDrivingAdapter extends TianyanSalesDrivingAdapter {
+
+    void fetch(GameEveMarketOrderFetchReqCTransfer command);
+
 }

@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * GameEveMarketOrderRecord
  * <p>游戏EVE市场订单数据库记录实体
  * <p>
- * create 2025/07/25 15:54
+ * create 2025/07/25 16:33
  * <p>
- * update 2025/07/25 15:54
+ * update 2025/07/25 16:33
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -43,6 +43,11 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
      */
     @TableId
     private String gameEveMarketOrderId;
+
+    /**
+     * 市场订单ID
+     */
+    private String marketOrderId;
 
     /**
      * 游戏EVE市场订单编号
@@ -100,6 +105,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
         String gameEveMarketOrderId = aggregate.getGameEveMarketOrderId();
         return GameEveMarketOrderRecord.builder()
                 .gameEveMarketOrderId(gameEveMarketOrderId)
+                .marketOrderId(aggregate.getMarketOrderId())
                 .code(aggregate.getCode())
                 .range(aggregate.getRange())
                 .systemId(aggregate.getSystemId())
@@ -115,6 +121,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
         validate();
         return GameEveMarketOrderAggregate.builder()
                 .gameEveMarketOrderId(gameEveMarketOrderId)
+                .marketOrderId(marketOrderId)
                 .code(code)
                 .range(range)
                 .systemId(systemId)
@@ -128,6 +135,7 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
     @Override
     public GameEveMarketOrderRecord validate() {
         validateGameEveMarketOrderId();
+        validateMarketOrderId();
         validateCode();
         validateRange();
         validateSystemId();
@@ -141,6 +149,12 @@ public class GameEveMarketOrderRecord implements TianyanSalesRecord<GameEveMarke
     private void validateGameEveMarketOrderId() {
         if (!StringUtils.hasText(gameEveMarketOrderId)) {
             throw new DataRecordValidateException("游戏EVE市场订单ID不能为空");
+        }
+    }
+
+    private void validateMarketOrderId() {
+        if (!StringUtils.hasText(marketOrderId)) {
+            throw new DataRecordValidateException("市场订单ID不能为空");
         }
     }
 

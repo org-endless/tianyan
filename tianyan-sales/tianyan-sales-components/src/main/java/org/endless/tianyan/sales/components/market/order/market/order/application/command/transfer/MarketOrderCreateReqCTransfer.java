@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * MarketOrderCreateReqCTransfer
  * <p>游戏EVE市场订单创建命令请求传输对象
  * <p>
- * create 2025/07/25 16:29
+ * create 2025/07/25 17:39
  * <p>
- * update 2025/07/25 16:29
+ * update 2025/07/25 17:39
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer

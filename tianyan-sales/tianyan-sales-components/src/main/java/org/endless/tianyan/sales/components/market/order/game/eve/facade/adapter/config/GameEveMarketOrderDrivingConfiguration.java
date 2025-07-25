@@ -1,13 +1,14 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.config;
 
-import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.impl.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.spring.*;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.impl.GameEveMarketOrderCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderQueryRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl.GameEveMarketOrderQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderDrivenAdapter;
+import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderRepository;
+import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
+import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.spring.SpringGameEveMarketOrderDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +39,8 @@ public class GameEveMarketOrderDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveMarketOrderCommandHandler gameEveMarketOrderCommandHandler(GameEveMarketOrderRepository repository) {
-        return new GameEveMarketOrderCommandHandlerImpl(repository);
+    protected @Bean GameEveMarketOrderCommandHandler gameEveMarketOrderCommandHandler(GameEveMarketOrderRepository repository, GameEveMarketOrderDrivenAdapter gameEveMarketOrderDrivenAdapter) {
+        return new GameEveMarketOrderCommandHandlerImpl(repository, gameEveMarketOrderDrivenAdapter);
     }
 
     @Lazy

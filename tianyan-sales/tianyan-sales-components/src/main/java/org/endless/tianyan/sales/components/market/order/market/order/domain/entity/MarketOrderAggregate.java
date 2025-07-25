@@ -1,22 +1,17 @@
 package org.endless.tianyan.sales.components.market.order.market.order.domain.entity;
 
-import org.endless.tianyan.sales.common.model.domain.entity.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.value.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderQuantityValue;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * MarketOrderAggregate
@@ -85,8 +80,8 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
                 .marketOrderId(IdGenerator.of())
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public MarketOrderAggregate remove(String modifyUserId) {
@@ -99,6 +94,15 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
+    }
+
+    public MarketOrderAggregate modify(MarketOrderAggregateBuilder builder) {
+        this.quantity = builder.quantity == null ? this.quantity : builder.quantity;
+        this.price = builder.price == null ? this.price : builder.price;
+        this.issuedAt = builder.issuedAt == null ? this.issuedAt : builder.issuedAt;
+        this.expireAt = builder.expireAt == null ? this.expireAt : builder.expireAt;
+        this.modifyUserId = builder.modifyUserId;
+        return this.validate();
     }
 
     private boolean canRemove() {
