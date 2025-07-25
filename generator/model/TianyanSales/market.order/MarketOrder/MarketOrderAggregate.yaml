@@ -1,0 +1,118 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market.order
+domainName: MarketOrder
+aggregateName: MarketOrderAggregate
+description: 市场订单
+fields:
+  - name: marketOrderId
+    type: String
+    description: 市场订单ID
+    nullable: false
+  - name: type
+    type: MarketOrderTypeEnum
+    description: 市场订单类型
+    nullable: false
+  - name: quantity
+    type: MarketOrderQuantityValue
+    description: 市场订单数量
+    nullable: false
+  - name: price
+    type: BigDecimal
+    description: 市场订单价格(17, 2)
+    nullable: false
+  - name: issuedAt
+    type: Long
+    description: 市场订单创建时间
+    nullable: false
+  - name: expireAt
+    type: Long
+    description: 市场订单过期时间
+    nullable: true
+values:
+  - name: MarketOrderQuantityValue
+    description: 市场订单数量
+    fields:
+      - name: total
+        type: BigDecimal
+        description: 市场订单总数(20, 5)
+        nullable: false
+      - name: remain
+        type: BigDecimal
+        description: 市场订单剩余数量(20, 5)
+        nullable: false
+      - name: min
+        type: BigDecimal
+        description: 市场订单最小交易数量(20, 5)
+        nullable: false
+enums:
+  - name: MarketOrderTypeEnum
+    valueType: String
+    description: 市场订单类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: BUY
+        description: 买入
+      - code: SELL
+        description: 卖出
+transfers:
+  - name: MarketOrderCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场订单创建命令请求传输对象
+    fields:
+      - name: type
+        type: String
+        description: 市场订单类型
+        nullable: false
+      - name: totalQuantity
+        type: String
+        description: 市场订单总数(20, 5)
+        nullable: false
+      - name: remainQuantity
+        type: String
+        description: 市场订单剩余数量(20, 5)
+        nullable: false
+      - name: minQuantity
+        type: String
+        description: 市场订单最小交易数量(20, 5)
+        nullable: false
+      - name: price
+        type: String
+        description: 市场订单价格(17, 2)
+        nullable: false
+      - name: issuedAt
+        type: String
+        description: 市场订单创建时间(yyyy-MM-dd HH:mm:ss:SSS)
+        nullable: false
+      - name: expireAt
+        type: String
+        description: 市场订单过期时间(yyyy-MM-dd HH:mm:ss:SSS)
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: MarketOrderCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE市场订单创建命令响应传输对象
+    fields:
+      - name: marketOrderId
+        type: String
+        description: 市场订单ID
+        nullable: false

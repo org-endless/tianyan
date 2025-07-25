@@ -1,0 +1,149 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market.order
+domainName: GameEveMarketOrder
+aggregateName: GameEveMarketOrderAggregate
+description: 游戏EVE市场订单
+fields:
+  - name: gameEveMarketOrderId
+    type: String
+    description: 游戏EVE市场订单ID
+    nullable: false
+  - name: code
+    type: String
+    description: 游戏EVE市场订单编号
+    nullable: false
+  - name: range
+    type: String
+    description: 游戏EVE市场订单范围
+    nullable: false
+  - name: system
+    type: GameEveMarketOrderSystemValue
+    description: 游戏EVE市场订单星系
+    nullable: false
+  - name: station
+    type: GameEveMarketOrderLocationValue
+    description: 游戏EVE市场订单空间站
+    nullable: false
+values:
+  - name: GameEveMarketOrderSystemValue
+    description: 游戏EVE市场订单星系
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE市场订单星系编码
+        nullable: false
+      - name: nameZh
+        type: String
+        description: 游戏EVE市场订单星系中文名称
+        nullable: false
+  - name: GameEveMarketOrderStationValue
+    description: 游戏EVE市场订单空间站
+    fields:
+      - name: code
+        type: String
+        description: 游戏EVE市场订单空间站编码
+        nullable: false
+      - name: nameZh
+        type: String
+        description: 游戏EVE市场订单空间站中文名称
+        nullable: false
+transfers:
+  - name: GameEveMarketOrderESIFindPageReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE市场订单信息查询被动请求传输对象
+    fields:
+      - name: datasource
+        type: String
+        description: 游戏EVE数据源
+        nullable: false
+      - name: regionId
+        type: String
+        description: 游戏EVE星域编码
+        nullable: false
+      - name: orderType
+        type: String
+        description: 游戏EVE订单类型
+        nullable: false
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
+      - name: page
+        type: Integer
+        description: 游戏EVE页码
+        nullable: false
+  - name: GameEveMarketOrderESIFindProfileRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE市场订单信息查询被动响应传输对象
+    fields:
+      - name: order_id
+        type: String
+        description: 游戏EVE市场订单编号
+        nullable: false
+      - name: is_buy_order
+        type: Boolean
+        description: 游戏EVE市场订单是否为买入订单
+        nullable: false
+      - name: volume_total
+        type: Integer
+        description: 游戏EVE市场订单总数
+        nullable: false
+      - name: volume_remain
+        type: Integer
+        description: 游戏EVE市场订单剩余数量
+        nullable: false
+      - name: min_volume
+        type: Integer
+        description: 游戏EVE市场订单最小交易数量
+        nullable: false
+      - name: price
+        type: Double
+        description: 游戏EVE市场订单价格
+        nullable: false
+      - name: issued
+        type: String
+        description: 游戏EVE市场订单创建时间(ISO)
+        nullable: false
+      - name: duration
+        type: String
+        description: 游戏EVE市场订单持续时间
+        nullable: false
+      - name: range
+        type: String
+        description: 游戏EVE市场订单范围
+        nullable: false
+      - name: system_id
+        type: String
+        description: 游戏EVE市场订单星系编码
+        nullable: false
+      - name: location_id
+        type: String
+        description: 游戏EVE市场订单空间站编码
+        nullable: false
+  - name: GameEveMarketOrderFindUniverseItemNameRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE市场订单信宇宙资源项信息查询被动响应传输对象
+    fields:
+      - name: category
+        type: String
+        description: 游戏EVE宇宙资源项分类名称
+        nullable: false
+      - name: id
+        type: String
+        description: 游戏EVE宇宙资源项编码
+        nullable: false
+      - name: name
+        type: String
+        description: 游戏EVE宇宙资源项名称
+        nullable: false
