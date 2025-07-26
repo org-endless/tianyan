@@ -4,23 +4,29 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.endless.tianyan.sales.common.model.infrastructure.data.record.*;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.*;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.value.*;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.type.*;
+import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
+import org.endless.ddd.simplified.starter.common.config.utils.id.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
-import org.endless.tianyan.sales.common.model.infrastructure.data.record.TianyanSalesRecord;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderQuantityValue;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * MarketOrderRecord
  * <p>市场订单数据库记录实体
  * <p>
- * create 2025/07/26 02:54
+ * create 2025/07/26 18:16
  * <p>
- * update 2025/07/26 02:54
+ * update 2025/07/26 18:16
  *
  * @author Deng Haozhi
  * @see TianyanSalesRecord
@@ -51,19 +57,19 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
     private MarketOrderTypeEnum type;
 
     /**
-     * 市场订单总数(20, 5)
+     * 市场订单资源项总数(20, 5)
      */
-    private BigDecimal quantityTotal;
+    private BigDecimal itemQuantityTotal;
 
     /**
-     * 市场订单剩余数量(20, 5)
+     * 市场订单资源项剩余数量(20, 5)
      */
-    private BigDecimal quantityRemain;
+    private BigDecimal itemQuantityRemain;
 
     /**
-     * 市场订单最小交易数量(20, 5)
+     * 市场订单资源项最小交易数量(20, 5)
      */
-    private BigDecimal quantityMin;
+    private BigDecimal itemQuantityMin;
 
     /**
      * 市场订单价格(17, 2)
@@ -118,9 +124,9 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
                 .marketOrderId(marketOrderId)
                 .itemId(aggregate.getItemId())
                 .type(aggregate.getType())
-                .quantityTotal(aggregate.getQuantity().getTotal())
-                .quantityRemain(aggregate.getQuantity().getRemain())
-                .quantityMin(aggregate.getQuantity().getMin())
+                .itemQuantityTotal(aggregate.getItemQuantity().getTotal())
+                .itemQuantityRemain(aggregate.getItemQuantity().getRemain())
+                .itemQuantityMin(aggregate.getItemQuantity().getMin())
                 .price(aggregate.getPrice())
                 .issuedAt(aggregate.getIssuedAt())
                 .expireAt(aggregate.getExpireAt())
@@ -137,10 +143,10 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
                 .marketOrderId(marketOrderId)
                 .itemId(itemId)
                 .type(type)
-                .quantity(MarketOrderQuantityValue.builder()
-                        .total(quantityTotal)
-                        .remain(quantityRemain)
-                        .min(quantityMin)
+                .itemQuantity(MarketOrderItemQuantityValue.builder()
+                        .total(itemQuantityTotal)
+                        .remain(itemQuantityRemain)
+                        .min(itemQuantityMin)
                         .innerBuild())
                 .price(price)
                 .issuedAt(issuedAt)
@@ -156,9 +162,9 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
         validateMarketOrderId();
         validateItemId();
         validateType();
-        validateQuantityTotal();
-        validateQuantityRemain();
-        validateQuantityMin();
+        validateItemQuantityTotal();
+        validateItemQuantityRemain();
+        validateItemQuantityMin();
         validatePrice();
         validateIssuedAt();
         validateCreateUserId();
@@ -185,21 +191,21 @@ public class MarketOrderRecord implements TianyanSalesRecord<MarketOrderAggregat
         }
     }
 
-    private void validateQuantityTotal() {
-        if (quantityTotal == null) {
-            throw new DataRecordValidateException("市场订单总数(20, 5)不能为 null ");
+    private void validateItemQuantityTotal() {
+        if (itemQuantityTotal == null) {
+            throw new DataRecordValidateException("市场订单资源项总数(20, 5)不能为 null ");
         }
     }
 
-    private void validateQuantityRemain() {
-        if (quantityRemain == null) {
-            throw new DataRecordValidateException("市场订单剩余数量(20, 5)不能为 null ");
+    private void validateItemQuantityRemain() {
+        if (itemQuantityRemain == null) {
+            throw new DataRecordValidateException("市场订单资源项剩余数量(20, 5)不能为 null ");
         }
     }
 
-    private void validateQuantityMin() {
-        if (quantityMin == null) {
-            throw new DataRecordValidateException("市场订单最小交易数量(20, 5)不能为 null ");
+    private void validateItemQuantityMin() {
+        if (itemQuantityMin == null) {
+            throw new DataRecordValidateException("市场订单资源项最小交易数量(20, 5)不能为 null ");
         }
     }
 

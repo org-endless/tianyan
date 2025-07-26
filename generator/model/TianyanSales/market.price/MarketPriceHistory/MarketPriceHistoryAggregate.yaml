@@ -13,43 +13,46 @@ fields:
     type: String
     description: 市场价格历史ID
     nullable: false
-  - name: marketPrice
+  - name: itemId
     type: String
-    description: 市场价格ID
+    description: 资源项ID
     nullable: false
-  - name: periodStartAt
-    type: Long
-    description: 市场价格历史范围开始时间
-    nullable: false
-  - name: periodEndAt
-    type: Long
-    description: 市场价格历史范围结束时间
+  - name: period
+    type: MarketPriceHistoryPeriodValue
+    description: 市场价格历史范围
     nullable: false
   - name: buyPrice
-    type: BigDecimal
-    description: 买入价格(17, 2)
+    type: MarketHistoryPriceValue
+    description: 市场历史买入价格
     nullable: false
   - name: sellPrice
-    type: BigDecimal
-    description: 卖出价格(17, 2)
-    nullable: false
-  - name: executionPrice
-    type: MarketPriceHistoryExecutionPriceValue
-    description: 成交价格
+    type: MarketHistoryPriceValue
+    description: 市场历史卖出价格
     nullable: false
 values:
-  - name: MarketPriceHistoryExecutionPriceValue
-    description: 市场价格历史成交价格
+  - name: MarketPriceHistoryPeriodValue
+    description: 市场价格历史范围
+    fields:
+      - name: periodStartAt
+        type: Long
+        description: 市场价格历史范围开始时间
+        nullable: false
+      - name: periodEndAt
+        type: Long
+        description: 市场价格历史范围结束时间
+        nullable: false
+  - name: MarketHistoryPriceValue
+    description: 市场历史价格
     fields:
       - name: average
         type: BigDecimal
-        description: 市场价格历史平均成交价格(17, 2)
+        description: 市场历史平均价格(17, 2)
         nullable: false
       - name: highest
         type: BigDecimal
-        description: 市场价格历史最高成交价格(17, 2)
+        description: 市场历史最高价格(17, 2)
         nullable: false
       - name: lowest
         type: BigDecimal
-        description: 市场价格历史最低成交价格(17, 2)
+        description: 市场历史最低价格(17, 2)
         nullable: false

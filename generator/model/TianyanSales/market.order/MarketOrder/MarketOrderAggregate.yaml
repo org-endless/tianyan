@@ -86,17 +86,17 @@ transfers:
         type: String
         description: 市场订单类型
         nullable: false
-      - name: totalQuantity
+      - name: totalItemQuantity
         type: String
-        description: 市场订单总数(20, 5)
+        description: 市场订单资源项总数(20, 5)
         nullable: false
-      - name: remainQuantity
+      - name: remainItemQuantity
         type: String
-        description: 市场订单剩余数量(20, 5)
+        description: 市场订单资源项剩余数量(20, 5)
         nullable: false
-      - name: minQuantity
+      - name: minItemQuantity
         type: String
-        description: 市场订单最小交易数量(20, 5)
+        description: 市场订单资源项最小交易数量(20, 5)
         nullable: false
       - name: price
         type: String
@@ -134,17 +134,17 @@ transfers:
         type: String
         description: 市场订单ID
         nullable: false
-      - name: totalQuantity
+      - name: totalItemQuantity
         type: String
-        description: 市场订单总数(20, 5)
+        description: 市场订单资源项总数(20, 5)
         nullable: false
-      - name: remainQuantity
+      - name: remainItemQuantity
         type: String
-        description: 市场订单剩余数量(20, 5)
+        description: 市场订单资源项剩余数量(20, 5)
         nullable: false
-      - name: minQuantity
+      - name: minItemQuantity
         type: String
-        description: 市场订单最小交易数量(20, 5)
+        description: 市场订单资源项最小交易数量(20, 5)
         nullable: false
       - name: price
         type: String

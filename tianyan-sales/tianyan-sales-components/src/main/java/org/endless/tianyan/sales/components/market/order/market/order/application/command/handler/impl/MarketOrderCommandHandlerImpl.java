@@ -15,7 +15,7 @@ import org.endless.tianyan.sales.components.market.order.market.order.applicatio
 import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderRepository;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderQuantityValue;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderItemQuantityValue;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -56,10 +56,10 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
         MarketOrderAggregate aggregate = MarketOrderAggregate.create(MarketOrderAggregate.builder()
                 .itemId(command.getItemId())
                 .type(MarketOrderTypeEnum.fromCode(command.getType()))
-                .quantity(MarketOrderQuantityValue.create(MarketOrderQuantityValue.builder()
-                        .total(Decimal.format5Bit(command.getTotalQuantity()))
-                        .remain(Decimal.format5Bit(command.getRemainQuantity()))
-                        .min(Decimal.format5Bit(command.getMinQuantity()))))
+                .itemQuantity(MarketOrderItemQuantityValue.create(MarketOrderItemQuantityValue.builder()
+                        .total(Decimal.format5Bit(command.getTotalItemQuantity()))
+                        .remain(Decimal.format5Bit(command.getRemainItemQuantity()))
+                        .min(Decimal.format5Bit(command.getMinItemQuantity()))))
                 .price(Decimal.format(command.getPrice()))
                 .issuedAt(TimeStamp.from(command.getIssuedAt(), dateTimePattern))
                 .expireAt(TimeStamp.from(command.getExpireAt(), dateTimePattern))
@@ -80,10 +80,10 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
         MarketOrderAggregate aggregate = marketOrderRepository.findById(command.getMarketOrderId())
                 .orElseThrow(() -> new CommandHandlerNotFoundException("未找到对应的市场订单聚合"));
         aggregate.modify(MarketOrderAggregate.builder()
-                .quantity(MarketOrderQuantityValue.create(MarketOrderQuantityValue.builder()
-                        .total(Decimal.format5Bit(command.getTotalQuantity()))
-                        .remain(Decimal.format5Bit(command.getRemainQuantity()))
-                        .min(Decimal.format5Bit(command.getMinQuantity()))))
+                .itemQuantity(MarketOrderItemQuantityValue.create(MarketOrderItemQuantityValue.builder()
+                        .total(Decimal.format5Bit(command.getTotalItemQuantity()))
+                        .remain(Decimal.format5Bit(command.getRemainItemQuantity()))
+                        .min(Decimal.format5Bit(command.getMinItemQuantity()))))
                 .price(Decimal.format(command.getPrice()))
                 .issuedAt(TimeStamp.from(command.getIssuedAt(), dateTimePattern))
                 .expireAt(TimeStamp.from(command.getExpireAt(), dateTimePattern))

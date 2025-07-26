@@ -13,3 +13,15 @@ fields:
     type: String
     description: 市场交易ID
     nullable: false
+  - name: itemId
+    type: String
+    description: 资源项ID
+    nullable: false
+  - name: price
+    type: BigDecimal
+    description: 成交价格(17, 2)
+    nullable: false
+  - name: itemQuantity
+    type: String
+    description: 资源项交易数量(20, 5)
+    nullable: false

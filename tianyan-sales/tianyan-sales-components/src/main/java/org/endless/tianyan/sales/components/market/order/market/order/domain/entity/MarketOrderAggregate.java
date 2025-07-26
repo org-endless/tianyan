@@ -8,7 +8,7 @@ import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.A
 import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderQuantityValue;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderItemQuantityValue;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
@@ -17,9 +17,9 @@ import java.math.BigDecimal;
  * MarketOrderAggregate
  * <p>市场订单聚合根
  * <p>
- * create 2025/07/26 02:54
+ * create 2025/07/26 18:16
  * <p>
- * update 2025/07/26 02:54
+ * update 2025/07/26 18:16
  *
  * @author Deng Haozhi
  * @see TianyanSalesAggregate
@@ -46,9 +46,9 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
     private MarketOrderTypeEnum type;
 
     /**
-     * 市场订单数量
+     * 市场订单资源项数量
      */
-    private MarketOrderQuantityValue quantity;
+    private MarketOrderItemQuantityValue itemQuantity;
 
     /**
      * 市场订单价格(17, 2)
@@ -102,7 +102,7 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
     }
 
     public MarketOrderAggregate modify(MarketOrderAggregateBuilder builder) {
-        this.quantity = builder.quantity == null ? this.quantity : builder.quantity;
+        this.itemQuantity = builder.itemQuantity == null ? this.itemQuantity : builder.itemQuantity;
         this.price = builder.price == null ? this.price : builder.price;
         this.issuedAt = builder.issuedAt == null ? this.issuedAt : builder.issuedAt;
         this.expireAt = builder.expireAt == null ? this.expireAt : builder.expireAt;
@@ -119,7 +119,7 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
         validateMarketOrderId();
         validateItemId();
         validateType();
-        validateQuantity();
+        validateItemQuantity();
         validatePrice();
         validateIssuedAt();
         validateCreateUserId();
@@ -146,9 +146,9 @@ public class MarketOrderAggregate implements TianyanSalesAggregate {
         }
     }
 
-    private void validateQuantity() {
-        if (quantity == null) {
-            throw new AggregateValidateException("市场订单数量不能为 null ");
+    private void validateItemQuantity() {
+        if (itemQuantity == null) {
+            throw new AggregateValidateException("市场订单资源项数量不能为 null ");
         }
     }
 

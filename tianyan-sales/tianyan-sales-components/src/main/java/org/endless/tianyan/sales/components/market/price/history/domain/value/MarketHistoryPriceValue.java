@@ -1,0 +1,77 @@
+package org.endless.tianyan.sales.components.market.price.history.domain.value;
+
+import org.endless.tianyan.sales.common.model.domain.value.*;
+import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+
+/**
+ * MarketHistoryPriceValue
+ * <p>市场历史价格
+ * <p>
+ * create 2025/07/26 18:57
+ * <p>
+ * update 2025/07/26 18:57
+ *
+ * @author Deng Haozhi
+ * @see TianyanSalesValue
+ * @since 0.0.1
+ */
+@Getter
+@ToString
+@Builder(buildMethodName = "innerBuild")
+public class MarketHistoryPriceValue implements TianyanSalesValue {
+
+    /**
+     * 市场历史平均价格(17, 2)
+     */
+    private final BigDecimal average;
+
+    /**
+     * 市场历史最高价格(17, 2)
+     */
+    private final BigDecimal highest;
+
+    /**
+     * 市场历史最低价格(17, 2)
+     */
+    private final BigDecimal lowest;
+
+    public static MarketHistoryPriceValue create(MarketHistoryPriceValueBuilder builder) {
+        return builder
+            .innerBuild()
+            .validate();
+    }
+
+    @Override
+    public MarketHistoryPriceValue validate() {
+        validateAverage();
+        validateHighest();
+        validateLowest();
+        return this;
+    }
+
+    private void validateAverage() {
+        if (average == null) {
+            throw new ValueValidateException("市场历史平均价格(17, 2)不能为 null ");
+        }
+    }
+
+    private void validateHighest() {
+        if (highest == null) {
+            throw new ValueValidateException("市场历史最高价格(17, 2)不能为 null ");
+        }
+    }
+
+    private void validateLowest() {
+        if (lowest == null) {
+            throw new ValueValidateException("市场历史最低价格(17, 2)不能为 null ");
+        }
+    }
+}

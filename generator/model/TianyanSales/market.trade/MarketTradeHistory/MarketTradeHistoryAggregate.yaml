@@ -13,19 +13,50 @@ fields:
     type: String
     description: 市场交易历史ID
     nullable: false
-  - name: periodStartAt
-    type: Long
-    description: 市场交易历史范围开始时间
+  - name: itemId
+    type: String
+    description: 资源项ID
     nullable: false
-  - name: periodEndAt
-    type: Long
-    description: 市场价格历史范围结束时间
+  - name: period
+    type: MarketTradeHistoryPeriodValue
+    description: 市场交易历史范围
+    nullable: false
+  - name: price
+    type: MarketTradeHistoryPriceValue
+    description: 市场交易历史成交价格
     nullable: false
   - name: orderCount
     type: BigDecimal
-    description: 订单数量(15, 0)
+    description: 市场交易历史订单数量(15, 0)
     nullable: false
-  - name: itemVolume
+  - name: itemQuantity
     type: BigDecimal
-    description: 订单数量(20, 5)
+    description: 市场交易历史资源项交易数量(20, 5)
     nullable: false
+values:
+  - name: MarketTradeHistoryPeriodValue
+    description: 市场交易历史范围
+    fields:
+      - name: periodStartAt
+        type: Long
+        description: 市场交易历史范围开始时间
+        nullable: false
+      - name: periodEndAt
+        type: Long
+        description: 市场交易历史范围结束时间
+        nullable: false
+  - name: MarketTradeHistoryPriceValue
+    description: 市场交易历史成交价格
+    fields:
+      - name: average
+        type: BigDecimal
+        description: 市场交易历史平均成交价格(17, 2)
+        nullable: false
+      - name: highest
+        type: BigDecimal
+        description: 市场交易历史最高成交价格(17, 2)
+        nullable: false
+      - name: lowest
+        type: BigDecimal
+        description: 市场交易历史最低成交价格(17, 2)
+        nullable: false
