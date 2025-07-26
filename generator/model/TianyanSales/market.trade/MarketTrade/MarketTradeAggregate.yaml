@@ -1,0 +1,15 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market.trade
+domainName: MarketTrade
+aggregateName: MarketTradeAggregate
+description: 市场交易
+fields:
+  - name: marketTradeId
+    type: String
+    description: 市场交易ID
+    nullable: false

@@ -104,7 +104,7 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                 .map(profile -> {
                     GameEveMarketOrderAggregate.GameEveMarketOrderAggregateBuilder gameEveMarketOrderAggregateBuilder = GameEveMarketOrderAggregate.builder()
                             .code(profile.getOrder_id())
-                            .range(profile.getRange())
+                            .orderRange(profile.getRange())
                             .systemId(profile.getSystem_id())
                             .stationId(profile.getLocation_id());
                     if (exeistMap.containsKey(profile.getOrder_id())) {
@@ -115,7 +115,7 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                                 .minQuantity(String.valueOf(profile.getMin_volume()))
                                 .price(String.valueOf(profile.getPrice()))
                                 .issuedAt(DateTime.from(TimeStamp.fromISO(profile.getIssued()), dateTimePattern))
-                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY - TimeStamp.now(), dateTimePattern))
+                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY + TimeStamp.now(), dateTimePattern))
                                 .modifyUserId(createUserId)
                                 .build().validate());
                         return exeistMap.get(profile.getOrder_id()).modify(gameEveMarketOrderAggregateBuilder
@@ -129,7 +129,7 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                                                 .minQuantity(String.valueOf(profile.getMin_volume()))
                                                 .price(String.valueOf(profile.getPrice()))
                                                 .issuedAt(DateTime.from(TimeStamp.fromISO(profile.getIssued()), dateTimePattern))
-                                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY - TimeStamp.now(), dateTimePattern))
+                                                .expireAt(DateTime.from(Long.parseLong(profile.getDuration()) * TimeStamp.ONE_DAY + TimeStamp.now(), dateTimePattern))
                                                 .createUserId(createUserId)
                                                 .build().validate())
                                         .validate()

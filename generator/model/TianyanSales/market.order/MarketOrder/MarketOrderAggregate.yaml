@@ -21,9 +21,9 @@ fields:
     type: MarketOrderTypeEnum
     description: 市场订单类型
     nullable: false
-  - name: quantity
-    type: MarketOrderQuantityValue
-    description: 市场订单数量
+  - name: itemQuantity
+    type: MarketOrderItemQuantityValue
+    description: 市场订单资源项数量
     nullable: false
   - name: price
     type: BigDecimal
@@ -38,20 +38,20 @@ fields:
     description: 市场订单过期时间
     nullable: true
 values:
-  - name: MarketOrderQuantityValue
-    description: 市场订单数量
+  - name: MarketOrderItemQuantityValue
+    description: 市场订单资源项数量
     fields:
       - name: total
         type: BigDecimal
-        description: 市场订单总数(20, 5)
+        description: 市场订单资源项总数(20, 5)
         nullable: false
       - name: remain
         type: BigDecimal
-        description: 市场订单剩余数量(20, 5)
+        description: 市场订单资源项剩余数量(20, 5)
         nullable: false
       - name: min
         type: BigDecimal
-        description: 市场订单最小交易数量(20, 5)
+        description: 市场订单资源项最小交易数量(20, 5)
         nullable: false
 enums:
   - name: MarketOrderTypeEnum

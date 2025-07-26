@@ -1,0 +1,51 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: market.price
+domainName: MarketPrice
+aggregateName: MarketPriceAggregate
+description: 市场价格
+fields:
+  - name: marketPriceId
+    type: String
+    description: 市场价格ID
+    nullable: false
+  - name: buyPrice
+    type: BigDecimal
+    description: 买入价格(17, 2)
+    nullable: false
+  - name: sellPrice
+    type: BigDecimal
+    description: 卖出价格(17, 2)
+    nullable: false
+  - name: history
+    type: MarketPriceHistoryEntity
+    description: 市场价格历史
+    nullable: false
+entities:
+  - name: MarketPriceHistoryEntity
+    description: 市场价格历史
+    fields:
+      - name: marketPriceHistoryId
+        type: String
+        description: 市场价格历史ID
+        nullable: false
+      - name: periodStartAt
+        type: Long
+        description: 市场价格历史范围开始时间
+        nullable: false
+      - name: periodEndAt
+        type: Long
+        description: 市场价格历史范围结束时间
+        nullable: false
+      - name: buyPrice
+        type: BigDecimal
+        description: 市场历史买入价格(17, 2)
+        nullable: false
+      - name: sellPrice
+        type: BigDecimal
+        description: 市场历史卖出价格(17, 2)
+        nullable: false
