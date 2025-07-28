@@ -1,16 +1,14 @@
 package org.endless.tianyan.sales.components.market.price.history.infrastructure.data.manager;
 
-import org.endless.tianyan.sales.common.model.infrastructure.data.manager.*;
-import org.endless.tianyan.sales.components.market.price.history.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.entity.*;
-import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.*;
+import org.endless.tianyan.sales.common.model.infrastructure.data.manager.TianyanSalesAggregateDataManager;
+import org.endless.tianyan.sales.components.market.price.history.application.query.anticorruption.MarketPriceHistoryQueryRepository;
+import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.MarketPriceHistoryRepository;
+import org.endless.tianyan.sales.components.market.price.history.domain.entity.MarketPriceHistoryAggregate;
+import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.persistence.mapper.MarketPriceHistoryMapper;
+import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.record.MarketPriceHistoryRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -38,5 +36,30 @@ public class MarketPriceHistoryDataManager implements MarketPriceHistoryReposito
 
     public MarketPriceHistoryDataManager(MarketPriceHistoryMapper marketPriceHistoryMapper) {
         this.marketPriceHistoryMapper = marketPriceHistoryMapper;
+    }
+
+    @Override
+    public MarketPriceHistoryAggregate save(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
+        return null;
+    }
+
+    @Override
+    public void remove(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
+
+    }
+
+    @Override
+    public MarketPriceHistoryAggregate modify(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
+        return null;
+    }
+
+    @Override
+    public Optional<MarketPriceHistoryAggregate> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<MarketPriceHistoryAggregate> findByIdForUpdate(String s) {
+        return Optional.empty();
     }
 }

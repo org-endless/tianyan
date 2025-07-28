@@ -1,0 +1,590 @@
+author: lanruirui
+version: 0.0.1
+groupId: org.endless
+serviceName: GycdpServer
+rootPath: gycdp-server/gycdp-server-components
+serviceSubPackage: components
+contextName: bill
+domainName: BankCard
+aggregateName: BankCardAggregate
+description: 银行卡
+fields:
+  - name: bankCardId
+    type: String
+    description: 银行卡ID
+    nullable: false
+  - name: customerId
+    type: String
+    description: 客户ID
+    nullable: false
+  - name: type
+    type: BankCardTypeEnum
+    description: 银行卡类型
+    nullable: false
+  - name: bankCode
+    type: BankCodeEnum
+    description: 银行编码
+    nullable: false
+  - name: number
+    type: String
+    description: 银行卡号
+    nullable: false
+  - name: reservedPhone
+    type: String
+    description: 银行卡预留电话
+    nullable: false
+  - name: paymentProtocolCode
+    type: String
+    description: 银行卡支付协议编号
+    nullable: true
+  - name: paymentProtocolStatus
+    type: BankCardPaymentProtocolStatusEnum
+    description: 银行卡支付协议状态
+    nullable: false
+  - name: expiration
+    type: String
+    description: 银行卡有效期(yyMM)
+    nullable: true
+  - name: securityCode
+    type: String
+    description: 银行卡安全码
+    nullable: true
+enums:
+  - name: BankCardTypeEnum
+    valueType: String
+    description: 银行卡类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: CREDIT_CARD
+        description: 信用卡
+      - code: DEPOSIT_CARD
+        description: 储蓄卡
+  - name: BankCardPaymentProtocolStatusEnum
+    valueType: String
+    description: 银行卡支付协议状态
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: PENDING
+        description: 待签约
+      - code: PRE_SIGNED
+        description: 预签约
+      - code: SIGNED
+        description: 已签约
+      - code: CANCELLED
+        description: 已解除
+  - name: BankCodeEnum
+    valueType: String
+    description: 银行编码
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: ICBC
+        description: 中国工商银行
+      - code: ABC
+        description: 中国农业银行
+      - code: CCB
+        description: 中国建设银行
+      - code: BOC
+        description: 中国银行
+      - code: BCOM
+        description: 中国交通银行
+      - code: CIB
+        description: 兴业银行
+      - code: CITIC
+        description: 中信银行
+      - code: PAB
+        description: 平安银行
+      - code: PSBC
+        description: 中国邮政储蓄银行
+      - code: SHB
+        description: 上海银行
+      - code: SPDB
+        description: 浦东发展银行
+      - code: CMBC
+        description: 中国民生银行
+      - code: GDB
+        description: 广发银行
+      - code: HXB
+        description: 华夏银行
+      - code: BOB
+        description: 北京银行
+      - code: ZSB
+        description: 浙商银行
+      - code: CBB
+        description: 渤海银行
+      - code: HFB
+        description: 恒丰银行
+transfers:
+  - name: BankCardPreSignReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 银行卡预签约命令请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+      - name: customerNameZh
+        type: String
+        description: 客户中文名称
+        nullable: false
+      - name: documentNumber
+        type: String
+        description: 客户证件号码
+        nullable: false
+      - name: cardType
+        type: String
+        description: 银行卡类型
+        nullable: false
+      - name: bankCode
+        type: String
+        description: 银行编码
+        nullable: false
+      - name: cardNumber
+        type: String
+        description: 银行卡号
+        nullable: false
+      - name: cardReservedPhone
+        type: String
+        description: 银行卡预留电话
+        nullable: false
+      - name: expiration
+        type: String
+        description: 银行卡有效期(yyMM)
+        nullable: true
+      - name: securityCode
+        type: String
+        description: 银行卡安全码
+        nullable: true
+  - name: BankCardPreSignRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 银行卡预签约命令响应传输对象
+    fields:
+      - name: bankCardId
+        type: String
+        description: 银行卡ID
+        nullable: false
+      - name: preSignCode
+        type: String
+        description: 银行卡预签约编码
+        nullable: false
+  - name: BankCardSignReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 银行卡签约命令请求传输对象
+    fields:
+      - name: bankCardId
+        type: String
+        description: 银行卡ID
+        nullable: false
+      - name: preSignCode
+        type: String
+        description: 银行卡预签约编码
+        nullable: false
+      - name: captcha
+        type: String
+        description: 银行卡预签约验证码
+        nullable: false
+  - name: BankCardCancelReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 银行卡解除签约命令请求传输对象
+    fields:
+      - name: bankCardId
+        type: String
+        description: 银行卡ID
+        nullable: false
+  - name: BankCardFindByIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 根据ID查询信息查询请求传输对象
+    fields:
+      - name: bankCardId
+        type: String
+        description: 银行卡ID
+        nullable: false
+  - name: BankCardFindByIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 根据ID查询信息查询响应传输对象
+    fields:
+      - name: paymentProtocolCode
+        type: String
+        description: 银行卡支付协议编码
+        nullable: false
+  - name: BankCardFindByCustomerIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 银行卡根据客户ID查询请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+  - name: BankCardFindProfilesRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 银行卡信息列表查询响应传输对象
+    fields:
+      - name: profiles
+        type: List<BankCardFindProfileRespQTransfer>
+        description: 银行卡信息列表
+        nullable: false
+  - name: BankCardFindProfileRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 银行卡信息查询响应传输对象
+    fields:
+      - name: bankCardId
+        type: String
+        description: 银行卡ID
+        nullable: false
+      - name: cardType
+        type: String
+        description: 银行卡类型
+        nullable: false
+      - name: bankCode
+        type: String
+        description: 银行编码
+        nullable: false
+      - name: cardNumber
+        type: String
+        description: 银行卡号
+        nullable: false
+      - name: contractId
+        type: String
+        description: 签约ID
+        nullable: true
+      - name: reservedPhone
+        type: String
+        description: 预留手机号
+        nullable: false
+  - name: BaoFooBankCardPreSignReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 宝付银行卡预签约被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: card_type
+        type: String
+        description: 卡类型
+        nullable: false
+      - name: id_card_type
+        type: String
+        description: 证件类型
+        nullable: false
+      - name: acc_info
+        type: String
+        description: 账户信息(银行卡号|持卡人姓名|证件号|手机号|银行卡安全码|银行卡有效)
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardPreSignRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 宝付银行卡预签约被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: unique_code
+        type: String
+        description: 预签约唯一码
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardSignReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 宝付银行卡签约被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: unique_code
+        type: String
+        description: 预签约唯一码
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardSignRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 宝付银行卡签约被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: protocol_no
+        type: String
+        description: 签约协议号
+        nullable: false
+      - name: bank_code
+        type: String
+        description: 银行编码
+        nullable: false
+      - name: bank_name
+        type: String
+        description: 银行名称
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardCancelReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 宝付银行卡解除签约被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: protocol_no
+        type: String
+        description: 签约协议号
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardCancelRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 宝付银行卡解除签约被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false

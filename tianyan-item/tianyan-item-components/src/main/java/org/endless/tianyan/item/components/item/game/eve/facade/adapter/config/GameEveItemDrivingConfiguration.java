@@ -5,6 +5,7 @@ import org.endless.tianyan.item.components.item.game.eve.application.command.han
 import org.endless.tianyan.item.components.item.game.eve.application.query.anticorruption.GameEveItemQueryRepository;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.impl.GameEveItemQueryHandlerImpl;
+import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.GameEveItemDrivenAdapter;
 import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.GameEveItemRepository;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.spring.SpringGameEveItemDrivingAdapter;
@@ -39,8 +40,8 @@ public class GameEveItemDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveItemCommandHandler gameEveItemCommandHandler(GameEveItemRepository repository, ItemDrivingAdapter itemDrivingAdapter) {
-        return new GameEveItemCommandHandlerImpl(repository, itemDrivingAdapter);
+    protected @Bean GameEveItemCommandHandler gameEveItemCommandHandler(GameEveItemRepository repository, ItemDrivingAdapter itemDrivingAdapter, GameEveItemDrivenAdapter gameEveItemDrivenAdapter) {
+        return new GameEveItemCommandHandlerImpl(repository, itemDrivingAdapter, gameEveItemDrivenAdapter);
     }
 
     @Lazy

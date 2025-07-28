@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.MarketPriceCommandHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer.MarketPriceCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.MarketPriceQueryHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.MarketPriceDrivingAdapter;
 
 /**
  * SpringMarketPriceDrivingAdapter
@@ -32,5 +32,10 @@ public class SpringMarketPriceDrivingAdapter implements MarketPriceDrivingAdapte
     public SpringMarketPriceDrivingAdapter(MarketPriceCommandHandler marketPriceCommandHandler, MarketPriceQueryHandler marketPriceQueryHandler) {
         this.marketPriceCommandHandler = marketPriceCommandHandler;
         this.marketPriceQueryHandler = marketPriceQueryHandler;
+    }
+
+    @Override
+    public void create(MarketPriceCreateReqCTransfer command) {
+        marketPriceCommandHandler.create(command);
     }
 }

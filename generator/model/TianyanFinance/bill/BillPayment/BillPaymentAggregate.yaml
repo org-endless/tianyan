@@ -1,0 +1,637 @@
+author: Deng HaoZhi
+version: 0.0.1
+groupId: org.endless
+serviceName: GycdpServer
+rootPath: gycdp-server/gycdp-server-components
+serviceSubPackage: components
+contextName: bill
+domainName: BillPayment
+aggregateName: BillPaymentAggregate
+description: 账单支付
+fields:
+  - name: billPaymentId
+    type: String
+    description: 账单支付ID
+    nullable: false
+  - name: billId
+    type: String
+    description: 账单ID
+    nullable: false
+  - name: amount
+    type: BigDecimal
+    description: 账单支付金额(17,2)
+    nullable: false
+  - name: status
+    type: BillPaymentStatusEnum
+    description: 账单支付状态
+    nullable: false
+  - name: bankCardId
+    type: String
+    description: 银行卡id
+    nullable: false
+  - name: uniqueCode
+    type: String
+    description: 预约支付码
+    nullable: true
+enums:
+  - name: BillPaymentStatusEnum
+    valueType: String
+    description: 账单支付状态
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: SUCCESS
+        description: 账单支付成功
+      - code: FAILURE
+        description: 账单支付失败
+      - code: UNKNOWN
+        description: 账单支付状态未知
+      - code: PREPAYMENT
+        description: 预支付状态
+      - code: INDEPENDENT_ACCOUNT_FAIL
+        description: 分账失败
+transfers:
+  - name: BaoFooBankCardPrePayReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 宝付银行卡预支付被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: order_amt
+        type: String
+        description: 订单金额
+        nullable: false
+      - name: txn_amt
+        type: String
+        description: 交易金额
+        nullable: false
+      - name: protocol_no
+        type: String
+        description: 签约协议号
+        nullable: false
+      - name: risk_item
+        type: String
+        description: 风控参数
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+      - name: trans_id
+        type: String
+        description: 账户id
+        nullable: false
+  - name: BillIndependentReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 分账命令请求传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单
+        nullable: false
+  - name: BaoFooBankCardPrePayRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 宝付银行卡预支付被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: unique_code
+        type: String
+        description: 预支付唯一码
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardPayReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 宝付银行卡支付被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: dgtl_envlp
+        type: String
+        description: 数字信封
+        nullable: false
+      - name: unique_code
+        type: String
+        description: 预支付唯一码
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooBankCardPayRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 宝付银行卡支付被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间(yyyy-MM-dd HH:mm:ss)
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: succ_amt
+        type: String
+        description: 成功金额
+        nullable: false
+      - name: succ_time
+        type: String
+        description: 成功时间
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+      - name: order_id
+        type: String
+        description: 宝付订单ID
+        nullable: false
+      - name: trans_id
+        type: String
+        description: 商户订单ID
+        nullable: false
+  - name: BaoFooIndependentAccountReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 分账被动请求传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: false
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: false
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: false
+      - name: orig_trans_id
+        type: String
+        description: 商户原始订单号
+        nullable: false
+      - name: share_info
+        type: String
+        description: 分账信息
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooIndependentAccountRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 分账被动响应传输对象
+    fields:
+      - name: send_time
+        type: String
+        description: 报文发送日期时间
+        nullable: false
+      - name: msg_id
+        type: String
+        description: 应答报文流水号
+        nullable: false
+      - name: version
+        type: String
+        description: 报文编号/版本号
+        nullable: false
+      - name: resp_code
+        type: String
+        description: 应答码
+        nullable: false
+      - name: terminal_id
+        type: String
+        description: 终端号
+        nullable: true
+      - name: txn_type
+        type: String
+        description: 交易类型
+        nullable: true
+      - name: member_id
+        type: String
+        description: 商户号
+        nullable: true
+      - name: biz_resp_code
+        type: String
+        description: 业务返回码
+        nullable: false
+      - name: biz_resp_msg
+        type: String
+        description: 业务返回说明
+        nullable: false
+      - name: signature
+        type: String
+        description: 签名域
+        nullable: false
+  - name: BaoFooWithdrawDepositReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 提现被动请求传输对象
+    fields:
+      - name: version
+        type: String
+        description: 版本号4.2.0
+        nullable: false
+      - name: contractNo
+        type: String
+        description: 客户账户号
+        nullable: false
+      - name: directPlatformNo
+        type: String
+        description: 上级客户账户号
+        nullable: true
+      - name: transSerialNo
+        type: String
+        description: 商户订单号
+        nullable: false
+      - name: dealAmount
+        type: String
+        description: 提现金额,单位：元
+        nullable: false
+      - name: returnUrl
+        type: String
+        description: 提现结果异步通知地址，通知参数详见提现结果通知
+        nullable: false
+      - name: feeMemberId
+        type: String
+        description: 用户自己承担手续费必传，与客户号contractNo一致
+        nullable: false
+      - name: reqReserved
+        type: String
+        description: 原样返回保留字段
+        nullable: true
+  - name: BaoFooWithdrawDepositRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 提现被动响应传输对象
+    fields:
+      - name: retCode
+        type: String
+        description: 返回码 1 成功 0 失败
+        nullable: false
+      - name: errorCode
+        type: String
+        description: 错误码
+        nullable: true
+      - name: errorMsg
+        type: String
+        description: 错误原因
+        nullable: true
+      - name: transSerialNo
+        type: String
+        description: 请求流水号
+        nullable: false
+      - name: state
+        type: String
+        description: 订单状态 1受理成功 2受理失败
+        nullable: false
+      - name: transRemark
+        type: String
+        description: 订单备注（受理失败的具体原因）
+        nullable: true
+  - name: BaoFooBalReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 余额被动请求传输对象
+    fields:
+      - name: memberId
+        type: String
+        description: 商户ID
+        nullable: false
+      - name: terminalId
+        type: String
+        description: 终端号
+        nullable: false
+      - name: verifyType
+        type: String
+        description: 验证类型
+        nullable: false
+      - name: content
+        type: String
+        description: 报文头
+        nullable: false
+      - name: veryfyString
+        type: String
+        description: 验证字符串
+        nullable: false
+  - name: BaoFooBalRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 余额被动响应传输对象
+    fields:
+      - name: retCode
+        type: String
+        description: 返回码 1 成功 0 失败
+        nullable: false
+      - name: errorCode
+        type: String
+        description: 错误码
+        nullable: true
+      - name: errorMsg
+        type: String
+        description: 错误原因
+        nullable: true
+      - name: back1
+        type: String
+        description: 备用字段
+        nullable: true
+      - name: back2
+        type: String
+        description: 备用字段
+        nullable: true
+      - name: back3
+        type: String
+        description: 备用字段
+        nullable: true
+      - name: availableBal
+        type: String
+        description: 账簿可用余额,单位：元;可用于提现
+        nullable: true
+      - name: pendingBal
+        type: String
+        description: 在途资金余额,单位：元
+        nullable: true
+      - name: currBal
+        type: String
+        description: 账簿余额,单位：元;
+        nullable: true
+  - name: BaoFooDetailAccoutReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 收支明细被动请求传输对象
+    fields:
+      - name: pageNum
+        type: Integer
+        description: 页码
+        nullable: false
+      - name: pageSize
+        type: Integer
+        description: 条数
+        nullable: false
+  - name: BaoFooDetailAccoutRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 收支明细被动响应传输对象
+    fields:
+      - name: transType
+        type: String
+        description: 交易类型 :RECHARGE 入金,TRANSFER 划拨 ,WITHDRAW 出金
+        nullable: true
+      - name: drCrFlag
+        type: String
+        description: 余额方向：CR-贷款（收入）/ DR-借款（支出）
+        nullable: true
+      - name: ccy
+        type: String
+        description: 币种 CNY人民币
+        nullable: true
+      - name: amount
+        type: String
+        description: 交易金额,单位：元
+        nullable: true
+      - name: afterBal
+        type: String
+        description: 交易后余额,单位：元
+        nullable: true
+      - name: creatTime
+        type: String
+        description: 创建时间yyyy-MM-dd HH:mm:ss
+        nullable: true
+      - name: orderId
+        type: String
+        description: 宝付订单号
+        nullable: true
+      - name: transSerialNo
+        type: String
+        description: 商户订单号
+        nullable: true
+      - name: businessTadeType
+        type: String
+        description: SHARE-分账 OFFSET_SHARE-差额分账 REFUND-退款 TRANSFER-转账 WITHDRAW-提现
+            CLEAR-资金清算 OTHER-其他 WITHDRAW_CANCEL-提现退回
+        nullable: true
+  - name: BillPaymentCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 创建账单支付命令请求传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单id
+        nullable: false
+      - name: bankCardId
+        type: String
+        description: 银行卡id
+        nullable: false
+  - name: BillPaymentCreateRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 创建账单支付命令响应传输对象
+    fields:
+      - name: billPaymentId
+        type: String
+        description: 账单支付ID
+        nullable: false
+  - name: BillPaymentConfirmReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 确认账单支付命令请求传输对象
+    fields:
+      - name: billPaymentId
+        type: String
+        description: 账单支付ID
+        nullable: false
+      - name: captcha
+        type: String
+        description: 账单支付验证码
+        nullable: false
+  - name: BillPaymentFindEventInfoRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 查询事件类型信息查询响应传输对象
+    fields:
+      - name: relatedEntityId
+        type: String
+        description: 关联的实体ID
+        nullable: false
+      - name: eventTypeNameZh
+        type: String
+        description: 对应的事件名称
+        nullable: false
+  - name: BillPaymentOrderInfoRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 支付信息查询响应传输对象
+    fields:
+      - name: isSuccess
+        type: Boolean
+        description: 分账是否成功
+        nullable: false
+      - name: orderId
+        type: String
+        description: 宝付订单ID
+        nullable: false
+      - name: transId
+        type: String
+        description: 商户订单ID
+        nullable: false

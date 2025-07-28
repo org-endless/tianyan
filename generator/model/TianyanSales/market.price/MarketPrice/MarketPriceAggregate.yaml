@@ -25,3 +25,26 @@ fields:
     type: BigDecimal
     description: 卖出价格(17, 2)
     nullable: false
+transfers:
+  - name: MarketPriceCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 市场价格创建命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: buyPrice
+        type: String
+        description: 买入价格(17, 2)
+        nullable: false
+      - name: sellPrice
+        type: String
+        description: 卖出价格(17, 2)
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false

@@ -2,7 +2,9 @@ package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapte
 
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderGeneratePriceReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.transfer.GameEveMarketOrderFindItemIdsRespQTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
 
 /**
@@ -37,5 +39,15 @@ public class SpringGameEveMarketOrderDrivingAdapter implements GameEveMarketOrde
     @Override
     public void fetch(GameEveMarketOrderFetchReqCTransfer command) {
         gameEveMarketOrderCommandHandler.fetch(command);
+    }
+
+    @Override
+    public void generatePrice(GameEveMarketOrderGeneratePriceReqCTransfer command) {
+        gameEveMarketOrderCommandHandler.generatePrice(command);
+    }
+
+    @Override
+    public GameEveMarketOrderFindItemIdsRespQTransfer fetchCodes() {
+        return gameEveMarketOrderQueryHandler.fetchCodes();
     }
 }

@@ -1,9 +1,8 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.item.rest;
 
 import org.endless.tianyan.sales.common.model.infrastructure.adapter.rest.TianyanSalesItemRestClient;
-import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderItemDrivenAdapter;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderItemFindByIdReqDTransfer;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderItemFetchReqDTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderItemFetchRespDTransfer;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -23,7 +22,7 @@ import java.util.Optional;
  */
 @Lazy
 @Component
-public class GameEveMarketOrderItemRestClient implements GameEveMarketOrderItemDrivenAdapter, TianyanSalesItemRestClient {
+public class GameEveMarketOrderItemRestClient implements TianyanSalesItemRestClient {
 
     private final RestClient restClient;
 
@@ -31,15 +30,16 @@ public class GameEveMarketOrderItemRestClient implements GameEveMarketOrderItemD
         this.restClient = restClient;
     }
 
-
-    @Override
-    public Optional<String> findGameEveItemCodeByItemId(String itemId) {
+    public Optional<String> fetch(String code, String createUserId) {
         return post(
                 restClient,
-                "/item/game/eve/query/find_code_by_item_id",
-                GameEveMarketOrderItemFindByIdReqDTransfer.builder().itemId(itemId).build().validate(),
-                GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer.class)
-                .map(GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer::validate)
-                .map(GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer::getGameEveItemCode);
+                "/item/game/eve/command/fetch",
+                GameEveMarketOrderItemFetchReqDTransfer.builder()
+                        .gameEveItemCode(code)
+                        .createUserId(createUserId)
+                        .build().validate(),
+                GameEveMarketOrderItemFetchRespDTransfer.class)
+                .map(GameEveMarketOrderItemFetchRespDTransfer::validate)
+                .map(GameEveMarketOrderItemFetchRespDTransfer::getItemId);
     }
 }

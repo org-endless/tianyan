@@ -1,6 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler;
 
 import org.endless.tianyan.sales.common.model.application.query.handler.TianyanSalesQueryHandler;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.transfer.GameEveMarketOrderFindItemIdsRespQTransfer;
 
 /**
  * GameEveMarketOrderQueryHandler
@@ -15,4 +16,7 @@ import org.endless.tianyan.sales.common.model.application.query.handler.TianyanS
  * @since 0.0.1
  */
 public interface GameEveMarketOrderQueryHandler extends TianyanSalesQueryHandler {
+
+    GameEveMarketOrderFindItemIdsRespQTransfer fetchCodes();
+
 }

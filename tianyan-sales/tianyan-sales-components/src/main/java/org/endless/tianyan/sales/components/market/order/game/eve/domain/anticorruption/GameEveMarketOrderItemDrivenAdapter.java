@@ -17,5 +17,5 @@ import java.util.Optional;
  */
 public interface GameEveMarketOrderItemDrivenAdapter extends TianyanSalesDrivenAdapter {
 
-    Optional<String> findGameEveItemCodeByItemId(String itemId);
+    Optional<String> fetch(String code, String createUserID);
 }

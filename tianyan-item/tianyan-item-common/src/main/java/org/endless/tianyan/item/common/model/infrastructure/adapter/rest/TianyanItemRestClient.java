@@ -1,7 +1,6 @@
 package org.endless.tianyan.item.common.model.infrastructure.adapter.rest;
 
 import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
-import org.endless.tianyan.item.common.model.infrastructure.adapter.transfer.TianyanItemDrivenTransfer;
 
 /**
  * TianyanItemDrivenRestAdapter
@@ -14,7 +13,6 @@ import org.endless.tianyan.item.common.model.infrastructure.adapter.transfer.Tia
  * @see RestClientAdapter
  * @since 0.0.1
  */
-public interface TianyanItemRestClient<T extends TianyanItemDrivenTransfer>
-        extends RestClientAdapter {
+public interface TianyanItemRestClient extends RestClientAdapter {
 
 }

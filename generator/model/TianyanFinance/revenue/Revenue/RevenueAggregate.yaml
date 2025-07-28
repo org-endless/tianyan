@@ -1,0 +1,78 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: revenue
+domainName: Revenue
+aggregateName: RevenueAggregate
+description: 收入
+fields:
+  - name: revenueId
+    type: String
+    description: 收入ID
+    nullable: false
+  - name: modelType
+    type: RevenueModelTypeEnum
+    description: 收入模型类型
+    nullable: false
+  - name: amount
+    type: BigDecimal
+    description: 收入金额(17, 2)
+    nullable: false
+  - name: detail
+    type: RevenueDetailEntity
+    description: 收入明细
+    nullable: false
+entities:
+  - name: RevenueDetailEntity
+    description: 收入明细
+    fields:
+      - name: revenueDetailId
+        type: String
+        description: 收入明细ID
+        nullable: false
+      - name: type
+        type: RevenueDetailTypeEnum
+        description: 收入明细类型
+        nullable: false
+      - name: amount
+        type: BigDecimal
+        description: 收入明细金额(17, 2)
+        nullable: false
+enums:
+  - name: RevenueDetailTypeEnum
+    valueType: String
+    description: 收入明细类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: MATERIAL
+        description: 原料成本
+      - code: LABOR
+        description: 人力成本
+  - name: RevenueModelTypeEnum
+    valueType: String
+    description: 收入模型类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: ESTIMATED
+        description: 预估收入
+      - code: ACTUAL
+        description: 实际收入

@@ -20,6 +20,11 @@
             <groupId>org.endless</groupId>
             <artifactId>endless-ddd-simplified-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.endless</groupId>
+            <artifactId>tianyan-game-eve-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

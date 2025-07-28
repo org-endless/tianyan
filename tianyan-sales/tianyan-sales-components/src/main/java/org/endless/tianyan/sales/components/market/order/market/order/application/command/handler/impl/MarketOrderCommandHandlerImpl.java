@@ -8,16 +8,15 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.com
 import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import org.endless.ddd.simplified.starter.common.utils.model.time.TimeStamp;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.MarketOrderCommandHandler;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.*;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderPriceDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderRepository;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.type.MarketOrderTypeEnum;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.value.MarketOrderItemQuantityValue;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -39,10 +38,16 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
      */
     private final MarketOrderRepository marketOrderRepository;
 
+    /**
+     * 市场价格被动适配器接口
+     */
+    private final MarketOrderPriceDrivenAdapter marketOrderPriceDrivenAdapter;
+
     private final String dateTimePattern;
 
-    public MarketOrderCommandHandlerImpl(MarketOrderRepository marketOrderRepository, EndlessAutoConfiguration configuration) {
+    public MarketOrderCommandHandlerImpl(MarketOrderRepository marketOrderRepository, MarketOrderPriceDrivenAdapter marketOrderPriceDrivenAdapter, EndlessAutoConfiguration configuration) {
         this.marketOrderRepository = marketOrderRepository;
+        this.marketOrderPriceDrivenAdapter = marketOrderPriceDrivenAdapter;
         this.dateTimePattern = configuration.dateTimePattern();
     }
 
@@ -101,5 +106,16 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
         MarketOrderAggregate aggregate = marketOrderRepository.findById(command.getMarketOrderId())
                 .orElseThrow(() -> new CommandHandlerNotFoundException("未找到对应的市场订单聚合"));
         marketOrderRepository.remove(aggregate.remove(command.getModifyUserId()));
+    }
+
+    @Override
+    @Transactional
+    @Log(message = "市场订单生成价格命令", value = "#command", level = LogLevel.TRACE)
+    public void generatePrice(MarketOrderGeneratePriceReqCTransfer command) {
+        Optional.ofNullable(command)
+                .map(MarketOrderGeneratePriceReqCTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("市场订单生成价格命令参数不能为空"));
+        List<MarketOrderAggregate> aggregates = marketOrderRepository.findAllByItemId(command.getItemId());
+        marketOrderPriceDrivenAdapter.generatePrice(aggregates, command.getItemId(), command.getCreateUserId());
     }
 }

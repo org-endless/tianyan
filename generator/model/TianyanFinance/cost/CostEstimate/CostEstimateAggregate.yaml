@@ -1,0 +1,61 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: cost
+domainName: CostEstimate
+aggregateName: CostEstimateAggregate
+description: 预估成本
+fields:
+  - name: costEstimateId
+    type: String
+    description: 预估成本ID
+    nullable: false
+  - name: itemId
+    type: String
+    description: 资源项ID
+    nullable: false
+  - name: totalAmount
+    type: BigDecimal
+    description: 预估成本总金额(17, 2)
+    nullable: false
+  - name: detail
+    type: CostEstimateDetailEntity
+    description: 预估成本明细
+    nullable: false
+entities:
+  - name: CostEstimateDetailEntity
+    description: 预估成本明细
+    fields:
+      - name: costEstimateDetailId
+        type: String
+        description: 成本明细ID
+        nullable: false
+      - name: type
+        type: CostDetailTypeEnum
+        description: 成本明细类型
+        nullable: false
+      - name: amount
+        type: BigDecimal
+        description: 成本明细金额(17, 2)
+        nullable: false
+enums:
+  - name: CostDetailTypeEnum
+    valueType: String
+    description: 成本明细类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: MATERIAL
+        description: 原料成本
+      - code: LABOR
+        description: 人力成本

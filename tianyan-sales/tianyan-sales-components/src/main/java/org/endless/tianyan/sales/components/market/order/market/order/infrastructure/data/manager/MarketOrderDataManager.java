@@ -86,7 +86,22 @@ public class MarketOrderDataManager implements MarketOrderRepository, MarketOrde
     }
 
     @Override
+    @Log(message = "根据资源项ID查询市场订单数据列表", value = "#itemId", level = LogLevel.TRACE)
+    public List<MarketOrderAggregate> findAllByItemId(String itemId) {
+        Optional.ofNullable(itemId)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("资源项ID不能为空"));
+        return marketOrderMapper.findAllByItemId(itemId).stream().map(MarketOrderRecord::to).toList();
+    }
+
+    @Override
+    @Log(message = "根据资源项ID查询市场订单ID数据列表", value = "#itemId", level = LogLevel.TRACE)
     public List<String> findIdsByItemId(String itemId) {
+        Optional.ofNullable(itemId)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("资源项ID不能为空"));
         return marketOrderMapper.findIdsByItemId(itemId);
     }
+
+
 }

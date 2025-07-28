@@ -1,6 +1,7 @@
 package org.endless.tianyan.sales.components.market.price.market.price.facade.adapter;
 
-import org.endless.tianyan.sales.common.model.facade.adapter.*;
+import org.endless.tianyan.sales.common.model.facade.adapter.TianyanSalesDrivingAdapter;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer.MarketPriceCreateReqCTransfer;
 
 /**
  * MarketPriceDrivingAdapter
@@ -15,4 +16,6 @@ import org.endless.tianyan.sales.common.model.facade.adapter.*;
  * @since 0.0.1
  */
 public interface MarketPriceDrivingAdapter extends TianyanSalesDrivingAdapter {
+
+    void create(MarketPriceCreateReqCTransfer command);
 }

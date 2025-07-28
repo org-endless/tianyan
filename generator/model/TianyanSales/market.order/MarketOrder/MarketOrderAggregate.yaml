@@ -21,13 +21,13 @@ fields:
     type: MarketOrderTypeEnum
     description: 市场订单类型
     nullable: false
-  - name: itemQuantity
-    type: MarketOrderItemQuantityValue
-    description: 市场订单资源项数量
-    nullable: false
   - name: price
     type: BigDecimal
     description: 市场订单价格(17, 2)
+    nullable: false
+  - name: itemQuantity
+    type: MarketOrderItemQuantityValue
+    description: 市场订单资源项数量
     nullable: false
   - name: issuedAt
     type: Long
@@ -175,6 +175,20 @@ transfers:
       - name: modifyUserId
         type: String
         description: 修改用户ID
+        nullable: false
+  - name: MarketOrderGeneratePriceReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 市场订单生成价格命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
         nullable: false
   - name: MarketOrderFindByItemIdReqQTransfer
     adapterType: DRIVING

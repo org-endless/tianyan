@@ -3,6 +3,8 @@ package org.endless.tianyan.item.components.item.game.eve.domain.anticorruption;
 import org.endless.tianyan.item.common.model.domain.anticorruption.TianyanItemRepository;
 import org.endless.tianyan.item.components.item.game.eve.domain.entity.GameEveItemAggregate;
 
+import java.util.Optional;
+
 /**
  * GameEveItemRepository
  * <p>游戏EVE资源项聚合仓储接口
@@ -16,5 +18,7 @@ import org.endless.tianyan.item.components.item.game.eve.domain.entity.GameEveIt
  * @since 0.0.1
  */
 public interface GameEveItemRepository extends TianyanItemRepository<GameEveItemAggregate> {
+
+    Optional<String> findItemIdByCode(String code);
 
 }

@@ -3,6 +3,8 @@ package org.endless.tianyan.sales.components.market.order.market.order.domain.an
 import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 
+import java.util.List;
+
 /**
  * MarketOrderRepository
  * <p>市场订单聚合仓储接口
@@ -16,4 +18,6 @@ import org.endless.tianyan.sales.components.market.order.market.order.domain.ent
  * @since 0.0.1
  */
 public interface MarketOrderRepository extends TianyanSalesRepository<MarketOrderAggregate> {
+
+    List<MarketOrderAggregate> findAllByItemId(String itemId);
 }

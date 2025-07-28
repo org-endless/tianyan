@@ -24,6 +24,14 @@ import java.util.List;
 @Mapper
 public interface MarketOrderMapper extends TianyanSalesMapper<MarketOrderRecord> {
 
+    default List<MarketOrderRecord> findAllByItemId(String itemId) {
+        QueryWrapper<MarketOrderRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .eq(MarketOrderRecord::getItemId, itemId)
+                .orderByAsc(MarketOrderRecord::getMarketOrderId);
+        return findAllByWrapper(queryWrapper);
+    }
+
     default List<String> findIdsByItemId(String itemId) {
         QueryWrapper<MarketOrderRecord> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()

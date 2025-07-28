@@ -6,10 +6,12 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.com
 import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderGeneratePriceReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderItemDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderRepository;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderGeneratePriceReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,17 +73,32 @@ public class GameEveMarketOrderCommandHandlerImpl implements GameEveMarketOrderC
         Optional.ofNullable(command)
                 .map(GameEveMarketOrderFetchReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场订单获取命令参数不能为空"));
-        String gameEveItemCode = gameEveMarketOrderItemDrivenAdapter.findGameEveItemCodeByItemId(command.getItemId())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE资源项编码不存在，资源项ID: " + command.getItemId()));
+        String itemId = gameEveMarketOrderItemDrivenAdapter.fetch(command.getGameEveItemCode(), command.getCreateUserId())
+                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
         List<String> marketOrderIds = marketOrderDrivingAdapter.findIdsByItemId(MarketOrderFindByItemIdReqQTransfer.builder()
-                .itemId(command.getItemId())
-                .build().validate()).getMarketOrderIds();
+                        .itemId(itemId)
+                        .build().validate())
+                .validate().getMarketOrderIds();
         List<GameEveMarketOrderAggregate> existedAggregates = new ArrayList<>();
         if (!CollectionUtils.isEmpty(marketOrderIds)) {
             existedAggregates = gameEveMarketOrderRepository.findAllByMarketOrderIds(marketOrderIds);
         }
         List<GameEveMarketOrderAggregate> aggregates = gameEveMarketOrderDrivenAdapter
-                .fetch(existedAggregates, command.getItemId(), gameEveItemCode, command.getCreateUserId());
+                .fetch(existedAggregates, itemId, command.getGameEveItemCode(), command.getCreateUserId());
         gameEveMarketOrderRepository.upsert(aggregates);
+    }
+
+    @Override
+    @Log(message = "游戏EVE市场订单生成价格命令", value = "#command", level = LogLevel.TRACE)
+    public void generatePrice(GameEveMarketOrderGeneratePriceReqCTransfer command) {
+        Optional.ofNullable(command)
+                .map(GameEveMarketOrderGeneratePriceReqCTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场订单生成价格命令命令参数不能为空"));
+        String itemId = gameEveMarketOrderItemDrivenAdapter.fetch(command.getGameEveItemCode(), command.getCreateUserId())
+                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
+        marketOrderDrivingAdapter.generatePrice(MarketOrderGeneratePriceReqCTransfer.builder()
+                .itemId(itemId)
+                .createUserId(command.getCreateUserId())
+                .build().validate());
     }
 }

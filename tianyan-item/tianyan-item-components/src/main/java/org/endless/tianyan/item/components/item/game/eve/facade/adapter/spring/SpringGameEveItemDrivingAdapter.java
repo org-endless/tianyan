@@ -2,11 +2,10 @@ package org.endless.tianyan.item.components.item.game.eve.facade.adapter.spring;
 
 import org.endless.tianyan.item.components.item.game.eve.application.command.handler.GameEveItemCommandHandler;
 import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemFetchReqCTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemFetchRespCTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindCodeRespQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindItemIdRespQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.*;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
 
 /**
@@ -44,8 +43,18 @@ public class SpringGameEveItemDrivingAdapter implements GameEveItemDrivingAdapte
     }
 
     @Override
+    public GameEveItemFetchRespCTransfer fetch(GameEveItemFetchReqCTransfer command) {
+        return gameEveItemCommandHandler.fetch(command);
+    }
+
+    @Override
     public GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query) {
         return gameEveItemQueryHandler.findItemIdByCode(query);
+    }
+
+    @Override
+    public GameEveItemFindItemIdsRespQTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQTransfer query) {
+        return gameEveItemQueryHandler.findItemIdsByCodes(query);
     }
 
     @Override

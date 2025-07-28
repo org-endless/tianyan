@@ -1,0 +1,126 @@
+author: Deng HaoZhi
+version: 0.0.1
+groupId: org.endless
+serviceName: GycdpServer
+rootPath: gycdp-server/gycdp-server-components
+serviceSubPackage: components
+contextName: bill
+domainName: BillRule
+aggregateName: BillRuleAggregate
+description: 账单规则
+fields:
+  - name: billRuleId
+    type: String
+    description: 账单规则ID
+    nullable: false
+  - name: eventTypeId
+    type: String
+    description: 事件类型ID
+    nullable: false
+  - name: type
+    type: BillRuleTypeEnum
+    description: 账单规则类型
+    nullable: false
+  - name: minBaseAmount
+    type: BigDecimal
+    description: 账单规则最小基准金额(17, 2)
+    nullable: true
+  - name: maxBaseAmount
+    type: BigDecimal
+    description: 账单规则最大基准金额(17, 2)
+    nullable: true
+  - name: rate
+    type: BigDecimal
+    description: 账单规则比率(8, 5)
+    nullable: true
+  - name: percentage
+    type: BigDecimal
+    description: 账单规则比例(5, 2)
+    nullable: true
+  - name: amount
+    type: BigDecimal
+    description: 账单规则金额(17, 2)
+    nullable: true
+  - name: isEnabled
+    type: Boolean
+    description: 账单规则是否启用
+    nullable: false
+enums:
+  - name: BillRuleTypeEnum
+    valueType: String
+    description: 账单规则类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: FIXED_PERCENTAGE
+        description: 按固定比例
+      - code: LADDER_PERCENTAGE
+        description: 按阶梯比例
+      - code: FIXED_AMOUNT
+        description: 按固定金额
+transfers:
+  - name: BillRuleCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 账单规则创建命令请求传输对象
+    fields:
+      - name: eventTypeId
+        type: String
+        description: 事件类型ID
+        nullable: false
+      - name: type
+        type: String
+        description: 账单规则类型
+        nullable: false
+      - name: minBaseAmount
+        type: String
+        description: 账单规则最小基准金额(17, 2)
+        nullable: true
+      - name: maxBaseAmount
+        type: String
+        description: 账单规则最大基准金额(17, 2)
+        nullable: true
+      - name: rate
+        type: String
+        description: 账单规则费率(8, 5)
+        nullable: true
+      - name: percentage
+        type: String
+        description: 账单规则比例(5, 2)
+        nullable: true
+      - name: amount
+        type: String
+        description: 账单规则金额(17, 2)
+        nullable: true
+  - name: BillRuleCalculateFeeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 账单规则计算费用查询请求传输对象
+    fields:
+      - name: eventTypeId
+        type: String
+        description: 事件类型ID
+        nullable: false
+      - name: baseAmount
+        type: String
+        description: 账单基准金额(17, 2)
+        nullable: true
+  - name: BillRuleCalculateFeeRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 账单规则计算费用查询响应传输对象
+    fields:
+      - name: feeAmount
+        type: String
+        description: 账单费用金额(17, 2)
+        nullable: true

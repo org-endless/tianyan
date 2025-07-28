@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 
 /**
  * GameEveItemFindByCodeReqQTransfer
- * <p>游戏EVE根据编码查询请求传输对象
+ * <p>游戏EVE资源项根据编码查询请求传输对象
  * <p>
- * create 2025/07/26 05:25
+ * create 2025/07/27 23:06
  * <p>
- * update 2025/07/26 05:25
+ * update 2025/07/27 23:06
  *
  * @author Deng Haozhi
  * @see TianyanItemQueryTransfer

@@ -8,7 +8,9 @@ import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.Re
 import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
 import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
 import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemFetchReqCTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodesReqQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
 import org.endless.tianyan.item.components.item.game.eve.facade.adapter.GameEveItemDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
@@ -60,29 +62,55 @@ public class GameEveItemRestController implements TianyanItemRestController {
         }
     }
 
+    @PostMapping("/command/fetch")
+    @Log(message = "游戏EVE资源项获取", value = "#command")
+    public ResponseEntity<RestResponse> fetch(@RequestBody GameEveItemFetchReqCTransfer command) {
+        Optional.ofNullable(command)
+                .map(GameEveItemFetchReqCTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项获取参数不能为空"));
+        try {
+            return response().success("游戏EVE资源项获取成功", gameEveItemDrivingAdapter.fetch(command));
+        } catch (JSONException | NullPointerException e) {
+            throw new RestErrorException("游戏EVE资源项获取失败", e);
+        }
+    }
+
     @PostMapping("/query/find_item_id_by_code")
-    @Log(message = "游戏EVE资源项根据编码查询资源项ID", value = "#query")
+    @Log(message = "游戏EVE根据资源项编码查询资源项ID", value = "#query")
     public ResponseEntity<RestResponse> findItemIdByCode(@RequestBody GameEveItemFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemFindByCodeReqQTransfer::validate)
-                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据编码查询资源项ID参数不能为空"));
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE根据资源项编码查询资源项ID参数不能为空"));
         try {
-            return response().success("游戏EVE资源项根据编码查询资源项ID成功", gameEveItemDrivingAdapter.findItemIdByCode(query));
+            return response().success("游戏EVE根据资源项编码查询资源项ID成功", gameEveItemDrivingAdapter.findItemIdByCode(query));
         } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE资源项根据编码查询资源项ID失败", e);
+            throw new RestErrorException("游戏EVE根据资源项编码查询资源项ID失败", e);
+        }
+    }
+
+    @PostMapping("/query/find_item_ids_by_codes")
+    @Log(message = "游戏EVE根据资源项编码列表查询资源项ID列表", value = "#query")
+    public ResponseEntity<RestResponse> findItemIdsByCodes(@RequestBody GameEveItemFindByCodesReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveItemFindByCodesReqQTransfer::validate)
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE根据资源项编码列表查询资源项ID列表参数不能为空"));
+        try {
+            return response().success("游戏EVE根据资源项编码列表查询资源项ID列表成功", gameEveItemDrivingAdapter.findItemIdsByCodes(query));
+        } catch (JSONException | NullPointerException e) {
+            throw new RestErrorException("游戏EVE根据资源项编码列表查询资源项ID列表失败", e);
         }
     }
 
     @PostMapping("/query/find_code_by_item_id")
-    @Log(message = "游戏EVE资源项根据资源项ID查询编码", value = "#query")
+    @Log(message = "游戏EVE根据资源项资源项ID查询编码", value = "#query")
     public ResponseEntity<RestResponse> findCodeByItemId(@RequestBody GameEveItemFindByItemIdReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemFindByItemIdReqQTransfer::validate)
-                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据资源项ID查询编码参数不能为空"));
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE根据资源项资源项ID查询编码参数不能为空"));
         try {
-            return response().success("游戏EVE资源项根据资源项ID查询编码成功", gameEveItemDrivingAdapter.findCodeByItemId(query));
+            return response().success("游戏EVE根据资源项资源项ID查询编码成功", gameEveItemDrivingAdapter.findCodeByItemId(query));
         } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE资源项根据资源项ID查询编码失败", e);
+            throw new RestErrorException("游戏EVE根据资源项资源项ID查询编码失败", e);
         }
     }
 }

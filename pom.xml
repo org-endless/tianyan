@@ -44,6 +44,7 @@
         <module>tianyan-sales</module>
         <module>tianyan-metadata</module>
         <module>tianyan-web-gateway</module>
+        <module>tianyan-starters</module>
     </modules>
 
     <properties>
@@ -97,6 +98,13 @@
                 <groupId>org.endless</groupId>
                 <artifactId>endless-ddd-simplified-starter</artifactId>
                 <version>${endless-ddd-simplified.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>tianyan-starters</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- Framework -->
             <!-- SpringBoot -->

@@ -7,9 +7,9 @@ import org.endless.ddd.simplified.starter.common.utils.model.time.DateTime;
 import org.endless.ddd.simplified.starter.common.utils.model.time.TimeStamp;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.entity.GameEveMarketOrderAggregate;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.order.rest.GameEveMarketOrderESIRestClient;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindPageReqDTransfer;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.GameEveMarketOrderESIFindProfileRespDTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.GameEveMarketOrderESIMarketRestClient;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.ESIMarketOrderFindPageReqDTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.ESIMarketOrderFindProfileRespDTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
@@ -22,7 +22,8 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static org.endless.tianyan.sales.common.model.infrastructure.adapter.rest.TianyanSalesESIRestClient.DEFAULT_REGION_ID;
+import static org.endless.tianyan.game.eve.common.model.infrastructure.adapter.rest.TianyanGameEveESIRestClient.DEFAULT_REGION_ID;
+
 
 /**
  * SpringGameEveMarketOrderDrivenAdapter
@@ -38,15 +39,15 @@ import static org.endless.tianyan.sales.common.model.infrastructure.adapter.rest
 @Component
 public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrderDrivenAdapter {
 
-    private final GameEveMarketOrderESIRestClient gameEveMarketOrderESIRestClient;
-
     private final MarketOrderDrivingAdapter marketOrderDrivingAdapter;
+
+    private final GameEveMarketOrderESIMarketRestClient gameEveMarketOrderESIMarketRestClient;
 
     private final String dateTimePattern;
 
-    public SpringGameEveMarketOrderDrivenAdapter(GameEveMarketOrderESIRestClient gameEveMarketOrderESIRestClient, MarketOrderDrivingAdapter marketOrderDrivingAdapter, EndlessAutoConfiguration configuration) {
-        this.gameEveMarketOrderESIRestClient = gameEveMarketOrderESIRestClient;
+    public SpringGameEveMarketOrderDrivenAdapter(MarketOrderDrivingAdapter marketOrderDrivingAdapter, GameEveMarketOrderESIMarketRestClient gameEveMarketOrderESIMarketRestClient, EndlessAutoConfiguration configuration) {
         this.marketOrderDrivingAdapter = marketOrderDrivingAdapter;
+        this.gameEveMarketOrderESIMarketRestClient = gameEveMarketOrderESIMarketRestClient;
         this.dateTimePattern = configuration.dateTimePattern();
     }
 
@@ -59,7 +60,7 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
             String createUserId) {
         Map<String, GameEveMarketOrderAggregate> exeistMap = existedAggregates.stream()
                 .collect(Collectors.toMap(GameEveMarketOrderAggregate::getCode, Function.identity()));
-        FindPageRespTransfer firstPage = gameEveMarketOrderESIRestClient.findMarketOrderPage(GameEveMarketOrderESIFindPageReqDTransfer.builder()
+        FindPageRespTransfer firstPage = gameEveMarketOrderESIMarketRestClient.fetchMarketOrderPage(ESIMarketOrderFindPageReqDTransfer.builder()
                         .gameEveItemCode(gameEveItemCode)
                         .regionId(DEFAULT_REGION_ID)
                         .orderType("all")
@@ -69,16 +70,16 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
         if (firstPage.getTotal() <= 0) {
             throw new DrivenAdapterManagerException("未找到市场订单信息，资源项编码为: " + gameEveItemCode);
         }
-        List<GameEveMarketOrderAggregate> aggregates = new ArrayList<>(upsert(firstPage.getRows(), exeistMap, itemId, createUserId));
+        List<GameEveMarketOrderAggregate> aggregates = new ArrayList<>(upsert(firstPage.getRows(ESIMarketOrderFindProfileRespDTransfer.class), exeistMap, itemId, createUserId));
         for (int i = 2; i <= firstPage.getTotal(); i++) {
-            FindPageRespTransfer page = gameEveMarketOrderESIRestClient.findMarketOrderPage(GameEveMarketOrderESIFindPageReqDTransfer.builder()
+            FindPageRespTransfer page = gameEveMarketOrderESIMarketRestClient.fetchMarketOrderPage(ESIMarketOrderFindPageReqDTransfer.builder()
                             .gameEveItemCode(gameEveItemCode)
                             .regionId(DEFAULT_REGION_ID)
                             .orderType("all")
                             .page(i)
                             .build().validate())
                     .validate();
-            aggregates.addAll(upsert(page.getRows(), exeistMap, itemId, createUserId));
+            aggregates.addAll(upsert(page.getRows(ESIMarketOrderFindProfileRespDTransfer.class), exeistMap, itemId, createUserId));
         }
         Set<String> newCodes = aggregates.stream()
                 .map(GameEveMarketOrderAggregate::getCode)
@@ -95,12 +96,11 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
         return aggregates;
     }
 
-    private List<GameEveMarketOrderAggregate> upsert(List<?> rows, Map<String, GameEveMarketOrderAggregate> exeistMap, String itemId, String createUserId) {
-        return Optional.ofNullable(rows)
+    private List<GameEveMarketOrderAggregate> upsert(List<ESIMarketOrderFindProfileRespDTransfer> profiles, Map<String, GameEveMarketOrderAggregate> exeistMap, String itemId, String createUserId) {
+        return Optional.ofNullable(profiles)
                 .filter(l -> !CollectionUtils.isEmpty(l))
                 .orElseThrow(() -> new DrivenAdapterManagerException("未找到市场订单信息，资源项ID为: " + itemId))
                 .stream()
-                .map(GameEveMarketOrderESIFindProfileRespDTransfer.class::cast)
                 .map(profile -> {
                     GameEveMarketOrderAggregate.GameEveMarketOrderAggregateBuilder gameEveMarketOrderAggregateBuilder = GameEveMarketOrderAggregate.builder()
                             .code(profile.getOrder_id())
@@ -142,4 +142,6 @@ public class SpringGameEveMarketOrderDrivenAdapter implements GameEveMarketOrder
                 })
                 .toList();
     }
+
+
 }

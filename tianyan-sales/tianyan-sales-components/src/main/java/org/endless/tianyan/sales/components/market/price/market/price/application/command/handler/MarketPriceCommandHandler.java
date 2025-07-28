@@ -1,7 +1,8 @@
 package org.endless.tianyan.sales.components.market.price.market.price.application.command.handler;
 
-import org.endless.tianyan.sales.common.model.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.command.handler.TianyanSalesCommandHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer.MarketPriceCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.price.market.price.domain.entity.MarketPriceAggregate;
 
 /**
  * MarketPriceCommandHandler
@@ -16,4 +17,7 @@ import org.endless.tianyan.sales.components.market.price.market.price.domain.ent
  * @since 0.0.1
  */
 public interface MarketPriceCommandHandler extends TianyanSalesCommandHandler<MarketPriceAggregate> {
+
+    void create(MarketPriceCreateReqCTransfer command);
+
 }

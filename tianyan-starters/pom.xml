@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.endless</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>tianyan-starters</artifactId>
+    <packaging>pom</packaging>
+    <name>tianyan-starters</name>
+    <description>天演-企业级公共配置</description>
+    <url>https://github.com/org-endless/tianyan</url>
+    <organization>
+        <name>Endless, Org.</name>
+        <url>https://github.com/org-endless</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Endless</name>
+            <email>haozhi_deng@126.com</email>
+            <organization>Endless, Org.</organization>
+            <organizationUrl>https://github.com/org-endless</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>
+            scm:git:git://github.com/spring-projects/org-endless/tianyan.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/org-endless/tianyan.git
+        </developerConnection>
+        <url>https://github.com/org-endless/tianyan</url>
+    </scm>
+    <modules>
+        <module>tianyan-game-eve-starter</module>
+    </modules>
+    <properties>
+        <!-- Project -->
+        <java.version>21</java.version>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <maven.compiler.encoding>${encoding}</maven.compiler.encoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <!-- Framework -->
+        <endless-ddd-simplified.version>1.0.0-SNAPSHOT</endless-ddd-simplified.version>
+        <spring-boot.version>3.5.3</spring-boot.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>tianyan-game-eve-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Starters -->
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>endless-ddd-simplified-starter</artifactId>
+                <version>${endless-ddd-simplified.version}</version>
+            </dependency>
+            <!-- Framework -->
+            <!-- SpringBoot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

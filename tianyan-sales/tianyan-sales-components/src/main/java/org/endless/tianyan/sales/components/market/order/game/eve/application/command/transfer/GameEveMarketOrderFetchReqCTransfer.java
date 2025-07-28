@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
  * GameEveMarketOrderFetchReqCTransfer
  * <p>游戏EVE市场订单获取命令请求传输对象
  * <p>
- * create 2025/07/26 07:14
+ * create 2025/07/28 00:37
  * <p>
- * update 2025/07/26 07:14
+ * update 2025/07/28 00:37
  *
  * @author Deng Haozhi
  * @see TianyanSalesCommandTransfer
@@ -30,13 +30,13 @@ import java.util.stream.Collectors;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"itemId", "createUserId"})
+@JSONType(orders = {"gameEveItemCode", "createUserId"})
 public class GameEveMarketOrderFetchReqCTransfer implements TianyanSalesCommandTransfer {
 
     /**
-     * 资源项ID
+     * 游戏EVE资源项编码
      */
-    private final String itemId;
+    private final String gameEveItemCode;
 
     /**
      * 用户创建ID
@@ -45,14 +45,14 @@ public class GameEveMarketOrderFetchReqCTransfer implements TianyanSalesCommandT
 
     @Override
     public GameEveMarketOrderFetchReqCTransfer validate() {
-        validateItemId();
+        validateGameEveItemCode();
         validateCreateUserId();
         return this;
     }
 
-    private void validateItemId() {
-        if (!StringUtils.hasText(itemId)) {
-            throw new CommandTransferValidateException("资源项ID不能为空");
+    private void validateGameEveItemCode() {
+        if (!StringUtils.hasText(gameEveItemCode)) {
+            throw new CommandTransferValidateException("游戏EVE资源项编码不能为空");
         }
     }
 

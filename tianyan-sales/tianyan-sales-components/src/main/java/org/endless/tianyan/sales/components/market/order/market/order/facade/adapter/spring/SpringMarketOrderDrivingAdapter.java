@@ -1,10 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.spring;
 
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.MarketOrderCommandHandler;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.*;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindByItemIdReqQTransfer;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.transfer.MarketOrderFindIdsRespQTransfer;
@@ -52,6 +49,11 @@ public class SpringMarketOrderDrivingAdapter implements MarketOrderDrivingAdapte
     @Override
     public void remove(MarketOrderRemoveReqCTransfer command) {
         marketOrderCommandHandler.remove(command);
+    }
+
+    @Override
+    public void generatePrice(MarketOrderGeneratePriceReqCTransfer command) {
+        marketOrderCommandHandler.generatePrice(command);
     }
 
     @Override

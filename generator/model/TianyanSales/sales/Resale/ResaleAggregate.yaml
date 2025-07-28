@@ -1,0 +1,15 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanSales
+rootPath: tianyan-sales/tianyan-sales-components
+serviceSubPackage: components
+contextName: sales
+domainName: Resale
+aggregateName: ResaleAggregate
+description: 转售
+fields:
+  - name: resaleId
+    type: String
+    description: 转售ID
+    nullable: false

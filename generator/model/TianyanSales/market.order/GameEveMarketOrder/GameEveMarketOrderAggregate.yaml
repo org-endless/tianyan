@@ -40,39 +40,57 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE市场订单获取命令请求传输对象
     fields:
-      - name: itemId
+      - name: gameEveItemCode
         type: String
-        description: 资源项ID
+        description: 游戏EVE资源项编码
         nullable: false
       - name: createUserId
         type: String
         description: 用户创建ID
         nullable: false
-  - name: GameEveMarketOrderItemFindByIdReqDTransfer
-    adapterType: DRIVEN
-    cqrsType: QUERY
+  - name: GameEveMarketOrderGeneratePriceReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
     messageType: REQUEST
-    description: 资源项根据ID查询被动请求传输对象
-    fields:
-      - name: itemId
-        type: String
-        description: 资源项ID
-        nullable: false
-  - name: GameEveMarketOrderItemFindGameEveItemCodeRespDTransfer
-    adapterType: DRIVEN
-    cqrsType: QUERY
-    messageType: RESPONSE
-    description: 资源项游戏EVE编码查询被动响应传输对象
+    description: 游戏EVE市场订单生成价格命令请求传输对象
     fields:
       - name: gameEveItemCode
         type: String
         description: 游戏EVE资源项编码
         nullable: false
-  - name: GameEveMarketOrderESIFindPageReqDTransfer
+      - name: createUserId
+        type: String
+        description: 用户创建ID
+        nullable: false
+  - name: GameEveMarketOrderItemFetchReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 游戏EVE市场订单资源项获取命令被动请求传输对象
+    fields:
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveMarketOrderItemFetchRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE市场订单资源项获取命令被动响应传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+  - name: ESIMarketOrderFindPageReqDTransfer
     adapterType: DRIVEN
     cqrsType: QUERY
     messageType: REQUEST
-    description: ESI市场订单信息查询被动请求传输对象
+    description: ESI市场订单分页查询被动请求传输对象
     fields:
       - name: regionId
         type: String
@@ -90,7 +108,21 @@ transfers:
         type: Integer
         description: 游戏EVE页码
         nullable: false
-  - name: GameEveMarketOrderESIFindProfileRespDTransfer
+  - name: ESIMarketItemFindPageReqDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: ESI市场资源项分页查询被动请求传输对象
+    fields:
+      - name: regionId
+        type: String
+        description: 游戏EVE星域编码
+        nullable: false
+      - name: page
+        type: Integer
+        description: 游戏EVE页码
+        nullable: false
+  - name: ESIMarketOrderFindProfileRespDTransfer
     adapterType: DRIVEN
     cqrsType: QUERY
     messageType: RESPONSE

@@ -1,20 +1,27 @@
 package org.endless.tianyan.item.components.item.game.eve.application.command.transfer;
 
+import org.endless.tianyan.item.common.model.application.command.transfer.*;
+import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
-import org.endless.tianyan.item.common.model.application.command.transfer.TianyanItemCommandTransfer;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * GameEveItemCreateReqCTransfer
  * <p>游戏EVE资源项创建命令请求传输对象
  * <p>
- * create 2025/07/24 20:15
+ * create 2025/07/28 05:10
  * <p>
- * update 2025/07/24 20:15
+ * update 2025/07/28 05:10
  *
  * @author Deng Haozhi
  * @see TianyanItemCommandTransfer
@@ -23,13 +30,13 @@ import org.springframework.util.StringUtils;
 @Getter
 @ToString
 @Builder
-@JSONType(orders = {"code", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "isPublished", "createUserId"})
+@JSONType(orders = {"gameEveItemCode", "metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "isPublished", "createUserId"})
 public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer {
 
     /**
      * 游戏EVE资源项编码
      */
-    private final String code;
+    private final String gameEveItemCode;
 
     /**
      * 元分组ID
@@ -73,7 +80,7 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
 
     @Override
     public GameEveItemCreateReqCTransfer validate() {
-        validateCode();
+        validateGameEveItemCode();
         validateItemGroupId();
         validateFullNameZh();
         validateIsPublished();
@@ -81,8 +88,8 @@ public class GameEveItemCreateReqCTransfer implements TianyanItemCommandTransfer
         return this;
     }
 
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
+    private void validateGameEveItemCode() {
+        if (!StringUtils.hasText(gameEveItemCode)) {
             throw new CommandTransferValidateException("游戏EVE资源项编码不能为空");
         }
     }

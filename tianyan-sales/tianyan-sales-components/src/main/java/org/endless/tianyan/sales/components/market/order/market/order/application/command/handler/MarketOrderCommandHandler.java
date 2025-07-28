@@ -1,10 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.market.order.application.command.handler;
 
 import org.endless.tianyan.sales.common.model.application.command.handler.TianyanSalesCommandHandler;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderCreateRespCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderModifyReqCTransfer;
-import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.MarketOrderRemoveReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.*;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.entity.MarketOrderAggregate;
 
 /**
@@ -26,4 +23,7 @@ public interface MarketOrderCommandHandler extends TianyanSalesCommandHandler<Ma
     void modify(MarketOrderModifyReqCTransfer command);
 
     void remove(MarketOrderRemoveReqCTransfer command);
+
+    void generatePrice(MarketOrderGeneratePriceReqCTransfer command);
+
 }

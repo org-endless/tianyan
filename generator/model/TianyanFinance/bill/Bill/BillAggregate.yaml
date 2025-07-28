@@ -1,0 +1,302 @@
+author: Deng HaoZhi
+version: 0.0.1
+groupId: org.endless
+serviceName: GycdpServer
+rootPath: gycdp-server/gycdp-server-components
+serviceSubPackage: components
+contextName: bill
+domainName: Bill
+aggregateName: BillAggregate
+description: 账单
+fields:
+  - name: billId
+    type: String
+    description: 账单ID
+    nullable: false
+  - name: orderId
+    type: String
+    description: 宝付订单号
+    nullable: true
+  - name: transId
+    type: String
+    description: 商户订单号
+    nullable: true
+  - name: eventId
+    type: String
+    description: 事件ID
+    nullable: false
+  - name: customerId
+    type: String
+    description: 客户ID
+    nullable: false
+  - name: totalAmount
+    type: BigDecimal
+    description: 账单总金额(17, 2)
+    nullable: false
+  - name: status
+    type: BillStatusEnum
+    description: 账单状态
+    nullable: false
+enums:
+  - name: BillStatusEnum
+    valueType: String
+    description: 账单状态
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: PENDING
+        description: 账单待支付
+      - code: INDEPENDENT_ACCOUNT_FAIL
+        description: 分账失败
+      - code: PAID
+        description: 账单已支付
+      - code: PAYMENT_FAILED
+        description: 账单支付失败
+      - code: CANCELLED
+        description: 账单已取消
+      - code: CLOSED
+        description: 账单已关闭
+      - code: REFUNDED
+        description: 账单已退款
+transfers:
+  - name: BillCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 创建账单命令请求传输对象
+    fields:
+      - name: eventId
+        type: String
+        description: 事件ID
+        nullable: false
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+      - name: baseAmount
+        type: String
+        description: 账单基准金额(17, 2)
+        nullable: true
+  - name: BillPayReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 账单缴费命令请求传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单ID
+        nullable: false
+  - name: BillModifyOrderReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 账单编号更新命令请求传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单ID
+        nullable: false
+      - name: orderId
+        type: String
+        description: 宝付账单ID
+        nullable: false
+      - name: transId
+        type: String
+        description: 商户账单ID
+        nullable: false
+  - name: BillFindByCustomerIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 账单根据客户ID查询请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+  - name: BillFindPageByCustomerIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 账单根据客户ID分页查询请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: true
+      - name: billStatus
+        type: String
+        description: 支付状态
+        nullable: true
+      - name: billStartTime
+        type: String
+        description: 支付开始时间
+        nullable: true
+      - name: billEndTime
+        type: String
+        description: 支付结束时间
+        nullable: true
+      - name: pageNum
+        type: Integer
+        description: 页码
+        nullable: false
+      - name: pageSize
+        type: Integer
+        description: 分页大小
+        nullable: false
+  - name: BillExportReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 账单导出查询请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: true
+      - name: billStatus
+        type: String
+        description: 支付状态
+        nullable: true
+      - name: billStartTime
+        type: String
+        description: 支付开始时间
+        nullable: true
+      - name: billEndTime
+        type: String
+        description: 支付结束时间
+        nullable: true
+  - name: BillFindRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 账单列表查询响应传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单ID
+        nullable: false
+      - name: orderId
+        type: String
+        description: 宝付订单号
+        nullable: true
+      - name: transId
+        type: String
+        description: 商户订单号
+        nullable: true
+      - name: eventId
+        type: String
+        description: 事件ID
+        nullable: false
+      - name: eventTypeNameZh
+        type: String
+        description: 事件类型中文名称
+        nullable: false
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+      - name: totalAmount
+        type: String
+        description: 账单总金额(17, 2)
+        nullable: false
+      - name: status
+        type: String
+        description: 账单状态
+        nullable: false
+      - name: createTime
+        type: String
+        description: 创建时间
+        nullable: false
+      - name: modifyTime
+        type: String
+        description: 更新时间
+        nullable: false
+  - name: BillExportRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 导出账单查询响应传输对象
+    fields:
+      - name: billId
+        type: String
+        description: 账单ID
+        nullable: false
+      - name: orderId
+        type: String
+        description: 宝付订单号
+        nullable: true
+      - name: transId
+        type: String
+        description: 商户订单号
+        nullable: true
+      - name: eventId
+        type: String
+        description: 事件ID
+        nullable: false
+      - name: eventTypeNameZh
+        type: String
+        description: 事件类型中文名称
+        nullable: false
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+      - name: totalAmount
+        type: String
+        description: 账单总金额(17, 2)
+        nullable: false
+      - name: status
+        type: String
+        description: 账单状态
+        nullable: false
+      - name: createTime
+        type: String
+        description: 创建时间
+        nullable: false
+      - name: modifyTime
+        type: String
+        description: 更新时间
+        nullable: false
+  - name: FindBillByPrimaryCustomerIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 根据权利人ID查询账单笔数查询请求传输对象
+    fields:
+      - name: customerId
+        type: String
+        description: 客户ID
+        nullable: false
+  - name: FindBillCountByPrimaryCustomerIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 根据权利人ID查询账单笔数查询响应传输对象
+    fields:
+      - name: billCount
+        type: Integer
+        description: 账单笔数
+        nullable: false
+  - name: FindEventInfoByEventIdRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 根据事件ID查询事件信息查询响应传输对象
+    fields:
+      - name: eventTypeNameZh
+        type: String
+        description: 事件类型中文名称
+        nullable: false
+      - name: relatedEntityId
+        type: String
+        description: 关联实体ID
+        nullable: false

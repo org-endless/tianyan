@@ -1,0 +1,78 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: profit
+domainName: Profit
+aggregateName: ProfitAggregate
+description: 利润
+fields:
+  - name: profitId
+    type: String
+    description: 利润ID
+    nullable: false
+  - name: type
+    type: ProfitTypeEnum
+    description: 利润类型
+    nullable: false
+  - name: modelType
+    type: ProfitModelTypeEnum
+    description: 利润模型类型
+    nullable: false
+  - name: gross
+    type: ProfitValue
+    description: 毛利润
+    nullable: false
+  - name: net
+    type: ProfitValue
+    description: 净利润
+    nullable: false
+values:
+  - name: ProfitValue
+    description: 利润值
+    fields:
+      - name: amount
+        type: BigDecimal
+        description: 利润金额(17, 2)
+        nullable: false
+      - name: marginPercentage
+        type: BigDecimal
+        description: 利润率百分比(5, 2)
+        nullable: false
+enums:
+  - name: ProfitTypeEnum
+    valueType: String
+    description: 利润类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: RESALE
+        description: 转售利润
+      - code: MANUFACTURING
+        description: 生产利润
+  - name: ProfitModelTypeEnum
+    valueType: String
+    description: 利润模型类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: ESTIMATED
+        description: 预估利润
+      - code: ACTUAL
+        description: 实际利润

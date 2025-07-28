@@ -32,7 +32,7 @@ transfers:
     messageType: REQUEST
     description: 游戏EVE资源项创建命令请求传输对象
     fields:
-      - name: code
+      - name: gameEveItemCode
         type: String
         description: 游戏EVE资源项编码
         nullable: false
@@ -68,21 +68,55 @@ transfers:
         type: String
         description: 创建用户ID
         nullable: false
-  - name: GameEveItemFindByCodeReqQTransfer
+  - name: GameEveItemFetchReqCTransfer
     adapterType: DRIVING
-    cqrsType: QUERY
+    cqrsType: COMMAND
     messageType: REQUEST
-    description: 游戏EVE根据编码查询请求传输对象
+    description: 游戏EVE资源项获取命令请求传输对象
     fields:
       - name: gameEveItemCode
         type: String
         description: 游戏EVE资源项编码
         nullable: false
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: GameEveItemFetchRespCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: RESPONSE
+    description: 游戏EVE资源项获取命令响应传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+  - name: GameEveItemFindByCodeReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE资源项根据编码查询请求传输对象
+    fields:
+      - name: gameEveItemCode
+        type: String
+        description: 游戏EVE资源项编码
+        nullable: false
+  - name: GameEveItemFindByCodesReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 游戏EVE资源项根据编码列表查询请求传输对象
+    fields:
+      - name: gameEveItemCodes
+        type: List<String>
+        description: 游戏EVE资源项编码列表
+        nullable: false
   - name: GameEveItemFindByItemIdReqQTransfer
     adapterType: DRIVING
     cqrsType: QUERY
     messageType: REQUEST
-    description: 游戏EVE根据资源项ID查询请求传输对象
+    description: 游戏EVE资源项根据资源项ID查询请求传输对象
     fields:
       - name: itemId
         type: String
@@ -98,6 +132,16 @@ transfers:
         type: String
         description: 资源项ID
         nullable: false
+  - name: GameEveItemFindItemIdsRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 游戏EVE资源项ID列表查询响应传输对象
+    fields:
+      - name: itemIds
+        type: List<String>
+        description: 资源项ID列表
+        nullable: false
   - name: GameEveItemFindCodeRespQTransfer
     adapterType: DRIVING
     cqrsType: QUERY
@@ -107,4 +151,34 @@ transfers:
       - name: gameEveItemCode
         type: String
         description: 游戏EVE资源项编码
+        nullable: false
+  - name: ESIUniverseItemFindProfileRespDTransfer
+    adapterType: DRIVEN
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: ESI宇宙资源项信息查询被动响应传输对象
+    fields:
+      - name: meta_group_id
+        type: String
+        description: 元分组ID
+        nullable: true
+      - name: group_id
+        type: String
+        description: 资源项分组ID
+        nullable: false
+      - name: market_group_id
+        type: String
+        description: 市场分组ID
+        nullable: true
+      - name: name
+        type: String
+        description: 资源项中文全称
+        nullable: false
+      - name: description
+        type: String
+        description: 资源项描述
+        nullable: true
+      - name: published
+        type: Boolean
+        description: 游戏EVE资源项是否发布
         nullable: false

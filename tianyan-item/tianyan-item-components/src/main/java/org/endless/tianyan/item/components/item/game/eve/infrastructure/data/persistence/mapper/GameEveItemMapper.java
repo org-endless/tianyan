@@ -6,6 +6,7 @@ import org.endless.tianyan.item.common.model.infrastructure.data.persistence.map
 import org.endless.tianyan.item.components.item.game.eve.infrastructure.data.record.GameEveItemRecord;
 import org.springframework.context.annotation.Lazy;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,6 +31,14 @@ public interface GameEveItemMapper extends TianyanItemMapper<GameEveItemRecord> 
                 .select(GameEveItemRecord::getItemId)
                 .eq(GameEveItemRecord::getCode, code);
         return findFirstByWrapper(queryWrapper).map(GameEveItemRecord::getItemId);
+    }
+
+    default List<String> findItemIdsByCodes(List<String> codes) {
+        QueryWrapper<GameEveItemRecord> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda()
+                .select(GameEveItemRecord::getItemId)
+                .in(GameEveItemRecord::getCode, codes);
+        return findAllByWrapper(queryWrapper).stream().map(GameEveItemRecord::getItemId).toList();
     }
 
     default Optional<String> findCodeByItemId(String itemId) {

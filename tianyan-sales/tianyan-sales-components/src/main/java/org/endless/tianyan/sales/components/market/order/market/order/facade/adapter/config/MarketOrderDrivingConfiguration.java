@@ -6,6 +6,7 @@ import org.endless.tianyan.sales.components.market.order.market.order.applicatio
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.anticorruption.MarketOrderQueryRepository;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.MarketOrderQueryHandler;
 import org.endless.tianyan.sales.components.market.order.market.order.application.query.handler.impl.MarketOrderQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderPriceDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderRepository;
 import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.MarketOrderDrivingAdapter;
 import org.endless.tianyan.sales.components.market.order.market.order.facade.adapter.spring.SpringMarketOrderDrivingAdapter;
@@ -39,8 +40,8 @@ public class MarketOrderDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean MarketOrderCommandHandler marketOrderCommandHandler(MarketOrderRepository repository, EndlessAutoConfiguration configuration) {
-        return new MarketOrderCommandHandlerImpl(repository, configuration);
+    protected @Bean MarketOrderCommandHandler marketOrderCommandHandler(MarketOrderRepository repository, MarketOrderPriceDrivenAdapter marketOrderPriceDrivenAdapter, EndlessAutoConfiguration configuration) {
+        return new MarketOrderCommandHandlerImpl(repository, marketOrderPriceDrivenAdapter, configuration);
     }
 
     @Lazy

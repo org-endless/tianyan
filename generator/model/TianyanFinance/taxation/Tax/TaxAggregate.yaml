@@ -13,3 +13,7 @@ fields:
     type: String
     description: 税务ID
     nullable: false
+  - name: taxRuleId
+    type: String
+    description: 税务规则ID
+    nullable: false

@@ -49,7 +49,7 @@ public class ItemCommandHandlerImpl implements ItemCommandHandler {
                 .marketGroupId(command.getMarketGroupId())
                 .nameZh(NameValue.create(NameValue.builder()
                         .fullName(command.getFullNameZh())))
-                .nameEn(NameValue.create(NameValue.builder()
+                .nameEn(command.getFullNameEn() == null ? null : NameValue.create(NameValue.builder()
                         .fullName(command.getFullNameEn())))
                 .description(command.getDescription())
                 .createUserId(command.getCreateUserId()));

@@ -11,7 +11,10 @@ import org.endless.tianyan.item.components.item.game.eve.infrastructure.data.per
 import org.endless.tianyan.item.components.item.game.eve.infrastructure.data.record.GameEveItemRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -72,14 +75,29 @@ public class GameEveItemDataManager implements GameEveItemRepository, GameEveIte
     }
 
     @Override
-    @Log(message = "游戏EVE资源项根据编码查询资源项ID数据", value = "#code", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE根据资源项编码查询资源项ID数据", value = "#code", level = LogLevel.TRACE)
     public Optional<String> findItemIdByCode(String code) {
+        Optional.ofNullable(code)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("资源项编码不能为空"));
         return gameEveItemMapper.findItemIdByCode(code);
     }
 
     @Override
-    @Log(message = "游戏EVE资源项根据资源项ID查询编码数据", value = "#itemId", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE根据资源项编码列表查询资源项ID列表数据", value = "#code", level = LogLevel.TRACE)
+    public List<String> findItemIdsByCodes(List<String> codes) {
+        Optional.ofNullable(codes)
+                .filter(l -> !CollectionUtils.isEmpty(l))
+                .orElseThrow(() -> new DataManagerRequestNullException("资源项编码列表不能为空"));
+        return gameEveItemMapper.findItemIdsByCodes(codes);
+    }
+
+    @Override
+    @Log(message = "游戏EVE根据资源项ID查询编码数据", value = "#itemId", level = LogLevel.TRACE)
     public Optional<String> findCodeByItemId(String itemId) {
+        Optional.ofNullable(itemId)
+                .filter(StringUtils::hasText)
+                .orElseThrow(() -> new DataManagerRequestNullException("资源项ID不能为空"));
         return gameEveItemMapper.findCodeByItemId(itemId);
     }
 }

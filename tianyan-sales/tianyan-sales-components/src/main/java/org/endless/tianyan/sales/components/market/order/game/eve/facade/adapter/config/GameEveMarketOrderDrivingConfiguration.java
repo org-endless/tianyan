@@ -2,6 +2,7 @@ package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapte
 
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.impl.GameEveMarketOrderCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderItemQueryDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderQueryRepository;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl.GameEveMarketOrderQueryHandlerImpl;
@@ -51,7 +52,9 @@ public class GameEveMarketOrderDrivingConfiguration {
 
     @Lazy
     @ConditionalOnMissingBean
-    protected @Bean GameEveMarketOrderQueryHandler gameEveMarketOrderQueryHandler(GameEveMarketOrderQueryRepository gameEveMarketOrderQueryRepository) {
-        return new GameEveMarketOrderQueryHandlerImpl(gameEveMarketOrderQueryRepository);
+    protected @Bean GameEveMarketOrderQueryHandler gameEveMarketOrderQueryHandler(
+            GameEveMarketOrderQueryRepository gameEveMarketOrderQueryRepository,
+            GameEveMarketOrderItemQueryDrivenAdapter gameEveMarketOrderItemQueryDrivenAdapter) {
+        return new GameEveMarketOrderQueryHandlerImpl(gameEveMarketOrderQueryRepository, gameEveMarketOrderItemQueryDrivenAdapter);
     }
 }

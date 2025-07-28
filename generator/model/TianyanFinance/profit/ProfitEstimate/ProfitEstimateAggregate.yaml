@@ -1,0 +1,104 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: profit
+domainName: ProfitEstimate
+aggregateName: ProfitEstimateAggregate
+description: 预估利润
+fields:
+  - name: profitEstimateId
+    type: String
+    description: 预估利润ID
+    nullable: false
+  - name: itemId
+    type: String
+    description: 资源项ID
+    nullable: false
+  - name: industryId
+    type: String
+    description: 行业ID
+    nullable: false
+  - name: eventTypeId
+    type: String
+    description: 事件类型ID
+    nullable: false
+  - name: costEstimateId
+    type: String
+    description: 预估成本ID
+    nullable: false
+  - name: revenueEstimateId
+    type: String
+    description: 预估收入ID
+    nullable: false
+  - name: taxEstimateId
+    type: String
+    description: 预估税务ID
+    nullable: false
+  - name: feeEstimateId
+    type: String
+    description: 预估费用ID
+    nullable: false
+  - name: metrics
+    type: List<ProfitMetricEntity>
+    description: 利润指标列表
+    nullable: false
+entities:
+  - name: ProfitMetricEntity
+    description: 利润指标
+    fields:
+      - name: profitMetricId
+        type: String
+        description: 利润指标ID
+        nullable: false
+      - name: type
+        type: ProfitMetricTypeEnum
+        description: 利润指标类型
+        nullable: false
+      - name: amount
+        type: BigDecimal
+        description: 利润金额(17, 2)
+        nullable: false
+      - name: marginPercentage
+        type: BigDecimal
+        description: 利润率百分比(5, 2)
+        nullable: false
+enums:
+  - name: ProfitMetricTypeEnum
+    valueType: String
+    description: 利润指标类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: GROSS
+        description: 毛利润
+      - code: NET
+        description: 净利润
+transfers:
+  - name: ProfitEstimateGenerateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 预估利润生成命令请求传输对象
+    fields:
+      - name: itemId
+        type: String
+        description: 资源项ID
+        nullable: false
+      - name: industryId
+        type: String
+        description: 行业ID
+        nullable: false
+      - name: eventTypeId
+        type: String
+        description: 事件类型ID
+        nullable: false

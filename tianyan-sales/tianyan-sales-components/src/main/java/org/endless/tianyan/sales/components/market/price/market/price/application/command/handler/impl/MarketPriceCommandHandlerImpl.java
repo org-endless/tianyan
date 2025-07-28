@@ -1,8 +1,16 @@
 package org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.impl;
 
-import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.*;
+import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
+import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.MarketPriceCommandHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer.MarketPriceCreateReqCTransfer;
+import org.endless.tianyan.sales.components.market.price.market.price.domain.anticorruption.MarketPriceRepository;
+import org.endless.tianyan.sales.components.market.price.market.price.domain.entity.MarketPriceAggregate;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * MarketPriceCommandHandlerImpl
@@ -25,5 +33,20 @@ public class MarketPriceCommandHandlerImpl implements MarketPriceCommandHandler 
 
     public MarketPriceCommandHandlerImpl(MarketPriceRepository marketPriceRepository) {
         this.marketPriceRepository = marketPriceRepository;
+    }
+
+    @Override
+    @Transactional
+    @Log(message = "市场价格创建命令", value = "#command", level = LogLevel.TRACE)
+    public void create(MarketPriceCreateReqCTransfer command) {
+        Optional.ofNullable(command)
+                .map(MarketPriceCreateReqCTransfer::validate)
+                .orElseThrow(() -> new CommandReqTransferNullException("市场价格创建命令参数不能为空"));
+        MarketPriceAggregate aggregate = MarketPriceAggregate.create(MarketPriceAggregate.builder()
+                .itemId(command.getItemId())
+                .buyPrice(Decimal.format(command.getBuyPrice()))
+                .sellPrice(Decimal.format(command.getSellPrice()))
+                .createUserId(command.getCreateUserId()));
+        marketPriceRepository.save(aggregate);
     }
 }

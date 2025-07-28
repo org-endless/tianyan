@@ -6,10 +6,8 @@ import org.endless.ddd.simplified.starter.common.exception.model.application.que
 import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.item.components.item.game.eve.application.query.anticorruption.GameEveItemQueryRepository;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindByItemIdReqQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindCodeRespQTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.GameEveItemFindItemIdRespQTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.*;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Optional;
 
@@ -37,7 +35,7 @@ public class GameEveItemQueryHandlerImpl implements GameEveItemQueryHandler {
     }
 
     @Override
-    @Log(message = "游戏EVE资源项根据编码查询资源项ID", value = "#query", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE根据资源项编码查询资源项ID", value = "#query", level = LogLevel.TRACE)
     public GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query) {
         Optional.ofNullable(query)
                 .map(GameEveItemFindByCodeReqQTransfer::validate)
@@ -49,7 +47,20 @@ public class GameEveItemQueryHandlerImpl implements GameEveItemQueryHandler {
     }
 
     @Override
-    @Log(message = "游戏EVE资源项根据资源项ID查询编码", value = "#query", level = LogLevel.TRACE)
+    @Log(message = "游戏EVE根据资源项编码列表查询资源项ID列表", value = "#query", level = LogLevel.TRACE)
+    public GameEveItemFindItemIdsRespQTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQTransfer query) {
+        Optional.ofNullable(query)
+                .map(GameEveItemFindByCodesReqQTransfer::validate)
+                .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据资源项ID查询编码参数不能为空"));
+        return GameEveItemFindItemIdsRespQTransfer.builder()
+                .itemIds(Optional.ofNullable(gameEveItemQueryRepository.findItemIdsByCodes(query.getGameEveItemCodes()))
+                        .filter(l -> !CollectionUtils.isEmpty(l))
+                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项不存在")))
+                .build().validate();
+    }
+
+    @Override
+    @Log(message = "游戏EVE根据资源项资源项ID查询编码", value = "#query", level = LogLevel.TRACE)
     public GameEveItemFindCodeRespQTransfer findCodeByItemId(GameEveItemFindByItemIdReqQTransfer query) {
         return GameEveItemFindCodeRespQTransfer.builder()
                 .gameEveItemCode(gameEveItemQueryRepository.findCodeByItemId(query.getItemId())

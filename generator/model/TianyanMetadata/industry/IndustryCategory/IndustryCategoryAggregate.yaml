@@ -1,0 +1,76 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: industry
+domainName: IndustryCategory
+aggregateName: IndustryCategoryAggregate
+description: 行业分类
+fields:
+  - name: industryCategoryId
+    type: String
+    description: 行业分类ID
+    nullable: false
+  - name: code
+    type: String
+    description: 行业分类编码
+    nullable: false
+  - name: name
+    type: IndustryCategoryNameValue
+    description: 行业分类名称
+    nullable: false
+  - name: description
+    type: String
+    description: 行业分类描述
+    nullable: true
+values:
+  - name: IndustryCategoryNameValue
+    description: 行业分类名称
+    fields:
+      - name: nameZh
+        type: String
+        description: 行业分类中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 行业分类英文名称
+        nullable: true
+transfers:
+  - name: IndustryCategoryCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 行业分类创建命令请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 行业分类编码
+        nullable: false
+      - name: nameZh
+        type: String
+        description: 行业分类中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 行业分类英文名称
+        nullable: true
+      - name: description
+        type: String
+        description: 行业分类描述
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false
+  - name: IndustryCategoryFindByIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 行业分类根据ID查询请求传输对象
+    fields:
+      - name: industryCategoryId
+        type: String
+        description: 行业分类ID
+        nullable: false

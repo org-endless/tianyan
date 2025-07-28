@@ -1,16 +1,14 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.infrastructure.data.manager;
 
-import org.endless.tianyan.sales.common.model.infrastructure.data.manager.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.*;
+import org.endless.tianyan.sales.common.model.infrastructure.data.manager.TianyanSalesAggregateDataManager;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.anticorruption.MarketTradeQueryRepository;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.MarketTradeRepository;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.MarketTradeAggregate;
+import org.endless.tianyan.sales.components.market.trade.market.trade.infrastructure.data.persistence.mapper.MarketTradeMapper;
+import org.endless.tianyan.sales.components.market.trade.market.trade.infrastructure.data.record.MarketTradeRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -38,5 +36,30 @@ public class MarketTradeDataManager implements MarketTradeRepository, MarketTrad
 
     public MarketTradeDataManager(MarketTradeMapper marketTradeMapper) {
         this.marketTradeMapper = marketTradeMapper;
+    }
+
+    @Override
+    public MarketTradeAggregate save(MarketTradeAggregate marketTradeAggregate) {
+        return null;
+    }
+
+    @Override
+    public void remove(MarketTradeAggregate marketTradeAggregate) {
+
+    }
+
+    @Override
+    public MarketTradeAggregate modify(MarketTradeAggregate marketTradeAggregate) {
+        return null;
+    }
+
+    @Override
+    public Optional<MarketTradeAggregate> findById(String s) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<MarketTradeAggregate> findByIdForUpdate(String s) {
+        return Optional.empty();
     }
 }

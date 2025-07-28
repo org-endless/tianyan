@@ -1,0 +1,79 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: taxation
+domainName: TaxRule
+aggregateName: TaxRuleAggregate
+description: 税务规则
+fields:
+  - name: taxRuleId
+    type: String
+    description: 税务规则ID
+    nullable: false
+  - name: industryId
+    type: String
+    description: 行业ID
+    nullable: false
+  - name: type
+    type: TaxRuleTypeEnum
+    description: 税务规则类型
+    nullable: false
+  - name: code
+    type: String
+    description: 税务规则编码
+    nullable: false
+  - name: name
+    type: TaxRuleNameValue
+    description: 税务规则中文名称
+    nullable: false
+  - name: minBaseAmount
+    type: BigDecimal
+    description: 税务规则最小基准金额(17, 2)
+    nullable: false
+  - name: maxBaseAmount
+    type: BigDecimal
+    description: 税务规则最大基准金额(17, 2)
+    nullable: false
+  - name: percentage
+    type: BigDecimal
+    description: 税务规则比例(5, 2)
+    nullable: false
+  - name: description
+    type: String
+    description: 税务规则描述
+    nullable: true
+values:
+  - name: TaxRuleNameValue
+    description: 税务规则名称
+    fields:
+      - name: nameZh
+        type: String
+        description: 税务规则中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 税务规则英文名称
+        nullable: true
+enums:
+  - name: TaxRuleTypeEnum
+    valueType: String
+    description: 税务规则类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: FIXED_PERCENTAGE
+        description: 按固定比例
+      - code: LADDER_PERCENTAGE
+        description: 按阶梯比例
+      - code: FIXED_AMOUNT
+        description: 按固定金额

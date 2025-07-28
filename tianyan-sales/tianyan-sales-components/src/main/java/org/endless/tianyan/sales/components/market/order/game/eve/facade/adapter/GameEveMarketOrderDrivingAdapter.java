@@ -2,6 +2,8 @@ package org.endless.tianyan.sales.components.market.order.game.eve.facade.adapte
 
 import org.endless.tianyan.sales.common.model.facade.adapter.TianyanSalesDrivingAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderGeneratePriceReqCTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.application.query.transfer.GameEveMarketOrderFindItemIdsRespQTransfer;
 
 /**
  * GameEveMarketOrderDrivingAdapter
@@ -19,4 +21,7 @@ public interface GameEveMarketOrderDrivingAdapter extends TianyanSalesDrivingAda
 
     void fetch(GameEveMarketOrderFetchReqCTransfer command);
 
+    void generatePrice(GameEveMarketOrderGeneratePriceReqCTransfer command);
+
+    GameEveMarketOrderFindItemIdsRespQTransfer fetchCodes();
 }

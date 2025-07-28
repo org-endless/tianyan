@@ -4,6 +4,7 @@ import org.endless.tianyan.item.common.model.application.query.anticorruption.Ti
 import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.GameEveItemRepository;
 import org.endless.tianyan.item.components.item.game.eve.domain.entity.GameEveItemAggregate;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,7 +22,8 @@ import java.util.Optional;
  */
 public interface GameEveItemQueryRepository extends GameEveItemRepository, TianyanItemQueryRepository<GameEveItemAggregate> {
 
-    Optional<String> findItemIdByCode(String code);
+
+    List<String> findItemIdsByCodes(List<String> codes);
 
     Optional<String> findCodeByItemId(String itemId);
 }
