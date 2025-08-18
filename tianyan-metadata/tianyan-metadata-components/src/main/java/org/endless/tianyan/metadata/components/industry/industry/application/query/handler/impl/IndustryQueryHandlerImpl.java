@@ -1,9 +1,7 @@
 package org.endless.tianyan.metadata.components.industry.industry.application.query.handler.impl;
 
-import org.endless.tianyan.metadata.components.industry.industry.application.query.handler.*;
-import org.endless.tianyan.metadata.components.industry.industry.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.industry.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.metadata.components.industry.industry.application.query.anticorruption.IndustryQueryRepository;
+import org.endless.tianyan.metadata.components.industry.industry.application.query.handler.IndustryQueryHandler;
 
 /**
  * IndustryQueryHandlerImpl

@@ -1,8 +1,8 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.spring;
 
-import org.endless.ddd.simplified.starter.common.model.common.transfer.FindPageRespTransfer;
+import org.endless.ddd.starter.common.ddd.common.transfer.FindPageRespTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.GameEveMarketOrderESIMarketRestClient;
-import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.transfer.GameEveMarketOrderESIMarketExchangeTransfer;
+import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.transfer.GameEveMarketOrderESIMarketExchange;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.ESIMarketItemFindPageReqDTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.ESIMarketOrderFindPageReqDTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer.ESIMarketOrderFindProfileRespDTransfer;
@@ -36,7 +36,7 @@ public class SpringGameEveMarketOrderESIMarketRestClient implements GameEveMarke
 
     @Override
     public FindPageRespTransfer fetchMarketOrderPage(ESIMarketOrderFindPageReqDTransfer query) {
-        ResponseEntity<List<ESIMarketOrderFindProfileRespDTransfer>> response = exchange(restClient, GameEveMarketOrderESIMarketExchangeTransfer.class)
+        ResponseEntity<List<ESIMarketOrderFindProfileRespDTransfer>> response = exchange(restClient, GameEveMarketOrderESIMarketExchange.class)
                 .fetchMarketOrders(query.getRegionId(), DATASOURCE, query.getOrderType(), query.getGameEveItemCode(), query.getPage());
         return FindPageRespTransfer.builder()
                 .rows(response.getBody())
@@ -48,7 +48,7 @@ public class SpringGameEveMarketOrderESIMarketRestClient implements GameEveMarke
 
     @Override
     public FindPageRespTransfer fetchCodePage(ESIMarketItemFindPageReqDTransfer query) {
-        ResponseEntity<List<String>> response = exchange(restClient, GameEveMarketOrderESIMarketExchangeTransfer.class)
+        ResponseEntity<List<String>> response = exchange(restClient, GameEveMarketOrderESIMarketExchange.class)
                 .fetchCodes(query.getRegionId(), DATASOURCE, query.getPage());
         return FindPageRespTransfer.builder()
                 .rows(response.getBody())

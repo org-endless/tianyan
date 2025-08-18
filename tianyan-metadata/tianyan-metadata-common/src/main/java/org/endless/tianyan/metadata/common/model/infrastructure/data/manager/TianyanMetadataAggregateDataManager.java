@@ -1,6 +1,6 @@
 package org.endless.tianyan.metadata.common.model.infrastructure.data.manager;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.manager.AggregateDataManager;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.manager.AggregateDataManager;
 import org.endless.tianyan.metadata.common.model.application.query.anticorruption.TianyanMetadataQueryRepository;
 import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMetadataRepository;
 import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAggregate;

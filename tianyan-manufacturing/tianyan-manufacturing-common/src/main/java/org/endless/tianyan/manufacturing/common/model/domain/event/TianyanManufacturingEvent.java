@@ -1,6 +1,6 @@
 package org.endless.tianyan.manufacturing.common.model.domain.event;
 
-import org.endless.ddd.simplified.starter.common.model.domain.event.Event;
+import org.endless.ddd.starter.common.ddd.domain.event.Event;
 import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingAggregate;
 
 /**

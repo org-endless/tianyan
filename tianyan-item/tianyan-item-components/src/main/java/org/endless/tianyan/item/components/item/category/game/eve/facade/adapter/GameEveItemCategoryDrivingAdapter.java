@@ -1,9 +1,9 @@
 package org.endless.tianyan.item.components.item.category.game.eve.facade.adapter;
 
 import org.endless.tianyan.item.common.model.facade.adapter.TianyanItemDrivingAdapter;
-import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQReqTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQReqTransfer;
 
 /**
  * GameEveItemCategoryDrivingAdapter
@@ -20,8 +20,8 @@ import org.endless.tianyan.item.components.item.category.game.eve.application.qu
 public interface GameEveItemCategoryDrivingAdapter extends TianyanItemDrivingAdapter {
 
 
-    void create(GameEveItemCategoryCreateReqCTransfer command);
+    void create(GameEveItemCategoryCreateReqCReqTransfer command);
 
-    GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query);
+    GameEveItemCategoryFindIdRespQReqTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQReqTransfer query);
 
 }

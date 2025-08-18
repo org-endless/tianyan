@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.application.command.handler;
 
-import org.endless.ddd.simplified.starter.common.model.application.command.handler.CommandHandler;
+import org.endless.ddd.starter.common.ddd.application.command.handler.CommandHandler;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
 
 /**

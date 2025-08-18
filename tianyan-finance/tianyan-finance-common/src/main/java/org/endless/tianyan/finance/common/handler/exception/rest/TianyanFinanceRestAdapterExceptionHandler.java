@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.handler.exception.rest;
 
-import org.endless.ddd.simplified.starter.common.handler.exception.rest.AbstractRestAdapterExceptionHandler;
+import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
 import org.endless.tianyan.finance.common.model.sidecar.rest.TianyanFinanceRestResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

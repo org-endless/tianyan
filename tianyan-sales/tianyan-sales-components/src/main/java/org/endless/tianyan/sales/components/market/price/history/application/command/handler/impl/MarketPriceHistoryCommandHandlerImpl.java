@@ -1,8 +1,7 @@
 package org.endless.tianyan.sales.components.market.price.history.application.command.handler.impl;
 
-import org.endless.tianyan.sales.components.market.price.history.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.*;
+import org.endless.tianyan.sales.components.market.price.history.application.command.handler.MarketPriceHistoryCommandHandler;
+import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.MarketPriceHistoryRepository;
 
 /**
  * MarketPriceHistoryCommandHandlerImpl

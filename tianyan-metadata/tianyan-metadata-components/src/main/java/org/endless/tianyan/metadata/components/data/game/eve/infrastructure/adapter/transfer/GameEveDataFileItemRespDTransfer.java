@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveDataFileItemRespDTransfer
@@ -74,19 +66,19 @@ public class GameEveDataFileItemRespDTransfer implements TianyanMetadataDrivenTr
 
     private void validateName() {
         if (name == null) {
-            throw new DrivenTransferValidateException("资源项名称不能为 null ");
+            throw new DrivenRespTransferValidateException("资源项名称不能为 null ");
         }
     }
 
     private void validateGroupID() {
         if (!StringUtils.hasText(groupID)) {
-            throw new DrivenTransferValidateException("资源项分组ID不能为空");
+            throw new DrivenRespTransferValidateException("资源项分组ID不能为空");
         }
     }
 
     private void validatePublished() {
         if (published == null) {
-            throw new DrivenTransferValidateException("资源项是否发布不能为 null ");
+            throw new DrivenRespTransferValidateException("资源项是否发布不能为 null ");
         }
     }
 }

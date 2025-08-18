@@ -1,13 +1,13 @@
 package org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.config;
 
-import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.impl.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.impl.*;
-import org.endless.tianyan.sales.components.market.price.market.price.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.market.price.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.spring.*;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.MarketPriceCommandHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.impl.MarketPriceCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.price.market.price.application.query.anticorruption.MarketPriceQueryRepository;
+import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.MarketPriceQueryHandler;
+import org.endless.tianyan.sales.components.market.price.market.price.application.query.handler.impl.MarketPriceQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.price.market.price.domain.anticorruption.MarketPriceRepository;
+import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.MarketPriceDrivingAdapter;
+import org.endless.tianyan.sales.components.market.price.market.price.facade.adapter.spring.SpringMarketPriceDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

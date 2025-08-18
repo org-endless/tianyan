@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.domain.anticorruption;
 
-import org.endless.ddd.simplified.starter.common.model.domain.anticorruption.Repository;
+import org.endless.ddd.starter.common.ddd.domain.anticorruption.Repository;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
 
 /**

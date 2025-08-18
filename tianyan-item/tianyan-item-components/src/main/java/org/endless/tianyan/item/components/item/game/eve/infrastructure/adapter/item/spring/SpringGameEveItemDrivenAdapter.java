@@ -3,8 +3,8 @@ package org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter
 import org.endless.tianyan.item.components.item.game.eve.domain.anticorruption.GameEveItemDrivenAdapter;
 import org.endless.tianyan.item.components.item.game.eve.domain.entity.GameEveItemAggregate;
 import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe.GameEveItemESIUniverseRestClient;
-import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDTransfer;
-import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDReqTransfer;
+import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCReqTransfer;
 import org.endless.tianyan.item.components.item.item.facade.adapter.ItemDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -37,8 +37,8 @@ public class SpringGameEveItemDrivenAdapter implements GameEveItemDrivenAdapter 
 
     @Override
     public Optional<GameEveItemAggregate> fetch(String code, String createUserId) {
-        ESIUniverseItemFindProfileRespDTransfer item = gameEveItemESIUniverseRestClient.fetchItem(code);
-        String itemId = itemDrivingAdapter.create(ItemCreateReqCTransfer.builder()
+        ESIUniverseItemFindProfileRespDReqTransfer item = gameEveItemESIUniverseRestClient.fetchItem(code);
+        String itemId = itemDrivingAdapter.create(ItemCreateCReqTransfer.builder()
                         .metaGroupId(item.getMeta_group_id())
                         .itemGroupId(item.getGroup_id())
                         .marketGroupId(item.getMarket_group_id())

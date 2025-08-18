@@ -1,13 +1,14 @@
 package org.endless.tianyan.finance.components.profit.estimate.facade.adapter.config;
 
-import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.impl.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.impl.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.*;
-import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.spring.*;
+import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.ProfitEstimateCommandHandler;
+import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.impl.ProfitEstimateCommandHandlerImpl;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.ProfitEstimateQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.ProfitMetricQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.ProfitEstimateQueryHandler;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.impl.ProfitEstimateQueryHandlerImpl;
+import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.ProfitEstimateRepository;
+import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.ProfitEstimateDrivingAdapter;
+import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.spring.SpringProfitEstimateDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

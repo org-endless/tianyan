@@ -1,11 +1,11 @@
 package org.endless.tianyan.item.components.item.category.item.category.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.item.components.item.category.item.category.application.command.handler.ItemCategoryCommandHandler;
-import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateRespCReqTransfer;
 import org.endless.tianyan.item.components.item.category.item.category.domain.anticorruption.ItemCategoryRepository;
 import org.endless.tianyan.item.components.item.category.item.category.domain.entity.ItemCategoryAggregate;
 import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;
@@ -39,9 +39,9 @@ public class ItemCategoryCommandHandlerImpl implements ItemCategoryCommandHandle
     @Override
     @Transactional
     @Log(message = "资源项分类创建命令", value = "#command", level = LogLevel.TRACE)
-    public ItemCategoryCreateRespCTransfer create(ItemCategoryCreateReqCTransfer command) {
+    public ItemCategoryCreateRespCReqTransfer create(ItemCategoryCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(ItemCategoryCreateReqCTransfer::validate)
+                .map(ItemCategoryCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("资源项分类创建命令参数不能为空"));
         ItemCategoryAggregate aggregate = ItemCategoryAggregate.create(ItemCategoryAggregate.builder()
                 .nameZh(NameValue.create(NameValue.builder()
@@ -50,7 +50,7 @@ public class ItemCategoryCommandHandlerImpl implements ItemCategoryCommandHandle
                         .fullName(command.getFullNameEn())))
                 .createUserId(command.getCreateUserId()));
         itemCategoryRepository.save(aggregate);
-        return ItemCategoryCreateRespCTransfer.builder()
+        return ItemCategoryCreateRespCReqTransfer.builder()
                 .itemCategoryId(aggregate.getItemCategoryId())
                 .build().validate();
     }

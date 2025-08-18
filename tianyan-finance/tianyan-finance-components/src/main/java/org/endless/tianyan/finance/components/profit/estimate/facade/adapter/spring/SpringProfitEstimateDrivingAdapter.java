@@ -1,9 +1,9 @@
 package org.endless.tianyan.finance.components.profit.estimate.facade.adapter.spring;
 
-import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.finance.components.profit.estimate.application.command.handler.ProfitEstimateCommandHandler;
+import org.endless.tianyan.finance.components.profit.estimate.application.command.transfer.ProfitEstimateGenerateReqCTransfer;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.ProfitEstimateQueryHandler;
+import org.endless.tianyan.finance.components.profit.estimate.facade.adapter.ProfitEstimateDrivingAdapter;
 
 /**
  * SpringProfitEstimateDrivingAdapter
@@ -32,5 +32,10 @@ public class SpringProfitEstimateDrivingAdapter implements ProfitEstimateDriving
     public SpringProfitEstimateDrivingAdapter(ProfitEstimateCommandHandler profitEstimateCommandHandler, ProfitEstimateQueryHandler profitEstimateQueryHandler) {
         this.profitEstimateCommandHandler = profitEstimateCommandHandler;
         this.profitEstimateQueryHandler = profitEstimateQueryHandler;
+    }
+
+    @Override
+    public void generate(ProfitEstimateGenerateReqCTransfer command) {
+        profitEstimateCommandHandler.generate(command);
     }
 }

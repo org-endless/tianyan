@@ -1,13 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.sidecar.schedule;
 
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.sidecar.schedule.task.GameEveMarketOrderScheduleTask;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,32 +40,41 @@ public class GameEveMarketOrderScheduleService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
-        fetch();
+        // fetch();
     }
 
 
-    @Scheduled(cron = "0 * */1 * * ?")
+    // @Scheduled(cron = "0 * */1 * * ?")
     @Log(message = "市场订单获取任务", level = LogLevel.INFO)
     public void fetch() {
+        log.info("市场订单获取任务开始执行");
         try {
             List<String> codes = gameEveMarketOrderDrivingAdapter.fetchCodes()
                     .validate().getItemIds();
             List<CompletableFuture<Void>> futures = new ArrayList<>();
             codes.forEach(code -> {
                 try {
-                    gameEveMarketOrderScheduleTask.execute(code);
+                    // 收集 CompletableFuture
+                    CompletableFuture<Void> future = gameEveMarketOrderScheduleTask.execute(code)
+                            .exceptionally(e -> {
+                                log.error("市场订单获取任务执行失败, 资源项编码: {}, 错误信息: {}", code, e.getMessage());
+                                return null;
+                            });
+
+                    futures.add(future);
                     if (futures.size() >= 10) {
                         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
                         futures.clear();
                     }
                 } catch (Exception e) {
-                    log.error("市场订单获取任务执行失败, 资源项编码: {}, 错误信息: {}", code, e.getMessage());
+                    log.error("市场订单获取任务并发失败, 资源项编码: {}, 错误信息: {}", code, e.getMessage());
                     throw e;
                 }
             });
             if (!futures.isEmpty()) {
                 CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
             }
+            log.info("市场订单获取任务执行完成");
         } catch (Exception e) {
             log.error("市场订单获取任务执行失败, 错误信息: {}", e.getMessage(), e);
         }

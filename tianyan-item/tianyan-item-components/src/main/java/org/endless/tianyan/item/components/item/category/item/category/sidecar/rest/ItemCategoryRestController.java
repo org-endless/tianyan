@@ -1,6 +1,6 @@
 package org.endless.tianyan.item.components.item.category.item.category.sidecar.rest;
 
-import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
+import org.endless.tianyan.item.common.model.facade.rest.TianyanItemRestController;
 import org.endless.tianyan.item.components.item.category.item.category.facade.adapter.ItemCategoryDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;

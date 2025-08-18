@@ -1,19 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.TianyanSalesDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveMarketOrderItemFetchRespDTransfer
@@ -46,7 +39,7 @@ public class GameEveMarketOrderItemFetchRespDTransfer implements TianyanSalesDri
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new DrivenTransferValidateException("资源项ID不能为空");
+            throw new DrivenRespTransferValidateException("资源项ID不能为空");
         }
     }
 }

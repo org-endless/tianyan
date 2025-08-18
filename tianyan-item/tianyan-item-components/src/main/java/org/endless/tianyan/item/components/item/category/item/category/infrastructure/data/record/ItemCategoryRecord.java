@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
 import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;
 import org.endless.tianyan.item.components.item.category.item.category.domain.entity.ItemCategoryAggregate;
 import org.endless.tianyan.item.components.item.category.item.category.domain.value.NameValue;

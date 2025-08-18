@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.industry.industry.application.command.transfer;
 
-import org.endless.tianyan.metadata.common.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.industry.industry.domain.value.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
+import org.endless.tianyan.metadata.common.model.application.command.transfer.TianyanMetadataCommandTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * IndustryCreateReqCTransfer
@@ -75,25 +67,25 @@ public class IndustryCreateReqCTransfer implements TianyanMetadataCommandTransfe
 
     private void validateIndustryCategoryId() {
         if (!StringUtils.hasText(industryCategoryId)) {
-            throw new CommandTransferValidateException("行业分类ID不能为空");
+            throw new CommandReqTransferValidateException("行业分类ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new CommandTransferValidateException("行业编码不能为空");
+            throw new CommandReqTransferValidateException("行业编码不能为空");
         }
     }
 
     private void validateNameZh() {
         if (!StringUtils.hasText(nameZh)) {
-            throw new CommandTransferValidateException("行业中文名称不能为空");
+            throw new CommandReqTransferValidateException("行业中文名称不能为空");
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new CommandTransferValidateException("创建用户ID不能为空");
+            throw new CommandReqTransferValidateException("创建用户ID不能为空");
         }
     }
 }

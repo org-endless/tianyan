@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.model.domain.entity;
 
-import org.endless.ddd.simplified.starter.common.model.domain.entity.Aggregate;
+import org.endless.ddd.starter.common.ddd.domain.entity.Aggregate;
 
 /**
  * TianyanFinanceAggregate

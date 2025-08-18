@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.common.handler.exception.rest;
 
-import org.endless.ddd.simplified.starter.common.handler.exception.rest.AbstractRestAdapterExceptionHandler;
-import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestResponse;
+import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
+import org.endless.tianyan.item.common.model.facade.rest.TianyanItemRestResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**

@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler;
 
-import org.endless.tianyan.sales.common.model.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.command.handler.TianyanSalesCommandHandler;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.MarketTradeAggregate;
 
 /**
  * MarketTradeCommandHandler

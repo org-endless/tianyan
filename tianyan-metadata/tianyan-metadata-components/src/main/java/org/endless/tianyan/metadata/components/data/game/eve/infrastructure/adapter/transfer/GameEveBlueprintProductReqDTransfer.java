@@ -1,20 +1,13 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveBlueprintProductReqDTransfer
@@ -59,19 +52,19 @@ public class GameEveBlueprintProductReqDTransfer implements TianyanMetadataDrive
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new DrivenTransferValidateException("资源项ID不能为空");
+            throw new DrivenReqTransferValidateException("资源项ID不能为空");
         }
     }
 
     private void validateQuantity() {
         if (quantity == null || quantity < 0) {
-            throw new DrivenTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
+            throw new DrivenReqTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
         }
     }
 
     private void validateSuccessRate() {
         if (successRate != null) {
-            Decimal.validateRate(successRate);
+            DecimalTools.validateRate(successRate);
         }
     }
 }

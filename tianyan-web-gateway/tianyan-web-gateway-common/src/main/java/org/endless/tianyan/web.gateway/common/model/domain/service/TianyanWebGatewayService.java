@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.domain.service;
 
-import org.endless.ddd.simplified.starter.common.model.domain.service.Service;
+import org.endless.ddd.starter.common.ddd.domain.service.Service;
 import org.endless.tianyan.web.gateway.common.model.domain.entity.TianyanWebGatewayAggregate;
 
 /**

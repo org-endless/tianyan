@@ -1,12 +1,14 @@
 package org.endless.tianyan.item.components.item.game.eve.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.item.components.item.game.eve.application.query.anticorruption.GameEveItemQueryRepository;
 import org.endless.tianyan.item.components.item.game.eve.application.query.handler.GameEveItemQueryHandler;
 import org.endless.tianyan.item.components.item.game.eve.application.query.transfer.*;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Optional;
@@ -23,6 +25,8 @@ import java.util.Optional;
  * @see GameEveItemQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
 public class GameEveItemQueryHandlerImpl implements GameEveItemQueryHandler {
 
     /**
@@ -36,35 +40,35 @@ public class GameEveItemQueryHandlerImpl implements GameEveItemQueryHandler {
 
     @Override
     @Log(message = "游戏EVE根据资源项编码查询资源项ID", value = "#query", level = LogLevel.TRACE)
-    public GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query) {
+    public GameEveItemFindItemIdRespQReqTransfer findItemIdByCode(GameEveItemFindByCodeReqQReqTransfer query) {
         Optional.ofNullable(query)
-                .map(GameEveItemFindByCodeReqQTransfer::validate)
+                .map(GameEveItemFindByCodeReqQReqTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据编码查询资源项ID参数不能为空"));
-        return GameEveItemFindItemIdRespQTransfer.builder()
+        return GameEveItemFindItemIdRespQReqTransfer.builder()
                 .itemId(gameEveItemQueryRepository.findItemIdByCode(query.getGameEveItemCode())
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项不存在，编码:" + query.getGameEveItemCode())))
+                        .orElseThrow(() -> new QueryNotFoundException("游戏EVE资源项不存在，编码:" + query.getGameEveItemCode())))
                 .build().validate();
     }
 
     @Override
     @Log(message = "游戏EVE根据资源项编码列表查询资源项ID列表", value = "#query", level = LogLevel.TRACE)
-    public GameEveItemFindItemIdsRespQTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQTransfer query) {
+    public GameEveItemFindItemIdsRespQReqTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQReqTransfer query) {
         Optional.ofNullable(query)
-                .map(GameEveItemFindByCodesReqQTransfer::validate)
+                .map(GameEveItemFindByCodesReqQReqTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE资源项根据资源项ID查询编码参数不能为空"));
-        return GameEveItemFindItemIdsRespQTransfer.builder()
+        return GameEveItemFindItemIdsRespQReqTransfer.builder()
                 .itemIds(Optional.ofNullable(gameEveItemQueryRepository.findItemIdsByCodes(query.getGameEveItemCodes()))
                         .filter(l -> !CollectionUtils.isEmpty(l))
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项不存在")))
+                        .orElseThrow(() -> new QueryNotFoundException("游戏EVE资源项不存在")))
                 .build().validate();
     }
 
     @Override
     @Log(message = "游戏EVE根据资源项资源项ID查询编码", value = "#query", level = LogLevel.TRACE)
-    public GameEveItemFindCodeRespQTransfer findCodeByItemId(GameEveItemFindByItemIdReqQTransfer query) {
-        return GameEveItemFindCodeRespQTransfer.builder()
+    public GameEveItemFindCodeRespQReqTransfer findCodeByItemId(GameEveItemFindByItemIdReqQReqTransfer query) {
+        return GameEveItemFindCodeRespQReqTransfer.builder()
                 .gameEveItemCode(gameEveItemQueryRepository.findCodeByItemId(query.getItemId())
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE资源项不存在，资源项ID: " + query.getItemId())))
+                        .orElseThrow(() -> new QueryNotFoundException("游戏EVE资源项不存在，资源项ID: " + query.getItemId())))
                 .build().validate();
     }
 }

@@ -1,12 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.endless.EndlessAutoConfiguration;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.CommandHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.ddd.simplified.starter.common.utils.model.time.TimeStamp;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.config.endless.properties.EndlessProperties;
+import org.endless.ddd.starter.common.exception.ddd.application.command.handler.CommandNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.ddd.starter.common.utils.model.time.TimeStampTools;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.handler.MarketOrderCommandHandler;
 import org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer.*;
 import org.endless.tianyan.sales.components.market.order.market.order.domain.anticorruption.MarketOrderPriceDrivenAdapter;
@@ -45,10 +45,10 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
 
     private final String dateTimePattern;
 
-    public MarketOrderCommandHandlerImpl(MarketOrderRepository marketOrderRepository, MarketOrderPriceDrivenAdapter marketOrderPriceDrivenAdapter, EndlessAutoConfiguration configuration) {
+    public MarketOrderCommandHandlerImpl(MarketOrderRepository marketOrderRepository, MarketOrderPriceDrivenAdapter marketOrderPriceDrivenAdapter, EndlessProperties properties) {
         this.marketOrderRepository = marketOrderRepository;
         this.marketOrderPriceDrivenAdapter = marketOrderPriceDrivenAdapter;
-        this.dateTimePattern = configuration.dateTimePattern();
+        this.dateTimePattern = properties.getDateTimePattern();
     }
 
     @Override
@@ -62,12 +62,12 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
                 .itemId(command.getItemId())
                 .type(MarketOrderTypeEnum.fromCode(command.getType()))
                 .itemQuantity(MarketOrderItemQuantityValue.create(MarketOrderItemQuantityValue.builder()
-                        .total(Decimal.format5Bit(command.getTotalItemQuantity()))
-                        .remain(Decimal.format5Bit(command.getRemainItemQuantity()))
-                        .min(Decimal.format5Bit(command.getMinItemQuantity()))))
-                .price(Decimal.format(command.getPrice()))
-                .issuedAt(TimeStamp.from(command.getIssuedAt(), dateTimePattern))
-                .expireAt(TimeStamp.from(command.getExpireAt(), dateTimePattern))
+                        .total(DecimalTools.format5Bit(command.getTotalItemQuantity()))
+                        .remain(DecimalTools.format5Bit(command.getRemainItemQuantity()))
+                        .min(DecimalTools.format5Bit(command.getMinItemQuantity()))))
+                .price(DecimalTools.format(command.getPrice()))
+                .issuedAt(TimeStampTools.from(command.getIssuedAt(), dateTimePattern))
+                .expireAt(TimeStampTools.from(command.getExpireAt(), dateTimePattern))
                 .createUserId(command.getCreateUserId()));
         marketOrderRepository.save(aggregate);
         return MarketOrderCreateRespCTransfer.builder()
@@ -83,15 +83,15 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
                 .map(MarketOrderModifyReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("市场订单修改命令参数不能为空"));
         MarketOrderAggregate aggregate = marketOrderRepository.findById(command.getMarketOrderId())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("未找到对应的市场订单聚合"));
+                .orElseThrow(() -> new CommandNotFoundException("未找到对应的市场订单聚合"));
         aggregate.modify(MarketOrderAggregate.builder()
                 .itemQuantity(MarketOrderItemQuantityValue.create(MarketOrderItemQuantityValue.builder()
-                        .total(Decimal.format5Bit(command.getTotalItemQuantity()))
-                        .remain(Decimal.format5Bit(command.getRemainItemQuantity()))
-                        .min(Decimal.format5Bit(command.getMinItemQuantity()))))
-                .price(Decimal.format(command.getPrice()))
-                .issuedAt(TimeStamp.from(command.getIssuedAt(), dateTimePattern))
-                .expireAt(TimeStamp.from(command.getExpireAt(), dateTimePattern))
+                        .total(DecimalTools.format5Bit(command.getTotalItemQuantity()))
+                        .remain(DecimalTools.format5Bit(command.getRemainItemQuantity()))
+                        .min(DecimalTools.format5Bit(command.getMinItemQuantity()))))
+                .price(DecimalTools.format(command.getPrice()))
+                .issuedAt(TimeStampTools.from(command.getIssuedAt(), dateTimePattern))
+                .expireAt(TimeStampTools.from(command.getExpireAt(), dateTimePattern))
                 .modifyUserId(command.getModifyUserId()));
         marketOrderRepository.modify(aggregate);
     }
@@ -104,7 +104,7 @@ public class MarketOrderCommandHandlerImpl implements MarketOrderCommandHandler 
                 .map(MarketOrderRemoveReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("市场订单删除命令参数不能为空"));
         MarketOrderAggregate aggregate = marketOrderRepository.findById(command.getMarketOrderId())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("未找到对应的市场订单聚合"));
+                .orElseThrow(() -> new CommandNotFoundException("未找到对应的市场订单聚合"));
         marketOrderRepository.remove(aggregate.remove(command.getModifyUserId()));
     }
 

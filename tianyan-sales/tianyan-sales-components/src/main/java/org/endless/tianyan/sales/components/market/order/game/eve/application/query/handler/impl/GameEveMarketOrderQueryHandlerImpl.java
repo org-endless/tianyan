@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderItemQueryDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderQueryRepository;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.handler.GameEveMarketOrderQueryHandler;

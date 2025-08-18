@@ -4,17 +4,14 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.finance.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.entity.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordAddItemException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
+import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;
+import org.endless.tianyan.finance.components.profit.estimate.domain.entity.ProfitEstimateAggregate;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -150,7 +147,7 @@ public class ProfitEstimateRecord implements TianyanFinanceRecord<ProfitEstimate
                 .revenueEstimateId(revenueEstimateId)
                 .taxEstimateId(taxEstimateId)
                 .feeEstimateId(feeEstimateId)
-                .metrics(metrics== null? new ArrayList<>() : metrics.stream()
+                .metrics(metrics == null ? new ArrayList<>() : metrics.stream()
                         .map(ProfitMetricRecord::to).collect(Collectors.toList()))
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
@@ -168,7 +165,7 @@ public class ProfitEstimateRecord implements TianyanFinanceRecord<ProfitEstimate
 
     public ProfitEstimateRecord addMetrics(List<ProfitMetricRecord> metrics) {
         if (CollectionUtils.isEmpty(metrics)) {
-                throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<ProfitMetricRecord> 不能为空");
+            throw new DataRecordAddItemException("数据库实体要添加的子实体列表 List<ProfitMetricRecord> 不能为空");
         }
         this.metrics.addAll(metrics);
         return this;

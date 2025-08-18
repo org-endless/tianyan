@@ -2,6 +2,8 @@ package org.endless.tianyan.item.components.item.item.application.query.handler.
 
 import org.endless.tianyan.item.components.item.item.application.query.anticorruption.ItemQueryRepository;
 import org.endless.tianyan.item.components.item.item.application.query.handler.ItemQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
 /**
  * ItemQueryHandlerImpl
@@ -15,6 +17,8 @@ import org.endless.tianyan.item.components.item.item.application.query.handler.I
  * @see ItemQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
 public class ItemQueryHandlerImpl implements ItemQueryHandler {
 
     /**

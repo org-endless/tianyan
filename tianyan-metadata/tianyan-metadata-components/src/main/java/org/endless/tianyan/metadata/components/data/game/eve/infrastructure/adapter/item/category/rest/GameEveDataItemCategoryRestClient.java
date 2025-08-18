@@ -1,8 +1,8 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.category.rest;
 
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.RestClientAdapter;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest.TianyanMetadataItemRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCategoryCreateReqDTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCategoryFindByCodeReqDTransfer;
@@ -52,7 +52,7 @@ public class GameEveDataItemCategoryRestClient implements TianyanMetadataItemRes
                 GameEveItemCategoryFindByCodeReqDTransfer.builder()
                         .gameEveItemCategoryCode(code).build().validate(),
                 GameEveItemCategoryFindIdRespDTransfer.class)
-                .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项分类根据编码查询ID响应数据为空"))
+                .orElseThrow(() -> new DrivenAdapterException("游戏EVE资源项分类根据编码查询ID响应数据为空"))
                 .validate()
                 .getItemCategoryId());
     }

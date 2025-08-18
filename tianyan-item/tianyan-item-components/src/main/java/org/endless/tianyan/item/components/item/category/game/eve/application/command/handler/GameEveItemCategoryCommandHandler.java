@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.command.handler;
 
 import org.endless.tianyan.item.common.model.application.command.handler.TianyanItemCommandHandler;
-import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
 
 /**
@@ -18,6 +18,6 @@ import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.
  */
 public interface GameEveItemCategoryCommandHandler extends TianyanItemCommandHandler<GameEveItemCategoryAggregate> {
 
-    void create(GameEveItemCategoryCreateReqCTransfer command);
+    void create(GameEveItemCategoryCreateReqCReqTransfer command);
 
 }

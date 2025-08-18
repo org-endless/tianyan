@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.market.item.spring;
 
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
-import org.endless.ddd.simplified.starter.common.model.common.transfer.FindPageRespTransfer;
+import org.endless.ddd.starter.common.ddd.common.transfer.FindPageRespTransfer;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.query.anticorruption.GameEveMarketOrderItemQueryDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.domain.anticorruption.GameEveMarketOrderItemDrivenAdapter;
 import org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.esi.market.GameEveMarketOrderESIMarketRestClient;
@@ -53,7 +53,7 @@ public class SpringGameEveMarketOrderItemDrivenAdapter implements GameEveMarketO
                         .build().validate())
                 .validate();
         if (firstPage.getTotal() <= 0) {
-            throw new DrivenAdapterManagerException("未找到市场订单资源项信息");
+            throw new DrivenAdapterException("未找到市场订单资源项信息");
         }
         List<String> itemCodes = new ArrayList<>(firstPage.getRows().stream().map(String::valueOf).toList());
         for (int i = 2; i <= firstPage.getTotal(); i++) {

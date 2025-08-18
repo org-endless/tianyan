@@ -1,16 +1,15 @@
 package org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.manager;
 
-import org.endless.tianyan.finance.common.model.infrastructure.data.manager.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.entity.*;
-import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.manager.*;
+import org.endless.tianyan.finance.common.model.infrastructure.data.manager.TianyanFinanceAggregateDataManager;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.ProfitEstimateQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.ProfitEstimateRepository;
+import org.endless.tianyan.finance.components.profit.estimate.domain.entity.ProfitEstimateAggregate;
+import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.persistence.mapper.ProfitEstimateMapper;
+import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.persistence.mapper.ProfitMetricMapper;
+import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.record.ProfitEstimateRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -44,5 +43,30 @@ public class ProfitEstimateDataManager implements ProfitEstimateRepository, Prof
     public ProfitEstimateDataManager(ProfitEstimateMapper profitEstimateMapper, ProfitMetricMapper profitMetricMapper) {
         this.profitEstimateMapper = profitEstimateMapper;
         this.profitMetricMapper = profitMetricMapper;
+    }
+
+    @Override
+    public ProfitEstimateAggregate save(ProfitEstimateAggregate aggregate) {
+        return null;
+    }
+
+    @Override
+    public void remove(ProfitEstimateAggregate aggregate) {
+
+    }
+
+    @Override
+    public ProfitEstimateAggregate modify(ProfitEstimateAggregate aggregate) {
+        return null;
+    }
+
+    @Override
+    public Optional<ProfitEstimateAggregate> findById(String id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ProfitEstimateAggregate> findByIdForUpdate(String id) {
+        return Optional.empty();
     }
 }

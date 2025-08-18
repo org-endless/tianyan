@@ -1,6 +1,6 @@
 package org.endless.tianyan.item.common.model.domain.entity;
 
-import org.endless.ddd.simplified.starter.common.model.domain.entity.Entity;
+import org.endless.ddd.starter.common.ddd.domain.entity.Entity;
 
 /**
  * TianyanItemEntity

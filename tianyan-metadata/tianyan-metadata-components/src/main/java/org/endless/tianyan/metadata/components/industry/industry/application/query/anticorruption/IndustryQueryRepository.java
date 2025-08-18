@@ -1,8 +1,8 @@
 package org.endless.tianyan.metadata.components.industry.industry.application.query.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.industry.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.industry.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.anticorruption.TianyanMetadataQueryRepository;
+import org.endless.tianyan.metadata.components.industry.industry.domain.anticorruption.IndustryRepository;
+import org.endless.tianyan.metadata.components.industry.industry.domain.entity.IndustryAggregate;
 
 /**
  * IndustryQueryRepository

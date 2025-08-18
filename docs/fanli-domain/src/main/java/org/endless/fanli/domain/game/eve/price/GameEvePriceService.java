@@ -43,8 +43,8 @@ public class GameEvePriceService implements PriceServer {
     //                 .filter(marketKey -> marketKey.equals(item.getItemId()))
     //                 .forEach(marketKey -> {
     //                     var query = Query.query(Criteria.where("itemId").is(item.getItemId()));
-    //                     var update = Update.update("price.curPrice", Decimal.format128(((Map<?, ?>) marketPrice.get(marketKey)).get("curPrice")))
-    //                             .set("price.buyPrice", Decimal.format128(((Map<?, ?>) marketPrice.get(marketKey)).get("buyPrice")));
+    //                     var update = Update.update("price.curPrice", DecimalTools.format128(((Map<?, ?>) marketPrice.get(marketKey)).get("curPrice")))
+    //                             .set("price.buyPrice", DecimalTools.format128(((Map<?, ?>) marketPrice.get(marketKey)).get("buyPrice")));
     //                     upsertList.add(Pair.of(query, update));
     //                 }));
     //

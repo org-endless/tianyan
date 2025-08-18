@@ -1,9 +1,8 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.trade.market.trade.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler.MarketTradeCommandHandler;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.handler.MarketTradeQueryHandler;
+import org.endless.tianyan.sales.components.market.trade.market.trade.facade.adapter.MarketTradeDrivingAdapter;
 
 /**
  * SpringMarketTradeDrivingAdapter

@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveDataFileNameRespDTransfer
@@ -83,43 +75,43 @@ public class GameEveDataFileNameRespDTransfer implements TianyanMetadataDrivenTr
 
     private void validateDe() {
         if (!StringUtils.hasText(de)) {
-            throw new DrivenTransferValidateException("德文名称不能为空");
+            throw new DrivenRespTransferValidateException("德文名称不能为空");
         }
     }
 
     private void validateEn() {
         if (!StringUtils.hasText(en)) {
-            throw new DrivenTransferValidateException("英文名称不能为空");
+            throw new DrivenRespTransferValidateException("英文名称不能为空");
         }
     }
 
     private void validateEs() {
         if (!StringUtils.hasText(es)) {
-            throw new DrivenTransferValidateException("西班牙文名称不能为空");
+            throw new DrivenRespTransferValidateException("西班牙文名称不能为空");
         }
     }
 
     private void validateFr() {
         if (!StringUtils.hasText(fr)) {
-            throw new DrivenTransferValidateException("法文名称不能为空");
+            throw new DrivenRespTransferValidateException("法文名称不能为空");
         }
     }
 
     private void validateJa() {
         if (!StringUtils.hasText(ja)) {
-            throw new DrivenTransferValidateException("日文名称不能为空");
+            throw new DrivenRespTransferValidateException("日文名称不能为空");
         }
     }
 
     private void validateRu() {
         if (!StringUtils.hasText(ru)) {
-            throw new DrivenTransferValidateException("俄文名称不能为空");
+            throw new DrivenRespTransferValidateException("俄文名称不能为空");
         }
     }
 
     private void validateZh() {
         if (!StringUtils.hasText(zh)) {
-            throw new DrivenTransferValidateException("中文名称不能为空");
+            throw new DrivenRespTransferValidateException("中文名称不能为空");
         }
     }
 }

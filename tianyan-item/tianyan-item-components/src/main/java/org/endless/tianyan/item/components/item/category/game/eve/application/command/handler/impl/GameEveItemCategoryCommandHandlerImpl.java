@@ -1,13 +1,13 @@
 package org.endless.tianyan.item.components.item.category.game.eve.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.handler.GameEveItemCategoryCommandHandler;
-import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.entity.GameEveItemCategoryAggregate;
-import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.category.item.category.facade.adapter.ItemCategoryDrivingAdapter;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,11 +45,11 @@ public class GameEveItemCategoryCommandHandlerImpl implements GameEveItemCategor
     @Override
     @Transactional
     @Log(message = "游戏EVE资源项分类创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(GameEveItemCategoryCreateReqCTransfer command) {
+    public void create(GameEveItemCategoryCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(GameEveItemCategoryCreateReqCTransfer::validate)
+                .map(GameEveItemCategoryCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分类创建命令参数不能为空"));
-        String itemCategoryId = itemCategoryDrivingAdapter.create(ItemCategoryCreateReqCTransfer.builder()
+        String itemCategoryId = itemCategoryDrivingAdapter.create(ItemCategoryCreateReqCReqTransfer.builder()
                         .fullNameZh(command.getFullNameZh())
                         .fullNameEn(command.getFullNameEn())
                         .createUserId(command.getCreateUserId())

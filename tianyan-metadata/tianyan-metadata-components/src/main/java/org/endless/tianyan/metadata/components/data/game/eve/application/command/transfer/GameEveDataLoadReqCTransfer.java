@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
 import org.endless.tianyan.metadata.common.model.application.command.transfer.TianyanMetadataCommandTransfer;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +39,7 @@ public class GameEveDataLoadReqCTransfer implements TianyanMetadataCommandTransf
 
     private void validateDataType() {
         if (!StringUtils.hasText(dataType)) {
-            throw new CommandTransferValidateException("数据类型不能为空");
+            throw new CommandReqTransferValidateException("数据类型不能为空");
         }
     }
 }

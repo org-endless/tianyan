@@ -1,21 +1,14 @@
 package org.endless.tianyan.metadata.components.industry.category.domain.entity;
 
-import org.endless.tianyan.metadata.common.model.domain.entity.*;
-import org.endless.tianyan.metadata.components.industry.category.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
+import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAggregate;
+import org.endless.tianyan.metadata.components.industry.category.domain.value.IndustryCategoryNameValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * IndustryCategoryAggregate
@@ -74,8 +67,8 @@ public class IndustryCategoryAggregate implements TianyanMetadataAggregate {
                 .industryCategoryId(IdGenerator.of())
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public IndustryCategoryAggregate remove(String modifyUserId) {

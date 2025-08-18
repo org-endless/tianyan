@@ -1,9 +1,7 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.application.query.handler.impl;
 
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.anticorruption.MarketTradeQueryRepository;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.query.handler.MarketTradeQueryHandler;
 
 /**
  * MarketTradeQueryHandlerImpl

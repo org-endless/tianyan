@@ -1,13 +1,10 @@
 package org.endless.tianyan.sales.components.market.trade.history.domain.value;
 
-import org.endless.tianyan.sales.common.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
+import org.endless.tianyan.sales.common.model.domain.value.TianyanSalesValue;
 
 import java.math.BigDecimal;
 
@@ -45,8 +42,8 @@ public class MarketTradeHistoryPriceValue implements TianyanSalesValue {
 
     public static MarketTradeHistoryPriceValue create(MarketTradeHistoryPriceValueBuilder builder) {
         return builder
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

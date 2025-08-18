@@ -1,7 +1,6 @@
 package org.endless.tianyan.finance.components.profit.estimate.application.query.handler;
 
-import org.endless.tianyan.finance.common.model.application.query.handler.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.entity.*;
+import org.endless.tianyan.finance.common.model.application.query.handler.TianyanFinanceQueryHandler;
 
 /**
  * ProfitEstimateQueryHandler

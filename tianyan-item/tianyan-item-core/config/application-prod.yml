@@ -1,0 +1,66 @@
+project-home: ${user.dir}
+server-data-center-id: 1
+server-worker-id: 1
+server-port: 10001
+#Tomcat
+tomcat-connection-timeout: 20000 # 设置连接超时时间，单位为毫秒
+tomcat-max-threads: 200 # 设置最大线程数
+tomcat-min-spare-threads: 10 # 设置最小闲置线程数
+tomcat-accept-count: 100 # 设置最大请求队列数
+tomcat-max-http-header-size: 8192 # 设置最大 HTTP 请求头大小，单位为字节
+tomcat-uri-encoding: UTF-8 # 设置 URI 编码格式
+#Http
+http-multipart-max-file-size: 5MB # 限制单个文件的最大上传大小
+http-multipart-max-request-size: 10MB # 限制整个请求的最大上传大小
+#Servlet
+servlet-multipart-enabled: true # 启用文件上传功能
+servlet-multipart-resolve-lazily: true # 延迟解析 multipart 请求，减少内存占用
+servlet-multipart-max-file-size: 10MB # 限制单个文件的最大上传大小
+servlet-multipart-max-request-size: 20MB # 限制整个请求的最大上传大小
+#Redis
+redis-host: 120.24.251.166 # Redis 服务器的主机名或 IP 地址
+redis-port: 12000 # Redis 服务器的端口，默认一般是 6379
+redis-database: 0 # 使用的 Redis 数据库索引，默认通常是 0
+redis-password: gycdp@redis # Redis 服务器的密码，如果启用了认证则需要
+redis-timeout: 10000 # 连接超时时间，单位为毫秒（10秒）
+redis-ssl-enabled: false # 是否启用 SSL 加密连接，如果 Redis 服务器启用了 SSL 则设置为 true
+redis-lettuce-pool-min-idle: 0 # 连接池中最小空闲连接数
+redis-lettuce-pool-max-idle: 8 # 连接池中最大空闲连接数
+redis-lettuce-pool-max-active: 8 # 连接池中最大活动连接数（并发连接数）
+redis-lettuce-pool-max-wait: -1 # 从连接池获取连接的最大等待时间，-1 表示没有限制
+#Datasource
+datasource-type: com.alibaba.druid.pool.DruidDataSource # 指定 Druid 数据源类型
+datasource-driver-class-name: com.mysql.cj.jdbc.Driver # 设置数据库驱动类
+datasource-url: jdbc:mysql://120.24.251.166:13000/gycdp?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+datasource-username: gycdp # 数据库用户名
+datasource-password: gycdp # 数据库密码
+#Druid
+druid-initial-size: 1 # 初始化连接数
+druid-min-idle: 1 # 最小空闲连接数
+druid-max-active: 20 # 最大活动连接数
+druid-max-wait: 60000 # 获取连接的最大等待时间，单位为毫秒
+druid-validation-query: SELECT 1 # 连接验证查询
+druid-test-on-borrow: false # 在获取连接时检查有效性
+druid-test-on-return: false # 归还连接时进行检测
+druid-test-while-idle: true # 在空闲时检查连接有效性
+druid-time-between-eviction-runs-millis: 60000 # 运行空闲连接回收线程的时间间隔，单位为毫秒
+druid-min-evictable-idle-time-millis: 300000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
+druid-max-evictable-idle-time-millis: 900000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
+druid-filters: stat,log4j2 # Druid 监控过滤器配置，开启统计和 log4j 记录
+druid-stat-view-servlet-enabled: true # 是否启用 Druid 的监控页面
+druid-web-stat-filter-enabled: true # 是否启用 Druid 的 Web 统计过滤器
+druid-filter-stat-enabled: true # 启用统计过滤器
+druid-filter-stat-log-slow-sql: true # 启用慢SQL记录
+druid-filter-stat-slow-sql-millis: 1000 # 记录执行时间超过1000毫秒的SQL
+druid-filter-stat-merge-sql: true # 合并相似的SQL执行
+druid-filter-wall-config-multi-statement-allow: true # 允许多条语句执行
+#Logging
+logging-config: file:config/log4j2-prod.xml
+#MinIO
+minio-endpoint: http://120.24.251.166:11000 # MinIO 服务的访问地址，包含主机名/IP和端口号
+minio-accessKey: gycdp # MinIO 服务的访问密钥 ID，用于身份验证
+minio-secretKey: gycdp@minio # MinIO 服务的访问密钥（从配置中读取），用于身份验证
+minio-bucket: gycdp # 默认存储桶名称（从配置中读取），用于存储数据
+minio-connect-pool-max-idle: 20 # 最大空闲连接数，设置较大值可以减少频繁连接创建和关闭
+minio-connect-pool-keep-alive: 10 # 空闲连接保活时间，单位为分钟，超过该时间未使用的连接将被关闭
+minio-connect-pool-timeout: 30 # 连接超时时间，单位为秒，超过该时间未能建立连接则会超时

@@ -17,10 +17,10 @@ import org.endless.tianyan.item.components.item.game.eve.application.query.trans
  */
 public interface GameEveItemQueryHandler extends TianyanItemQueryHandler {
 
-    GameEveItemFindItemIdRespQTransfer findItemIdByCode(GameEveItemFindByCodeReqQTransfer query);
+    GameEveItemFindItemIdRespQReqTransfer findItemIdByCode(GameEveItemFindByCodeReqQReqTransfer query);
 
-    GameEveItemFindItemIdsRespQTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQTransfer query);
+    GameEveItemFindItemIdsRespQReqTransfer findItemIdsByCodes(GameEveItemFindByCodesReqQReqTransfer query);
 
-    GameEveItemFindCodeRespQTransfer findCodeByItemId(GameEveItemFindByItemIdReqQTransfer query);
+    GameEveItemFindCodeRespQReqTransfer findCodeByItemId(GameEveItemFindByItemIdReqQReqTransfer query);
 
 }

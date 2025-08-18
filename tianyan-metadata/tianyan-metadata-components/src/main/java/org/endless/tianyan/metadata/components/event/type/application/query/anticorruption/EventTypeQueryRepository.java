@@ -1,8 +1,8 @@
 package org.endless.tianyan.metadata.components.event.type.application.query.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.anticorruption.TianyanMetadataQueryRepository;
+import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.EventTypeRepository;
+import org.endless.tianyan.metadata.components.event.type.domain.entity.EventTypeAggregate;
 
 /**
  * EventTypeQueryRepository

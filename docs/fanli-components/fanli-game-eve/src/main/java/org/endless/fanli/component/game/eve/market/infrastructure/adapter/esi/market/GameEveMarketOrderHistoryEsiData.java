@@ -2,7 +2,7 @@ package org.endless.fanli.component.game.eve.market.infrastructure.adapter.esi.m
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.endless.fanli.component.game.eve.market.domain.model.order.GameEveMarketOrderHistory;
-import org.endless.spring.boot.common.utility.decimal.Decimal;
+import org.endless.spring.boot.common.utility.decimal.DecimalTools;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,11 +31,11 @@ public record GameEveMarketOrderHistoryEsiData(
     public GameEveMarketOrderHistory toEntity() {
         return GameEveMarketOrderHistory.builder()
                 .orderDate(orderDate())
-                .averagePrice(Decimal.format(averagePrice()))
-                .highestPrice(Decimal.format(highestPrice()))
-                .lowestPrice(Decimal.format(lowestPrice()))
-                .orderQuantity(Decimal.format(orderQuantity()))
-                .itemQuantity(Decimal.format(itemQuantity()))
+                .averagePrice(DecimalTools.format(averagePrice()))
+                .highestPrice(DecimalTools.format(highestPrice()))
+                .lowestPrice(DecimalTools.format(lowestPrice()))
+                .orderQuantity(DecimalTools.format(orderQuantity()))
+                .itemQuantity(DecimalTools.format(itemQuantity()))
                 .build();
     }
 }

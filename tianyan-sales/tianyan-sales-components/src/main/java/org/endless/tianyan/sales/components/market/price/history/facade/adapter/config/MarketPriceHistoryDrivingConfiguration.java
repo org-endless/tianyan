@@ -1,13 +1,13 @@
 package org.endless.tianyan.sales.components.market.price.history.facade.adapter.config;
 
-import org.endless.tianyan.sales.components.market.price.history.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.history.application.command.handler.impl.*;
-import org.endless.tianyan.sales.components.market.price.history.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.price.history.application.query.handler.impl.*;
-import org.endless.tianyan.sales.components.market.price.history.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.price.history.facade.adapter.spring.*;
+import org.endless.tianyan.sales.components.market.price.history.application.command.handler.MarketPriceHistoryCommandHandler;
+import org.endless.tianyan.sales.components.market.price.history.application.command.handler.impl.MarketPriceHistoryCommandHandlerImpl;
+import org.endless.tianyan.sales.components.market.price.history.application.query.anticorruption.MarketPriceHistoryQueryRepository;
+import org.endless.tianyan.sales.components.market.price.history.application.query.handler.MarketPriceHistoryQueryHandler;
+import org.endless.tianyan.sales.components.market.price.history.application.query.handler.impl.MarketPriceHistoryQueryHandlerImpl;
+import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.MarketPriceHistoryRepository;
+import org.endless.tianyan.sales.components.market.price.history.facade.adapter.MarketPriceHistoryDrivingAdapter;
+import org.endless.tianyan.sales.components.market.price.history.facade.adapter.spring.SpringMarketPriceHistoryDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

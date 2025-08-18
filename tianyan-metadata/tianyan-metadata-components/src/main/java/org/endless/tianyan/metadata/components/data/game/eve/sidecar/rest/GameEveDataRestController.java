@@ -1,10 +1,8 @@
 package org.endless.tianyan.metadata.components.data.game.eve.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.sidecar.rest.TianyanMetadataRestController;
 import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.facade.adapter.GameEveDataDrivingAdapter;
@@ -49,12 +47,7 @@ public class GameEveDataRestController implements TianyanMetadataRestController 
         Optional.ofNullable(command)
                 .map(GameEveDataLoadReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE数据加载参数不能为空"));
-        try {
-            gameEveDataDrivingAdapter.load(command);
-            return response().success("游戏EVE数据加载成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE数据加载失败", e);
-        }
+        gameEveDataDrivingAdapter.load(command);
+        return response().success("游戏EVE数据加载成功");
     }
-
 }

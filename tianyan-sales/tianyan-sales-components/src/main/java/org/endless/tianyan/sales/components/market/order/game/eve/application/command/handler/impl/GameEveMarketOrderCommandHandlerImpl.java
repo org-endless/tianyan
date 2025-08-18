@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.CommandHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.handler.CommandNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.handler.GameEveMarketOrderCommandHandler;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderGeneratePriceReqCTransfer;
@@ -74,7 +74,7 @@ public class GameEveMarketOrderCommandHandlerImpl implements GameEveMarketOrderC
                 .map(GameEveMarketOrderFetchReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场订单获取命令参数不能为空"));
         String itemId = gameEveMarketOrderItemDrivenAdapter.fetch(command.getGameEveItemCode(), command.getCreateUserId())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
+                .orElseThrow(() -> new CommandNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
         List<String> marketOrderIds = marketOrderDrivingAdapter.findIdsByItemId(MarketOrderFindByItemIdReqQTransfer.builder()
                         .itemId(itemId)
                         .build().validate())
@@ -95,7 +95,7 @@ public class GameEveMarketOrderCommandHandlerImpl implements GameEveMarketOrderC
                 .map(GameEveMarketOrderGeneratePriceReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场订单生成价格命令命令参数不能为空"));
         String itemId = gameEveMarketOrderItemDrivenAdapter.fetch(command.getGameEveItemCode(), command.getCreateUserId())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
+                .orElseThrow(() -> new CommandNotFoundException("游戏EVE资源项编码不存在，资源项编码: " + command.getGameEveItemCode()));
         marketOrderDrivingAdapter.generatePrice(MarketOrderGeneratePriceReqCTransfer.builder()
                 .itemId(itemId)
                 .createUserId(command.getCreateUserId())

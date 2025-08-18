@@ -1,13 +1,13 @@
 package org.endless.tianyan.metadata.components.event.type.facade.adapter.config;
 
-import org.endless.tianyan.metadata.components.event.type.application.command.handler.*;
-import org.endless.tianyan.metadata.components.event.type.application.command.handler.impl.*;
-import org.endless.tianyan.metadata.components.event.type.application.query.handler.*;
-import org.endless.tianyan.metadata.components.event.type.application.query.handler.impl.*;
-import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.facade.adapter.*;
-import org.endless.tianyan.metadata.components.event.type.facade.adapter.spring.*;
+import org.endless.tianyan.metadata.components.event.type.application.command.handler.EventTypeCommandHandler;
+import org.endless.tianyan.metadata.components.event.type.application.command.handler.impl.EventTypeCommandHandlerImpl;
+import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.EventTypeQueryRepository;
+import org.endless.tianyan.metadata.components.event.type.application.query.handler.EventTypeQueryHandler;
+import org.endless.tianyan.metadata.components.event.type.application.query.handler.impl.EventTypeQueryHandlerImpl;
+import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.EventTypeRepository;
+import org.endless.tianyan.metadata.components.event.type.facade.adapter.EventTypeDrivingAdapter;
+import org.endless.tianyan.metadata.components.event.type.facade.adapter.spring.SpringEventTypeDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

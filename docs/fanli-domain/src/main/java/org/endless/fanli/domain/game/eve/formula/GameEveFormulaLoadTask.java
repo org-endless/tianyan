@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
 import org.endless.fanli.common.type.ddd.formula.Formula;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
-import org.endless.spring.boot.com.utiliy.decimal.Decimal;
+import org.endless.spring.boot.com.utiliy.decimal.DecimalTools;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
 import org.endless.spring.boot.data.mongo.bulk.MongoBulkOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -49,7 +49,7 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
             var scanner = String.valueOf(((Map<?, ?>) scannerMap).get("scanner"));
             var formulaItemId = String.valueOf(((Map<?, ?>) scannerMap).get("formulaItemId"));
             var rat = (Map<?, ?>) ObjectToMongoObject.convert(new Yaml().load(scanner));
-            var maxProductionLimit = Decimal.format(rat.get("maxProductionLimit"));
+            var maxProductionLimit = DecimalTools.format(rat.get("maxProductionLimit"));
             var activities = (Map<?, ?>) rat.get("activities");
 
             var manufacturing = (Map<?, ?>) activities.get("producing");
@@ -124,7 +124,7 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
                 var material = (Map<?, ?>) items.get(key);
 
                 if (material.get("isInput").equals(true)) {
-                    materials.add(new Formula.Material(String.valueOf(key), Decimal.format(material.get("quantity"))));
+                    materials.add(new Formula.Material(String.valueOf(key), DecimalTools.format(material.get("quantity"))));
                 }
                 if (material.get("isInput").equals(false)) {
                     itemId = String.valueOf(key);
@@ -138,9 +138,9 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
                     .update("itemId", itemId)
                     .set("industryId", industryId)
                     .set("formulaItemId", itemId)
-                    .set("productionPerCycle", Decimal.format((productionPerCycle)))
-                    .set("probability", Decimal.format("1"))
-                    .set("timePerCycle.secondsPerCycle", Decimal.format(rat.get("cycleTime")))
+                    .set("productionPerCycle", DecimalTools.format((productionPerCycle)))
+                    .set("probability", DecimalTools.format("1"))
+                    .set("timePerCycle.secondsPerCycle", DecimalTools.format(rat.get("cycleTime")))
                     .set("maxProductionLimit.maxProductionLimitPerLine", "infinity")
                     .set("materials", materials)
                     .set("categories", categories)
@@ -174,9 +174,9 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
                     .update("itemId", formulaItemId)
                     .set("industryId", industryId)
                     .set("formulaItemId", formulaItemId)
-                    .set("productionPerCycle", Decimal.format("1"))
-                    .set("probability", Decimal.format("1"))
-                    .set("timePerCycle.secondsPerCycle", Decimal.format(formula.get("time")))
+                    .set("productionPerCycle", DecimalTools.format("1"))
+                    .set("probability", DecimalTools.format("1"))
+                    .set("timePerCycle.secondsPerCycle", DecimalTools.format(formula.get("time")))
                     .set("maxProductionLimit.maxProductionLimitPerLine", maxProductionLimit)
                     .set("materials", materials)
                     .set("skills", skills)
@@ -195,16 +195,16 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
 
             var itemId = String.valueOf(((Map<?, ?>) product).get("itemId"));
             var id = industryId + "_" + categories + "_" + itemId;
-            var probability = Decimal.format(((Map<?, ?>) product).get("probability"));
+            var probability = DecimalTools.format(((Map<?, ?>) product).get("probability"));
 
             var query = Query.query(Criteria.where("id").is(id));
             var update = Update
                     .update("itemId", itemId)
                     .set("industryId", industryId)
                     .set("formulaItemId", formulaItemId)
-                    .set("productionPerCycle", Decimal.format(((Map<?, ?>) product).get("quantity")))
-                    .set("probability", probability == null ? Decimal.format("1") : probability)
-                    .set("timePerCycle.secondsPerCycle", Decimal.format(formula.get("time")))
+                    .set("productionPerCycle", DecimalTools.format(((Map<?, ?>) product).get("quantity")))
+                    .set("probability", probability == null ? DecimalTools.format("1") : probability)
+                    .set("timePerCycle.secondsPerCycle", DecimalTools.format(formula.get("time")))
                     .set("maxProductionLimit.maxProductionLimitPerLine", maxProductionLimit)
                     .set("materials", materials)
                     .set("skills", skills)
@@ -224,7 +224,7 @@ public class GameEveFormulaLoadTask implements GameEveAsyncTask {
         if (formula.get("materials") != null) {
             ((List<?>) formula.get("materials")).stream().map(m -> ((Map<?, ?>) m)).forEach(map -> {
                 String itemId = String.valueOf(map.get("itemId"));
-                BigDecimal quantity = Decimal.format(map.get("quantity"));
+                BigDecimal quantity = DecimalTools.format(map.get("quantity"));
                 materials.add(new Formula.Material(itemId, quantity));
             });
         }

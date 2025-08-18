@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe.spring;
 
 import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe.GameEveItemESIUniverseRestClient;
-import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe.transfer.GameEveItemESIUniverseExchangeTransfer;
-import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDTransfer;
+import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe.transfer.GameEveItemESIUniverseExchange;
+import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDReqTransfer;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -29,8 +29,8 @@ public class SpringGameEveItemESIUniverseRestClient implements GameEveItemESIUni
     }
 
     @Override
-    public ESIUniverseItemFindProfileRespDTransfer fetchItem(String gameEveItemCode) {
-        return exchange(restClient, GameEveItemESIUniverseExchangeTransfer.class)
+    public ESIUniverseItemFindProfileRespDReqTransfer fetchItem(String gameEveItemCode) {
+        return exchange(restClient, GameEveItemESIUniverseExchange.class)
                 .fetchItem(gameEveItemCode, DATASOURCE, LANGUAGE_ZH);
 
     }

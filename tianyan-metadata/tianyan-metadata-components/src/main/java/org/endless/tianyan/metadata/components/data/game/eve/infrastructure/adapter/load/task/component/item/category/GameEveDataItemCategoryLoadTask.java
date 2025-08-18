@@ -2,7 +2,7 @@ package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.ada
 
 import com.alibaba.fastjson2.util.TypeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.category.rest.GameEveDataItemCategoryRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
@@ -43,7 +43,7 @@ public class GameEveDataItemCategoryLoadTask implements GameEveDataLoadTask {
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
         Optional.ofNullable(dataMap)
                 .filter(m -> !CollectionUtils.isEmpty(m))
-                .orElseThrow(() -> new DrivenAdapterManagerException("资源项分类数据列表为空，无法执行数据加载任务"));
+                .orElseThrow(() -> new DrivenAdapterException("资源项分类数据列表为空，无法执行数据加载任务"));
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
                 try {

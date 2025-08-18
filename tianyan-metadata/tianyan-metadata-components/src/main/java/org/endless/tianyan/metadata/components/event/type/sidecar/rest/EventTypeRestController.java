@@ -1,10 +1,8 @@
 package org.endless.tianyan.metadata.components.event.type.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.sidecar.rest.TianyanMetadataRestController;
 import org.endless.tianyan.metadata.components.event.type.application.command.transfer.EventTypeCreateReqCTransfer;
 import org.endless.tianyan.metadata.components.event.type.facade.adapter.EventTypeDrivingAdapter;
@@ -49,11 +47,7 @@ public class EventTypeRestController implements TianyanMetadataRestController {
         Optional.ofNullable(command)
                 .map(EventTypeCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("事件类型创建参数不能为空"));
-        try {
-            eventTypeDrivingAdapter.create(command);
-            return response().success("事件类型创建成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("事件类型创建失败", e);
-        }
+        eventTypeDrivingAdapter.create(command);
+        return response().success("事件类型创建成功");
     }
 }

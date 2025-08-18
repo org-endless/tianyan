@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.group.item.group.facade.adapter.spring;
 
 import org.endless.tianyan.item.components.item.group.item.group.application.command.handler.ItemGroupCommandHandler;
-import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateRespCReqTransfer;
 import org.endless.tianyan.item.components.item.group.item.group.application.query.handler.ItemGroupQueryHandler;
 import org.endless.tianyan.item.components.item.group.item.group.facade.adapter.ItemGroupDrivingAdapter;
 
@@ -36,7 +36,7 @@ public class SpringItemGroupDrivingAdapter implements ItemGroupDrivingAdapter {
     }
 
     @Override
-    public ItemGroupCreateRespCTransfer create(ItemGroupCreateReqCTransfer command) {
+    public ItemGroupCreateRespCReqTransfer create(ItemGroupCreateReqCReqTransfer command) {
         return itemGroupCommandHandler.create(command);
     }
 }

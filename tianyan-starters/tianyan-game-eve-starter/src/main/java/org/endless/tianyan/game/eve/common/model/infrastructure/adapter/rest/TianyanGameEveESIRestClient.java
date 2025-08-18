@@ -1,6 +1,6 @@
 package org.endless.tianyan.game.eve.common.model.infrastructure.adapter.rest;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.RestClientAdapter;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public interface TianyanGameEveESIRestClient extends RestClientAdapter {
 
     String DATASOURCE = "serenity";
-    
+
     String LANGUAGE_ZH = "zh";
 
     String LANGUAGE_EN = "en";

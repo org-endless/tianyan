@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveMarketGroupCreateReqDTransfer
@@ -70,25 +62,25 @@ public class GameEveMarketGroupCreateReqDTransfer implements TianyanMetadataDriv
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DrivenTransferValidateException("游戏EVE市场分组编码不能为空");
+            throw new DrivenReqTransferValidateException("游戏EVE市场分组编码不能为空");
         }
     }
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new DrivenTransferValidateException("市场分组中文全称不能为空");
+            throw new DrivenReqTransferValidateException("市场分组中文全称不能为空");
         }
     }
 
     private void validateFullNameEn() {
         if (!StringUtils.hasText(fullNameEn)) {
-            throw new DrivenTransferValidateException("市场分组英文全称不能为空");
+            throw new DrivenReqTransferValidateException("市场分组英文全称不能为空");
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DrivenTransferValidateException("创建用户ID不能为空");
+            throw new DrivenReqTransferValidateException("创建用户ID不能为空");
         }
     }
 }

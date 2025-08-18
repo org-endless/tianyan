@@ -1,10 +1,10 @@
 package org.endless.tianyan.item.components.item.category.game.eve.facade.adapter.spring;
 
 import org.endless.tianyan.item.components.item.category.game.eve.application.command.handler.GameEveItemCategoryCommandHandler;
-import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.command.transfer.GameEveItemCategoryCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.handler.GameEveItemCategoryQueryHandler;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindByCodeReqQReqTransfer;
+import org.endless.tianyan.item.components.item.category.game.eve.application.query.transfer.GameEveItemCategoryFindIdRespQReqTransfer;
 import org.endless.tianyan.item.components.item.category.game.eve.facade.adapter.GameEveItemCategoryDrivingAdapter;
 
 /**
@@ -37,12 +37,12 @@ public class SpringGameEveItemCategoryDrivingAdapter implements GameEveItemCateg
     }
 
     @Override
-    public void create(GameEveItemCategoryCreateReqCTransfer command) {
+    public void create(GameEveItemCategoryCreateReqCReqTransfer command) {
         gameEveItemCategoryCommandHandler.create(command);
     }
 
     @Override
-    public GameEveItemCategoryFindIdRespQTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQTransfer query) {
+    public GameEveItemCategoryFindIdRespQReqTransfer findItemCategoryIdByCode(GameEveItemCategoryFindByCodeReqQReqTransfer query) {
         return gameEveItemCategoryQueryHandler.findItemCategoryIdByCode(query);
     }
 }

@@ -1,13 +1,13 @@
 package org.endless.tianyan.item.components.item.group.game.eve.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.item.components.item.group.game.eve.application.query.anticorruption.GameEveItemGroupQueryRepository;
 import org.endless.tianyan.item.components.item.group.game.eve.application.query.handler.GameEveItemGroupQueryHandler;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQReqTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQReqTransfer;
 
 import java.util.Optional;
 
@@ -36,13 +36,13 @@ public class GameEveItemGroupQueryHandlerImpl implements GameEveItemGroupQueryHa
 
     @Override
     @Log(message = "根据编码查询资源项分组ID", value = "#command", level = LogLevel.TRACE)
-    public GameEveItemGroupFindIdRespQTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQTransfer query) {
+    public GameEveItemGroupFindIdRespQReqTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQReqTransfer query) {
         Optional.ofNullable(query)
-                .map(GameEveItemGroupFindByCodeReqQTransfer::validate)
+                .map(GameEveItemGroupFindByCodeReqQReqTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("根据编码查询资源项分组ID参数不能为空"));
-        return GameEveItemGroupFindIdRespQTransfer.builder()
+        return GameEveItemGroupFindIdRespQReqTransfer.builder()
                 .itemGroupId(gameEveItemGroupQueryRepository.findItemGroupIdByCode(query.getGameEveItemGroupCode())
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("资源项分组不存在")))
+                        .orElseThrow(() -> new QueryNotFoundException("资源项分组不存在")))
                 .build().validate();
     }
 }

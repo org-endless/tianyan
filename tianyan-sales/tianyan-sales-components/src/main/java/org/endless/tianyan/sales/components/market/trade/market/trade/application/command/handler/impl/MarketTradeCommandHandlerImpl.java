@@ -1,8 +1,7 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler.impl;
 
-import org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.*;
+import org.endless.tianyan.sales.components.market.trade.market.trade.application.command.handler.MarketTradeCommandHandler;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.MarketTradeRepository;
 
 /**
  * MarketTradeCommandHandlerImpl

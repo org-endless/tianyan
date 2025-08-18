@@ -1,8 +1,8 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.application.query.anticorruption;
 
-import org.endless.tianyan.sales.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.anticorruption.TianyanSalesQueryRepository;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.anticorruption.MarketTradeRepository;
+import org.endless.tianyan.sales.components.market.trade.market.trade.domain.entity.MarketTradeAggregate;
 
 /**
  * MarketTradeQueryRepository

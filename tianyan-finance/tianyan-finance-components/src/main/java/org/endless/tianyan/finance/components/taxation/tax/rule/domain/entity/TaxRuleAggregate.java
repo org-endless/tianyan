@@ -1,22 +1,18 @@
 package org.endless.tianyan.finance.components.taxation.tax.rule.domain.entity;
 
-import org.endless.tianyan.finance.common.model.domain.entity.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.value.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceAggregate;
+import org.endless.tianyan.finance.components.taxation.tax.rule.domain.type.TaxRuleTypeEnum;
+import org.endless.tianyan.finance.components.taxation.tax.rule.domain.value.TaxRuleNameValue;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * TaxRuleAggregate
@@ -100,8 +96,8 @@ public class TaxRuleAggregate implements TianyanFinanceAggregate {
                 .taxRuleId(IdGenerator.of())
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public TaxRuleAggregate remove(String modifyUserId) {
@@ -167,15 +163,15 @@ public class TaxRuleAggregate implements TianyanFinanceAggregate {
     }
 
     private void validateMinBaseAmount() {
-        Decimal.validateAmount(minBaseAmount);
+        DecimalTools.validateAmount(minBaseAmount);
     }
 
     private void validateMaxBaseAmount() {
-        Decimal.validateAmount(maxBaseAmount);
+        DecimalTools.validateAmount(maxBaseAmount);
     }
 
     private void validatePercentage() {
-        Decimal.validatePercentage(percentage);
+        DecimalTools.validatePercentage(percentage);
     }
 
     private void validateCreateUserId() {

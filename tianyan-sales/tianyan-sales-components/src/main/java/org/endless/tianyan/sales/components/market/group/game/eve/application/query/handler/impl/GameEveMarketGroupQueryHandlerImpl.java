@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.group.game.eve.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.query.anticorruption.GameEveMarketGroupQueryRepository;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.query.handler.GameEveMarketGroupQueryHandler;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.query.transfer.GameEveMarketGroupFindByCodeReqQTransfer;
@@ -42,7 +42,7 @@ public class GameEveMarketGroupQueryHandlerImpl implements GameEveMarketGroupQue
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE市场根据编码查询市场分组ID参数不能为空"));
         return GameEveMarketGroupFindIdRespQTransfer.builder()
                 .marketGroupId(gameEveMarketGroupQueryRepository.findMarketGroupIdByCode(query.getGameEveMarketGroupCode())
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("游戏EVE市场分组不存在")))
+                        .orElseThrow(() -> new QueryNotFoundException("游戏EVE市场分组不存在")))
                 .build().validate();
     }
 }

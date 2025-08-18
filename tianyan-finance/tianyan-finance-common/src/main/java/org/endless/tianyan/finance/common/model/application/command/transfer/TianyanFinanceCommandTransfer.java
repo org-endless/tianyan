@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.model.application.command.transfer;
 
-import org.endless.ddd.simplified.starter.common.model.application.command.transfer.CommandTransfer;
+import org.endless.ddd.starter.common.ddd.application.command.transfer.CommandTransfer;
 
 /**
  * TianyanFinanceCommandTransfer

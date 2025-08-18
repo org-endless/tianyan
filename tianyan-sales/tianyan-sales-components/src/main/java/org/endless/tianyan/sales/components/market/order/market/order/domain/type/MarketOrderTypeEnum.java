@@ -3,7 +3,7 @@ package org.endless.tianyan.sales.components.market.order.market.order.domain.ty
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.type.EnumException;
+import org.endless.ddd.starter.common.exception.ddd.domain.type.EnumException;
 import org.endless.tianyan.sales.common.model.domain.type.TianyanSalesEnum;
 
 /**

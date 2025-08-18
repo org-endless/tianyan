@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.components.market.trade.history.domain.anticorruption;
 
-import org.endless.tianyan.sales.common.model.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.history.domain.entity.*;
+import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
+import org.endless.tianyan.sales.components.market.trade.history.domain.entity.MarketTradeHistoryAggregate;
 
 /**
  * MarketTradeHistoryRepository

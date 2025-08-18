@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveDataFileBlueprintRespDTransfer
@@ -59,19 +51,19 @@ public class GameEveDataFileBlueprintRespDTransfer implements TianyanMetadataDri
 
     private void validateActivities() {
         if (activities == null) {
-            throw new DrivenTransferValidateException("工序不能为 null ");
+            throw new DrivenRespTransferValidateException("工序不能为 null ");
         }
     }
 
     private void validateBlueprintTypeID() {
         if (!StringUtils.hasText(blueprintTypeID)) {
-            throw new DrivenTransferValidateException("蓝图编码不能为空");
+            throw new DrivenRespTransferValidateException("蓝图编码不能为空");
         }
     }
 
     private void validateMaxProductionLimit() {
         if (maxProductionLimit == null || maxProductionLimit < 0) {
-            throw new DrivenTransferValidateException("最大生产次数不能为 null 或小于 0，当前值为: " + maxProductionLimit);
+            throw new DrivenRespTransferValidateException("最大生产次数不能为 null 或小于 0，当前值为: " + maxProductionLimit);
         }
     }
 }

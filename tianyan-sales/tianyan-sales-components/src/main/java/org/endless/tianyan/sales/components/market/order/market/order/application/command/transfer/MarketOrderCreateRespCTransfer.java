@@ -1,21 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.market.order.application.command.transfer;
 
-import org.endless.tianyan.sales.common.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.value.*;
-import org.endless.tianyan.sales.components.market.order.market.order.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandRespTransferValidateException;
+import org.endless.tianyan.sales.common.model.application.command.transfer.TianyanSalesCommandTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * MarketOrderCreateRespCTransfer
@@ -48,7 +39,7 @@ public class MarketOrderCreateRespCTransfer implements TianyanSalesCommandTransf
 
     private void validateMarketOrderId() {
         if (!StringUtils.hasText(marketOrderId)) {
-            throw new CommandTransferValidateException("市场订单ID不能为空");
+            throw new CommandRespTransferValidateException("市场订单ID不能为空");
         }
     }
 }

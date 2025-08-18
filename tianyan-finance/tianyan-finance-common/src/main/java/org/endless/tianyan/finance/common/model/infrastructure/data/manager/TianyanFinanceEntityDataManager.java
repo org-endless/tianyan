@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.model.infrastructure.data.manager;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.manager.EntityDataManager;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.manager.EntityDataManager;
 import org.endless.tianyan.finance.common.model.application.query.anticorruption.TianyanFinanceQueryRepository;
 import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceEntity;
 import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;

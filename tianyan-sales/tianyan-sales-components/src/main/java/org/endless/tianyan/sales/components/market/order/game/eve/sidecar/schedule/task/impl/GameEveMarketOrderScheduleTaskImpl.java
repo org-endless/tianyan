@@ -1,5 +1,6 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.sidecar.schedule.task.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderGeneratePriceReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
@@ -21,6 +22,7 @@ import static org.endless.tianyan.sales.common.model.application.command.handler
  * @author Deng Haozhi
  * @since 2.0.0
  */
+@Slf4j
 @Lazy
 @Component
 public class GameEveMarketOrderScheduleTaskImpl implements GameEveMarketOrderScheduleTask {
@@ -33,15 +35,23 @@ public class GameEveMarketOrderScheduleTaskImpl implements GameEveMarketOrderSch
 
     @Override
     public CompletableFuture<Void> execute(String gameEveItemCode) {
-        return CompletableFuture.runAsync(() -> {
-            gameEveMarketOrderDrivingAdapter.fetch(GameEveMarketOrderFetchReqCTransfer.builder()
-                    .gameEveItemCode(gameEveItemCode)
-                    .createUserId(TIANYAN_SALES_USER_ID)
-                    .build().validate());
-            gameEveMarketOrderDrivingAdapter.generatePrice(GameEveMarketOrderGeneratePriceReqCTransfer.builder()
-                    .gameEveItemCode(gameEveItemCode)
-                    .createUserId(TIANYAN_SALES_USER_ID)
-                    .build().validate());
-        });
+        try {
+            gameEveMarketOrderDrivingAdapter.fetch(
+                    GameEveMarketOrderFetchReqCTransfer.builder()
+                            .gameEveItemCode(gameEveItemCode)
+                            .createUserId(TIANYAN_SALES_USER_ID)
+                            .build().validate()
+            );
+            gameEveMarketOrderDrivingAdapter.generatePrice(
+                    GameEveMarketOrderGeneratePriceReqCTransfer.builder()
+                            .gameEveItemCode(gameEveItemCode)
+                            .createUserId(TIANYAN_SALES_USER_ID)
+                            .build().validate()
+            );
+            return CompletableFuture.completedFuture(null);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return CompletableFuture.failedFuture(e);
+        }
     }
 }

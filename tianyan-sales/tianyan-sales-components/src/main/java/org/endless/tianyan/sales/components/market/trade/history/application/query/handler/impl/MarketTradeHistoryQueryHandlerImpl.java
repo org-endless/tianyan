@@ -1,9 +1,7 @@
 package org.endless.tianyan.sales.components.market.trade.history.application.query.handler.impl;
 
-import org.endless.tianyan.sales.components.market.trade.history.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.trade.history.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.trade.history.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.sales.components.market.trade.history.application.query.anticorruption.MarketTradeHistoryQueryRepository;
+import org.endless.tianyan.sales.components.market.trade.history.application.query.handler.MarketTradeHistoryQueryHandler;
 
 /**
  * MarketTradeHistoryQueryHandlerImpl

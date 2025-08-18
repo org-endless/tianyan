@@ -4,21 +4,16 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.finance.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.entity.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.value.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;
+import org.endless.tianyan.finance.components.taxation.tax.rule.domain.entity.TaxRuleAggregate;
+import org.endless.tianyan.finance.components.taxation.tax.rule.domain.type.TaxRuleTypeEnum;
+import org.endless.tianyan.finance.components.taxation.tax.rule.domain.value.TaxRuleNameValue;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * TaxRuleRecord
@@ -211,15 +206,15 @@ public class TaxRuleRecord implements TianyanFinanceRecord<TaxRuleAggregate> {
     }
 
     private void validateMinBaseAmount() {
-        Decimal.validateAmount(minBaseAmount);
+        DecimalTools.validateAmount(minBaseAmount);
     }
 
     private void validateMaxBaseAmount() {
-        Decimal.validateAmount(maxBaseAmount);
+        DecimalTools.validateAmount(maxBaseAmount);
     }
 
     private void validatePercentage() {
-        Decimal.validatePercentage(percentage);
+        DecimalTools.validatePercentage(percentage);
     }
 
     private void validateCreateUserId() {

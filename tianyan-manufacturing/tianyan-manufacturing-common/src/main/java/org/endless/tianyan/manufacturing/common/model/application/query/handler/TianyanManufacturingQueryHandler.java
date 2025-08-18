@@ -1,6 +1,6 @@
 package org.endless.tianyan.manufacturing.common.model.application.query.handler;
 
-import org.endless.ddd.simplified.starter.common.model.application.query.handler.QueryHandler;
+import org.endless.ddd.starter.common.ddd.application.query.handler.QueryHandler;
 
 /**
  * TianyanManufacturingQueryHandler

@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.persistence.mapper.DataMapper;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.persistence.mapper.DataMapper;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesEntity;
 import org.endless.tianyan.sales.common.model.infrastructure.data.record.TianyanSalesRecord;
 

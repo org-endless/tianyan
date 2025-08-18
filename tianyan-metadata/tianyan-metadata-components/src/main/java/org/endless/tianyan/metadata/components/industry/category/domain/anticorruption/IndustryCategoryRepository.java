@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.industry.category.domain.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.category.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMetadataRepository;
+import org.endless.tianyan.metadata.components.industry.category.domain.entity.IndustryCategoryAggregate;
 
 /**
  * IndustryCategoryRepository

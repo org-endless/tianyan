@@ -2,7 +2,7 @@ package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.ada
 
 import com.alibaba.fastjson2.util.TypeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.blueprint.rest.GameEveDataBlueprintRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.item.rest.GameEveDataItemRestClient;
@@ -46,7 +46,7 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
         Optional.ofNullable(dataMap)
                 .filter(m -> !CollectionUtils.isEmpty(m))
-                .orElseThrow(() -> new DrivenAdapterManagerException("蓝图数据列表为空，无法执行数据加载任务"));
+                .orElseThrow(() -> new DrivenAdapterException("蓝图数据列表为空，无法执行数据加载任务"));
 
         return CompletableFuture.runAsync(() -> {
             dataMap.forEach((key, value) -> {
@@ -115,7 +115,7 @@ public class GameEveDataBlueprintLoadTask implements GameEveDataLoadTask {
                                 .itemId(gameEveDataItemRestClient.findItemIdByCode(skill.getTypeID()))
                                 .level(skill.getLevel()).build().validate())
                         .toList())
-                .cycle(activity.getTime() * 60 * 1000)
+                .cycle(activity.getTime() * 1000)
                 .maxProductionLimit(maxProductionLimit)
                 .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
                 .build().validate());

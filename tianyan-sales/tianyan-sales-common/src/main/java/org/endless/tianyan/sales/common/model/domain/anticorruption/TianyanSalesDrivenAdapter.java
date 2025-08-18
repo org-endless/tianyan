@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.domain.anticorruption;
 
-import org.endless.ddd.simplified.starter.common.model.domain.anticorruption.DrivenAdapter;
+import org.endless.ddd.starter.common.ddd.domain.anticorruption.DrivenAdapter;
 
 /**
  * TianyanSalesDrivenAdapter

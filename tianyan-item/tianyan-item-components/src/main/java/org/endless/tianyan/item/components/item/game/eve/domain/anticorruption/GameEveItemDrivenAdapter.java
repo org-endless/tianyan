@@ -18,5 +18,7 @@ import java.util.Optional;
  */
 public interface GameEveItemDrivenAdapter extends TianyanItemDrivenAdapter {
 
+    Optional<String> create();
+
     Optional<GameEveItemAggregate> fetch(String code, String createUserId);
 }

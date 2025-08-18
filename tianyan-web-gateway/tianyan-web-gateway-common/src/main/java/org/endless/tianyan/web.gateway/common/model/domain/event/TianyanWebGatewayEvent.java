@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.domain.event;
 
-import org.endless.ddd.simplified.starter.common.model.domain.event.Event;
+import org.endless.ddd.starter.common.ddd.domain.event.Event;
 import org.endless.tianyan.web.gateway.common.model.domain.entity.TianyanWebGatewayAggregate;
 
 /**

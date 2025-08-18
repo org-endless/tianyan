@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.components.market.trade.market.trade.facade.adapter;
 
-import org.endless.tianyan.sales.common.model.facade.adapter.*;
+import org.endless.tianyan.sales.common.model.facade.adapter.TianyanSalesDrivingAdapter;
 
 /**
  * MarketTradeDrivingAdapter

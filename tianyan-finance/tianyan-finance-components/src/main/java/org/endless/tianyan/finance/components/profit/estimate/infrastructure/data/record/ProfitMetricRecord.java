@@ -4,20 +4,15 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import org.endless.tianyan.finance.common.model.infrastructure.data.record.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.entity.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.*;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;
+import org.endless.tianyan.finance.components.profit.estimate.domain.entity.ProfitMetricEntity;
+import org.endless.tianyan.finance.components.profit.estimate.domain.type.ProfitMetricTypeEnum;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ProfitMetricRecord
@@ -156,11 +151,11 @@ public class ProfitMetricRecord implements TianyanFinanceRecord<ProfitMetricEnti
     }
 
     private void validateAmount() {
-        Decimal.validateAmount(amount);
+        DecimalTools.validateAmount(amount);
     }
 
     private void validateMarginPercentage() {
-        Decimal.validatePercentage(marginPercentage);
+        DecimalTools.validatePercentage(marginPercentage);
     }
 
     private void validateCreateUserId() {

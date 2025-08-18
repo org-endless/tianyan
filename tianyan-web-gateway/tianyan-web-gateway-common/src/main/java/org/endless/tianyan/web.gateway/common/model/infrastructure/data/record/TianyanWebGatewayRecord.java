@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.infrastructure.data.record;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.record.DataRecord;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.record.DataRecord;
 import org.endless.tianyan.web.gateway.common.model.domain.entity.TianyanWebGatewayEntity;
 
 /**

@@ -3,9 +3,9 @@ package org.endless.tianyan.item.components.item.group.item.group.domain.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateRemoveException;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.AggregateValidateException;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
 import org.endless.tianyan.item.components.item.group.item.group.domain.value.NameValue;
 import org.springframework.util.StringUtils;
@@ -62,8 +62,8 @@ public class ItemGroupAggregate implements TianyanItemAggregate {
                 .itemGroupId(IdGenerator.of())
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public ItemGroupAggregate remove(String modifyUserId) {

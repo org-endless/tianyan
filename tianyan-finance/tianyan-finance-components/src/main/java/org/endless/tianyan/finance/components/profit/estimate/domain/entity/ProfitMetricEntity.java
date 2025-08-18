@@ -1,21 +1,17 @@
 package org.endless.tianyan.finance.components.profit.estimate.domain.entity;
 
-import org.endless.tianyan.finance.common.model.domain.entity.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceEntity;
+import org.endless.tianyan.finance.components.profit.estimate.domain.type.ProfitMetricTypeEnum;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * ProfitMetricEntity
@@ -74,8 +70,8 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
                 .profitMetricId(IdGenerator.of())
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     protected ProfitMetricEntity remove(String modifyUserId) {
@@ -119,11 +115,11 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
     }
 
     private void validateAmount() {
-        Decimal.validateAmount(amount);
+        DecimalTools.validateAmount(amount);
     }
 
     private void validateMarginPercentage() {
-        Decimal.validatePercentage(marginPercentage);
+        DecimalTools.validatePercentage(marginPercentage);
     }
 
     private void validateCreateUserId() {

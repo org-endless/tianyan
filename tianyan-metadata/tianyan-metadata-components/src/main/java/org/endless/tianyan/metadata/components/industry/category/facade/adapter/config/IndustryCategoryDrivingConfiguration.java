@@ -1,13 +1,13 @@
 package org.endless.tianyan.metadata.components.industry.category.facade.adapter.config;
 
-import org.endless.tianyan.metadata.components.industry.category.application.command.handler.*;
-import org.endless.tianyan.metadata.components.industry.category.application.command.handler.impl.*;
-import org.endless.tianyan.metadata.components.industry.category.application.query.handler.*;
-import org.endless.tianyan.metadata.components.industry.category.application.query.handler.impl.*;
-import org.endless.tianyan.metadata.components.industry.category.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.category.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.industry.category.facade.adapter.*;
-import org.endless.tianyan.metadata.components.industry.category.facade.adapter.spring.*;
+import org.endless.tianyan.metadata.components.industry.category.application.command.handler.IndustryCategoryCommandHandler;
+import org.endless.tianyan.metadata.components.industry.category.application.command.handler.impl.IndustryCategoryCommandHandlerImpl;
+import org.endless.tianyan.metadata.components.industry.category.application.query.anticorruption.IndustryCategoryQueryRepository;
+import org.endless.tianyan.metadata.components.industry.category.application.query.handler.IndustryCategoryQueryHandler;
+import org.endless.tianyan.metadata.components.industry.category.application.query.handler.impl.IndustryCategoryQueryHandlerImpl;
+import org.endless.tianyan.metadata.components.industry.category.domain.anticorruption.IndustryCategoryRepository;
+import org.endless.tianyan.metadata.components.industry.category.facade.adapter.IndustryCategoryDrivingAdapter;
+import org.endless.tianyan.metadata.components.industry.category.facade.adapter.spring.SpringIndustryCategoryDrivingAdapter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

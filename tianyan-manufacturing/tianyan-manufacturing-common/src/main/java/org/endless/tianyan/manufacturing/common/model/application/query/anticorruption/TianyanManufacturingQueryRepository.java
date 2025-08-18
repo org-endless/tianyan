@@ -1,6 +1,6 @@
 package org.endless.tianyan.manufacturing.common.model.application.query.anticorruption;
 
-import org.endless.ddd.simplified.starter.common.model.application.query.anticorruption.QueryRepository;
+import org.endless.ddd.starter.common.ddd.application.query.anticorruption.QueryRepository;
 import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingEntity;
 
 /**

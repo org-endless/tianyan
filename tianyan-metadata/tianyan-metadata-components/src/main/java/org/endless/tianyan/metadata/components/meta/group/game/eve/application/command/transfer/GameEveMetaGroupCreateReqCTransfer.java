@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
 import org.endless.tianyan.metadata.common.model.application.command.transfer.TianyanMetadataCommandTransfer;
 import org.springframework.util.StringUtils;
 
@@ -56,19 +56,19 @@ public class GameEveMetaGroupCreateReqCTransfer implements TianyanMetadataComman
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new CommandTransferValidateException("游戏EVE元分组编码不能为空");
+            throw new CommandReqTransferValidateException("游戏EVE元分组编码不能为空");
         }
     }
 
     private void validateFullNameZh() {
         if (!StringUtils.hasText(fullNameZh)) {
-            throw new CommandTransferValidateException("元分组中文全称不能为空");
+            throw new CommandReqTransferValidateException("元分组中文全称不能为空");
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new CommandTransferValidateException("创建用户ID不能为空");
+            throw new CommandReqTransferValidateException("创建用户ID不能为空");
         }
     }
 }

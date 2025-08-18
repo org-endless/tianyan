@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.application.command.transfer;
 
-import org.endless.ddd.simplified.starter.common.model.application.command.transfer.CommandTransfer;
+import org.endless.ddd.starter.common.ddd.application.command.transfer.CommandTransfer;
 
 /**
  * TianyanSalesCommandTransfer

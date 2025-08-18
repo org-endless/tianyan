@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.group.market.group.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.sales.components.market.group.market.group.application.query.anticorruption.MarketGroupQueryRepository;
 import org.endless.tianyan.sales.components.market.group.market.group.application.query.handler.MarketGroupQueryHandler;
 import org.endless.tianyan.sales.components.market.group.market.group.application.query.transfer.MarketGroupFindByIdReqQTransfer;
@@ -40,7 +40,7 @@ public class MarketGroupQueryHandlerImpl implements MarketGroupQueryHandler {
                 .map(MarketGroupFindByIdReqQTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("市场分组根据ID查询是否存在是否存在参数不能为空"));
         if (!marketGroupQueryRepository.existsById(query.getMarketGroupId())) {
-            throw new QueryHandlerNotFoundException("不存在该分组");
+            throw new QueryNotFoundException("不存在该分组");
         }
     }
 }

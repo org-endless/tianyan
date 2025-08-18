@@ -1,6 +1,6 @@
 package org.endless.tianyan.item.common.model.infrastructure.adapter.rest;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.RestClientAdapter;
 
 /**
  * TianyanItemDrivenRestAdapter

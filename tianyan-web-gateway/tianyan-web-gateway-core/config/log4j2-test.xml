@@ -47,7 +47,7 @@
         <Logger name="io.minio" level="INFO"/>
         <Logger name="org.springdoc" level="INFO"/>
         <Logger name="druid" level="INFO"/>
-        <Logger name="org.endless.ddd.simplified.starter.common.config.log.aspect.LogAspect" level="TRACE" additivity="false">
+        <Logger name="org.endless.ddd.starter.common.config.log.aspect.LogAspect" level="TRACE" additivity="false">
             <AppenderRef ref="Console_aspect"/>
         </Logger>
         <!-- 其他日志配置，Root 配置不再冗余打印 LogAspect 的日志 -->

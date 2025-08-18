@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.rest;
 
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenReqTransferNullException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest.TianyanMetadataItemRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveMarketGroupCreateReqDTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveMarketGroupFindByCodeReqDTransfer;
@@ -55,7 +55,7 @@ public class GameEveDataMarketGroupRestClientTask implements GameEveDataMarketGr
                         .gameEveMarketGroupCode(code)
                         .build().validate(),
                 GameEveMarketGroupFindIdRespDTransfer.class)
-                .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE市场分组分类根据编码查询ID响应数据为空"))
+                .orElseThrow(() -> new DrivenAdapterException("游戏EVE市场分组分类根据编码查询ID响应数据为空"))
                 .validate()
                 .getMarketGroupId());
     }

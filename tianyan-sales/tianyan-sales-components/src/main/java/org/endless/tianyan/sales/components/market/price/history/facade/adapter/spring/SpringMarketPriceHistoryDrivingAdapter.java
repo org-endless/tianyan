@@ -1,9 +1,8 @@
 package org.endless.tianyan.sales.components.market.price.history.facade.adapter.spring;
 
-import org.endless.tianyan.sales.components.market.price.history.facade.adapter.*;
-import org.endless.tianyan.sales.components.market.price.history.application.command.handler.*;
-import org.endless.tianyan.sales.components.market.price.history.application.query.handler.*;
-import org.endless.ddd.simplified.starter.common.exception.model.facade.adapter.*;
+import org.endless.tianyan.sales.components.market.price.history.application.command.handler.MarketPriceHistoryCommandHandler;
+import org.endless.tianyan.sales.components.market.price.history.application.query.handler.MarketPriceHistoryQueryHandler;
+import org.endless.tianyan.sales.components.market.price.history.facade.adapter.MarketPriceHistoryDrivingAdapter;
 
 /**
  * SpringMarketPriceHistoryDrivingAdapter

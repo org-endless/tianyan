@@ -1,6 +1,6 @@
 package org.endless.tianyan.metadata.common.model.application.command.handler;
 
-import org.endless.ddd.simplified.starter.common.model.application.command.handler.CommandHandler;
+import org.endless.ddd.starter.common.ddd.application.command.handler.CommandHandler;
 import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAggregate;
 
 /**

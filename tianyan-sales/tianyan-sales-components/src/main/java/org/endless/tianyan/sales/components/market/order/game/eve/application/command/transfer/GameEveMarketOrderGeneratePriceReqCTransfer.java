@@ -1,19 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer;
 
-import org.endless.tianyan.sales.common.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
+import org.endless.tianyan.sales.common.model.application.command.transfer.TianyanSalesCommandTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveMarketOrderGeneratePriceReqCTransfer
@@ -52,13 +45,13 @@ public class GameEveMarketOrderGeneratePriceReqCTransfer implements TianyanSales
 
     private void validateGameEveItemCode() {
         if (!StringUtils.hasText(gameEveItemCode)) {
-            throw new CommandTransferValidateException("游戏EVE资源项编码不能为空");
+            throw new CommandReqTransferValidateException("游戏EVE资源项编码不能为空");
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new CommandTransferValidateException("用户创建ID不能为空");
+            throw new CommandReqTransferValidateException("用户创建ID不能为空");
         }
     }
 }

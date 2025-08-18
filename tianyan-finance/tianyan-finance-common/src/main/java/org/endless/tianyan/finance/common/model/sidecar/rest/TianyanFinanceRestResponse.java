@@ -2,7 +2,7 @@ package org.endless.tianyan.finance.common.model.sidecar.rest;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.AbstractRestResponse;
+import org.endless.ddd.starter.common.config.rest.response.AbstractRestResponse;
 
 /**
  * TianyanFinanceRestResponse

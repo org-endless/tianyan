@@ -3,7 +3,7 @@ package org.endless.tianyan.item.components.item.category.item.category.domain.v
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.ValueValidateException;
+import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
 import org.endless.tianyan.item.common.model.domain.value.TianyanItemValue;
 import org.springframework.util.StringUtils;
 

@@ -1,6 +1,7 @@
 package org.endless.tianyan.finance.common.model.sidecar.rest;
 
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestController;
+
+import org.endless.ddd.starter.common.ddd.facade.rest.RestController;
 
 /**
  * TianyanFinanceRestController

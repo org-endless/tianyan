@@ -1,8 +1,8 @@
 package org.endless.tianyan.sales.components.market.price.history.application.query.anticorruption;
 
-import org.endless.tianyan.sales.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.*;
-import org.endless.tianyan.sales.components.market.price.history.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.anticorruption.TianyanSalesQueryRepository;
+import org.endless.tianyan.sales.components.market.price.history.domain.anticorruption.MarketPriceHistoryRepository;
+import org.endless.tianyan.sales.components.market.price.history.domain.entity.MarketPriceHistoryAggregate;
 
 /**
  * MarketPriceHistoryQueryRepository

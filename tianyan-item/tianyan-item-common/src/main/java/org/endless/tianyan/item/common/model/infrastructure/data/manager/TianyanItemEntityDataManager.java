@@ -1,6 +1,6 @@
 package org.endless.tianyan.item.common.model.infrastructure.data.manager;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.manager.EntityDataManager;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.manager.EntityDataManager;
 import org.endless.tianyan.item.common.model.application.query.anticorruption.TianyanItemQueryRepository;
 import org.endless.tianyan.item.common.model.domain.entity.TianyanItemEntity;
 import org.endless.tianyan.item.common.model.infrastructure.data.record.TianyanItemRecord;

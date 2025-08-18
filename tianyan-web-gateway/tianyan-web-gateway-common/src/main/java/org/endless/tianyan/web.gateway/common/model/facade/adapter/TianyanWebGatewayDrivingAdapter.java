@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.facade.adapter;
 
-import org.endless.ddd.simplified.starter.common.model.facade.adapter.DrivingAdapter;
+import org.endless.ddd.starter.common.ddd.facade.adapter.DrivingAdapter;
 
 /**
  * TianyanWebGatewayDrivingAdapter

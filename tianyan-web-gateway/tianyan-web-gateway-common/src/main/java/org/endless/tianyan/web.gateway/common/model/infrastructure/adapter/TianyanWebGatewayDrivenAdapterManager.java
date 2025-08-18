@@ -1,6 +1,5 @@
 package org.endless.tianyan.web.gateway.common.model.infrastructure.adapter;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.manager.DrivenAdapterManager;
 import org.endless.tianyan.web.gateway.common.model.domain.anticorruption.TianyanWebGatewayDrivenAdapter;
 
 /**
@@ -12,9 +11,8 @@ import org.endless.tianyan.web.gateway.common.model.domain.anticorruption.Tianya
  *
  * @author Deng Haozhi
  * @see TianyanWebGatewayDrivenAdapter
- * @see DrivenAdapterManager
  * @since 0.0.1
  */
-public interface TianyanWebGatewayDrivenAdapterManager extends TianyanWebGatewayDrivenAdapter, DrivenAdapterManager {
+public interface TianyanWebGatewayDrivenAdapterManager extends TianyanWebGatewayDrivenAdapter {
 
 }

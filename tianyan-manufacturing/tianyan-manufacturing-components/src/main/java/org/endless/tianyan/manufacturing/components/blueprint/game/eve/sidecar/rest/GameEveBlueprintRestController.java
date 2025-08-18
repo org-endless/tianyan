@@ -1,10 +1,8 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.manufacturing.common.model.sidecar.rest.TianyanManufacturingRestController;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.transfer.GameEveBlueprintCreateReqCTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.facade.adapter.GameEveBlueprintDrivingAdapter;
@@ -49,11 +47,7 @@ public class GameEveBlueprintRestController implements TianyanManufacturingRestC
         Optional.ofNullable(command)
                 .map(GameEveBlueprintCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE蓝图创建参数不能为空"));
-        try {
-            gameEveBlueprintDrivingAdapter.create(command);
-            return response().success("游戏EVE蓝图创建创建成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE蓝图创建创建失败", e);
-        }
+        gameEveBlueprintDrivingAdapter.create(command);
+        return response().success("游戏EVE蓝图创建创建成功");
     }
 }

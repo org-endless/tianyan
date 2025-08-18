@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferValidateException;
 import org.endless.tianyan.metadata.common.model.application.query.transfer.TianyanMetadataQueryTransfer;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +39,7 @@ public class GameEveMetaGroupFindByCodeReqQTransfer implements TianyanMetadataQu
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new QueryTransferValidateException("游戏EVE元分组编码不能为空");
+            throw new QueryReqTransferValidateException("游戏EVE元分组编码不能为空");
         }
     }
 }

@@ -49,7 +49,7 @@ public class GameEveSalesUpdateTaskImpl implements GameEveSalesUpdateTask {
     //
     //         items.forEach(item -> {
     //             var query = Query.query(Criteria.where("itemId").is(item.getItemId()));
-    //             var update = Update.update("sales.dailyMarketSalesByYear", Decimal.format128(getDailyMarketSalesByYear(item.getItemId())));
+    //             var update = Update.update("sales.dailyMarketSalesByYear", DecimalTools.format128(getDailyMarketSalesByYear(item.getItemId())));
     //             upsertList.add(Pair.of(query, update));
     //         });
     //         log.debug("Thread: "+ Thread.currentThread().getName() +" updateSales page: " + i + " upsert!");
@@ -68,6 +68,6 @@ public class GameEveSalesUpdateTaskImpl implements GameEveSalesUpdateTask {
     //  * @return java.math.BigDecimal
     //  **/
     // protected BigDecimal getDailyMarketSalesByYear(String itemId) {
-    //     return Decimal.format(Decimal.divide(marketHistoryService.getSalesByItemId(itemId), new BigDecimal(365)));
+    //     return DecimalTools.format(DecimalTools.divide(marketHistoryService.getSalesByItemId(itemId), new BigDecimal(365)));
     // }
 }

@@ -1,14 +1,12 @@
 package org.endless.tianyan.item.components.item.group.game.eve.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
-import org.endless.tianyan.item.common.model.sidecar.rest.TianyanItemRestController;
-import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
+import org.endless.tianyan.item.common.model.facade.rest.TianyanItemRestController;
+import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQReqTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.GameEveItemGroupDrivingAdapter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -47,28 +45,20 @@ public class GameEveItemGroupRestController implements TianyanItemRestController
 
     @PostMapping("/command/create")
     @Log(message = "游戏EVE资源项分组创建", value = "#command")
-    public ResponseEntity<RestResponse> create(@RequestBody GameEveItemGroupCreateReqCTransfer command) {
+    public ResponseEntity<RestResponse> create(@RequestBody GameEveItemGroupCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(GameEveItemGroupCreateReqCTransfer::validate)
+                .map(GameEveItemGroupCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分组创建参数不能为空"));
-        try {
             gameEveItemGroupDrivingAdapter.create(command);
             return response().success("游戏EVE资源项分组创建成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE资源项分组创建失败", e);
-        }
     }
 
     @PostMapping("/query/find_item_group_id_by_code")
     @Log(message = "根据编码查询资源项分组ID", value = "#query")
-    public ResponseEntity<RestResponse> findItemGroupIdByCode(@RequestBody GameEveItemGroupFindByCodeReqQTransfer query) {
+    public ResponseEntity<RestResponse> findItemGroupIdByCode(@RequestBody GameEveItemGroupFindByCodeReqQReqTransfer query) {
         Optional.ofNullable(query)
-                .map(GameEveItemGroupFindByCodeReqQTransfer::validate)
+                .map(GameEveItemGroupFindByCodeReqQReqTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("根据编码查询资源项分组ID参数不能为空"));
-        try {
             return response().success("根据编码查询资源项分组ID成功", gameEveItemGroupDrivingAdapter.findItemGroupIdByCode(query));
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("根据编码查询资源项分组ID失败", e);
-        }
     }
 }

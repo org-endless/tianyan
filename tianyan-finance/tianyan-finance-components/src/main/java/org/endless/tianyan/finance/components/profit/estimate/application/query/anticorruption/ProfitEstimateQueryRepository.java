@@ -1,8 +1,8 @@
 package org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption;
 
-import org.endless.tianyan.finance.common.model.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.entity.*;
+import org.endless.tianyan.finance.common.model.application.query.anticorruption.TianyanFinanceQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.ProfitEstimateRepository;
+import org.endless.tianyan.finance.components.profit.estimate.domain.entity.ProfitEstimateAggregate;
 
 /**
  * ProfitEstimateQueryRepository

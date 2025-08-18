@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.esi.universe;
 
 import org.endless.tianyan.game.eve.common.model.infrastructure.adapter.rest.TianyanGameEveESIRestClient;
-import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDTransfer;
+import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.transfer.ESIUniverseItemFindProfileRespDReqTransfer;
 
 /**
  * GameEveItemESIUniverseRestClient
@@ -15,5 +15,5 @@ import org.endless.tianyan.item.components.item.game.eve.infrastructure.adapter.
  */
 public interface GameEveItemESIUniverseRestClient extends TianyanGameEveESIRestClient {
 
-    ESIUniverseItemFindProfileRespDTransfer fetchItem(String gameEveItemCode);
+    ESIUniverseItemFindProfileRespDReqTransfer fetchItem(String gameEveItemCode);
 }

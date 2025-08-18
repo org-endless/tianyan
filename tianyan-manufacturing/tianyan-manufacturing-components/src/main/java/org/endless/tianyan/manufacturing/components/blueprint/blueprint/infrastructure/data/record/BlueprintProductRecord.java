@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.record.DataRecordValidateException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.TianyanManufacturingRecord;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintProductEntity;
 import org.springframework.util.StringUtils;
@@ -156,7 +156,7 @@ public class BlueprintProductRecord implements TianyanManufacturingRecord<Bluepr
     }
 
     private void validateSuccessRate() {
-        Decimal.validateRate(successRate);
+        DecimalTools.validateRate(successRate);
     }
 
     private void validateCreateUserId() {

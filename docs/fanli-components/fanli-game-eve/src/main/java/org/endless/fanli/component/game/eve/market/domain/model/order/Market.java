@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.endless.fanli.component.game.eve.common.domain.model.GameEveAggregateRoot;
-import org.endless.spring.boot.common.utility.decimal.Decimal;
+import org.endless.spring.boot.common.utility.decimal.DecimalTools;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,8 +26,11 @@ import java.util.List;
 public class Market implements GameEveMarketAggregate, GameEveAggregateRoot {
 
     private final String itemId;
+
     private CurrentPrice currentPrice;
+
     private BigDecimal marketAnnualSalesQuantity;
+
     private List<Order> orders;
 
     private List<Order> marketOrders;
@@ -37,6 +40,6 @@ public class Market implements GameEveMarketAggregate, GameEveAggregateRoot {
 
         return histories.stream()
                 .map(GameEveMarketOrderHistory::getItemQuantity)
-                .reduce(BigDecimal.ZERO, Decimal::add);
+                .reduce(BigDecimal.ZERO, DecimalTools::add);
     }
 }

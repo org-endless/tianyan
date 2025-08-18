@@ -1,9 +1,9 @@
 package org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.anticorruption.GameEveMetaGroupQueryRepository;
 import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.handler.GameEveMetaGroupQueryHandler;
 import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.transfer.GameEveMetaGroupFindByCodeReqQTransfer;
@@ -42,7 +42,7 @@ public class GameEveMetaGroupQueryHandlerImpl implements GameEveMetaGroupQueryHa
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE元分组根据编码查询元分组ID参数不能为空"));
         return GameEveMetaGroupFindMetaGroupIdRespQTransfer.builder()
                 .metaGroupId(gameEveMetaGroupQueryRepository.findMetaGroupIdByCode(query.getCode())
-                        .orElseThrow(() -> new QueryHandlerNotFoundException("元分组ID未找到")))
+                        .orElseThrow(() -> new QueryNotFoundException("元分组ID未找到")))
                 .build().validate();
     }
 }

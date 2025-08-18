@@ -5,7 +5,7 @@ import org.endless.erp.game.eve.item.GameEveItem;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
 import org.endless.fanli.common.type.ddd.industry.Industry;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
-import org.endless.spring.boot.com.utiliy.decimal.Decimal;
+import org.endless.spring.boot.com.utiliy.decimal.DecimalTools;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
 import org.endless.spring.boot.data.mongo.bulk.MongoBulkOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -65,9 +65,9 @@ public class GameEveMarketSaleHistorySaveTask implements GameEveAsyncTask {
                 var rat = (Map<?, ?>) ObjectToMongoObject.convert(history);
                 var date = rat.get("date");
                 var id = Industry.GAME_EVE + "_" + date + "_" + itemId;
-                var minPrice = Decimal.format(rat.get("lowest"));
-                var maxPrice = Decimal.format(rat.get("highest"));
-                var averagePrice = Decimal.average(List.of(minPrice, maxPrice));
+                var minPrice = DecimalTools.format(rat.get("lowest"));
+                var maxPrice = DecimalTools.format(rat.get("highest"));
+                var averagePrice = DecimalTools.average(List.of(minPrice, maxPrice));
 
                 var query = Query.query(Criteria.where("id").is(id));
                 var update = Update.update("itemId", itemId)
@@ -76,8 +76,8 @@ public class GameEveMarketSaleHistorySaveTask implements GameEveAsyncTask {
                         .set("price.minPrice", minPrice)
                         .set("price.maxPrice", maxPrice)
                         .set("price.averagePrice", averagePrice)
-                        .set("totalQuantity", Decimal.format(rat.get("volume")))
-                        .set("orderQuantity", Decimal.format(rat.get("order_count")))
+                        .set("totalQuantity", DecimalTools.format(rat.get("volume")))
+                        .set("orderQuantity", DecimalTools.format(rat.get("order_count")))
                         .set("updateDateTime", DateFormatter.nowIso())
                         .set("updateTimeStamp", System.currentTimeMillis());
                 pairs.add(Pair.of(query, update));

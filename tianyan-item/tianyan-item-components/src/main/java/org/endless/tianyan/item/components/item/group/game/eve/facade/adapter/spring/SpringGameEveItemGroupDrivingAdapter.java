@@ -1,10 +1,10 @@
 package org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.spring;
 
 import org.endless.tianyan.item.components.item.group.game.eve.application.command.handler.GameEveItemGroupCommandHandler;
-import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.application.query.handler.GameEveItemGroupQueryHandler;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQReqTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQReqTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.facade.adapter.GameEveItemGroupDrivingAdapter;
 
 /**
@@ -37,12 +37,12 @@ public class SpringGameEveItemGroupDrivingAdapter implements GameEveItemGroupDri
     }
 
     @Override
-    public void create(GameEveItemGroupCreateReqCTransfer command) {
+    public void create(GameEveItemGroupCreateReqCReqTransfer command) {
         gameEveItemGroupCommandHandler.create(command);
     }
 
     @Override
-    public GameEveItemGroupFindIdRespQTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQTransfer query) {
+    public GameEveItemGroupFindIdRespQReqTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQReqTransfer query) {
         return gameEveItemGroupQueryHandler.findItemGroupIdByCode(query);
     }
 }

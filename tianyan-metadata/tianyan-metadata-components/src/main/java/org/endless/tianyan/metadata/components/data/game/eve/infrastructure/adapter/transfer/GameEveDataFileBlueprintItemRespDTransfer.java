@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
 import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
 
@@ -45,13 +45,13 @@ public class GameEveDataFileBlueprintItemRespDTransfer implements TianyanMetadat
 
     private void validateQuantity() {
         if (quantity == null || quantity < 0) {
-            throw new DrivenTransferValidateException("资源项数量不能为 null 或小于 0，当前值为: " + quantity);
+            throw new DrivenRespTransferValidateException("资源项数量不能为 null 或小于 0，当前值为: " + quantity);
         }
     }
 
     private void validateTypeID() {
         if (!StringUtils.hasText(typeID)) {
-            throw new DrivenTransferValidateException("资源项编码不能为空");
+            throw new DrivenRespTransferValidateException("资源项编码不能为空");
         }
     }
 }

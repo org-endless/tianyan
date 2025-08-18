@@ -1,14 +1,16 @@
 package org.endless.tianyan.item.components.item.item.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.item.components.item.item.application.command.handler.ItemCommandHandler;
-import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCReqTransfer;
+import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCRespTransfer;
 import org.endless.tianyan.item.components.item.item.domain.anticorruption.ItemRepository;
 import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate;
 import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -25,6 +27,8 @@ import java.util.Optional;
  * @see ItemCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
 public class ItemCommandHandlerImpl implements ItemCommandHandler {
 
     /**
@@ -39,22 +43,22 @@ public class ItemCommandHandlerImpl implements ItemCommandHandler {
     @Override
     @Transactional
     @Log(message = "资源项创建命令", value = "#command", level = LogLevel.TRACE)
-    public ItemCreateRespCTransfer create(ItemCreateReqCTransfer command) {
+    public ItemCreateCRespTransfer create(ItemCreateCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(ItemCreateReqCTransfer::validate)
+                .map(ItemCreateCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("资源项创建参数不能为空"));
         ItemAggregate aggregate = ItemAggregate.create(ItemAggregate.builder()
-                .metaGroupId(command.getMetaGroupId())
-                .itemGroupId(command.getItemGroupId())
-                .marketGroupId(command.getMarketGroupId())
+                .metaGroupId(command.metaGroupId())
+                .itemGroupId(command.itemGroupId())
+                .marketGroupId(command.marketGroupId())
                 .nameZh(NameValue.create(NameValue.builder()
-                        .fullName(command.getFullNameZh())))
-                .nameEn(command.getFullNameEn() == null ? null : NameValue.create(NameValue.builder()
-                        .fullName(command.getFullNameEn())))
-                .description(command.getDescription())
-                .createUserId(command.getCreateUserId()));
+                        .fullName(command.fullNameZh())))
+                .nameEn(command.fullNameEn() == null ? null : NameValue.create(NameValue.builder()
+                        .fullName(command.fullNameEn())))
+                .description(command.description())
+                .createUserId(command.createUserId()));
         itemRepository.save(aggregate);
-        return ItemCreateRespCTransfer.builder()
+        return ItemCreateCRespTransfer.builder()
                 .itemId(aggregate.getItemId())
                 .build().validate();
     }

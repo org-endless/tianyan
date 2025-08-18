@@ -1,10 +1,8 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.sales.common.model.sidecar.rest.TianyanSalesRestController;
 import org.endless.tianyan.sales.components.market.order.game.eve.application.command.transfer.GameEveMarketOrderFetchReqCTransfer;
 import org.endless.tianyan.sales.components.market.order.game.eve.facade.adapter.GameEveMarketOrderDrivingAdapter;
@@ -49,11 +47,7 @@ public class GameEveMarketOrderRestController implements TianyanSalesRestControl
         Optional.ofNullable(command)
                 .map(GameEveMarketOrderFetchReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场订单获取参数不能为空"));
-        try {
-            gameEveMarketOrderDrivingAdapter.fetch(command);
-            return response().success("游戏EVE市场订单获取成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE市场订单获取失败", e);
-        }
+        gameEveMarketOrderDrivingAdapter.fetch(command);
+        return response().success("游戏EVE市场订单获取成功");
     }
 }

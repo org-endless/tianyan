@@ -3,7 +3,7 @@ package org.endless.tianyan.metadata.components.data.game.eve.domain.type;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.type.EnumException;
+import org.endless.ddd.starter.common.exception.ddd.domain.type.EnumException;
 import org.endless.tianyan.metadata.common.model.domain.type.TianyanMetadataEnum;
 
 /**

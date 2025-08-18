@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
 import org.endless.fanli.common.type.ddd.item.Item;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
-import org.endless.spring.boot.com.utiliy.decimal.Decimal;
+import org.endless.spring.boot.com.utiliy.decimal.DecimalTools;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
 import org.endless.spring.boot.data.mongo.bulk.MongoBulkOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -68,9 +68,9 @@ public class GameEveItemLoadTask implements GameEveAsyncTask {
                     .set("industryId", GAME_EVE)
                     .set("name.enName.fullName", ((Map<?, ?>) rat.get("name")).get("en"))
                     .set("name.zhName.fullName", ((Map<?, ?>) rat.get("name")).get("zh"))
-                    .set("price.basePrice", Decimal.format(rat.get("basePrice")))
-                    .set("mass", Decimal.format(rat.get("mass")))
-                    .set("volume", Decimal.format(rat.get("volume")))
+                    .set("price.basePrice", DecimalTools.format(rat.get("basePrice")))
+                    .set("mass", DecimalTools.format(rat.get("mass")))
+                    .set("volume", DecimalTools.format(rat.get("volume")))
                     .set("published", rat.get("published"))
                     .set("eveGroupId", rat.get("groupID"))
                     .set("eveMarketGroupId", rat.get("marketGroupID"))

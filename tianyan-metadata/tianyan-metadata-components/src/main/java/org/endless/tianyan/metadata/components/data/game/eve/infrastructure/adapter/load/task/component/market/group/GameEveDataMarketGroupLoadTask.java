@@ -2,7 +2,7 @@ package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.ada
 
 import com.alibaba.fastjson2.util.TypeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.rest.GameEveDataMarketGroupRestClient;
@@ -42,7 +42,7 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
         Optional.ofNullable(dataMap)
                 .filter(m -> !CollectionUtils.isEmpty(m))
-                .orElseThrow(() -> new DrivenAdapterManagerException("市场分类数据列表为空，无法执行数据加载任务"));
+                .orElseThrow(() -> new DrivenAdapterException("市场分类数据列表为空，无法执行数据加载任务"));
         return CompletableFuture.runAsync(() -> {
             Map<String, GameEveMarketGroupCreateReqDTransfer> sourceMap = new HashMap<>();
             dataMap.forEach((key, value) -> {
@@ -110,7 +110,7 @@ public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
                 }
             }
             if (processed < sourceMap.size()) {
-                throw new DrivenAdapterManagerException("存在循环依赖，无法完成市场分类创建");
+                throw new DrivenAdapterException("存在循环依赖，无法完成市场分类创建");
             }
         });
     }

@@ -1,6 +1,6 @@
 package org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest;
 
-import org.endless.ddd.simplified.starter.common.model.common.Transfer;
+import org.endless.ddd.starter.common.ddd.common.Transfer;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 

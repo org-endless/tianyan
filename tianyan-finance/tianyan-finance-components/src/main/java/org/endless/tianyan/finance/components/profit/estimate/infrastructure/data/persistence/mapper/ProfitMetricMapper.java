@@ -1,9 +1,8 @@
 package org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.finance.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.finance.common.model.infrastructure.data.persistence.mapper.TianyanFinanceMapper;
+import org.endless.tianyan.finance.components.profit.estimate.infrastructure.data.record.ProfitMetricRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**
@@ -21,4 +20,5 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface ProfitMetricMapper extends TianyanFinanceMapper<ProfitMetricRecord> {
+
 }

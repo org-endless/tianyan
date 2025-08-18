@@ -92,8 +92,8 @@ public class GameEveMarketOrderService implements OrderService {
     //         }
     //         curPriceList.add(gameEveMarketOrder.getPrice());
     //     });
-    //     priceMap.put("curPrice", Decimal.min(curPriceList));
-    //     priceMap.put("buyPrice", Decimal.max(buyPriceList));
+    //     priceMap.put("curPrice", DecimalTools.min(curPriceList));
+    //     priceMap.put("buyPrice", DecimalTools.max(buyPriceList));
     //     return priceMap;
     // }
 

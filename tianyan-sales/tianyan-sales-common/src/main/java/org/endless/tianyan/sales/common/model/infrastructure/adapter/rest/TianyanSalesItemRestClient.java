@@ -1,7 +1,7 @@
 package org.endless.tianyan.sales.common.model.infrastructure.adapter.rest;
 
-import org.endless.ddd.simplified.starter.common.model.common.Transfer;
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.rest.RestClientAdapter;
+import org.endless.ddd.starter.common.ddd.common.Transfer;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.RestClientAdapter;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 

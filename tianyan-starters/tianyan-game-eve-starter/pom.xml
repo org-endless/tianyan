@@ -18,7 +18,7 @@
         <!-- Starters -->
         <dependency>
             <groupId>org.endless</groupId>
-            <artifactId>endless-ddd-simplified-starter</artifactId>
+            <artifactId>endless-ddd-starter</artifactId>
             <optional>true</optional>
         </dependency>
         <!-- Framework -->

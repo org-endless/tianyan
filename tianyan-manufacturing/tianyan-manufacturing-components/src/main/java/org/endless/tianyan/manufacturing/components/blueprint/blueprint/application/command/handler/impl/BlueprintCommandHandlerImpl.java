@@ -1,9 +1,9 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler.BlueprintCommandHandler;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCTransfer;
@@ -61,7 +61,7 @@ public class BlueprintCommandHandlerImpl implements BlueprintCommandHandler {
                         .map(material -> BlueprintProductEntity.create(BlueprintProductEntity.builder()
                                 .itemId(material.getItemId())
                                 .quantity(material.getQuantity())
-                                .successRate(material.getSuccessRate() == null ? new BigDecimal("1.00000") : Decimal.format5Bit(material.getSuccessRate()))
+                                .successRate(material.getSuccessRate() == null ? new BigDecimal("1.00000") : DecimalTools.format5Bit(material.getSuccessRate()))
                                 .createUserId(command.getCreateUserId())))
                         .toList())
                 .skills(command.getSkills() == null ? null : command.getSkills().stream()

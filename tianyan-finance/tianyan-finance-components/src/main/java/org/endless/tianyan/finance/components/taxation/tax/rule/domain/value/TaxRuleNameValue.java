@@ -1,16 +1,11 @@
 package org.endless.tianyan.finance.components.taxation.tax.rule.domain.value;
 
-import org.endless.tianyan.finance.common.model.domain.value.*;
-import org.endless.tianyan.finance.components.taxation.tax.rule.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
+import org.endless.tianyan.finance.common.model.domain.value.TianyanFinanceValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 /**
  * TaxRuleNameValue
@@ -41,8 +36,8 @@ public class TaxRuleNameValue implements TianyanFinanceValue {
 
     public static TaxRuleNameValue create(TaxRuleNameValueBuilder builder) {
         return builder
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

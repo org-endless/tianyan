@@ -1,20 +1,14 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveBlueprintCreateReqDTransfer
@@ -91,31 +85,31 @@ public class GameEveBlueprintCreateReqDTransfer implements TianyanMetadataDriven
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new DrivenTransferValidateException("蓝图资源项ID不能为空");
+            throw new DrivenReqTransferValidateException("蓝图资源项ID不能为空");
         }
     }
 
     private void validateCode() {
         if (!StringUtils.hasText(code)) {
-            throw new DrivenTransferValidateException("游戏EVE蓝图编码不能为空");
+            throw new DrivenReqTransferValidateException("游戏EVE蓝图编码不能为空");
         }
     }
 
     private void validateType() {
         if (!StringUtils.hasText(type)) {
-            throw new DrivenTransferValidateException("蓝图类型不能为空");
+            throw new DrivenReqTransferValidateException("蓝图类型不能为空");
         }
     }
 
     private void validateCycle() {
         if (cycle == null || cycle < 0) {
-            throw new DrivenTransferValidateException("蓝图周期不能为 null 或小于 0，当前值为: " + cycle);
+            throw new DrivenReqTransferValidateException("蓝图周期不能为 null 或小于 0，当前值为: " + cycle);
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DrivenTransferValidateException("创建用户ID不能为空");
+            throw new DrivenReqTransferValidateException("创建用户ID不能为空");
         }
     }
 }

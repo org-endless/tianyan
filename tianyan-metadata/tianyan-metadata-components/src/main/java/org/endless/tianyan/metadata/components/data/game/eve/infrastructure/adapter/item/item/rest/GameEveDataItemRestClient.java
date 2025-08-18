@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.item.rest;
 
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.DrivenReqTransferNullException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.infrastructure.adapter.rest.TianyanMetadataItemRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCreateReqDTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemFindByCodeReqDTransfer;
@@ -49,9 +49,9 @@ public class GameEveDataItemRestClient implements TianyanMetadataItemRestClient 
                         GameEveItemFindByCodeReqDTransfer.builder()
                                 .gameEveItemCode(code).build().validate(),
                         GameEveItemFindIdRespDTransfer.class)
-                        .orElseThrow(() -> new DrivenAdapterManagerException("游戏EVE资源项根据编码查询ID响应数据为空"))
+                        .orElseThrow(() -> new DrivenAdapterException("游戏EVE资源项根据编码查询ID响应数据为空"))
                         .validate()
                         .getItemId())
-                .orElseThrow(() -> new DrivenAdapterManagerException("资源项不存在"));
+                .orElseThrow(() -> new DrivenAdapterException("资源项不存在"));
     }
 }

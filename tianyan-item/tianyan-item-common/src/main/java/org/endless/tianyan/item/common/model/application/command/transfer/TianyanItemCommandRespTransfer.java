@@ -1,0 +1,18 @@
+package org.endless.tianyan.item.common.model.application.command.transfer;
+
+import org.endless.ddd.starter.common.ddd.application.command.transfer.CommandRespTransfer;
+
+/**
+ * TianyanItemCommandRespTransfer
+ * <p>
+ * create 2025/08/18 00:46
+ * <p>
+ * update 2025/08/18 00:46
+ *
+ * @author Deng Haozhi
+ * @see CommandRespTransfer
+ * @since 1.0.0
+ */
+public interface TianyanItemCommandRespTransfer extends CommandRespTransfer {
+
+}

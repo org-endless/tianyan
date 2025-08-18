@@ -1,9 +1,9 @@
 package org.endless.tianyan.metadata.components.industry.category.application.query.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.QueryHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.query.handler.QueryNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.metadata.components.industry.category.application.query.anticorruption.IndustryCategoryQueryRepository;
 import org.endless.tianyan.metadata.components.industry.category.application.query.handler.IndustryCategoryQueryHandler;
 import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQTransfer;
@@ -40,7 +40,7 @@ public class IndustryCategoryQueryHandlerImpl implements IndustryCategoryQueryHa
                 .map(IndustryCategoryFindByIdReqQTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("行业分类根据ID查询是否存在参数不能为空"));
         if (!industryCategoryQueryRepository.existsById(query.getIndustryCategoryId())) {
-            throw new QueryHandlerNotFoundException("行业分类不存在");
+            throw new QueryNotFoundException("行业分类不存在");
         }
     }
 }

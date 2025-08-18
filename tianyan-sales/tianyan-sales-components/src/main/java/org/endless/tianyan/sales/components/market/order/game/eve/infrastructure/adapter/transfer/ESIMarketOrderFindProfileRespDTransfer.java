@@ -1,19 +1,12 @@
 package org.endless.tianyan.sales.components.market.order.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.sales.common.model.infrastructure.adapter.transfer.TianyanSalesDrivenTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ESIMarketOrderFindProfileRespDTransfer
@@ -106,67 +99,67 @@ public class ESIMarketOrderFindProfileRespDTransfer implements TianyanSalesDrive
 
     private void validateOrder_id() {
         if (!StringUtils.hasText(order_id)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单编号不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单编号不能为空");
         }
     }
 
     private void validateIs_buy_order() {
         if (is_buy_order == null) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单是否为买入订单不能为 null ");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单是否为买入订单不能为 null ");
         }
     }
 
     private void validateVolume_total() {
         if (volume_total == null || volume_total < 0) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单总数不能为 null 或小于 0，当前值为: " + volume_total);
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单总数不能为 null 或小于 0，当前值为: " + volume_total);
         }
     }
 
     private void validateVolume_remain() {
         if (volume_remain == null || volume_remain < 0) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单剩余数量不能为 null 或小于 0，当前值为: " + volume_remain);
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单剩余数量不能为 null 或小于 0，当前值为: " + volume_remain);
         }
     }
 
     private void validateMin_volume() {
         if (min_volume == null || min_volume < 0) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单最小交易数量不能为 null 或小于 0，当前值为: " + min_volume);
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单最小交易数量不能为 null 或小于 0，当前值为: " + min_volume);
         }
     }
 
     private void validatePrice() {
         if (price == null || price < 0) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单价格不能为 null 或小于 0，当前值为: " + price);
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单价格不能为 null 或小于 0，当前值为: " + price);
         }
     }
 
     private void validateIssued() {
         if (!StringUtils.hasText(issued)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单创建时间(ISO)不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单创建时间(ISO)不能为空");
         }
     }
 
     private void validateDuration() {
         if (!StringUtils.hasText(duration)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单持续时间不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单持续时间不能为空");
         }
     }
 
     private void validateRange() {
         if (!StringUtils.hasText(range)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单范围不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单范围不能为空");
         }
     }
 
     private void validateSystem_id() {
         if (!StringUtils.hasText(system_id)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单星系编码不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单星系编码不能为空");
         }
     }
 
     private void validateLocation_id() {
         if (!StringUtils.hasText(location_id)) {
-            throw new DrivenTransferValidateException("游戏EVE市场订单空间站编码不能为空");
+            throw new DrivenRespTransferValidateException("游戏EVE市场订单空间站编码不能为空");
         }
     }
 }

@@ -1,11 +1,9 @@
 package org.endless.tianyan.sales.components.market.group.game.eve.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.sales.common.model.sidecar.rest.TianyanSalesRestController;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.command.transfer.GameEveMarketGroupCreateReqCTransfer;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.query.transfer.GameEveMarketGroupFindByCodeReqQTransfer;
@@ -51,12 +49,8 @@ public class GameEveMarketGroupRestController implements TianyanSalesRestControl
         Optional.ofNullable(command)
                 .map(GameEveMarketGroupCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场分组创建参数不能为空"));
-        try {
-            gameEveMarketGroupDrivingAdapter.create(command);
-            return response().success("游戏EVE市场分组创建成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE市场分组创建失败", e);
-        }
+        gameEveMarketGroupDrivingAdapter.create(command);
+        return response().success("游戏EVE市场分组创建成功");
     }
 
     @PostMapping("/query/find_market_group_id_by_code")
@@ -65,10 +59,6 @@ public class GameEveMarketGroupRestController implements TianyanSalesRestControl
         Optional.ofNullable(query)
                 .map(GameEveMarketGroupFindByCodeReqQTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("游戏EVE市场根据编码查询市场分组ID参数不能为空"));
-        try {
-            return response().success("游戏EVE市场根据编码查询市场分组ID成功", gameEveMarketGroupDrivingAdapter.findMarketGroupIdByCode(query));
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("游戏EVE市场根据编码查询市场分组ID失败", e);
-        }
+        return response().success("游戏EVE市场根据编码查询市场分组ID成功", gameEveMarketGroupDrivingAdapter.findMarketGroupIdByCode(query));
     }
 }

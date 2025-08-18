@@ -1,6 +1,6 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load;
 
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.manager.DrivenAdapterManagerException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption.GameEveDataLoadDrivenAdapter;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEveDataTypeEnum;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
@@ -73,7 +73,7 @@ public class GameEveDataLoadDrivenAdapterManager implements GameEveDataLoadDrive
             }
 
         } catch (IOException e) {
-            throw new DrivenAdapterManagerException("加载数据失败", e);
+            throw new DrivenAdapterException("加载数据失败", e);
         }
     }
 }

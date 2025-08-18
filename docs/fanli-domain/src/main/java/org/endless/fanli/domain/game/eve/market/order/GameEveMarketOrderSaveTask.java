@@ -5,7 +5,7 @@ import org.endless.erp.game.eve.share.thread.GameEveAsyncTask;
 import org.endless.fanli.common.type.ddd.industry.Industry;
 import org.endless.fanli.common.type.ddd.order.Order;
 import org.endless.spring.boot.com.utiliy.date.DateFormatter;
-import org.endless.spring.boot.com.utiliy.decimal.Decimal;
+import org.endless.spring.boot.com.utiliy.decimal.DecimalTools;
 import org.endless.spring.boot.com.utiliy.object.ObjectToMongoObject;
 import org.endless.spring.boot.data.mongo.bulk.MongoBulkOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -68,10 +68,10 @@ public class GameEveMarketOrderSaveTask implements GameEveAsyncTask {
                     .set("industryId", Industry.GAME_EVE)
                     .set("itemId", rat.get("type_id"))
                     .set("categories", ((Boolean) rat.get("is_buy_order")) ? Order.Categories.purchase : Order.Categories.sale)
-                    .set("minPurchaseQuantity", Decimal.format(rat.get("min_volume")))
-                    .set("remainQuantity", Decimal.format(rat.get("volume_remain")))
-                    .set("totalQuantity", Decimal.format(rat.get("volume_total")))
-                    .set("orderPrice", Decimal.format(rat.get("price")))
+                    .set("minPurchaseQuantity", DecimalTools.format(rat.get("min_volume")))
+                    .set("remainQuantity", DecimalTools.format(rat.get("volume_remain")))
+                    .set("totalQuantity", DecimalTools.format(rat.get("volume_total")))
+                    .set("orderPrice", DecimalTools.format(rat.get("price")))
                     .set("existed", true)
                     .set("updateDateTime", DateFormatter.nowIso())
                     .set("updateTimeStamp", System.currentTimeMillis());

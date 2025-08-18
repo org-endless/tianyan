@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.components.item.group.game.eve.application.command.handler;
 
 import org.endless.tianyan.item.common.model.application.command.handler.TianyanItemCommandHandler;
-import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.GameEveItemGroupAggregate;
 
 /**
@@ -18,6 +18,6 @@ import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.Gam
  */
 public interface GameEveItemGroupCommandHandler extends TianyanItemCommandHandler<GameEveItemGroupAggregate> {
 
-    void create(GameEveItemGroupCreateReqCTransfer command);
+    void create(GameEveItemGroupCreateReqCReqTransfer command);
 
 }

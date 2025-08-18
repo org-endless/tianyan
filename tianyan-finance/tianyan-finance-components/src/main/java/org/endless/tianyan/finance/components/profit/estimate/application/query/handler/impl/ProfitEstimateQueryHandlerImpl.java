@@ -1,9 +1,8 @@
 package org.endless.tianyan.finance.components.profit.estimate.application.query.handler.impl;
 
-import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.*;
-import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.ProfitEstimateQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.anticorruption.ProfitMetricQueryRepository;
+import org.endless.tianyan.finance.components.profit.estimate.application.query.handler.ProfitEstimateQueryHandler;
 
 /**
  * ProfitEstimateQueryHandlerImpl

@@ -1,19 +1,12 @@
 package org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer;
 
-import org.endless.tianyan.sales.common.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
+import org.endless.tianyan.sales.common.model.application.command.transfer.TianyanSalesCommandTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * MarketPriceCreateReqCTransfer
@@ -64,25 +57,25 @@ public class MarketPriceCreateReqCTransfer implements TianyanSalesCommandTransfe
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new CommandTransferValidateException("资源项ID不能为空");
+            throw new CommandReqTransferValidateException("资源项ID不能为空");
         }
     }
 
     private void validateBuyPrice() {
         if (!StringUtils.hasText(buyPrice)) {
-            throw new CommandTransferValidateException("买入价格(17, 2)不能为空");
+            throw new CommandReqTransferValidateException("买入价格(17, 2)不能为空");
         }
     }
 
     private void validateSellPrice() {
         if (!StringUtils.hasText(sellPrice)) {
-            throw new CommandTransferValidateException("卖出价格(17, 2)不能为空");
+            throw new CommandReqTransferValidateException("卖出价格(17, 2)不能为空");
         }
     }
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new CommandTransferValidateException("创建用户ID不能为空");
+            throw new CommandReqTransferValidateException("创建用户ID不能为空");
         }
     }
 }

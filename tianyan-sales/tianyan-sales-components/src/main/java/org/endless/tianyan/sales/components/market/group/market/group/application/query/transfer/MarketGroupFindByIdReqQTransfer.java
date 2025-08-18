@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.QueryTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferValidateException;
 import org.endless.tianyan.sales.common.model.application.query.transfer.TianyanSalesQueryTransfer;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +39,7 @@ public class MarketGroupFindByIdReqQTransfer implements TianyanSalesQueryTransfe
 
     private void validateMarketGroupId() {
         if (!StringUtils.hasText(marketGroupId)) {
-            throw new QueryTransferValidateException("市场分组ID不能为空");
+            throw new QueryReqTransferValidateException("市场分组ID不能为空");
         }
     }
 }

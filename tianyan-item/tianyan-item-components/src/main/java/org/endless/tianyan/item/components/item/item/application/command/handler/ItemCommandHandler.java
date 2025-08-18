@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.item.application.command.handler;
 
 import org.endless.tianyan.item.common.model.application.command.handler.TianyanItemCommandHandler;
-import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCReqTransfer;
+import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCRespTransfer;
 import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate;
 
 /**
@@ -19,6 +19,6 @@ import org.endless.tianyan.item.components.item.item.domain.entity.ItemAggregate
  */
 public interface ItemCommandHandler extends TianyanItemCommandHandler<ItemAggregate> {
 
-    ItemCreateRespCTransfer create(ItemCreateReqCTransfer command);
+    ItemCreateCRespTransfer create(ItemCreateCReqTransfer command);
 
 }

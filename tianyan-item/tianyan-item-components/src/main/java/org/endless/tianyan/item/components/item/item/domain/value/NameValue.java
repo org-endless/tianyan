@@ -3,7 +3,7 @@ package org.endless.tianyan.item.components.item.item.domain.value;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.ValueValidateException;
+import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
 import org.endless.tianyan.item.common.model.domain.value.TianyanItemValue;
 import org.springframework.util.StringUtils;
 
@@ -42,8 +42,8 @@ public class NameValue implements TianyanItemValue {
     public static NameValue create(NameValueBuilder builder) {
         return builder
                 .fullName(builder.fullName)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

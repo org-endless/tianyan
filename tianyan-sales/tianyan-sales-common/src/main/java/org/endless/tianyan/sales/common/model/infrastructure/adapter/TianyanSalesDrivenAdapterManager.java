@@ -1,6 +1,5 @@
 package org.endless.tianyan.sales.common.model.infrastructure.adapter;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.manager.DrivenAdapterManager;
 import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesDrivenAdapter;
 
 /**
@@ -12,9 +11,8 @@ import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSales
  *
  * @author Deng Haozhi
  * @see TianyanSalesDrivenAdapter
- * @see DrivenAdapterManager
  * @since 0.0.1
  */
-public interface TianyanSalesDrivenAdapterManager extends TianyanSalesDrivenAdapter, DrivenAdapterManager {
+public interface TianyanSalesDrivenAdapterManager extends TianyanSalesDrivenAdapter {
 
 }

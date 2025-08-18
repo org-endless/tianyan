@@ -1,6 +1,5 @@
 package org.endless.tianyan.finance.common.model.infrastructure.adapter;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.manager.DrivenAdapterManager;
 import org.endless.tianyan.finance.common.model.domain.anticorruption.TianyanFinanceDrivenAdapter;
 
 /**
@@ -15,6 +14,6 @@ import org.endless.tianyan.finance.common.model.domain.anticorruption.TianyanFin
  * @see DrivenAdapterManager
  * @since 0.0.1
  */
-public interface TianyanFinanceDrivenAdapterManager extends TianyanFinanceDrivenAdapter, DrivenAdapterManager {
+public interface TianyanFinanceDrivenAdapterManager extends TianyanFinanceDrivenAdapter {
 
 }

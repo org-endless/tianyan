@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.group.game.eve.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.handler.CommandHandlerNotFoundException;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.handler.CommandNotFoundException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.command.handler.GameEveMarketGroupCommandHandler;
 import org.endless.tianyan.sales.components.market.group.game.eve.application.command.transfer.GameEveMarketGroupCreateReqCTransfer;
 import org.endless.tianyan.sales.components.market.group.game.eve.domain.anticorruption.GameEveMarketGroupRepository;
@@ -52,7 +52,7 @@ public class GameEveMarketGroupCommandHandlerImpl implements GameEveMarketGroupC
                 .map(GameEveMarketGroupCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE市场分组命令参数不能为空"));
         String parentId = command.getParentCode() == null ? null : gameEveMarketGroupRepository.findMarketGroupIdByCode(command.getParentCode())
-                .orElseThrow(() -> new CommandHandlerNotFoundException("游戏EVE市场分组的父分组不存在"));
+                .orElseThrow(() -> new CommandNotFoundException("游戏EVE市场分组的父分组不存在"));
         if (parentId != null) {
             marketGroupDrivingAdapter.existsById(MarketGroupFindByIdReqQTransfer.builder()
                     .marketGroupId(parentId).build().validate());

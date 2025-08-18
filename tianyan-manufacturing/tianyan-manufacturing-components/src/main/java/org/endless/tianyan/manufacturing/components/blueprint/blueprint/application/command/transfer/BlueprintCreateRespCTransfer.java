@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandRespTransferValidateException;
 import org.endless.tianyan.manufacturing.common.model.application.command.transfer.TianyanManufacturingCommandTransfer;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +39,7 @@ public class BlueprintCreateRespCTransfer implements TianyanManufacturingCommand
 
     private void validateBlueprintId() {
         if (!StringUtils.hasText(blueprintId)) {
-            throw new CommandTransferValidateException("蓝图ID不能为空");
+            throw new CommandRespTransferValidateException("蓝图ID不能为空");
         }
     }
 }

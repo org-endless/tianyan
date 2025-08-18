@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.event.type.domain.anticorruption;
 
-import org.endless.tianyan.metadata.common.model.domain.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMetadataRepository;
+import org.endless.tianyan.metadata.components.event.type.domain.entity.EventTypeAggregate;
 
 /**
  * EventTypeRepository

@@ -112,7 +112,7 @@ io:
 #--------------------------TLog--------------------------
 tlog:
   pattern: "[SpanId][$spanId][TraceId][$traceId]"
-  id-generator: org.endless.ddd.simplified.starter.common.utils.id.trace.TraceIdGenerator
+  id-generator: org.endless.ddd.starter.common.utils.id.trace.TraceIdGenerator
 #-------------------------Mybatis------------------------
 mybatis-plus:
   type-aliases-package: org.endless.**.mapper

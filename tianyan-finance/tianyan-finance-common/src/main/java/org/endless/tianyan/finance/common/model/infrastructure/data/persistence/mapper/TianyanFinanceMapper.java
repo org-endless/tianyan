@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.model.infrastructure.data.persistence.mapper;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.persistence.mapper.DataMapper;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.persistence.mapper.DataMapper;
 import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceEntity;
 import org.endless.tianyan.finance.common.model.infrastructure.data.record.TianyanFinanceRecord;
 

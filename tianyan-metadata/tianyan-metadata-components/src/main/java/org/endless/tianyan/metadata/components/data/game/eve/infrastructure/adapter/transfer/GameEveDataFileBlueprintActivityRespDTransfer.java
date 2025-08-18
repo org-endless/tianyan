@@ -1,20 +1,13 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.adapter.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.type.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.transfer.DrivenRespTransferValidateException;
+import org.endless.tianyan.metadata.common.model.infrastructure.adapter.transfer.TianyanMetadataDrivenTransfer;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveDataFileBlueprintActivityRespDTransfer
@@ -62,7 +55,7 @@ public class GameEveDataFileBlueprintActivityRespDTransfer implements TianyanMet
 
     private void validateTime() {
         if (time == null || time < 0) {
-            throw new DrivenTransferValidateException("工序耗时不能为 null 或小于 0，当前值为: " + time);
+            throw new DrivenRespTransferValidateException("工序耗时不能为 null 或小于 0，当前值为: " + time);
         }
     }
 }

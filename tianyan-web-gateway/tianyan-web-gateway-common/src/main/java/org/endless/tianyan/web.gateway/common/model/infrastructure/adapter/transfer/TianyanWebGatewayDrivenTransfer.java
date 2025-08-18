@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.infrastructure.adapter.transfer;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.transfer.DrivenTransfer;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.transfer.DrivenTransfer;
 
 /**
  * TianyanWebGatewayDrivenTransfer

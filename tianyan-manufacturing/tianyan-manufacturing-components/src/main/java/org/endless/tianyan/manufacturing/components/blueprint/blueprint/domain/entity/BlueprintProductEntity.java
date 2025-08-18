@@ -3,10 +3,10 @@ package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.config.utils.id.IdGenerator;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.EntityRemoveException;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.EntityValidateException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
 import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingEntity;
 import org.springframework.util.StringUtils;
 
@@ -124,7 +124,7 @@ public class BlueprintProductEntity implements TianyanManufacturingEntity {
     }
 
     private void validateSuccessRate() {
-        Decimal.validateRate(successRate);
+        DecimalTools.validateRate(successRate);
     }
 
     private void validateCreateUserId() {

@@ -1,7 +1,6 @@
 package org.endless.tianyan.sales.components.market.price.market.price.application.query.handler;
 
-import org.endless.tianyan.sales.common.model.application.query.handler.*;
-import org.endless.tianyan.sales.components.market.price.market.price.domain.entity.*;
+import org.endless.tianyan.sales.common.model.application.query.handler.TianyanSalesQueryHandler;
 
 /**
  * MarketPriceQueryHandler

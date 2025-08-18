@@ -1,10 +1,8 @@
 package org.endless.tianyan.metadata.components.industry.category.sidecar.rest;
 
-import com.alibaba.fastjson2.JSONException;
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.exception.model.sidecar.rest.RestErrorException;
-import org.endless.ddd.simplified.starter.common.model.sidecar.rest.RestResponse;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.common.model.sidecar.rest.TianyanMetadataRestController;
 import org.endless.tianyan.metadata.components.industry.category.application.command.transfer.IndustryCategoryCreateReqCTransfer;
 import org.endless.tianyan.metadata.components.industry.category.facade.adapter.IndustryCategoryDrivingAdapter;
@@ -49,11 +47,7 @@ public class IndustryCategoryRestController implements TianyanMetadataRestContro
         Optional.ofNullable(command)
                 .map(IndustryCategoryCreateReqCTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("行业分类创建参数不能为空"));
-        try {
-            industryCategoryDrivingAdapter.create(command);
-            return response().success("行业分类创建成功");
-        } catch (JSONException | NullPointerException e) {
-            throw new RestErrorException("行业分类创建失败", e);
-        }
+        industryCategoryDrivingAdapter.create(command);
+        return response().success("行业分类创建成功");
     }
 }

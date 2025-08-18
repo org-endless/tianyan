@@ -1,9 +1,7 @@
 package org.endless.tianyan.metadata.components.event.type.application.query.handler.impl;
 
-import org.endless.tianyan.metadata.components.event.type.application.query.handler.*;
-import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.*;
-import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.handler.*;
+import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.EventTypeQueryRepository;
+import org.endless.tianyan.metadata.components.event.type.application.query.handler.EventTypeQueryHandler;
 
 /**
  * EventTypeQueryHandlerImpl

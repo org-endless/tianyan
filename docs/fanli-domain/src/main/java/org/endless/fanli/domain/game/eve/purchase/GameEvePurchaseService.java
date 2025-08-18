@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  * GameEvePurchaseService
  *
  * @author Deng Haozhi
- * @date 2023/5/6 20:05
  * @since 0.0.2
  */
 @Service
@@ -34,7 +33,7 @@ public class GameEvePurchaseService {
     //         purchase.put("name", item.getName().getZhName().getFullName());
     //         purchase.put("quantity", String.valueOf(purchaseQuantity.get(item.getItemId())));
     //         purchase.put("isManufacturing", String.valueOf(item.getCost().getIsManufacturing()));
-    //         purchase.put("procurementDifference", String.valueOf(Decimal.format(Decimal.multiply(purchaseQuantity.get(item.getItemId()), Decimal.subtract(item.getPrice().getCurPrice(), item.getCost().getManufacturingCost())))));
+    //         purchase.put("procurementDifference", String.valueOf(DecimalTools.format(DecimalTools.multiply(purchaseQuantity.get(item.getItemId()), DecimalTools.subtract(item.getPrice().getCurPrice(), item.getCost().getManufacturingCost())))));
     //         purchaseList.add(purchase);
     //     });
     //     return purchaseList;
@@ -43,6 +42,6 @@ public class GameEvePurchaseService {
     // public Map<String, BigDecimal> getManufacturingPurchaseQuantity(List<String> itemIds) {
     //
     //     var blueprints = gameEveFormulaService.getAll();
-    //     return itemIds.stream().map(itemId -> gameEveFormulaService.getManufacturingBlueprint(blueprints, itemId)).flatMap(blueprint -> blueprint.getManufacturing().getMaterials().stream()).collect(Collectors.toMap(Material::getItemId, Material::getQuantity, Decimal::add)).entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, procurement -> Decimal.format(procurement.getValue()), (a, b) -> b));
+    //     return itemIds.stream().map(itemId -> gameEveFormulaService.getManufacturingBlueprint(blueprints, itemId)).flatMap(blueprint -> blueprint.getManufacturing().getMaterials().stream()).collect(Collectors.toMap(Material::getItemId, Material::getQuantity, DecimalTools::add)).entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, procurement -> DecimalTools.format(procurement.getValue()), (a, b) -> b));
     // }
 }

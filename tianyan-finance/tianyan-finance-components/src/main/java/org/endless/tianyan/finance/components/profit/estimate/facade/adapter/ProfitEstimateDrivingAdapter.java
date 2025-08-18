@@ -1,6 +1,7 @@
 package org.endless.tianyan.finance.components.profit.estimate.facade.adapter;
 
-import org.endless.tianyan.finance.common.model.facade.adapter.*;
+import org.endless.tianyan.finance.common.model.facade.adapter.TianyanFinanceDrivingAdapter;
+import org.endless.tianyan.finance.components.profit.estimate.application.command.transfer.ProfitEstimateGenerateReqCTransfer;
 
 /**
  * ProfitEstimateDrivingAdapter
@@ -15,4 +16,6 @@ import org.endless.tianyan.finance.common.model.facade.adapter.*;
  * @since 0.0.1
  */
 public interface ProfitEstimateDrivingAdapter extends TianyanFinanceDrivingAdapter {
+
+    void generate(ProfitEstimateGenerateReqCTransfer command);
 }

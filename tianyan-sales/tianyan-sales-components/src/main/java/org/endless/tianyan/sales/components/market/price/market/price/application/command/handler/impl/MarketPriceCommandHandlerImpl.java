@@ -1,9 +1,9 @@
 package org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
 import org.endless.tianyan.sales.components.market.price.market.price.application.command.handler.MarketPriceCommandHandler;
 import org.endless.tianyan.sales.components.market.price.market.price.application.command.transfer.MarketPriceCreateReqCTransfer;
 import org.endless.tianyan.sales.components.market.price.market.price.domain.anticorruption.MarketPriceRepository;
@@ -44,8 +44,8 @@ public class MarketPriceCommandHandlerImpl implements MarketPriceCommandHandler 
                 .orElseThrow(() -> new CommandReqTransferNullException("市场价格创建命令参数不能为空"));
         MarketPriceAggregate aggregate = MarketPriceAggregate.create(MarketPriceAggregate.builder()
                 .itemId(command.getItemId())
-                .buyPrice(Decimal.format(command.getBuyPrice()))
-                .sellPrice(Decimal.format(command.getSellPrice()))
+                .buyPrice(DecimalTools.format(command.getBuyPrice()))
+                .sellPrice(DecimalTools.format(command.getSellPrice()))
                 .createUserId(command.getCreateUserId()));
         marketPriceRepository.save(aggregate);
     }

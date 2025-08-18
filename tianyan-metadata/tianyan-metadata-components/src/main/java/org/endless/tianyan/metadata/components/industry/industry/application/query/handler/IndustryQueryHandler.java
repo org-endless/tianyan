@@ -1,7 +1,6 @@
 package org.endless.tianyan.metadata.components.industry.industry.application.query.handler;
 
-import org.endless.tianyan.metadata.common.model.application.query.handler.*;
-import org.endless.tianyan.metadata.components.industry.industry.domain.entity.*;
+import org.endless.tianyan.metadata.common.model.application.query.handler.TianyanMetadataQueryHandler;
 
 /**
  * IndustryQueryHandler

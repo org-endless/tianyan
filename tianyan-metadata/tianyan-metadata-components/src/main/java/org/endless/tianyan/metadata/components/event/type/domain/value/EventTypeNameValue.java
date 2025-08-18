@@ -1,15 +1,11 @@
 package org.endless.tianyan.metadata.components.event.type.domain.value;
 
-import org.endless.tianyan.metadata.common.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.value.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
+import org.endless.tianyan.metadata.common.model.domain.value.TianyanMetadataValue;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
 
 /**
  * EventTypeNameValue
@@ -40,8 +36,8 @@ public class EventTypeNameValue implements TianyanMetadataValue {
 
     public static EventTypeNameValue create(EventTypeNameValueBuilder builder) {
         return builder
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     @Override

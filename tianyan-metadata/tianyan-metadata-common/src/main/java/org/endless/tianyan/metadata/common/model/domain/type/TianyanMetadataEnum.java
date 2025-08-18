@@ -1,6 +1,6 @@
 package org.endless.tianyan.metadata.common.model.domain.type;
 
-import org.endless.ddd.simplified.starter.common.model.domain.type.BaseEnum;
+import org.endless.ddd.starter.common.ddd.domain.type.BaseEnum;
 
 /**
  * TianyanMetadataEnum

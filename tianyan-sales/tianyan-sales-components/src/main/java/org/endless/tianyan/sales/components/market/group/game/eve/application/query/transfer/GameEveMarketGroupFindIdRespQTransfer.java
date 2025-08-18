@@ -1,19 +1,12 @@
 package org.endless.tianyan.sales.components.market.group.game.eve.application.query.transfer;
 
-import org.endless.tianyan.sales.common.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryRespTransferValidateException;
+import org.endless.tianyan.sales.common.model.application.query.transfer.TianyanSalesQueryTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * GameEveMarketGroupFindIdRespQTransfer
@@ -46,7 +39,7 @@ public class GameEveMarketGroupFindIdRespQTransfer implements TianyanSalesQueryT
 
     private void validateMarketGroupId() {
         if (!StringUtils.hasText(marketGroupId)) {
-            throw new QueryTransferValidateException("市场分组ID不能为空");
+            throw new QueryRespTransferValidateException("市场分组ID不能为空");
         }
     }
 }

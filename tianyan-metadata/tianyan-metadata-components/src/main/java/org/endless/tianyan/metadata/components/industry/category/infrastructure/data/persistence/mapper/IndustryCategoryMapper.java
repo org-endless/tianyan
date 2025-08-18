@@ -1,9 +1,8 @@
 package org.endless.tianyan.metadata.components.industry.category.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.metadata.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.metadata.components.industry.category.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.metadata.common.model.infrastructure.data.persistence.mapper.TianyanMetadataMapper;
+import org.endless.tianyan.metadata.components.industry.category.infrastructure.data.record.IndustryCategoryRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**
@@ -21,4 +20,5 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface IndustryCategoryMapper extends TianyanMetadataMapper<IndustryCategoryRecord> {
+
 }

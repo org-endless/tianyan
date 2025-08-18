@@ -1,6 +1,6 @@
 package org.endless.tianyan.manufacturing.common.model.infrastructure.adapter.transfer;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.adapter.transfer.DrivenTransfer;
+import org.endless.ddd.starter.common.ddd.infrastructure.adapter.transfer.DrivenTransfer;
 
 /**
  * TianyanManufacturingDrivenTransfer

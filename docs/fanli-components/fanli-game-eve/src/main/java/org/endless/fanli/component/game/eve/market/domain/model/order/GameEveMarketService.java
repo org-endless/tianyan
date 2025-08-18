@@ -1,7 +1,7 @@
 package org.endless.fanli.component.game.eve.market.domain.model.order;
 
 import org.endless.fanli.component.game.eve.domain.common.type.GameEveService;
-import org.endless.spring.boot.common.utility.decimal.Decimal;
+import org.endless.spring.boot.common.utility.decimal.DecimalTools;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -39,7 +39,7 @@ public class GameEveMarketService implements GameEveService {
                 .itemId(itemId)
                 .build();
 
-        return Decimal.format(aggregate.calculateMarketAnnualSalesQuantity(
+        return DecimalTools.format(aggregate.calculateMarketAnnualSalesQuantity(
                 adapter.getRegionMarketOrderHistoryByItemId(itemId, GAME_EVE_FORGE_REGION_ID)));
 
     }

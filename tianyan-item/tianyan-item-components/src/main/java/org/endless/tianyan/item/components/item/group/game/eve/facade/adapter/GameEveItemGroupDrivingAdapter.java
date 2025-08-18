@@ -1,9 +1,9 @@
 package org.endless.tianyan.item.components.item.group.game.eve.facade.adapter;
 
 import org.endless.tianyan.item.common.model.facade.adapter.TianyanItemDrivingAdapter;
-import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQTransfer;
-import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindByCodeReqQReqTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.query.transfer.GameEveItemGroupFindIdRespQReqTransfer;
 
 /**
  * GameEveItemGroupDrivingAdapter
@@ -19,7 +19,7 @@ import org.endless.tianyan.item.components.item.group.game.eve.application.query
  */
 public interface GameEveItemGroupDrivingAdapter extends TianyanItemDrivingAdapter {
 
-    void create(GameEveItemGroupCreateReqCTransfer command);
+    void create(GameEveItemGroupCreateReqCReqTransfer command);
 
-    GameEveItemGroupFindIdRespQTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQTransfer query);
+    GameEveItemGroupFindIdRespQReqTransfer findItemGroupIdByCode(GameEveItemGroupFindByCodeReqQReqTransfer query);
 }

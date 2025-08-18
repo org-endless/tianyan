@@ -1,13 +1,13 @@
 package org.endless.tianyan.item.components.item.group.game.eve.application.command.handler.impl;
 
-import org.endless.ddd.simplified.starter.common.config.log.annotation.Log;
-import org.endless.ddd.simplified.starter.common.config.log.type.LogLevel;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandReqTransferNullException;
+import org.endless.ddd.starter.common.annotation.log.Log;
+import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.item.components.item.group.game.eve.application.command.handler.GameEveItemGroupCommandHandler;
-import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.group.game.eve.application.command.transfer.GameEveItemGroupCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.group.game.eve.domain.anticorruption.GameEveItemGroupRepository;
 import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.GameEveItemGroupAggregate;
-import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCTransfer;
+import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCReqTransfer;
 import org.endless.tianyan.item.components.item.group.item.group.facade.adapter.ItemGroupDrivingAdapter;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,11 +45,11 @@ public class GameEveItemGroupCommandHandlerImpl implements GameEveItemGroupComma
     @Override
     @Transactional
     @Log(message = "游戏EVE资源项分组创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(GameEveItemGroupCreateReqCTransfer command) {
+    public void create(GameEveItemGroupCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(GameEveItemGroupCreateReqCTransfer::validate)
+                .map(GameEveItemGroupCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE资源项分组创建命令参数不能为空"));
-        String itemGroupId = itemGroupDrivingAdapter.create(ItemGroupCreateReqCTransfer.builder()
+        String itemGroupId = itemGroupDrivingAdapter.create(ItemGroupCreateReqCReqTransfer.builder()
                         .fullNameZh(command.getFullNameZh())
                         .fullNameEn(command.getFullNameEn())
                         .createUserId(command.getCreateUserId())

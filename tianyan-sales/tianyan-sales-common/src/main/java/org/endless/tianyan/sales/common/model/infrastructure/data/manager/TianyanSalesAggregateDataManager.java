@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.infrastructure.data.manager;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.manager.AggregateDataManager;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.manager.AggregateDataManager;
 import org.endless.tianyan.sales.common.model.application.query.anticorruption.TianyanSalesQueryRepository;
 import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;

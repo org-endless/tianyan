@@ -1,6 +1,6 @@
 package org.endless.tianyan.sales.common.model.domain.service;
 
-import org.endless.ddd.simplified.starter.common.model.domain.service.Service;
+import org.endless.ddd.starter.common.ddd.domain.service.Service;
 import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
 
 /**

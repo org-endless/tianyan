@@ -1,20 +1,12 @@
 package org.endless.tianyan.metadata.components.industry.category.application.query.transfer;
 
-import org.endless.tianyan.metadata.common.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.exception.model.application.query.transfer.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
-import org.endless.tianyan.metadata.components.industry.category.domain.value.*;
 import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.CollectionUtils;
+import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferValidateException;
+import org.endless.tianyan.metadata.common.model.application.query.transfer.TianyanMetadataQueryTransfer;
 import org.springframework.util.StringUtils;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * IndustryCategoryFindByIdReqQTransfer
@@ -47,7 +39,7 @@ public class IndustryCategoryFindByIdReqQTransfer implements TianyanMetadataQuer
 
     private void validateIndustryCategoryId() {
         if (!StringUtils.hasText(industryCategoryId)) {
-            throw new QueryTransferValidateException("行业分类ID不能为空");
+            throw new QueryReqTransferValidateException("行业分类ID不能为空");
         }
     }
 }

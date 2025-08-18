@@ -1,17 +1,17 @@
 package org.endless.tianyan.finance.components.profit.estimate.domain.entity;
 
-import org.endless.tianyan.finance.common.model.domain.entity.*;
-import org.endless.tianyan.finance.components.profit.estimate.domain.type.*;
-import org.endless.ddd.simplified.starter.common.exception.model.domain.entity.*;
-import org.endless.ddd.simplified.starter.common.config.utils.id.*;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateAddItemException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveItemException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
+import org.endless.tianyan.finance.common.model.domain.entity.TianyanFinanceAggregate;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -100,8 +100,8 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
                 .metrics(builder.metrics == null ? new ArrayList<>() : new ArrayList<>(builder.metrics))
                 .modifyUserId(builder.createUserId)
                 .isRemoved(false)
-            .innerBuild()
-            .validate();
+                .innerBuild()
+                .validate();
     }
 
     public ProfitEstimateAggregate remove(String modifyUserId) {
@@ -132,7 +132,7 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
 
     public ProfitEstimateAggregate addMetrics(List<ProfitMetricEntity> metrics, String modifyUserId) {
         if (CollectionUtils.isEmpty(metrics)) {
-                throw new AggregateAddItemException("聚合根要添加的子实体列表 List<ProfitMetricEntity> 不能为空");
+            throw new AggregateAddItemException("聚合根要添加的子实体列表 List<ProfitMetricEntity> 不能为空");
         }
         this.metrics.addAll(metrics);
         this.modifyUserId = modifyUserId;

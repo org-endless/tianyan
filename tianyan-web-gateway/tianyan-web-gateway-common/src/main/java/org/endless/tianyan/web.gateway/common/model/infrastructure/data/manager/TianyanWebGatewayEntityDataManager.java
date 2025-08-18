@@ -1,6 +1,6 @@
 package org.endless.tianyan.web.gateway.common.model.infrastructure.data.manager;
 
-import org.endless.ddd.simplified.starter.common.model.infrastructure.data.manager.EntityDataManager;
+import org.endless.ddd.starter.common.ddd.infrastructure.data.manager.EntityDataManager;
 import org.endless.tianyan.web.gateway.common.model.application.query.anticorruption.TianyanWebGatewayQueryRepository;
 import org.endless.tianyan.web.gateway.common.model.domain.entity.TianyanWebGatewayEntity;
 import org.endless.tianyan.web.gateway.common.model.infrastructure.data.record.TianyanWebGatewayRecord;

@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.category.item.category.facade.adapter.spring;
 
 import org.endless.tianyan.item.components.item.category.item.category.application.command.handler.ItemCategoryCommandHandler;
-import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.category.item.category.application.command.transfer.ItemCategoryCreateRespCReqTransfer;
 import org.endless.tianyan.item.components.item.category.item.category.application.query.handler.ItemCategoryQueryHandler;
 import org.endless.tianyan.item.components.item.category.item.category.facade.adapter.ItemCategoryDrivingAdapter;
 
@@ -36,7 +36,7 @@ public class SpringItemCategoryDrivingAdapter implements ItemCategoryDrivingAdap
     }
 
     @Override
-    public ItemCategoryCreateRespCTransfer create(ItemCategoryCreateReqCTransfer command) {
+    public ItemCategoryCreateRespCReqTransfer create(ItemCategoryCreateReqCReqTransfer command) {
         return itemCategoryCommandHandler.create(command);
     }
 }

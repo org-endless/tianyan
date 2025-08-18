@@ -1,6 +1,6 @@
 package org.endless.tianyan.finance.common.model.application.query.transfer;
 
-import org.endless.ddd.simplified.starter.common.model.application.query.transfer.QueryTransfer;
+import org.endless.ddd.starter.common.ddd.application.query.transfer.QueryTransfer;
 
 /**
  * TianyanFinanceQueryTransfer

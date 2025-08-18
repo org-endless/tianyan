@@ -1,9 +1,8 @@
 package org.endless.tianyan.sales.components.market.price.history.infrastructure.data.persistence.mapper;
 
-import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.*;
-import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.record.*;
-import org.endless.ddd.simplified.starter.common.exception.model.infrastructure.data.persistence.mapper.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.endless.tianyan.sales.common.model.infrastructure.data.persistence.mapper.TianyanSalesMapper;
+import org.endless.tianyan.sales.components.market.price.history.infrastructure.data.record.MarketPriceHistoryRecord;
 import org.springframework.context.annotation.Lazy;
 
 /**
@@ -21,4 +20,5 @@ import org.springframework.context.annotation.Lazy;
 @Lazy
 @Mapper
 public interface MarketPriceHistoryMapper extends TianyanSalesMapper<MarketPriceHistoryRecord> {
+
 }

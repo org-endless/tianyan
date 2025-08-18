@@ -4,8 +4,8 @@ import com.alibaba.fastjson2.annotation.JSONType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.simplified.starter.common.exception.model.application.command.transfer.CommandTransferValidateException;
-import org.endless.ddd.simplified.starter.common.utils.model.decimal.Decimal;
+import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferValidateException;
+import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
 import org.endless.tianyan.manufacturing.common.model.application.command.transfer.TianyanManufacturingCommandTransfer;
 import org.springframework.util.StringUtils;
 
@@ -52,17 +52,17 @@ public class GameEveBlueprintProductReqCTransfer implements TianyanManufacturing
 
     private void validateItemId() {
         if (!StringUtils.hasText(itemId)) {
-            throw new CommandTransferValidateException("资源项ID不能为空");
+            throw new CommandReqTransferValidateException("资源项ID不能为空");
         }
     }
 
     private void validateQuantity() {
         if (quantity == null || quantity < 0) {
-            throw new CommandTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
+            throw new CommandReqTransferValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
         }
     }
 
     private void validateSuccessRate() {
-        Decimal.validateRate(successRate);
+        DecimalTools.validateRate(successRate);
     }
 }

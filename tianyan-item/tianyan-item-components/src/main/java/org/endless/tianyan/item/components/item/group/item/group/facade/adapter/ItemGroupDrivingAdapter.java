@@ -1,8 +1,8 @@
 package org.endless.tianyan.item.components.item.group.item.group.facade.adapter;
 
 import org.endless.tianyan.item.common.model.facade.adapter.TianyanItemDrivingAdapter;
-import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCTransfer;
-import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateRespCTransfer;
+import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateReqCReqTransfer;
+import org.endless.tianyan.item.components.item.group.item.group.application.command.transfer.ItemGroupCreateRespCReqTransfer;
 
 /**
  * ItemGroupDrivingAdapter
@@ -18,5 +18,5 @@ import org.endless.tianyan.item.components.item.group.item.group.application.com
  */
 public interface ItemGroupDrivingAdapter extends TianyanItemDrivingAdapter {
 
-    ItemGroupCreateRespCTransfer create(ItemGroupCreateReqCTransfer command);
+    ItemGroupCreateRespCReqTransfer create(ItemGroupCreateReqCReqTransfer command);
 }
