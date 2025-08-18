@@ -1,0 +1,243 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: generator
+domainName: Transfer
+aggregateName: TransferAggregate
+description: 传输对象
+fields:
+  - name: transferId
+    type: String
+    description: 传输对象ID
+    nullable: false
+  - name: domainId
+    type: String
+    description: 领域ID
+    nullable: false
+  - name: name
+    type: String
+    description: 传输对象名称
+    nullable: false
+  - name: description
+    type: String
+    description: 传输对象描述
+    nullable: false
+  - name: messageType
+    type: TransferMessageTypeEnum
+    description: 传输对象消息类型
+    nullable: false
+  - name: fields
+    type: List<TransferFieldEntity>
+    description: 传输对象字段列表
+    nullable: false
+  - name: createAt
+    type: Long
+    description: 传输对象创建时间
+    nullable: false
+  - name: modifyAt
+    type: Long
+    description: 传输对象修改时间
+    nullable: false
+entities:
+  - name: TransferFieldEntity
+    description: 传输对象字段
+    fields:
+      - name: transferFieldId
+        type: String
+        description: 传输对象字段ID
+        nullable: false
+      - name: name
+        type: String
+        description: 传输对象字段名称
+        nullable: false
+      - name: type
+        type: TransferFieldTypeEnum
+        description: 传输对象字段类型
+        nullable: false
+      - name: typeObjectName
+        type: String
+        description: 传输对象字段类型对象名称
+        nullable: true
+      - name: description
+        type: String
+        description: 传输对象字段描述
+        nullable: false
+      - name: isRequired
+        type: Boolean
+        description: 传输对象字段是否必填
+        nullable: false
+enums:
+  - name: TransferMessageTypeEnum
+    valueType: String
+    description: 传输对象消息类型枚举
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: REQUEST
+        description: 请求
+      - code: RESPONSE
+        description: 响应
+  - name: TransferFieldTypeEnum
+    valueType: String
+    description: 传输对象字段类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: STRING
+        description: String
+      - code: INTEGER
+        description: Integer
+      - code: LONG
+        description: Long
+      - code: DOUBLE
+        description: Double
+      - code: TRANSFER
+        description: Transfer
+      - code: LIST_STRING
+        description: List<String>
+      - code: LIST_TRANSFER
+        description: List<Transfer>
+transfers:
+  - name: ContextCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 限界上下文创建命令请求传输对象
+    fields:
+      - name: serviceId
+        type: String
+        description: 服务ID
+        nullable: false
+      - name: name
+        type: String
+        description: 限界上下文名称
+        nullable: false
+      - name: description
+        type: String
+        description: 限界上下文描述
+        nullable: false
+      - name: author
+        type: String
+        description: 限界上下文作者
+        nullable: false
+      - name: rootPath
+        type: String
+        description: 限界上下文根路径
+        nullable: false
+      - name: basePackage
+        type: String
+        description: 限界上下文基础包名
+        nullable: false
+      - name: type
+        type: String
+        description: 限界上下文类型
+        nullable: false
+  - name: ContextModifyReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 限界上下文修改命令请求传输对象
+    fields:
+      - name: contextId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+      - name: serviceId
+        type: String
+        description: 服务ID
+        nullable: true
+      - name: name
+        type: String
+        description: 限界上下文名称
+        nullable: true
+      - name: description
+        type: String
+        description: 限界上下文描述
+        nullable: true
+      - name: author
+        type: String
+        description: 限界上下文作者
+        nullable: true
+      - name: rootPath
+        type: String
+        description: 限界上下文根路径
+        nullable: true
+      - name: basePackage
+        type: String
+        description: 限界上下文基础包名
+        nullable: true
+      - name: type
+        type: String
+        description: 限界上下文类型
+        nullable: true
+  - name: ContextRemoveReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 限界上下文删除命令请求传输对象
+    fields:
+      - name: contextId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+  - name: ContextGenerateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 限界上下文生成命令请求传输对象
+    fields:
+      - name: contextId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+  - name: ContextFindByServiceIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 限界上下文根据项目ID查询请求传输对象
+    fields:
+      - name: serviceId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+  - name: ContextFindSimpleProfilesRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 限界上下文基本信息列表查询响应传输对象
+    fields:
+      - name: simpleProfiles
+        type: List<ContextFindSimpleProfileRespQTransfer>
+        description: 限界上下文基本信息列表
+        nullable: true
+  - name: ContextFindSimpleProfileRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 限界上下文基本信息查询响应传输对象
+    fields:
+      - name: contextId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+      - name: name
+        type: String
+        description: 限界上下文名称
+        nullable: false

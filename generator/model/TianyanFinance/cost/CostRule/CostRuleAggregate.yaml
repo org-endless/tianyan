@@ -1,0 +1,63 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: cost
+domainName: CostRule
+aggregateName: CostRuleAggregate
+description: 成本规则
+fields:
+  - name: costRuleId
+    type: String
+    description: 成本规则ID
+    nullable: false
+  - name: industryId
+    type: String
+    description: 行业ID
+    nullable: false
+  - name: eventTypeId
+    type: String
+    description: 事件ID
+    nullable: false
+  - name: costTypeId
+    type: String
+    description: 成本类型ID
+    nullable: false
+  - name: minBaseAmount
+    type: BigDecimal
+    description: 成本规则最小基准金额(17, 2)
+    nullable: false
+  - name: maxBaseAmount
+    type: BigDecimal
+    description: 成本规则最大基准金额(17, 2)
+    nullable: false
+  - name: percentage
+    type: BigDecimal
+    description: 成本规则比例(5, 2)
+    nullable: false
+  - name: description
+    type: String
+    description: 成本规则描述
+    nullable: true
+enums:
+  - name: CostRuleTypeEnum
+    valueType: String
+    description: 成本规则类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: FIXED_PERCENTAGE
+        description: 按固定比例
+      - code: LADDER_PERCENTAGE
+        description: 按阶梯比例
+      - code: FIXED_AMOUNT
+        description: 按固定金额

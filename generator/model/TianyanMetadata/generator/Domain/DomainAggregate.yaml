@@ -1,0 +1,174 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: generator
+domainName: Domain
+aggregateName: DomainAggregate
+description: 领域
+fields:
+  - name: domainId
+    type: String
+    description: 领域ID
+    nullable: false
+  - name: contextId
+    type: String
+    description: 限界上下文ID
+    nullable: false
+  - name: name
+    type: String
+    description: 领域名称
+    nullable: false
+  - name: description
+    type: String
+    description: 领域描述
+    nullable: false
+  - name: version
+    type: String
+    description: 领域版本
+    nullable: false
+  - name: author
+    type: String
+    description: 领域作者
+    nullable: false
+  - name: fields
+    type: List<AggregateFieldEntity>
+    description: 聚合根字段列表
+    nullable: false
+  - name: createAt
+    type: Long
+    description: 领域创建时间
+    nullable: false
+  - name: modifyAt
+    type: Long
+    description: 领域修改时间
+    nullable: false
+entities:
+  - name: AggregateFieldEntity
+    description: 聚合根字段
+    fields:
+      - name: aggregateFieldId
+        type: String
+        description: 聚合根字段ID
+        nullable: false
+      - name: name
+        type: String
+        description: 聚合根字段名称
+        nullable: false
+      - name: type
+        type: AggregateFieldTypeEnum
+        description: 聚合根字段类型
+        nullable: false
+      - name: typeObjectName
+        type: String
+        description: 聚合根字段类型对象名称
+        nullable: true
+      - name: description
+        type: String
+        description: 聚合根字段描述
+        nullable: false
+      - name: isRequired
+        type: Boolean
+        description: 聚合根字段是否必填
+        nullable: false
+      - name: fieldOrder
+        type: Integer
+        description: 聚合根字段顺序
+        nullable: false
+enums:
+  - name: AggregateFieldTypeEnum
+    valueType: String
+    description: 聚合根字段类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: STRING
+        description: String
+      - code: INTEGER
+        description: Integer
+      - code: LONG
+        description: Long
+      - code: DOUBLE
+        description: Double
+      - code: ENTITY
+        description: Entity
+      - code: VALUE
+        description: Value
+      - code: ENUM
+        description: Enum
+      - code: LIST_STRING
+        description: List<String>
+      - code: LIST_ENTITY
+        description: List<Entity>
+      - code: BIG_DECIMAL
+        description: BigDecimal
+transfers:
+  - name: DomainCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 领域创建命令请求传输对象
+    fields:
+      - name: contextId
+        type: String
+        description: 限界上下文ID
+        nullable: false
+      - name: name
+        type: String
+        description: 领域名称
+        nullable: false
+      - name: description
+        type: String
+        description: 领域描述
+        nullable: false
+      - name: version
+        type: String
+        description: 领域版本
+        nullable: false
+      - name: author
+        type: String
+        description: 领域作者
+        nullable: false
+      - name: fields
+        type: List<AggregateFieldReqCTransfer>
+        description: 聚合根字段列表
+        nullable: false
+  - name: AggregateFieldReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 聚合字段命令请求传输对象
+    fields:
+      - name: name
+        type: String
+        description: 聚合根字段名称
+        nullable: false
+      - name: type
+        type: String
+        description: 聚合根字段类型
+        nullable: false
+      - name: typeObjectName
+        type: String
+        description: 聚合根字段类型对象名称
+        nullable: true
+      - name: description
+        type: String
+        description: 聚合根字段描述
+        nullable: false
+      - name: isRequired
+        type: Boolean
+        description: 聚合根字段是否必填
+        nullable: false
+      - name: fieldOrder
+        type: Integer
+        description: 聚合根字段顺序
+        nullable: false

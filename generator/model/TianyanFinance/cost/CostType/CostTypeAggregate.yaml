@@ -1,0 +1,66 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanFinance
+rootPath: tianyan-finance/tianyan-finance-components
+serviceSubPackage: components
+contextName: cost
+domainName: CostType
+aggregateName: CostTypeAggregate
+description: 成本类型
+fields:
+  - name: costTypeId
+    type: String
+    description: 成本类型ID
+    nullable: false
+  - name: code
+    type: String
+    description: 成本类型编码
+    nullable: false
+  - name: name
+    type: CostTypeNameValue
+    description: 成本类型名称
+    nullable: false
+  - name: description
+    type: String
+    description: 描述
+    nullable: true
+values:
+  - name: CostTypeNameValue
+    description: 成本类型名称
+    fields:
+      - name: nameZh
+        type: String
+        description: 事件类型中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 事件类型英文名称
+        nullable: true
+transfers:
+  - name: CostTypeCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 成本类型创建命令请求传输对象
+    fields:
+      - name: code
+        type: String
+        description: 成本类型编码
+        nullable: false
+      - name: nameZh
+        type: String
+        description: 成本类型中文名称
+        nullable: false
+      - name: nameEn
+        type: String
+        description: 成本类型英文名称
+        nullable: true
+      - name: description
+        type: String
+        description: 成本类型描述
+        nullable: true
+      - name: createUserId
+        type: String
+        description: 创建用户ID
+        nullable: false

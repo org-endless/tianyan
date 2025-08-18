@@ -1,0 +1,325 @@
+author: Deng Haozhi
+version: 0.0.1
+groupId: org.endless
+serviceName: TianyanMetadata
+rootPath: tianyan-metadata/tianyan-metadata-components
+serviceSubPackage: components
+contextName: generator
+domainName: Project
+aggregateName: ProjectAggregate
+description: 项目
+fields:
+  - name: projectId
+    type: String
+    description: 项目ID
+    nullable: false
+  - name: projectArtifactId
+    type: String
+    description: 项目构件ID
+    nullable: false
+  - name: groupId
+    type: String
+    description: 项目组织ID
+    nullable: false
+  - name: name
+    type: String
+    description: 项目名称
+    nullable: false
+  - name: description
+    type: String
+    description: 项目描述
+    nullable: false
+  - name: version
+    type: String
+    description: 项目版本号
+    nullable: false
+  - name: author
+    type: String
+    description: 项目作者
+    nullable: false
+  - name: rootPath
+    type: String
+    description: 项目根路径
+    nullable: false
+  - name: basePackage
+    type: String
+    description: 项目基础包名
+    nullable: false
+  - name: enableSpringDoc
+    type: Boolean
+    description: 是否启用Spring Doc
+    nullable: false
+  - name: javaVersion
+    type: ProjectJavaVersionEnum
+    description: 项目Java版本
+    nullable: false
+  - name: loggingFramework
+    type: ProjectLoggingFrameworkEnum
+    description: 项目日志框架
+    nullable: false
+  - name: persistenceFramework
+    type: ProjectPersistenceFrameworkEnum
+    description: 项目持久化框架
+    nullable: false
+  - name: databaseType
+    type: ProjectDatabaseTypeEnum
+    description: 项目数据库类型
+    nullable: false
+  - name: createAt
+    type: Long
+    description: 项目创建时间
+    nullable: false
+  - name: modifyAt
+    type: Long
+    description: 项目修改时间
+    nullable: false
+enums:
+  - name: ProjectLoggingFrameworkEnum
+    valueType: String
+    description: 项目日志框架
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: LOG4J
+        description: log4j框架
+  - name: ProjectPersistenceFrameworkEnum
+    valueType: String
+    description: 项目持久化框架
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: JPA
+        description: JPA框架
+      - code: MYBATIS_PLUS
+        description: Mybatis-Plus框架
+  - name: ProjectJavaVersionEnum
+    valueType: String
+    description: 项目Java版本
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: JAVA8
+        description: Java 1.8
+      - code: JAVA21
+        description: Java 21
+  - name: ProjectDatabaseTypeEnum
+    valueType: String
+    description: 项目数据库类型
+    fields:
+      - name: code
+        type: String
+        description: 枚举代码
+        nullable: false
+      - name: description
+        type: String
+        description: 枚举描述
+        nullable: false
+    enumValues:
+      - code: MYSQL
+        description: MySQL数据库
+transfers:
+  - name: ProjectCreateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 项目创建命令请求传输对象
+    fields:
+      - name: projectArtifactId
+        type: String
+        description: 项目构件ID
+        nullable: false
+      - name: groupId
+        type: String
+        description: 项目组织ID
+        nullable: false
+      - name: name
+        type: String
+        description: 项目名称
+        nullable: false
+      - name: description
+        type: String
+        description: 项目描述
+        nullable: false
+      - name: version
+        type: String
+        description: 项目版本号
+        nullable: false
+      - name: author
+        type: String
+        description: 项目作者
+        nullable: false
+      - name: rootPath
+        type: String
+        description: 项目根路径
+        nullable: false
+      - name: basePackage
+        type: String
+        description: 项目基础包名
+        nullable: false
+      - name: enableSpringDoc
+        type: Boolean
+        description: 项目是否启用Spring Doc
+        nullable: false
+      - name: javaVersion
+        type: String
+        description: 项目Java版本
+        nullable: false
+      - name: loggingFramework
+        type: String
+        description: 项目日志框架
+        nullable: false
+      - name: persistenceFramework
+        type: String
+        description: 项目持久化框架
+        nullable: false
+      - name: databaseType
+        type: String
+        description: 项目数据库类型
+        nullable: false
+  - name: ProjectModifyReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 项目修改命令请求传输对象
+    fields:
+      - name: projectId
+        type: String
+        description: 项目ID
+        nullable: false
+      - name: projectArtifactId
+        type: String
+        description: 项目构件ID
+        nullable: true
+      - name: groupId
+        type: String
+        description: 项目组织ID
+        nullable: true
+      - name: name
+        type: String
+        description: 项目名称
+        nullable: true
+      - name: description
+        type: String
+        description: 项目描述
+        nullable: true
+      - name: version
+        type: String
+        description: 项目版本号
+        nullable: true
+      - name: author
+        type: String
+        description: 项目作者
+        nullable: true
+      - name: rootPath
+        type: String
+        description: 项目根路径
+        nullable: true
+      - name: basePackage
+        type: String
+        description: 项目基础包名
+        nullable: true
+      - name: enableSpringDoc
+        type: Boolean
+        description: 项目是否启用Spring Doc
+        nullable: true
+      - name: javaVersion
+        type: String
+        description: 项目Java版本
+        nullable: true
+      - name: loggingFramework
+        type: String
+        description: 项目日志框架
+        nullable: true
+      - name: persistenceFramework
+        type: String
+        description: 项目持久化框架
+        nullable: true
+      - name: databaseType
+        type: String
+        description: 项目数据库类型
+        nullable: true
+  - name: ProjectRemoveReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 项目删除命令请求传输对象
+    fields:
+      - name: projectId
+        type: String
+        description: 项目ID
+        nullable: false
+  - name: ProjectGenerateReqCTransfer
+    adapterType: DRIVING
+    cqrsType: COMMAND
+    messageType: REQUEST
+    description: 项目生成命令请求传输对象
+    fields:
+      - name: projectId
+        type: String
+        description: 项目ID
+        nullable: false
+  - name: ProjectFindByIdReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 项目根据ID查询请求传输对象
+    fields:
+      - name: projectId
+        type: String
+        description: 项目ID
+        nullable: false
+  - name: ProjectFindByIdsReqQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: REQUEST
+    description: 项目根据ID列表查询请求传输对象
+    fields:
+      - name: projectIds
+        type: List<String>
+        description: 项目ID列表
+        nullable: true
+  - name: ProjectFindSimpleProfilesRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 项目基本信息列表查询响应传输对象
+    fields:
+      - name: simpleProfiles
+        type: List<ProjectFindSimpleProfileRespQTransfer>
+        description: 项目基本信息列表
+        nullable: true
+  - name: ProjectFindSimpleProfileRespQTransfer
+    adapterType: DRIVING
+    cqrsType: QUERY
+    messageType: RESPONSE
+    description: 项目基本信息查询响应传输对象
+    fields:
+      - name: projectId
+        type: String
+        description: 项目ID
+        nullable: false
+      - name: name
+        type: String
+        description: 项目名称
+        nullable: false
