@@ -17,7 +17,7 @@ import java.util.Optional;
  * GameEveItemGroupCommandHandlerImpl
  * <p>游戏EVE资源项分组领域命令处理器
  * <p>
- * create 2025/07/21 16:03
+ * itemCreate 2025/07/21 16:03
  * <p>
  * update 2025/07/21 16:03
  *

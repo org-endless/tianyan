@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * GameEveItemCategoryFindIdRespQReqTransfer
  * <p>游戏EVE资源项分类ID查询响应传输对象
  * <p>
- * create 2025/07/26 05:25
+ * itemCreate 2025/07/26 05:25
  * <p>
  * update 2025/07/26 05:25
  *

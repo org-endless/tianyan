@@ -8,7 +8,7 @@ import org.endless.tianyan.item.components.item.group.item.group.application.com
  * ItemGroupDrivingAdapter
  * <p>资源项分组领域主动适配器
  * <p>
- * create 2025/07/21 16:04
+ * itemCreate 2025/07/21 16:04
  * <p>
  * update 2025/07/21 16:04
  *

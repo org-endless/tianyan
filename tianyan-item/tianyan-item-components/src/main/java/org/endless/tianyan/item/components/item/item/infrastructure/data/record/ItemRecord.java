@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * ItemRecord
  * <p>资源项数据库记录实体
  * <p>
- * create 2025/07/24 20:01
+ * itemCreate 2025/07/24 20:01
  * <p>
  * update 2025/07/24 20:01
  *
@@ -126,12 +126,12 @@ public class ItemRecord implements TianyanItemRecord<ItemAggregate> {
                 .metaGroupId(aggregate.getMetaGroupId())
                 .itemGroupId(aggregate.getItemGroupId())
                 .marketGroupId(aggregate.getMarketGroupId())
-                .nameZhFullName(aggregate.getNameZh().getFullName())
-                .nameZhAlias(aggregate.getNameZh().getAlias())
-                .nameZhAbbreviation(aggregate.getNameZh().getAbbreviation())
-                .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getFullName())
-                .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAlias())
-                .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().getAbbreviation())
+                .nameZhFullName(aggregate.getNameZh().fullName())
+                .nameZhAlias(aggregate.getNameZh().alias())
+                .nameZhAbbreviation(aggregate.getNameZh().abbreviation())
+                .nameEnFullName(aggregate.getNameEn() == null ? null : aggregate.getNameEn().fullName())
+                .nameEnAlias(aggregate.getNameEn() == null ? null : aggregate.getNameEn().alias())
+                .nameEnAbbreviation(aggregate.getNameEn() == null ? null : aggregate.getNameEn().abbreviation())
                 .description(aggregate.getDescription())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())

@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * ItemCategoryRecord
  * <p>资源项分类数据库记录实体
  * <p>
- * create 2025/07/24 20:16
+ * itemCreate 2025/07/24 20:16
  * <p>
  * update 2025/07/24 20:16
  *

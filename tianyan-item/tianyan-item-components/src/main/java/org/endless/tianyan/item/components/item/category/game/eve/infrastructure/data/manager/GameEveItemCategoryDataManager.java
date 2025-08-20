@@ -2,7 +2,6 @@ package org.endless.tianyan.item.components.item.category.game.eve.infrastructur
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.category.game.eve.application.query.anticorruption.GameEveItemCategoryQueryRepository;
 import org.endless.tianyan.item.components.item.category.game.eve.domain.anticorruption.GameEveItemCategoryRepository;
@@ -19,7 +18,7 @@ import java.util.Optional;
  * GameEveItemCategoryDataManager
  * <p>游戏EVE资源项分类聚合数据管理器
  * <p>
- * create 2025/07/20 22:39
+ * itemCreate 2025/07/20 22:39
  * <p>
  * update 2025/07/20 22:39
  *

@@ -11,7 +11,7 @@ import java.util.Optional;
  * GameEveItemQueryRepository
  * <p>游戏EVE资源项聚合查询仓储接口
  * <p>
- * create 2025/07/23 01:04
+ * itemCreate 2025/07/23 01:04
  * <p>
  * update 2025/07/23 01:04
  *

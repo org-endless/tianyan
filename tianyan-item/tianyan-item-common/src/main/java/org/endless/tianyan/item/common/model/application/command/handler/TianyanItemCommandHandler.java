@@ -14,7 +14,6 @@ import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
  * @see CommandHandler
  * @since 0.0.1
  */
-public interface TianyanItemCommandHandler<A extends TianyanItemAggregate>
-        extends CommandHandler<A> {
+public interface TianyanItemCommandHandler<A extends TianyanItemAggregate> extends CommandHandler<A> {
 
 }

@@ -8,7 +8,7 @@ import org.endless.tianyan.item.components.item.group.game.eve.application.query
  * GameEveItemGroupQueryHandler
  * <p>游戏EVE资源项分组领域查询处理器
  * <p>
- * create 2025/07/21 16:03
+ * itemCreate 2025/07/21 16:03
  * <p>
  * update 2025/07/21 16:03
  *

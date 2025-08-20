@@ -10,7 +10,7 @@ import org.endless.tianyan.item.components.item.group.item.group.facade.adapter.
  * SpringItemGroupDrivingAdapter
  * <p>资源项分组领域主动适配器Spring实现类
  * <p>
- * create 2025/07/21 16:04
+ * itemCreate 2025/07/21 16:04
  * <p>
  * update 2025/07/21 16:04
  *

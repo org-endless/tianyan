@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * ItemCategoryRestController
  * <p>资源项分类领域Rest控制器
  * <p>
- * create 2025/07/21 15:11
+ * itemCreate 2025/07/21 15:11
  * <p>
  * update 2025/07/21 15:11
  *

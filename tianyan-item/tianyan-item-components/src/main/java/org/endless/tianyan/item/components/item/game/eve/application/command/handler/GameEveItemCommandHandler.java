@@ -3,16 +3,14 @@ package org.endless.tianyan.item.components.item.game.eve.application.command.ha
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.endless.tianyan.item.common.model.application.command.handler.TianyanItemCommandHandler;
-import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateReqCReqTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemFetchReqCReqTransfer;
-import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemFetchRespCReqTransfer;
+import org.endless.tianyan.item.components.item.game.eve.application.command.transfer.GameEveItemCreateCReqTransfer;
 import org.endless.tianyan.item.components.item.game.eve.domain.entity.GameEveItemAggregate;
 
 /**
  * GameEveItemCommandHandler
  * <p>游戏EVE资源项领域命令处理器
  * <p>
- * create 2025/07/23 01:04
+ * itemCreate 2025/07/23 01:04
  * <p>
  * update 2025/07/23 01:04
  *
@@ -25,22 +23,11 @@ public interface GameEveItemCommandHandler extends TianyanItemCommandHandler<Gam
     /**
      * 游戏EVE资源项创建命令
      *
-     * @param command 游戏EVE资源项创建命令传输对象
+     * @param command 游戏EVE资源项创建命令请求传输对象
      */
     void create(
-            @NotNull @Valid GameEveItemCreateReqCReqTransfer command
-    );
-
-    /**
-     * 游戏EVE资源项获取命令
-     *
-     * @param command 游戏EVE资源项获取命令传输对象
-     * @return {@link GameEveItemFetchRespCReqTransfer }
-     */
-    @NotNull
-    @Valid
-    GameEveItemFetchRespCReqTransfer fetch(
-            @NotNull @Valid GameEveItemFetchReqCReqTransfer command
+            @NotNull(message = "游戏EVE资源项创建命令请求传输对象不能为空")
+            @Valid GameEveItemCreateCReqTransfer command
     );
 
 }

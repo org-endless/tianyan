@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * ItemCategoryAggregate
  * <p>资源项分类聚合根
  * <p>
- * create 2025/07/24 20:16
+ * itemCreate 2025/07/24 20:16
  * <p>
  * update 2025/07/24 20:16
  *

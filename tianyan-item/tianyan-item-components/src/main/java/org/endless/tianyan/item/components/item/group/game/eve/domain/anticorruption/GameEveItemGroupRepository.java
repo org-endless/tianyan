@@ -7,7 +7,7 @@ import org.endless.tianyan.item.components.item.group.game.eve.domain.entity.Gam
  * GameEveItemGroupRepository
  * <p>游戏EVE资源项分组聚合仓储接口
  * <p>
- * create 2025/07/21 16:03
+ * itemCreate 2025/07/21 16:03
  * <p>
  * update 2025/07/21 16:03
  *

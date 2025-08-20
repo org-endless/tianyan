@@ -1,5 +1,7 @@
 package org.endless.tianyan.item.components.item.game.eve.infrastructure.data.manager;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
@@ -21,7 +23,7 @@ import java.util.Optional;
  * GameEveItemDataManager
  * <p>游戏EVE资源项聚合数据管理器
  * <p>
- * create 2025/07/23 01:04
+ * itemCreate 2025/07/23 01:04
  * <p>
  * update 2025/07/23 01:04
  *
@@ -46,10 +48,9 @@ public class GameEveItemDataManager implements GameEveItemRepository, GameEveIte
 
     @Override
     @Log(message = "保存游戏EVE资源项聚合数据", value = "#aggregate", level = LogLevel.TRACE)
-    public GameEveItemAggregate save(GameEveItemAggregate aggregate) {
-        Optional.ofNullable(aggregate)
-                .map(GameEveItemAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE资源项聚合数据不能为空"));
+    public GameEveItemAggregate save(
+            @NotNull(message = "游戏EVE资源项聚合不能为空")
+            @Valid GameEveItemAggregate aggregate) {
         gameEveItemMapper.save(GameEveItemRecord.from(aggregate));
         return aggregate;
     }

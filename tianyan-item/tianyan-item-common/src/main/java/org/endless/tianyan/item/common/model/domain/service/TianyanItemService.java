@@ -14,7 +14,6 @@ import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
  * @see Service
  * @since 0.0.1
  */
-public interface TianyanItemService<A extends TianyanItemAggregate>
-        extends Service<A> {
+public interface TianyanItemService<A extends TianyanItemAggregate> extends Service<A> {
 
 }

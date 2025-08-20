@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * GameEveItemCategoryAggregate
  * <p>游戏EVE资源项分类聚合根
  * <p>
- * create 2025/07/20 22:44
+ * itemCreate 2025/07/20 22:44
  * <p>
  * update 2025/07/20 22:44
  *
@@ -86,10 +86,6 @@ public class GameEveItemCategoryAggregate implements TianyanItemAggregate {
         return this;
     }
 
-    private boolean canRemove() {
-        return true;
-    }
-
     @Override
     public GameEveItemCategoryAggregate validate() {
         validateGameEveItemCategoryId();
@@ -100,6 +96,10 @@ public class GameEveItemCategoryAggregate implements TianyanItemAggregate {
         validateModifyUserId();
         validateIsRemoved();
         return this;
+    }
+
+    private boolean canRemove() {
+        return true;
     }
 
     private void validateGameEveItemCategoryId() {

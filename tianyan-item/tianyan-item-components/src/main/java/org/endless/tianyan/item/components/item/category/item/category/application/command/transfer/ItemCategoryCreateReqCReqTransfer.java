@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * ItemCategoryCreateReqCReqTransfer
  * <p>资源项分类创建命令请求传输对象
  * <p>
- * create 2025/07/24 20:15
+ * itemCreate 2025/07/24 20:15
  * <p>
  * update 2025/07/24 20:15
  *

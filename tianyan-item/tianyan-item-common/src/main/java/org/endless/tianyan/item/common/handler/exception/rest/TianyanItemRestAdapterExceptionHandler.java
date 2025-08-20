@@ -1,7 +1,7 @@
 package org.endless.tianyan.item.common.handler.exception.rest;
 
+import org.endless.ddd.starter.common.config.rest.response.RestResponse;
 import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
-import org.endless.tianyan.item.common.model.facade.rest.TianyanItemRestResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class TianyanItemRestAdapterExceptionHandler extends AbstractRestAdapterExceptionHandler {
 
+    public RestResponse<Void> response() {
+        return RestResponse.<Void>builder().serviceDescription(serviceDescription()).build();
+    }
+
     @Override
-    public TianyanItemRestResponse response() {
-        return TianyanItemRestResponse.builder().build();
+    public String serviceDescription() {
+        return "天演-资源项服务";
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Lazy;
  * ItemGroupMapper
  * <p>资源项分组聚合 Mybatis-Plus 数据访问对象
  * <p>
- * create 2025/07/21 16:04
+ * itemCreate 2025/07/21 16:04
  * <p>
  * update 2025/07/21 16:04
  *

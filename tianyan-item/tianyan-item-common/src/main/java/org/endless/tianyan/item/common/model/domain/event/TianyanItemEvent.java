@@ -14,7 +14,6 @@ import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
  * @see Event
  * @since 0.0.1
  */
-public interface TianyanItemEvent<A extends TianyanItemAggregate>
-        extends Event<A> {
+public interface TianyanItemEvent<A extends TianyanItemAggregate> extends Event<A> {
 
 }

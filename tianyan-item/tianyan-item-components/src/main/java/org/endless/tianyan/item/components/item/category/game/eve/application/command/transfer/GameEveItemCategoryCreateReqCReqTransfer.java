@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * GameEveItemCategoryCreateReqCReqTransfer
  * <p>游戏EVE资源项分类创建命令请求传输对象
  * <p>
- * create 2025/07/24 20:17
+ * itemCreate 2025/07/24 20:17
  * <p>
  * update 2025/07/24 20:17
  *

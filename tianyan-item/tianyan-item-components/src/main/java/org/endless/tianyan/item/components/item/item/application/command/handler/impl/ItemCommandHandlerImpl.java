@@ -2,7 +2,6 @@ package org.endless.tianyan.item.components.item.item.application.command.handle
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.item.components.item.item.application.command.handler.ItemCommandHandler;
 import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCReqTransfer;
 import org.endless.tianyan.item.components.item.item.application.command.transfer.ItemCreateCRespTransfer;
@@ -13,13 +12,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 /**
  * ItemCommandHandlerImpl
  * <p>资源项领域命令处理器
  * <p>
- * create 2025/07/23 01:04
+ * itemCreate 2025/07/23 01:04
  * <p>
  * update 2025/07/23 01:04
  *
@@ -44,9 +41,6 @@ public class ItemCommandHandlerImpl implements ItemCommandHandler {
     @Transactional
     @Log(message = "资源项创建命令", value = "#command", level = LogLevel.TRACE)
     public ItemCreateCRespTransfer create(ItemCreateCReqTransfer command) {
-        Optional.ofNullable(command)
-                .map(ItemCreateCReqTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("资源项创建参数不能为空"));
         ItemAggregate aggregate = ItemAggregate.create(ItemAggregate.builder()
                 .metaGroupId(command.metaGroupId())
                 .itemGroupId(command.itemGroupId())

@@ -3,17 +3,19 @@ package org.endless.tianyan.item.components.item.game.eve.domain.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.starter.common.annotation.validate.ddd.aggregate.Aggregate;
 import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveItemAggregate
  * <p>游戏EVE资源项聚合根
  * <p>
- * create 2025/07/24 16:27
+ * itemCreate 2025/07/24 16:27
  * <p>
  * update 2025/07/24 16:27
  *
@@ -23,6 +25,8 @@ import org.springframework.util.StringUtils;
  */
 @Getter
 @ToString
+@Aggregate
+@Validated
 @Builder(buildMethodName = "innerBuild")
 public class GameEveItemAggregate implements TianyanItemAggregate {
 
@@ -86,10 +90,6 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
         return this;
     }
 
-    private boolean canRemove() {
-        return true;
-    }
-
     @Override
     public GameEveItemAggregate validate() {
         validateGameEveItemId();
@@ -100,6 +100,10 @@ public class GameEveItemAggregate implements TianyanItemAggregate {
         validateModifyUserId();
         validateIsRemoved();
         return this;
+    }
+
+    private boolean canRemove() {
+        return true;
     }
 
     private void validateGameEveItemId() {

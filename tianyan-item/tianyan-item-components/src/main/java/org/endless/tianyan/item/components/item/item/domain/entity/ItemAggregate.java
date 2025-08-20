@@ -1,20 +1,25 @@
 package org.endless.tianyan.item.components.item.item.domain.entity;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+import org.endless.ddd.starter.common.annotation.validate.ddd.aggregate.Aggregate;
+import org.endless.ddd.starter.common.ddd.domain.entity.Entity;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
 import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * ItemAggregate
  * <p>资源项聚合根
  * <p>
- * create 2025/07/24 20:01
+ * itemCreate 2025/07/24 20:01
  * <p>
  * update 2025/07/24 20:01
  *
@@ -24,12 +29,15 @@ import org.springframework.util.StringUtils;
  */
 @Getter
 @ToString
+@Aggregate
+@Validated
 @Builder(buildMethodName = "innerBuild")
 public class ItemAggregate implements TianyanItemAggregate {
 
     /**
      * 资源项ID
      */
+    @NotBlank(message = "资源项ID不能为空")
     private final String itemId;
 
     /**
@@ -50,6 +58,8 @@ public class ItemAggregate implements TianyanItemAggregate {
     /**
      * 中文名称
      */
+    @Valid
+    @NotNull(message = "中文名称不能为空")
     private NameValue nameZh;
 
     /**
@@ -77,46 +87,23 @@ public class ItemAggregate implements TianyanItemAggregate {
      */
     private Boolean isRemoved;
 
-    public static ItemAggregate create(ItemAggregateBuilder builder) {
-        return builder
-                .itemId(IdGenerator.of())
-                .modifyUserId(builder.createUserId)
-                .isRemoved(false)
-                .innerBuild()
-                .validate();
+    public static ItemAggregate create(
+            @NotNull(message = "资源项聚合根构造器不能为空") ItemAggregateBuilder builder) {
+        return Entity.create(builder, ItemAggregateBuilder::innerBuild).validate();
     }
 
     public ItemAggregate remove(String modifyUserId) {
         if (this.isRemoved) {
             throw new AggregateRemoveException("已经被删除的聚合根<资源项聚合根>不能再次删除, ID: " + itemId);
         }
-        if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<资源项聚合根>处于不可删除状态, ID: " + itemId);
-        }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
     }
 
-    private boolean canRemove() {
-        return true;
-    }
-
     @Override
     public ItemAggregate validate() {
-        validateItemId();
-        validateItemGroupId();
-        validateNameZh();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
         return this;
-    }
-
-    private void validateItemId() {
-        if (!StringUtils.hasText(itemId)) {
-            throw new AggregateValidateException("资源项ID不能为空");
-        }
     }
 
     private void validateItemGroupId() {

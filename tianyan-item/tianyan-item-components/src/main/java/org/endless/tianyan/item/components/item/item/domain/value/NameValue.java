@@ -1,60 +1,40 @@
 package org.endless.tianyan.item.components.item.item.domain.value;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
-import org.endless.ddd.starter.common.exception.ddd.domain.value.ValueValidateException;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Value;
+import org.endless.ddd.starter.common.utils.model.object.ObjectTools;
 import org.endless.tianyan.item.common.model.domain.value.TianyanItemValue;
-import org.springframework.util.StringUtils;
 
 /**
  * NameValue
  * <p>名称
  * <p>
- * create 2025/07/23 01:04
+ * itemCreate 2025/07/23 01:04
  * <p>
  * update 2025/07/23 01:04
  *
+ * @param fullName     全称
+ * @param alias        别名
+ * @param abbreviation 简称
  * @author Deng Haozhi
  * @see TianyanItemValue
  * @since 0.0.1
  */
-@Getter
-@ToString
+@Value
 @Builder(buildMethodName = "innerBuild")
-public class NameValue implements TianyanItemValue {
-
-    /**
-     * 全称
-     */
-    private final String fullName;
-
-    /**
-     * 别名
-     */
-    private final String alias;
-
-    /**
-     * 简称
-     */
-    private final String abbreviation;
+public record NameValue(
+        @NotBlank(message = "全称不能为空") String fullName,
+        String alias,
+        String abbreviation
+) implements TianyanItemValue {
 
     public static NameValue create(NameValueBuilder builder) {
-        return builder
-                .fullName(builder.fullName)
-                .innerBuild()
-                .validate();
+        return ObjectTools.JSRValidate(builder.innerBuild()).validate();
     }
 
     @Override
     public NameValue validate() {
-        validateFullName();
         return this;
-    }
-
-    private void validateFullName() {
-        if (!StringUtils.hasText(fullName)) {
-            throw new ValueValidateException("全称不能为空");
-        }
     }
 }

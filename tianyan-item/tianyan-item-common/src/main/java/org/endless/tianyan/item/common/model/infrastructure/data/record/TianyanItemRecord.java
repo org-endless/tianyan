@@ -14,7 +14,6 @@ import org.endless.tianyan.item.common.model.domain.entity.TianyanItemEntity;
  * @see DataRecord
  * @since 0.0.1
  */
-public interface TianyanItemRecord<E extends TianyanItemEntity>
-        extends DataRecord<E> {
+public interface TianyanItemRecord<E extends TianyanItemEntity> extends DataRecord<E> {
 
 }

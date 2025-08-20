@@ -8,7 +8,7 @@ import org.endless.tianyan.item.components.item.category.item.category.applicati
  * ItemCategoryDrivingAdapter
  * <p>资源项分类领域主动适配器
  * <p>
- * create 2025/07/20 22:39
+ * itemCreate 2025/07/20 22:39
  * <p>
  * update 2025/07/20 22:39
  *

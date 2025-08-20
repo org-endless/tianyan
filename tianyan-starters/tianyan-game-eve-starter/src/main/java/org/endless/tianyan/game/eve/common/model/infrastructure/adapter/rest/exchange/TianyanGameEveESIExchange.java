@@ -1,4 +1,4 @@
-package org.endless.tianyan.game.eve.common.model.infrastructure.adapter.rest.transfer;
+package org.endless.tianyan.game.eve.common.model.infrastructure.adapter.rest.exchange;
 
 import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.exchange.RestExchange;
 import org.springframework.web.service.annotation.HttpExchange;
@@ -15,6 +15,6 @@ import org.springframework.web.service.annotation.HttpExchange;
  * @since 0.0.1
  */
 @HttpExchange(url = "https://ali-esi.evepc.163.com/latest", contentType = "application/json", accept = "application/json")
-public interface TianyanGameEveESIExchange extends RestExchange {
+public interface TianyanGameEveESIExchange extends TianyanGameEveExchange {
 
 }

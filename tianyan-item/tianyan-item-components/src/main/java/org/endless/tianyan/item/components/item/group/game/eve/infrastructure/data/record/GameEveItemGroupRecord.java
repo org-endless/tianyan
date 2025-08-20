@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * GameEveItemGroupRecord
  * <p>游戏EVE资源项分组数据库记录实体
  * <p>
- * create 2025/07/24 20:20
+ * itemCreate 2025/07/24 20:20
  * <p>
  * update 2025/07/24 20:20
  *

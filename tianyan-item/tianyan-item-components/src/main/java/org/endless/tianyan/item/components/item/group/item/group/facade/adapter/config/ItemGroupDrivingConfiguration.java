@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Primary;
  * ItemGroupDrivingConfiguration
  * <p>资源项分组领域主动适配器配置类
  * <p>
- * create 2025/07/21 16:04
+ * itemCreate 2025/07/21 16:04
  * <p>
  * update 2025/07/21 16:04
  *

@@ -65,10 +65,14 @@ public class GameEveDataItemLoadTask implements GameEveDataLoadTask {
                             .validate();
                     gameEveDataItemRestClient.create(GameEveItemCreateReqDTransfer.builder()
                             .code(key)
-                            .metaGroupId(item.getMetaGroupID() == null ? null : gameEveDataMetaGroupDrivenAdapter.findMetaGroupIdByCode(GameEveMetaGroupFindByCodeReqQTransfer.builder().code(item.getMetaGroupID()).build().validate()))
+                            .metaGroupId(item.getMetaGroupID() == null ? null : gameEveDataMetaGroupDrivenAdapter
+                                    .findMetaGroupIdByCode(GameEveMetaGroupFindByCodeReqQTransfer.builder()
+                                            .code(item.getMetaGroupID())
+                                            .build().validate()))
                             .itemGroupId(gameEveDataItemGroupRestClient.findItemGroupIdByCode(item.getGroupID())
                                     .orElseThrow(() -> new DrivenAdapterException("资源项分类ID不存在，无法创建资源项数据")))
-                            .marketGroupId(item.getMarketGroupID() == null ? null : gameEveDataMarketGroupRestClient.findMarketGroupIdByCode(item.getMarketGroupID())
+                            .marketGroupId(item.getMarketGroupID() == null ? null : gameEveDataMarketGroupRestClient
+                                    .findMarketGroupIdByCode(item.getMarketGroupID())
                                     .orElseThrow(() -> new DrivenAdapterException("市场分类ID不存在，无法创建资源项数据")))
                             .fullNameZh(item.getName().getZh() == null ? item.getName().getEn() : item.getName().getZh())
                             .fullNameEn(item.getName().getEn())

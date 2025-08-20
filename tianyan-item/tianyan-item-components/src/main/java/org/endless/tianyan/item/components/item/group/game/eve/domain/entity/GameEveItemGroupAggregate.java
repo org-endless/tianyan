@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
  * GameEveItemGroupAggregate
  * <p>游戏EVE资源项分组聚合根
  * <p>
- * create 2025/07/24 20:20
+ * itemCreate 2025/07/24 20:20
  * <p>
  * update 2025/07/24 20:20
  *

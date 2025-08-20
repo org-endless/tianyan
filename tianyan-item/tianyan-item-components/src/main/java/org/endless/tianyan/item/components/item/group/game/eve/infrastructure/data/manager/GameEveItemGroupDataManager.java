@@ -19,7 +19,7 @@ import java.util.Optional;
  * GameEveItemGroupDataManager
  * <p>游戏EVE资源项分组聚合数据管理器
  * <p>
- * create 2025/07/21 16:03
+ * itemCreate 2025/07/21 16:03
  * <p>
  * update 2025/07/21 16:03
  *

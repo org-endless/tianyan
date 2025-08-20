@@ -11,7 +11,7 @@ import org.endless.tianyan.item.common.model.application.command.transfer.Tianya
  * GameEveItemCreateReqCReqTransfer
  * <p>游戏EVE资源项创建命令请求传输对象
  * <p>
- * create 2025/07/28 05:10
+ * itemCreate 2025/07/28 05:10
  * <p>
  * update 2025/07/28 05:10
  *
@@ -26,7 +26,7 @@ import org.endless.tianyan.item.common.model.application.command.transfer.Tianya
 @Builder
 @Transfer
 @JSONType(orders = {"itemId", "gameEveItemCode", "isPublished", "createUserId"})
-public record GameEveItemCreateReqCReqTransfer(
+public record GameEveItemCreateCReqTransfer(
         @NotBlank(message = "资源项ID不能为空") String itemId,
         @NotBlank(message = "游戏EVE资源项编码不能为空") String gameEveItemCode,
         @NotNull(message = "游戏EVE资源项是否发布不能为空") Boolean isPublished,
@@ -34,7 +34,7 @@ public record GameEveItemCreateReqCReqTransfer(
 ) implements TianyanItemCommandReqTransfer {
 
     @Override
-    public GameEveItemCreateReqCReqTransfer validate() {
+    public GameEveItemCreateCReqTransfer validate() {
         return this;
     }
 }
