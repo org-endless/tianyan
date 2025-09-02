@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * MarketPriceHistoryDataManager
- * <p>市场价格历史聚合数据管理器
+ * <p>市场价格历史聚合根数据管理器
  * <p>
  * create 2025/07/26 18:57
  * <p>
@@ -39,8 +39,7 @@ public class MarketPriceHistoryDataManager implements MarketPriceHistoryReposito
     }
 
     @Override
-    public MarketPriceHistoryAggregate save(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
-        return null;
+    public void save(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
     }
 
     @Override
@@ -49,8 +48,7 @@ public class MarketPriceHistoryDataManager implements MarketPriceHistoryReposito
     }
 
     @Override
-    public MarketPriceHistoryAggregate modify(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
-        return null;
+    public void modify(MarketPriceHistoryAggregate marketPriceHistoryAggregate) {
     }
 
     @Override

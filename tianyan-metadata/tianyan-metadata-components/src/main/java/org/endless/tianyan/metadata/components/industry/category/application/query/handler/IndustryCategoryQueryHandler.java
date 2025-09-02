@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.industry.category.application.query.handler;
 
 import org.endless.tianyan.metadata.common.model.application.query.handler.TianyanMetadataQueryHandler;
-import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQTransfer;
+import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQReqTransfer;
 
 /**
  * IndustryCategoryQueryHandler
@@ -17,6 +17,6 @@ import org.endless.tianyan.metadata.components.industry.category.application.que
  */
 public interface IndustryCategoryQueryHandler extends TianyanMetadataQueryHandler {
 
-    void existsById(IndustryCategoryFindByIdReqQTransfer query);
+    void existsById(IndustryCategoryFindByIdReqQReqTransfer query);
 
 }

@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.record.DataRecordValidateException;
+import org.endless.ddd.starter.common.annotation.validate.ddd.DataRecord;
+import org.endless.ddd.starter.common.utils.model.object.ObjectTools;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.record.TianyanManufacturingRecord;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.GameEveBlueprintAggregate;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.type.GameEveBlueprintTypeEnum;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveBlueprintRecord
@@ -26,6 +29,8 @@ import org.springframework.util.StringUtils;
 @Getter
 @ToString
 @Builder
+@DataRecord
+@Validated
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @TableName(value = "blueprint_game_eve")
@@ -35,41 +40,43 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
      * 游戏EVE蓝图ID
      */
     @TableId
+    @NotBlank(message = "游戏EVE蓝图ID不能为空")
     private String gameEveBlueprintId;
 
     /**
      * 蓝图ID
      */
+    @NotBlank(message = "蓝图ID不能为空")
     private String blueprintId;
 
     /**
      * 游戏EVE蓝图编码
      */
+    @NotBlank(message = "游戏EVE蓝图编码不能为空")
     private String code;
-
-    /**
-     * 游戏EVE蓝图类型
-     */
-    private GameEveBlueprintTypeEnum type;
 
     /**
      * 游戏EVE蓝图最大生产次数
      */
+    @NotNull(message = "游戏EVE蓝图最大生产次数不能为空")
     private Integer maxProductionLimit;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
+    @NotBlank(message = "创建用户ID不能为空")
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
+    @NotBlank(message = "修改用户ID不能为空")
     private String modifyUserId;
 
     /**
      * 是否已删除
      */
+    @NotNull(message = "是否已删除不能为空")
     private Boolean isRemoved;
 
     /**
@@ -89,13 +96,14 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
      */
     private Long removeAt;
 
-    public static GameEveBlueprintRecord from(GameEveBlueprintAggregate aggregate) {
-        String gameEveBlueprintId = aggregate.getGameEveBlueprintId();
+    @NotNull(message = "游戏EVE蓝图数据记录实体不能为空")
+    public static @Valid GameEveBlueprintRecord from(
+            @NotNull(message = "游戏EVE蓝图聚合根不能为空")
+            @Valid GameEveBlueprintAggregate aggregate) {
         return GameEveBlueprintRecord.builder()
-                .gameEveBlueprintId(gameEveBlueprintId)
+                .gameEveBlueprintId(aggregate.getGameEveBlueprintId())
                 .blueprintId(aggregate.getBlueprintId())
                 .code(aggregate.getCode())
-                .type(aggregate.getType())
                 .maxProductionLimit(aggregate.getMaxProductionLimit())
                 .createUserId(aggregate.getCreateUserId())
                 .modifyUserId(aggregate.getModifyUserId())
@@ -104,13 +112,13 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
                 .validate();
     }
 
+    @NotNull(message = "游戏EVE蓝图聚合根不能为空")
     public GameEveBlueprintAggregate to() {
-        validate();
+        ObjectTools.jsrValidate(this).validate();
         return GameEveBlueprintAggregate.builder()
                 .gameEveBlueprintId(gameEveBlueprintId)
                 .blueprintId(blueprintId)
                 .code(code)
-                .type(type)
                 .maxProductionLimit(maxProductionLimit)
                 .createUserId(createUserId)
                 .modifyUserId(modifyUserId)
@@ -120,55 +128,6 @@ public class GameEveBlueprintRecord implements TianyanManufacturingRecord<GameEv
 
     @Override
     public GameEveBlueprintRecord validate() {
-        validateGameEveBlueprintId();
-        validateBlueprintId();
-        validateCode();
-        validateType();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
         return this;
-    }
-
-    private void validateGameEveBlueprintId() {
-        if (!StringUtils.hasText(gameEveBlueprintId)) {
-            throw new DataRecordValidateException("游戏EVE蓝图ID不能为空");
-        }
-    }
-
-    private void validateBlueprintId() {
-        if (!StringUtils.hasText(blueprintId)) {
-            throw new DataRecordValidateException("蓝图ID不能为空");
-        }
-    }
-
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
-            throw new DataRecordValidateException("游戏EVE蓝图编码不能为空");
-        }
-    }
-
-    private void validateType() {
-        if (type == null) {
-            throw new DataRecordValidateException("游戏EVE蓝图类型不能为 null ");
-        }
-    }
-
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
-        }
-    }
-
-    private void validateModifyUserId() {
-        if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
-        }
-    }
-
-    private void validateIsRemoved() {
-        if (isRemoved == null) {
-            throw new DataRecordValidateException("是否已删除不能为 null ");
-        }
     }
 }

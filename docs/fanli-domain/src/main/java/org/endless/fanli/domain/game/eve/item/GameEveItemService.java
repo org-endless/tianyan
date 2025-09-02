@@ -112,10 +112,10 @@ public class GameEveItemService implements ItemService {
     // }
 
     // public List<Map<String, String>> getT1Manufacturing() {
-    //     List<String> metaGroupIds = new ArrayList<>();
+    //     List<String> metagroupIds = new ArrayList<>();
     //     var blueprints = blueprintService.getAll();
-    //     metaGroupIds.add("1");
-    //     return getTypesByManufacturing(metaGroupIds).stream()
+    //     metagroupIds.add("1");
+    //     return getTypesByManufacturing(metagroupIds).stream()
     //             .filter(type ->
     //                     type.getProfit().getManufacturingProfitMargin() != null
     //                             && type.getProfit().getManufacturingProfitPerDay() != null
@@ -192,12 +192,12 @@ public class GameEveItemService implements ItemService {
     //
 
 
-    // public List<GameEveItem> getManufacturingItems(List<String> metaGroupIds) {
-    //     return gameEveItemJpaRepository.findByPublishedAndMetaGroupIdIn(true, metaGroupIds);
+    // public List<GameEveItem> getManufacturingItems(List<String> metagroupIds) {
+    //     return gameEveItemJpaRepository.findByPublishedAndMetaGroupIdIn(true, metagroupIds);
     // }
     //
-    // public Slice<GameEveItem> getManufacturingSlice(List<String> metaGroupIds, Pageable pageable) {
-    //     return gameEveItemJpaRepository.findSliceByPublishedAndMetaGroupIdIn(true, metaGroupIds, pageable);
+    // public Slice<GameEveItem> getManufacturingSlice(List<String> metagroupIds, Pageable pageable) {
+    //     return gameEveItemJpaRepository.findSliceByPublishedAndMetaGroupIdIn(true, metagroupIds, pageable);
     // }
 
     // public List<GameEveItem> getItemsByItemIds(List<String> itemIds) {

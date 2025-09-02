@@ -11,7 +11,7 @@ import org.endless.ddd.starter.common.ddd.infrastructure.adapter.transfer.Driven
  *
  * @author Deng Haozhi
  * @see DrivenRespTransfer
- * @since 1.0.0
+ * @since 0.0.1
  */
 public interface TianyanFinanceDrivenRespTransfer extends DrivenRespTransfer {
 

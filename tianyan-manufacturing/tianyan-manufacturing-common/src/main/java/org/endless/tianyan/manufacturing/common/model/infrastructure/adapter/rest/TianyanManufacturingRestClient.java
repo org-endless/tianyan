@@ -1,7 +1,7 @@
 package org.endless.tianyan.manufacturing.common.model.infrastructure.adapter.rest;
 
 import org.endless.ddd.starter.common.ddd.infrastructure.adapter.rest.RestClientAdapter;
-import org.endless.tianyan.manufacturing.common.model.infrastructure.adapter.transfer.TianyanManufacturingDrivenTransfer;
+import org.endless.tianyan.manufacturing.common.model.infrastructure.adapter.transfer.TianyanManufacturingDrivenReqTransfer;
 
 /**
  * TianyanManufacturingDrivenRestAdapter
@@ -14,7 +14,6 @@ import org.endless.tianyan.manufacturing.common.model.infrastructure.adapter.tra
  * @see RestClientAdapter
  * @since 0.0.1
  */
-public interface TianyanManufacturingRestClient<T extends TianyanManufacturingDrivenTransfer>
-        extends RestClientAdapter {
+public interface TianyanManufacturingRestClient<T extends TianyanManufacturingDrivenReqTransfer> extends RestClientAdapter {
 
 }

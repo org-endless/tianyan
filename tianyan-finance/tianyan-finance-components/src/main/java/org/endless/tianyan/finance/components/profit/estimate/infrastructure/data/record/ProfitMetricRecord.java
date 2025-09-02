@@ -61,12 +61,12 @@ public class ProfitMetricRecord implements TianyanFinanceRecord<ProfitMetricEnti
     private BigDecimal marginPercentage;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -106,19 +106,6 @@ public class ProfitMetricRecord implements TianyanFinanceRecord<ProfitMetricEnti
                 .validate();
     }
 
-    protected ProfitMetricEntity to() {
-        validate();
-        return ProfitMetricEntity.builder()
-                .profitMetricId(profitMetricId)
-                .type(type)
-                .amount(amount)
-                .marginPercentage(marginPercentage)
-                .createUserId(createUserId)
-                .modifyUserId(modifyUserId)
-                .isRemoved(isRemoved)
-                .innerBuild();
-    }
-
     @Override
     public ProfitMetricRecord validate() {
         validateProfitMetricId();
@@ -130,6 +117,19 @@ public class ProfitMetricRecord implements TianyanFinanceRecord<ProfitMetricEnti
         validateModifyUserId();
         validateIsRemoved();
         return this;
+    }
+
+    protected ProfitMetricEntity to() {
+        validate();
+        return ProfitMetricEntity.builder()
+                .profitMetricId(profitMetricId)
+                .type(type)
+                .amount(amount)
+                .marginPercentage(marginPercentage)
+                .createUserId(createUserId)
+                .modifyUserId(modifyUserId)
+                .isRemoved(isRemoved)
+                .innerBuild();
     }
 
     private void validateProfitMetricId() {
@@ -160,13 +160,13 @@ public class ProfitMetricRecord implements TianyanFinanceRecord<ProfitMetricEnti
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
+            throw new DataRecordValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
+            throw new DataRecordValidateException("修改用户ID不能为空");
         }
     }
 

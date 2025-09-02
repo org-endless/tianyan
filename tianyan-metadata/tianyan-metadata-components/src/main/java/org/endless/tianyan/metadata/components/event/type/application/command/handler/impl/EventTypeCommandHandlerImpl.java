@@ -4,10 +4,13 @@ import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.components.event.type.application.command.handler.EventTypeCommandHandler;
-import org.endless.tianyan.metadata.components.event.type.application.command.transfer.EventTypeCreateReqCTransfer;
+import org.endless.tianyan.metadata.components.event.type.application.command.transfer.EventTypeCreateReqCReqTransfer;
 import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.EventTypeRepository;
 import org.endless.tianyan.metadata.components.event.type.domain.entity.EventTypeAggregate;
 import org.endless.tianyan.metadata.components.event.type.domain.value.EventTypeNameValue;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -23,6 +26,9 @@ import java.util.Optional;
  * @see EventTypeCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class EventTypeCommandHandlerImpl implements EventTypeCommandHandler {
 
     /**
@@ -36,9 +42,9 @@ public class EventTypeCommandHandlerImpl implements EventTypeCommandHandler {
 
     @Override
     @Log(message = "事件类型创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(EventTypeCreateReqCTransfer command) {
+    public void create(EventTypeCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(EventTypeCreateReqCTransfer::validate)
+                .map(EventTypeCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("事件类型创建命令参数不能为空"));
         EventTypeAggregate aggregate = EventTypeAggregate.create(EventTypeAggregate.builder()
                 .code(command.getCode())

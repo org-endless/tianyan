@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.event.type.application.command.handler;
 
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
-import org.endless.tianyan.metadata.components.event.type.application.command.transfer.EventTypeCreateReqCTransfer;
+import org.endless.tianyan.metadata.components.event.type.application.command.transfer.EventTypeCreateReqCReqTransfer;
 import org.endless.tianyan.metadata.components.event.type.domain.entity.EventTypeAggregate;
 
 /**
@@ -18,6 +18,6 @@ import org.endless.tianyan.metadata.components.event.type.domain.entity.EventTyp
  */
 public interface EventTypeCommandHandler extends TianyanMetadataCommandHandler<EventTypeAggregate> {
 
-    void create(EventTypeCreateReqCTransfer command);
+    void create(EventTypeCreateReqCReqTransfer command);
 
 }

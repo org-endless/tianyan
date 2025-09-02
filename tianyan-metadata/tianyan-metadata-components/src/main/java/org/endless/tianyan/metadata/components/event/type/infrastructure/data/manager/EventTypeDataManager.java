@@ -1,8 +1,10 @@
 package org.endless.tianyan.metadata.components.event.type.infrastructure.data.manager;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.metadata.common.model.infrastructure.data.manager.TianyanMetadataAggregateDataManager;
 import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.EventTypeQueryRepository;
 import org.endless.tianyan.metadata.components.event.type.domain.anticorruption.EventTypeRepository;
@@ -16,7 +18,7 @@ import java.util.Optional;
 
 /**
  * EventTypeDataManager
- * <p>事件类型聚合数据管理器
+ * <p>事件类型聚合根数据管理器
  * <p>
  * create 2025/07/28 18:41
  * <p>
@@ -42,32 +44,38 @@ public class EventTypeDataManager implements EventTypeRepository, EventTypeQuery
     }
 
     @Override
-    @Log(message = "保存事件类型聚合数据", value = "#aggregate", level = LogLevel.TRACE)
-    public EventTypeAggregate save(EventTypeAggregate aggregate) {
-        Optional.ofNullable(aggregate)
-                .map(EventTypeAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存事件类型聚合数据不能为空"));
+    @Log(message = "保存事件类型聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void save(
+            @NotNull(message = "保存事件类型聚合根数据不能为空")
+            @Valid EventTypeAggregate aggregate) {
         eventTypeMapper.save(EventTypeRecord.from(aggregate));
-        return aggregate;
     }
 
     @Override
-    public void remove(EventTypeAggregate aggregate) {
-
+    @Log(message = "删除事件类型聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void remove(
+            @NotNull(message = "删除事件类型聚合根数据不能为空")
+            EventTypeAggregate aggregate) {
+        eventTypeMapper.remove(EventTypeRecord.from(aggregate));
     }
 
     @Override
-    public EventTypeAggregate modify(EventTypeAggregate aggregate) {
-        return null;
+    @Log(message = "修改事件类型聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void modify(
+            @NotNull(message = "修改事件类型聚合根数据不能为空")
+            @Valid EventTypeAggregate aggregate) {
+        eventTypeMapper.modify(EventTypeRecord.from(aggregate));
     }
 
     @Override
-    public Optional<EventTypeAggregate> findById(String s) {
-        return Optional.empty();
+    @Log(message = "根据ID查询事件类型聚合根数据", value = "#eventTypeId", level = LogLevel.TRACE)
+    public Optional<EventTypeAggregate> findById(
+            @NotBlank(message = "事件类型数据ID不能为空") String eventTypeId) {
+        return eventTypeMapper.findById(eventTypeId).map(EventTypeRecord::to);
     }
 
     @Override
-    public Optional<EventTypeAggregate> findByIdForUpdate(String s) {
+    public Optional<EventTypeAggregate> findByIdForUpdate(String eventTypeId) {
         return Optional.empty();
     }
 }

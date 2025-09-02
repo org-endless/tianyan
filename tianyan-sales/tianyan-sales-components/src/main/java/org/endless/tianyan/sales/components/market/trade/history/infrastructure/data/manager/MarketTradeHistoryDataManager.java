@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * MarketTradeHistoryDataManager
- * <p>市场交易历史聚合数据管理器
+ * <p>市场交易历史聚合根数据管理器
  * <p>
  * create 2025/07/26 18:57
  * <p>
@@ -39,8 +39,7 @@ public class MarketTradeHistoryDataManager implements MarketTradeHistoryReposito
     }
 
     @Override
-    public MarketTradeHistoryAggregate save(MarketTradeHistoryAggregate marketTradeHistoryAggregate) {
-        return null;
+    public void save(MarketTradeHistoryAggregate marketTradeHistoryAggregate) {
     }
 
     @Override
@@ -49,8 +48,7 @@ public class MarketTradeHistoryDataManager implements MarketTradeHistoryReposito
     }
 
     @Override
-    public MarketTradeHistoryAggregate modify(MarketTradeHistoryAggregate marketTradeHistoryAggregate) {
-        return null;
+    public void modify(MarketTradeHistoryAggregate marketTradeHistoryAggregate) {
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.endless.tianyan.manufacturing.common.handler.exception.rest;
 
-import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
-import org.endless.tianyan.manufacturing.common.model.sidecar.rest.TianyanManufacturingRestResponse;
+import org.endless.ddd.starter.common.exception.AbstractRestExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -12,14 +11,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * update 2024/11/03 14:33
  *
  * @author Deng Haozhi
- * @see AbstractRestAdapterExceptionHandler
+ * @see AbstractRestExceptionHandler
  * @since 0.0.1
  */
 @RestControllerAdvice
-public class TianyanManufacturingRestAdapterExceptionHandler extends AbstractRestAdapterExceptionHandler {
+public class TianyanManufacturingRestAdapterExceptionHandler extends AbstractRestExceptionHandler {
+
 
     @Override
-    public TianyanManufacturingRestResponse response() {
-        return TianyanManufacturingRestResponse.builder().build();
+    public String serviceDescription() {
+        return "天演-制造服务";
     }
 }

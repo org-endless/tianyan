@@ -6,7 +6,10 @@ import org.endless.ddd.starter.common.exception.ddd.application.query.handler.Qu
 import org.endless.ddd.starter.common.exception.ddd.application.query.transfer.QueryReqTransferNullException;
 import org.endless.tianyan.metadata.components.industry.category.application.query.anticorruption.IndustryCategoryQueryRepository;
 import org.endless.tianyan.metadata.components.industry.category.application.query.handler.IndustryCategoryQueryHandler;
-import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQTransfer;
+import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQReqTransfer;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -22,6 +25,9 @@ import java.util.Optional;
  * @see IndustryCategoryQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class IndustryCategoryQueryHandlerImpl implements IndustryCategoryQueryHandler {
 
     /**
@@ -35,9 +41,9 @@ public class IndustryCategoryQueryHandlerImpl implements IndustryCategoryQueryHa
 
     @Override
     @Log(message = "行业分类根据ID查询是否存在", value = "#command", level = LogLevel.TRACE)
-    public void existsById(IndustryCategoryFindByIdReqQTransfer query) {
+    public void existsById(IndustryCategoryFindByIdReqQReqTransfer query) {
         Optional.ofNullable(query)
-                .map(IndustryCategoryFindByIdReqQTransfer::validate)
+                .map(IndustryCategoryFindByIdReqQReqTransfer::validate)
                 .orElseThrow(() -> new QueryReqTransferNullException("行业分类根据ID查询是否存在参数不能为空"));
         if (!industryCategoryQueryRepository.existsById(query.getIndustryCategoryId())) {
             throw new QueryNotFoundException("行业分类不存在");

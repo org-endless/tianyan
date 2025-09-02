@@ -1,7 +1,6 @@
 package org.endless.tianyan.metadata.common.handler.exception.rest;
 
-import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
-import org.endless.tianyan.metadata.common.model.sidecar.rest.TianyanMetadataRestResponse;
+import org.endless.ddd.starter.common.exception.AbstractRestExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -12,14 +11,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * update 2024/11/03 14:33
  *
  * @author Deng Haozhi
- * @see AbstractRestAdapterExceptionHandler
+ * @see AbstractRestExceptionHandler
  * @since 0.0.1
  */
 @RestControllerAdvice
-public class TianyanMetadataRestAdapterExceptionHandler extends AbstractRestAdapterExceptionHandler {
+public class TianyanMetadataRestAdapterExceptionHandler extends AbstractRestExceptionHandler {
 
     @Override
-    public TianyanMetadataRestResponse response() {
-        return TianyanMetadataRestResponse.builder().build();
+    public String serviceDescription() {
+        return "天演-元数据服务";
     }
 }

@@ -1,8 +1,10 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.handler;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.endless.tianyan.manufacturing.common.model.application.command.handler.TianyanManufacturingCommandHandler;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCReqTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateRespCReqTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity.BlueprintAggregate;
 
 /**
@@ -19,6 +21,16 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.e
  */
 public interface BlueprintCommandHandler extends TianyanManufacturingCommandHandler<BlueprintAggregate> {
 
-    BlueprintCreateRespCTransfer create(BlueprintCreateReqCTransfer command);
+    /**
+     * 蓝图创建命令
+     *
+     * @param command 蓝图创建命令请求传输对象
+     * @return {@link BlueprintCreateRespCReqTransfer }
+     */
+    @Valid
+    @NotNull(message = "蓝图创建命令响应传输对象不能为空")
+    BlueprintCreateRespCReqTransfer create(
+            @NotNull(message = "蓝图创建命令请求传输对象不能为空")
+            @Valid BlueprintCreateReqCReqTransfer command);
 
 }

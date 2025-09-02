@@ -28,7 +28,7 @@ public enum GameEveDataTypeEnum implements TianyanMetadataEnum {
     ITEM_GROUP("ITEM_GROUP", "资源项分组"),
     MARKET_GROUP("MARKET_GROUP", "市场分组"),
     BLUEPRINT("BLUEPRINT", "蓝图"),
-    META_GROUP("META_GROUP", "元分组");
+    META_GROUP("METAGROUP", "元分组");
 
     private final String code;
 

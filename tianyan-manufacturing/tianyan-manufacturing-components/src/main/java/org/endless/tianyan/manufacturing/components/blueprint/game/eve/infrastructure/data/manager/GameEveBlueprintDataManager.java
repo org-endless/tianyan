@@ -2,7 +2,6 @@ package org.endless.tianyan.manufacturing.components.blueprint.game.eve.infrastr
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.manager.TianyanManufacturingAggregateDataManager;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.GameEveBlueprintQueryRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.GameEveBlueprintRepository;
@@ -11,12 +10,13 @@ import org.endless.tianyan.manufacturing.components.blueprint.game.eve.infrastru
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.infrastructure.data.record.GameEveBlueprintRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 /**
  * GameEveBlueprintDataManager
- * <p>游戏EVE蓝图聚合数据管理器
+ * <p>游戏EVE蓝图聚合根数据管理器
  * <p>
  * create 2025/07/24 09:18
  * <p>
@@ -29,6 +29,7 @@ import java.util.Optional;
  * @since 0.0.1
  */
 @Lazy
+@Validated
 @Component
 public class GameEveBlueprintDataManager implements GameEveBlueprintRepository, GameEveBlueprintQueryRepository, TianyanManufacturingAggregateDataManager<GameEveBlueprintRecord, GameEveBlueprintAggregate> {
 
@@ -42,32 +43,31 @@ public class GameEveBlueprintDataManager implements GameEveBlueprintRepository, 
     }
 
     @Override
-    @Log(message = "保存游戏EVE蓝图聚合数据", value = "#aggregate", level = LogLevel.TRACE)
-    public GameEveBlueprintAggregate save(GameEveBlueprintAggregate aggregate) {
-        Optional.ofNullable(aggregate)
-                .map(GameEveBlueprintAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存游戏EVE资源项聚合数据不能为空"));
+    @Log(message = "保存游戏EVE蓝图聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void save(GameEveBlueprintAggregate aggregate) {
         gameEveBlueprintMapper.save(GameEveBlueprintRecord.from(aggregate));
-        return aggregate;
     }
 
     @Override
+    @Log(message = "删除游戏EVE蓝图聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
     public void remove(GameEveBlueprintAggregate aggregate) {
-
+        gameEveBlueprintMapper.remove(GameEveBlueprintRecord.from(aggregate));
     }
 
     @Override
-    public GameEveBlueprintAggregate modify(GameEveBlueprintAggregate aggregate) {
-        return null;
+    @Log(message = "修改游戏EVE蓝图聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void modify(GameEveBlueprintAggregate aggregate) {
+        gameEveBlueprintMapper.modify(GameEveBlueprintRecord.from(aggregate));
     }
 
     @Override
-    public Optional<GameEveBlueprintAggregate> findById(String s) {
-        return Optional.empty();
+    @Log(message = "根据ID查询游戏EVE蓝图聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public Optional<GameEveBlueprintAggregate> findById(String gameEveBlueprintId) {
+        return gameEveBlueprintMapper.findById(gameEveBlueprintId).map(GameEveBlueprintRecord::to);
     }
 
     @Override
-    public Optional<GameEveBlueprintAggregate> findByIdForUpdate(String s) {
+    public Optional<GameEveBlueprintAggregate> findByIdForUpdate(String gameEveBlueprintId) {
         return Optional.empty();
     }
 }

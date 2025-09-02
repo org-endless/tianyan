@@ -3,12 +3,12 @@ package org.endless.tianyan.metadata.components.event.type.domain.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Aggregate;
 import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
-import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAggregate;
 import org.endless.tianyan.metadata.components.event.type.domain.value.EventTypeNameValue;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * EventTypeAggregate
@@ -24,6 +24,8 @@ import org.springframework.util.StringUtils;
  */
 @Getter
 @ToString
+@Aggregate
+@Validated
 @Builder(buildMethodName = "innerBuild")
 public class EventTypeAggregate implements TianyanMetadataAggregate {
 
@@ -48,12 +50,12 @@ public class EventTypeAggregate implements TianyanMetadataAggregate {
     private String description;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -72,65 +74,16 @@ public class EventTypeAggregate implements TianyanMetadataAggregate {
     }
 
     public EventTypeAggregate remove(String modifyUserId) {
-        if (this.isRemoved) {
+        if (Boolean.TRUE.equals(this.isRemoved)) {
             throw new AggregateRemoveException("已经被删除的聚合根<事件类型聚合根>不能再次删除, ID: " + eventTypeId);
-        }
-        if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<事件类型聚合根>处于不可删除状态, ID: " + eventTypeId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
     }
 
-    private boolean canRemove() {
-        return true;
-    }
-
     @Override
     public EventTypeAggregate validate() {
-        validateEventTypeId();
-        validateCode();
-        validateName();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
         return this;
-    }
-
-    private void validateEventTypeId() {
-        if (!StringUtils.hasText(eventTypeId)) {
-            throw new AggregateValidateException("事件类型ID不能为空");
-        }
-    }
-
-    private void validateCode() {
-        if (!StringUtils.hasText(code)) {
-            throw new AggregateValidateException("事件类型编码不能为空");
-        }
-    }
-
-    private void validateName() {
-        if (name == null) {
-            throw new AggregateValidateException("事件类型名称不能为 null ");
-        }
-    }
-
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
-        }
-    }
-
-    private void validateModifyUserId() {
-        if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
-        }
-    }
-
-    private void validateIsRemoved() {
-        if (isRemoved == null) {
-            throw new AggregateValidateException("是否已删除不能为 null ");
-        }
     }
 }

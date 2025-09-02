@@ -35,7 +35,7 @@ public class CostRuleAggregate implements TianyanFinanceAggregate {
     private final String costRuleId;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private final String createUserId;
 
@@ -75,7 +75,7 @@ public class CostRuleAggregate implements TianyanFinanceAggregate {
     private String description;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -105,6 +105,18 @@ public class CostRuleAggregate implements TianyanFinanceAggregate {
         validateCreateUserId();
         validateModifyUserId();
         validateIsRemoved();
+        return this;
+    }
+
+    public CostRuleAggregate remove(String modifyUserId) {
+        if (this.isRemoved) {
+            throw new AggregateRemoveException("已经被删除的聚合根<成本规则聚合根>不能再次删除, ID: " + costRuleId);
+        }
+        if (!canRemove()) {
+            throw new AggregateRemoveException("聚合根<成本规则聚合根>处于不可删除状态, ID: " + costRuleId);
+        }
+        this.isRemoved = true;
+        this.modifyUserId = modifyUserId;
         return this;
     }
 
@@ -146,13 +158,13 @@ public class CostRuleAggregate implements TianyanFinanceAggregate {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
+            throw new AggregateValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
+            throw new AggregateValidateException("修改用户ID不能为空");
         }
     }
 
@@ -160,18 +172,6 @@ public class CostRuleAggregate implements TianyanFinanceAggregate {
         if (isRemoved == null) {
             throw new AggregateValidateException("是否已删除不能为 null ");
         }
-    }
-
-    public CostRuleAggregate remove(String modifyUserId) {
-        if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<成本规则聚合根>不能再次删除, ID: " + costRuleId);
-        }
-        if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<成本规则聚合根>处于不可删除状态, ID: " + costRuleId);
-        }
-        this.isRemoved = true;
-        this.modifyUserId = modifyUserId;
-        return this;
     }
 
     private boolean canRemove() {

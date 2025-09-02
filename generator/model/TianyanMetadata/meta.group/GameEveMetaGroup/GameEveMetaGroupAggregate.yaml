@@ -13,7 +13,7 @@ fields:
     type: String
     description: 游戏EVE元分组ID
     nullable: false
-  - name: metaGroupId
+  - name: metagroupId
     type: String
     description: 元分组ID
     nullable: false
@@ -60,7 +60,7 @@ transfers:
     messageType: RESPONSE
     description: 游戏EVE元分组ID查询响应传输对象
     fields:
-      - name: metaGroupId
+      - name: metagroupId
         type: String
         description: 元分组ID
         nullable: false

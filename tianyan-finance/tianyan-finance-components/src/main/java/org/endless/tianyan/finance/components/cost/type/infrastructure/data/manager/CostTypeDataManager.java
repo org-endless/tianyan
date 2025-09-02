@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * CostTypeDataManager
- * <p>成本类型聚合数据管理器
+ * <p>成本类型聚合根数据管理器
  * <p>
  * create 2025/07/28 20:09
  * <p>

@@ -2,6 +2,9 @@ package org.endless.tianyan.metadata.components.industry.industry.application.qu
 
 import org.endless.tianyan.metadata.components.industry.industry.application.query.anticorruption.IndustryQueryRepository;
 import org.endless.tianyan.metadata.components.industry.industry.application.query.handler.IndustryQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * IndustryQueryHandlerImpl
@@ -15,6 +18,9 @@ import org.endless.tianyan.metadata.components.industry.industry.application.que
  * @see IndustryQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class IndustryQueryHandlerImpl implements IndustryQueryHandler {
 
     /**

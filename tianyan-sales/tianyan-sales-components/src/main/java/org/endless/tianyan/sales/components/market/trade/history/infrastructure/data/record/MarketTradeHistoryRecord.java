@@ -81,12 +81,12 @@ public class MarketTradeHistoryRecord implements TianyanSalesRecord<MarketTradeH
     private BigDecimal itemQuantity;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -226,13 +226,13 @@ public class MarketTradeHistoryRecord implements TianyanSalesRecord<MarketTradeH
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
+            throw new DataRecordValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
+            throw new DataRecordValidateException("修改用户ID不能为空");
         }
     }
 

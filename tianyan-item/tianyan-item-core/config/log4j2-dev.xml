@@ -40,7 +40,7 @@
         <Logger name="org.springframework" level="ERROR"/>
         <Logger name="_org.springframework" level="ERROR"/>
         <Logger name="org.apache" level="ERROR"/>
-        <Logger name="io.undertow" level="TRACE"/>
+        <Logger name="io.undertow" level="ERROR"/>
         <Logger name="org.xnio" level="ERROR"/>
         <Logger name="org.jboss" level="ERROR"/>
         <Logger name="org.thymeleaf" level="ERROR"/>
@@ -65,18 +65,15 @@
         <Logger name="com.github.pagehelper" level="ERROR"/>
 
         <Logger name="org.endless.ddd.starter.common.config.aspect.log.LogAspect"
-                level="TRACE" additivity="false">
+                level="INFO" additivity="false">
             <AppenderRef ref="AspectConsole"/>
-            <!-- <AppenderRef ref="AspectFile"/> -->
         </Logger>
-        <Logger name="org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler"
-                level="TRACE" additivity="false">
+        <Logger name="org.endless.ddd.starter.common.exception.AbstractRestExceptionHandler"
+                level="INFO" additivity="false">
             <AppenderRef ref="AspectConsole"/>
-            <!-- <AppenderRef ref="AspectFile"/> -->
         </Logger>
-        <Root level="TRACE">
+        <Root level="INFO">
             <AppenderRef ref="DefaultConsole"/>
-            <!-- <AppenderRef ref="DefaultFile"/> -->
         </Root>
     </Loggers>
 </Configuration>

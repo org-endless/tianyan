@@ -1,14 +1,24 @@
-project-home: ${user.dir}
-server-data-center-id: 1
-server-worker-id: 1
-server-port: 10003
-#Tomcat
-tomcat-connection-timeout: 20000 # 设置连接超时时间，单位为毫秒
-tomcat-max-threads: 200 # 设置最大线程数
-tomcat-min-spare-threads: 10 # 设置最小闲置线程数
-tomcat-accept-count: 100 # 设置最大请求队列数
-tomcat-max-http-header-size: 8192 # 设置最大 HTTP 请求头大小，单位为字节
-tomcat-uri-encoding: UTF-8 # 设置 URI 编码格式
+# Project
+endless-charset: UTF-8 # 字符集
+endless-date-pattern: yyyy-MM-dd # 日期格式
+endless-date-time-pattern: yyyy-MM-dd HH:mm:ss:SSS # 日期时间格式
+endless-data-center-id: 1 # 数据中心 ID
+endless-worker-id: 1 # 工作节点 ID
+endless-sidecar-mesh-mode-enabled: false # 是否启用 Service Mesh 模式
+endless-sidecar-host: 127.0.0.1 # 边车主机地址
+endless-sidecar-port: 60005 # 边车端口
+# Spring
+spring-devtools-restart-enabled: true # 启用 Spring DevTools 热部署
+spring-output-ansi-enabled: true # 输出 ANSI 编码的控制台颜色
+# Server
+server-port: 10003 # 服务端口
+# Undertow
+undertow-worker-threads: 200 # 最大工作线程数
+undertow-io-threads: 16 # IO 线程数
+undertow-server-options-idle-timeout: 20000 # 连接超时时间（毫秒）
+undertow-server-options-so-backlog: 500 # 请求队列长度
+undertow-max-http-header-size: 8192 # 最大请求头大小
+undertow-buffer-cache-size: 8192 # Servlet缓冲区大小
 #Http
 http-multipart-max-file-size: 5MB # 限制单个文件的最大上传大小
 http-multipart-max-request-size: 10MB # 限制整个请求的最大上传大小
@@ -29,31 +39,17 @@ redis-lettuce-pool-max-idle: 8 # 连接池中最大空闲连接数
 redis-lettuce-pool-max-active: 8 # 连接池中最大活动连接数（并发连接数）
 redis-lettuce-pool-max-wait: -1 # 从连接池获取连接的最大等待时间，-1 表示没有限制
 #Datasource
-datasource-type: com.alibaba.druid.pool.DruidDataSource # 指定 Druid 数据源类型
 datasource-driver-class-name: com.mysql.cj.jdbc.Driver # 设置数据库驱动类
 datasource-url: jdbc:mysql://127.0.0.1:61005/tianyan?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 datasource-username: tianyan # 数据库用户名
 datasource-password: tianyan # 数据库密码
-#Druid
-druid-initial-size: 1 # 初始化连接数
-druid-min-idle: 1 # 最小空闲连接数
-druid-max-active: 20 # 最大活动连接数
-druid-max-wait: 60000 # 获取连接的最大等待时间，单位为毫秒
-druid-validation-query: SELECT 1 # 连接验证查询
-druid-test-on-borrow: false # 在获取连接时检查有效性
-druid-test-on-return: false # 归还连接时进行检测
-druid-test-while-idle: true # 在空闲时检查连接有效性
-druid-time-between-eviction-runs-millis: 60000 # 运行空闲连接回收线程的时间间隔，单位为毫秒
-druid-min-evictable-idle-time-millis: 300000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
-druid-max-evictable-idle-time-millis: 900000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
-druid-filters: stat,log4j2 # Druid 监控过滤器配置，开启统计和 log4j 记录
-druid-stat-view-servlet-enabled: true # 是否启用 Druid 的监控页面
-druid-web-stat-filter-enabled: true # 是否启用 Druid 的 Web 统计过滤器
-druid-filter-stat-enabled: true # 启用统计过滤器
-druid-filter-stat-log-slow-sql: true # 启用慢SQL记录
-druid-filter-stat-slow-sql-millis: 1000 # 记录执行时间超过1000毫秒的SQL
-druid-filter-stat-merge-sql: true # 合并相似的SQL执行
-druid-filter-wall-config-multi-statement-allow: true # 允许多条语句执行
+#Hikari
+hikari-minimum-idle: 10 # 最小空闲连接数
+hikari-maximum-pool-size: 50 # 最大连接池大小
+hikari-idle-timeout: 600000 # 空闲连接超时时间（秒）
+hikari-max-lifetime: 1800000 # 连接最大存活时间（秒）
+hikari-connection-timeout: 30000 # 连接超时时间（秒）
+hikari-pool-name: HikariCP # 连接池名称
 #Logging
 logging-config: file:config/log4j2-dev.xml
 #MinIO
@@ -64,3 +60,8 @@ minio-bucket: gycdp # 默认存储桶名称（从配置中读取），用于存�
 minio-connect-pool-max-idle: 20 # 最大空闲连接数，设置较大值可以减少频繁连接创建和关闭
 minio-connect-pool-keep-alive: 10 # 空闲连接保活时间，单位为分钟，超过该时间未使用的连接将被关闭
 minio-connect-pool-timeout: 30 # 连接超时时间，单位为秒，超过该时间未能建立连接则会超时
+#Spring Doc
+springdoc-path: /springdoc
+springdoc-group-id1: tianyan-sales-components
+springdoc-group-name1: 天演-销售服务-核心域组件
+springdoc-group-package1: org.endless.tianyan.sales.components

@@ -1,9 +1,9 @@
 package org.endless.tianyan.item.components.item.item.application.command.transfer;
 
 import com.alibaba.fastjson2.annotation.JSONType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
-import org.endless.ddd.starter.common.annotation.validate.ddd.transfer.Transfer;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Transfer;
 import org.endless.tianyan.item.common.model.application.command.transfer.TianyanItemCommandReqTransfer;
 
 /**
@@ -14,8 +14,8 @@ import org.endless.tianyan.item.common.model.application.command.transfer.Tianya
  * <p>
  * update 2025/07/24 20:14
  *
- * @param metaGroupId   元分组ID
  * @param itemGroupId   资源项分组ID
+ * @param metagroupId   元分组ID
  * @param marketGroupId 市场分组ID
  * @param fullNameZh    资源项中文全称
  * @param fullNameEn    资源项英文全称
@@ -27,14 +27,14 @@ import org.endless.tianyan.item.common.model.application.command.transfer.Tianya
  */
 @Builder
 @Transfer
-@JSONType(orders = {"metaGroupId", "itemGroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "createUserId"})
+@JSONType(orders = {"itemGroupId", "metagroupId", "marketGroupId", "fullNameZh", "fullNameEn", "description", "createUserId"})
 public record ItemCreateCReqTransfer(
-        @NotBlank(message = "元分组ID不能为空") String metaGroupId,
         @NotBlank(message = "资源项分组ID不能为空") String itemGroupId,
-        @NotBlank(message = "市场分组ID不能为空") String marketGroupId,
+        String metagroupId,
+        String marketGroupId,
         @NotBlank(message = "资源项中文全称不能为空") String fullNameZh,
-        @NotBlank(message = "资源项英文全称不能为空") String fullNameEn,
-        @NotBlank(message = "资源项描述不能为空") String description,
+        String fullNameEn,
+        String description,
         @NotBlank(message = "创建用户ID不能为空") String createUserId
 ) implements TianyanItemCommandReqTransfer {
 

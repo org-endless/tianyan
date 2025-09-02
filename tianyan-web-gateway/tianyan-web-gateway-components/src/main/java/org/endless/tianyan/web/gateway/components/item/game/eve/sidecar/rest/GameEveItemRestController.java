@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * GameEveItemRestController
- * <p>游戏EVE资源项领域Rest控制器
+ * <p>游戏EVE资源项领域REST控制器
  * <p>
  * create 2025/07/19 08:00
  * <p>

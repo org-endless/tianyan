@@ -58,12 +58,12 @@ public class CostTypeRecord implements TianyanFinanceRecord<CostTypeAggregate> {
     private String description;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -115,6 +115,22 @@ public class CostTypeRecord implements TianyanFinanceRecord<CostTypeAggregate> {
         return this;
     }
 
+    public CostTypeAggregate to() {
+        validate();
+        return CostTypeAggregate.builder()
+                .costTypeId(costTypeId)
+                .code(code)
+                .name(CostTypeNameValue.builder()
+                        .nameZh(nameNameZh)
+                        .nameEn(nameNameEn)
+                        .innerBuild())
+                .description(description)
+                .createUserId(createUserId)
+                .modifyUserId(modifyUserId)
+                .isRemoved(isRemoved)
+                .innerBuild();
+    }
+
     private void validateCostTypeId() {
         if (!StringUtils.hasText(costTypeId)) {
             throw new DataRecordValidateException("成本类型ID不能为空");
@@ -135,13 +151,13 @@ public class CostTypeRecord implements TianyanFinanceRecord<CostTypeAggregate> {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
+            throw new DataRecordValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
+            throw new DataRecordValidateException("修改用户ID不能为空");
         }
     }
 
@@ -149,21 +165,5 @@ public class CostTypeRecord implements TianyanFinanceRecord<CostTypeAggregate> {
         if (isRemoved == null) {
             throw new DataRecordValidateException("是否已删除不能为 null ");
         }
-    }
-
-    public CostTypeAggregate to() {
-        validate();
-        return CostTypeAggregate.builder()
-                .costTypeId(costTypeId)
-                .code(code)
-                .name(CostTypeNameValue.builder()
-                        .nameZh(nameNameZh)
-                        .nameEn(nameNameEn)
-                        .innerBuild())
-                .description(description)
-                .createUserId(createUserId)
-                .modifyUserId(modifyUserId)
-                .isRemoved(isRemoved)
-                .innerBuild();
     }
 }

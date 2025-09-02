@@ -8,7 +8,7 @@ import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adap
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.group.GameEveDataItemGroupLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.item.GameEveDataItemLoadTask;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.market.group.GameEveDataMarketGroupLoadTask;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.meta.group.GameEveDataMetaGroupLoadTask;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.metagroup.GameEveDataMetagroupLoadTask;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -46,7 +46,7 @@ public class GameEveDataLoadTaskFactory {
                 executorMap.put(GameEveDataTypeEnum.MARKET_GROUP, task);
             if (clazz == GameEveDataBlueprintLoadTask.class)
                 executorMap.put(GameEveDataTypeEnum.BLUEPRINT, task);
-            if (clazz == GameEveDataMetaGroupLoadTask.class)
+            if (clazz == GameEveDataMetagroupLoadTask.class)
                 executorMap.put(GameEveDataTypeEnum.META_GROUP, task);
         }
     }

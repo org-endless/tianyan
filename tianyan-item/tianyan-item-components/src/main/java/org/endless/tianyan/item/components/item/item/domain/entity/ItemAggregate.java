@@ -1,18 +1,16 @@
 package org.endless.tianyan.item.components.item.item.domain.entity;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
-import org.endless.ddd.starter.common.annotation.validate.ddd.aggregate.Aggregate;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Aggregate;
 import org.endless.ddd.starter.common.ddd.domain.entity.Entity;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
-import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.item.common.model.domain.entity.TianyanItemAggregate;
 import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -41,14 +39,15 @@ public class ItemAggregate implements TianyanItemAggregate {
     private final String itemId;
 
     /**
-     * 元分组ID
-     */
-    private String metaGroupId;
-
-    /**
      * 资源项分组ID
      */
+    @NotBlank(message = "资源项分组ID不能为空")
     private String itemGroupId;
+
+    /**
+     * 元分组ID
+     */
+    private String metagroupId;
 
     /**
      * 市场分组ID
@@ -56,16 +55,15 @@ public class ItemAggregate implements TianyanItemAggregate {
     private String marketGroupId;
 
     /**
-     * 中文名称
+     * 资源项中文名称
      */
-    @Valid
-    @NotNull(message = "中文名称不能为空")
-    private NameValue nameZh;
+    @NotNull(message = "资源项中文名称不能为空")
+    private @Valid NameValue nameZh;
 
     /**
-     * 英文名称
+     * 资源项英文名称
      */
-    private NameValue nameEn;
+    private @Valid NameValue nameEn;
 
     /**
      * 资源项描述
@@ -73,28 +71,34 @@ public class ItemAggregate implements TianyanItemAggregate {
     private String description;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
+    @NotBlank(message = "创建用户ID不能为空")
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
+    @NotBlank(message = "修改用户ID不能为空")
     private String modifyUserId;
 
     /**
      * 是否已删除
      */
+    @NotNull(message = "是否已删除不能为空")
     private Boolean isRemoved;
 
-    public static ItemAggregate create(
+    @NotNull(message = "资源项聚合根创建方法返回对象不能为空")
+    public static @Valid ItemAggregate create(
             @NotNull(message = "资源项聚合根构造器不能为空") ItemAggregateBuilder builder) {
         return Entity.create(builder, ItemAggregateBuilder::innerBuild).validate();
     }
 
-    public ItemAggregate remove(String modifyUserId) {
-        if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<资源项聚合根>不能再次删除, ID: " + itemId);
+    @NotNull(message = "资源项聚合根删除方法返回对象不能为空")
+    public ItemAggregate remove(
+            @NotBlank(message = "修改用户ID不能为空") String modifyUserId) {
+        if (Boolean.TRUE.equals(this.isRemoved)) {
+            throw new AggregateRemoveException("已经被删除资源项聚合根不能再次删除, ID: " + itemId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
@@ -104,35 +108,5 @@ public class ItemAggregate implements TianyanItemAggregate {
     @Override
     public ItemAggregate validate() {
         return this;
-    }
-
-    private void validateItemGroupId() {
-        if (!StringUtils.hasText(itemGroupId)) {
-            throw new AggregateValidateException("资源项分组ID不能为空");
-        }
-    }
-
-    private void validateNameZh() {
-        if (nameZh == null) {
-            throw new AggregateValidateException("中文名称不能为 null ");
-        }
-    }
-
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
-        }
-    }
-
-    private void validateModifyUserId() {
-        if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
-        }
-    }
-
-    private void validateIsRemoved() {
-        if (isRemoved == null) {
-            throw new AggregateValidateException("是否已删除不能为 null ");
-        }
     }
 }

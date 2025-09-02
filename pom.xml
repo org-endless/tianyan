@@ -41,8 +41,8 @@
         <module>tianyan-finance</module>
         <module>tianyan-item</module>
         <module>tianyan-manufacturing</module>
-        <module>tianyan-sales</module>
         <module>tianyan-metadata</module>
+        <module>tianyan-sales</module>
         <module>tianyan-starters</module>
         <module>tianyan-web-gateway</module>
     </modules>
@@ -62,7 +62,7 @@
         <endless-ddd.version>1.0.0-SNAPSHOT</endless-ddd.version>
         <spring-boot.version>3.5.3</spring-boot.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <druid.version>1.2.24</druid.version>
+        <druid.version>1.2.27</druid.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <pagehelper.version>2.1.0</pagehelper.version>
         <tlog-all.version>1.5.2</tlog-all.version>
@@ -95,6 +95,11 @@
                 <groupId>org.endless</groupId>
                 <artifactId>endless-ddd-starter</artifactId>
                 <version>${endless-ddd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.endless</groupId>
+                <artifactId>tianyan-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.endless</groupId>

@@ -1,17 +1,20 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Aggregate;
 import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateAddItemException;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
 import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveItemException;
-import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
 import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingAggregate;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.type.BlueprintTypeEnum;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,22 +35,27 @@ import java.util.stream.Collectors;
  */
 @Getter
 @ToString
+@Aggregate
+@Validated
 @Builder(buildMethodName = "innerBuild")
 public class BlueprintAggregate implements TianyanManufacturingAggregate {
 
     /**
      * 蓝图ID
      */
+    @NotBlank(message = "蓝图ID不能为空")
     private final String blueprintId;
 
     /**
      * 资源项ID
      */
+    @NotBlank(message = "资源项ID不能为空")
     private String itemId;
 
     /**
      * 蓝图类型
      */
+    @NotNull(message = "蓝图类型不能为空")
     private BlueprintTypeEnum type;
 
     /**
@@ -58,6 +66,7 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
     /**
      * 蓝图产品列表
      */
+    @NotEmpty(message = "蓝图产品列表不能为空")
     private final List<BlueprintProductEntity> products;
 
     /**
@@ -68,21 +77,25 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
     /**
      * 周期
      */
+    @NotNull(message = "周期不能为空")
     private Long cycle;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
+    @NotBlank(message = "创建用户ID不能为空")
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
+    @NotBlank(message = "修改用户ID不能为空")
     private String modifyUserId;
 
     /**
      * 是否已删除
      */
+    @NotNull(message = "是否已删除不能为空")
     private Boolean isRemoved;
 
     public static BlueprintAggregate create(BlueprintAggregateBuilder builder) {
@@ -102,11 +115,8 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
     }
 
     public BlueprintAggregate remove(String modifyUserId) {
-        if (this.isRemoved) {
-            throw new AggregateRemoveException("已经被删除的聚合根<蓝图聚合根>不能再次删除, ID: " + blueprintId);
-        }
-        if (!canRemove()) {
-            throw new AggregateRemoveException("聚合根<蓝图聚合根>处于不可删除状态, ID: " + blueprintId);
+        if (Boolean.TRUE.equals(this.isRemoved)) {
+            throw new AggregateRemoveException("已经被删除的蓝图聚合根不能再次删除, ID: " + blueprintId);
         }
         this.materials.forEach(materials -> materials.remove(modifyUserId));
         this.products.forEach(products -> products.remove(modifyUserId));
@@ -114,10 +124,6 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
-    }
-
-    private boolean canRemove() {
-        return true;
     }
 
     public BlueprintAggregate addMaterial(BlueprintMaterialEntity material, String modifyUserId) {
@@ -275,55 +281,6 @@ public class BlueprintAggregate implements TianyanManufacturingAggregate {
 
     @Override
     public BlueprintAggregate validate() {
-        validateBlueprintId();
-        validateItemId();
-        validateType();
-        validateCycle();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
         return this;
-    }
-
-    private void validateBlueprintId() {
-        if (!StringUtils.hasText(blueprintId)) {
-            throw new AggregateValidateException("蓝图ID不能为空");
-        }
-    }
-
-    private void validateItemId() {
-        if (!StringUtils.hasText(itemId)) {
-            throw new AggregateValidateException("资源项ID不能为空");
-        }
-    }
-
-    private void validateType() {
-        if (type == null) {
-            throw new AggregateValidateException("蓝图类型不能为 null ");
-        }
-    }
-
-    private void validateCycle() {
-        if (cycle == null || cycle < 0) {
-            throw new AggregateValidateException("周期不能为 null 或小于 0，当前值为: " + cycle);
-        }
-    }
-
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
-        }
-    }
-
-    private void validateModifyUserId() {
-        if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
-        }
-    }
-
-    private void validateIsRemoved() {
-        if (isRemoved == null) {
-            throw new AggregateValidateException("是否已删除不能为 null ");
-        }
     }
 }

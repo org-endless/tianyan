@@ -11,6 +11,8 @@ import org.endless.tianyan.item.components.item.item.domain.value.NameValue;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * ItemCommandHandlerImpl
@@ -26,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Lazy
 @Service
+@Validated
 public class ItemCommandHandlerImpl implements ItemCommandHandler {
 
     /**
@@ -42,18 +45,19 @@ public class ItemCommandHandlerImpl implements ItemCommandHandler {
     @Log(message = "资源项创建命令", value = "#command", level = LogLevel.TRACE)
     public ItemCreateCRespTransfer create(ItemCreateCReqTransfer command) {
         ItemAggregate aggregate = ItemAggregate.create(ItemAggregate.builder()
-                .metaGroupId(command.metaGroupId())
                 .itemGroupId(command.itemGroupId())
+                .metagroupId(command.metagroupId())
                 .marketGroupId(command.marketGroupId())
                 .nameZh(NameValue.create(NameValue.builder()
                         .fullName(command.fullNameZh())))
-                .nameEn(command.fullNameEn() == null ? null : NameValue.create(NameValue.builder()
-                        .fullName(command.fullNameEn())))
+                .nameEn(StringUtils.hasText(command.fullNameEn())
+                        ? NameValue.create(NameValue.builder()
+                        .fullName(command.fullNameEn()))
+                        : null)
                 .description(command.description())
                 .createUserId(command.createUserId()));
         itemRepository.save(aggregate);
         return ItemCreateCRespTransfer.builder()
-                .itemId(aggregate.getItemId())
-                .build().validate();
+                .itemId(aggregate.getItemId()).build();
     }
 }

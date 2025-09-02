@@ -9,7 +9,7 @@ domainName: MetaGroup
 aggregateName: MetaGroupAggregate
 description: 元分组
 fields:
-  - name: metaGroupId
+  - name: metagroupId
     type: String
     description: 元分组ID
     nullable: false
@@ -62,7 +62,7 @@ transfers:
     messageType: RESPONSE
     description: 元分组创建命令响应传输对象
     fields:
-      - name: metaGroupId
+      - name: metagroupId
         type: String
         description: 元分组ID
         nullable: false

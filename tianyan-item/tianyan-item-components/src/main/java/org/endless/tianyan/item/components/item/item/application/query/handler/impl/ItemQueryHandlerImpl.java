@@ -4,6 +4,7 @@ import org.endless.tianyan.item.components.item.item.application.query.anticorru
 import org.endless.tianyan.item.components.item.item.application.query.handler.ItemQueryHandler;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * ItemQueryHandlerImpl
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
  */
 @Lazy
 @Service
+@Validated
 public class ItemQueryHandlerImpl implements ItemQueryHandler {
 
     /**

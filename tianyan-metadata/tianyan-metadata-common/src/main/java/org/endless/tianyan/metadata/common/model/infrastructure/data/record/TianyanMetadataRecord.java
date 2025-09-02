@@ -14,7 +14,6 @@ import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataEn
  * @see DataRecord
  * @since 0.0.1
  */
-public interface TianyanMetadataRecord<E extends TianyanMetadataEntity>
-        extends DataRecord<E> {
+public interface TianyanMetadataRecord<E extends TianyanMetadataEntity> extends DataRecord<E> {
 
 }

@@ -382,7 +382,7 @@ transfers:
         type: String
         description: 游戏EVE资源项编码
         nullable: false
-      - name: metaGroupId
+      - name: metagroupId
         type: String
         description: 元分组ID
         nullable: true

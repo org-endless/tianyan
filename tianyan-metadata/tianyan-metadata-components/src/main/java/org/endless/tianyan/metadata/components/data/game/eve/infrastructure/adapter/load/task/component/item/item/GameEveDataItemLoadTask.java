@@ -1,23 +1,23 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.item;
 
-import com.alibaba.fastjson2.util.TypeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.DrivenAdapterFailedException;
+import org.endless.ddd.starter.common.utils.model.object.ObjectTools;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.group.rest.GameEveDataItemGroupRestClient;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.item.item.rest.GameEveDataItemRestClient;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.rest.GameEveDataMarketGroupRestClient;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.meta.group.GameEveDataMetaGroupDrivenAdapter;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveDataFileItemRespDTransfer;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveItemCreateReqDTransfer;
-import org.endless.tianyan.metadata.components.meta.group.game.eve.application.query.transfer.GameEveMetaGroupFindByCodeReqQTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.item.item.transfer.GameEveDataFileItemDRespTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.item.game.eve.group.TianyanSidecarGameEveItemGroupRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.item.game.eve.item.TianyanSidecarGameEveItemRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.item.game.eve.item.transfer.GameEveItemCreateDReqTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.item.item.TianyanSidecarItemRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.item.item.transfer.ItemCreateDReqTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.game.eve.group.TianyanSidecarGameEveMarketGroupRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.metagroup.game.eve.TianyanSidecarGameEveMetagroupRestClient;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -36,54 +36,63 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class GameEveDataItemLoadTask implements GameEveDataLoadTask {
 
-    private final GameEveDataItemGroupRestClient gameEveDataItemGroupRestClient;
+    private final TianyanSidecarItemRestClient itemRestClient;
 
-    private final GameEveDataMarketGroupRestClient gameEveDataMarketGroupRestClient;
+    private final TianyanSidecarGameEveItemRestClient gameEveItemRestClient;
 
-    private final GameEveDataItemRestClient gameEveDataItemRestClient;
+    private final TianyanSidecarGameEveItemGroupRestClient gameEveItemGroupRestClient;
 
-    private final GameEveDataMetaGroupDrivenAdapter gameEveDataMetaGroupDrivenAdapter;
+    private final TianyanSidecarGameEveMetagroupRestClient gameEveMetagroupRestClient;
 
-    public GameEveDataItemLoadTask(GameEveDataItemGroupRestClient gameEveDataItemGroupRestClient, GameEveDataMarketGroupRestClient gameEveDataMarketGroupRestClient, GameEveDataItemRestClient gameEveDataItemRestClient, GameEveDataMetaGroupDrivenAdapter gameEveDataMetaGroupDrivenAdapter) {
-        this.gameEveDataItemGroupRestClient = gameEveDataItemGroupRestClient;
-        this.gameEveDataMarketGroupRestClient = gameEveDataMarketGroupRestClient;
-        this.gameEveDataItemRestClient = gameEveDataItemRestClient;
-        this.gameEveDataMetaGroupDrivenAdapter = gameEveDataMetaGroupDrivenAdapter;
+    private final TianyanSidecarGameEveMarketGroupRestClient gameEveMarketGroupRestClient;
+
+    public GameEveDataItemLoadTask(
+            TianyanSidecarItemRestClient itemRestClient,
+            TianyanSidecarGameEveItemRestClient gameEveItemRestClient,
+            TianyanSidecarGameEveItemGroupRestClient gameEveItemGroupRestClient,
+            TianyanSidecarGameEveMetagroupRestClient gameEveMetagroupRestClient,
+            TianyanSidecarGameEveMarketGroupRestClient gameEveMarketGroupRestClient) {
+        this.itemRestClient = itemRestClient;
+        this.gameEveItemRestClient = gameEveItemRestClient;
+        this.gameEveItemGroupRestClient = gameEveItemGroupRestClient;
+        this.gameEveMetagroupRestClient = gameEveMetagroupRestClient;
+        this.gameEveMarketGroupRestClient = gameEveMarketGroupRestClient;
     }
 
     @Override
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
-        Optional.ofNullable(dataMap)
-                .filter(m -> !CollectionUtils.isEmpty(m))
-                .orElseThrow(() -> new DrivenAdapterException("资源项数据列表为空，无法执行数据加载任务"));
-        return CompletableFuture.runAsync(() -> {
-            for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
-                try {
-                    GameEveDataFileItemRespDTransfer item = TypeUtils.cast(value, GameEveDataFileItemRespDTransfer.class)
-                            .validate();
-                    gameEveDataItemRestClient.create(GameEveItemCreateReqDTransfer.builder()
-                            .code(key)
-                            .metaGroupId(item.getMetaGroupID() == null ? null : gameEveDataMetaGroupDrivenAdapter
-                                    .findMetaGroupIdByCode(GameEveMetaGroupFindByCodeReqQTransfer.builder()
-                                            .code(item.getMetaGroupID())
-                                            .build().validate()))
-                            .itemGroupId(gameEveDataItemGroupRestClient.findItemGroupIdByCode(item.getGroupID())
-                                    .orElseThrow(() -> new DrivenAdapterException("资源项分类ID不存在，无法创建资源项数据")))
-                            .marketGroupId(item.getMarketGroupID() == null ? null : gameEveDataMarketGroupRestClient
-                                    .findMarketGroupIdByCode(item.getMarketGroupID())
-                                    .orElseThrow(() -> new DrivenAdapterException("市场分类ID不存在，无法创建资源项数据")))
-                            .fullNameZh(item.getName().getZh() == null ? item.getName().getEn() : item.getName().getZh())
-                            .fullNameEn(item.getName().getEn())
-                            .isPublished(item.getPublished())
-                            .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
-                            .build().validate());
-                } catch (Exception e) {
-                    log.error("加载资源项分类数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
-                }
+        return CompletableFuture.runAsync(() -> dataMap.forEach((gameEveItemCode, gameEveItem) -> {
+            try {
+                GameEveDataFileItemDRespTransfer item =
+                        ObjectTools.of(gameEveItem, GameEveDataFileItemDRespTransfer.class).validate();
+                String itemId = itemRestClient.create(ItemCreateDReqTransfer.builder()
+                                .itemGroupId(gameEveItemGroupRestClient.findItemGroupIdByCode(item.groupID())
+                                        .orElseThrow(() -> new DrivenAdapterFailedException("资源项分类ID不存在，无法创建资源项数据")))
+                                .metagroupId(StringUtils.hasText(item.metaGroupID())
+                                        ? gameEveMetagroupRestClient.findMetagroupIdByCode(item.metaGroupID().replaceAll("\\..*$", ""))
+                                        .orElse(null)
+                                        : null)
+                                .marketGroupId(StringUtils.hasText(item.marketGroupID())
+                                        ? gameEveMarketGroupRestClient.findMarketGroupIdByCode(item.marketGroupID())
+                                        .orElseThrow(() -> new DrivenAdapterFailedException("市场分组ID不存在，无法创建资源项数据"))
+                                        : null)
+                                .fullNameZh(StringUtils.hasText(item.name().zh())
+                                        ? item.name().zh()
+                                        : item.name().en())
+                                .fullNameEn(item.name().en())
+                                .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
+                                .build())
+                        .orElseThrow(() -> new DrivenAdapterFailedException("资源项创建失败"));
+                gameEveItemRestClient.create(GameEveItemCreateDReqTransfer.builder()
+                        .itemId(itemId)
+                        .gameEveItemCode(gameEveItemCode)
+                        .isPublished(item.published())
+                        .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
+                        .build());
+            } catch (Exception e) {
+                log.error("加载资源项数据失败，gameEveItemCode:{}, gameEveItem:{}, error:{}", gameEveItemCode, gameEveItem, e.getMessage());
             }
-        });
+        }));
     }
 
     @Override

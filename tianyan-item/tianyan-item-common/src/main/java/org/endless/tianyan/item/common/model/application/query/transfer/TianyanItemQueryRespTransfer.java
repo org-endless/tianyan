@@ -11,7 +11,7 @@ import org.endless.ddd.starter.common.ddd.application.query.transfer.QueryRespTr
  *
  * @author Deng Haozhi
  * @see QueryRespTransfer
- * @since 1.0.0
+ * @since 0.0.1
  */
 public interface TianyanItemQueryRespTransfer extends QueryRespTransfer {
 

@@ -14,7 +14,6 @@ import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAg
  * @see Service
  * @since 0.0.1
  */
-public interface TianyanMetadataService<A extends TianyanMetadataAggregate>
-        extends Service<A> {
+public interface TianyanMetadataService<A extends TianyanMetadataAggregate> extends Service<A> {
 
 }

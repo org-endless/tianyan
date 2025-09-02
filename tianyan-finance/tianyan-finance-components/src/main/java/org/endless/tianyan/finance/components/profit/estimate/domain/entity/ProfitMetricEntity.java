@@ -51,12 +51,12 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
     private BigDecimal marginPercentage;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -74,6 +74,18 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
                 .validate();
     }
 
+    @Override
+    public ProfitMetricEntity validate() {
+        validateProfitMetricId();
+        validateType();
+        validateAmount();
+        validateMarginPercentage();
+        validateCreateUserId();
+        validateModifyUserId();
+        validateIsRemoved();
+        return this;
+    }
+
     protected ProfitMetricEntity remove(String modifyUserId) {
         if (this.isRemoved) {
             throw new EntityRemoveException("已经被删除的实体<利润指标实体>不能再次删除, ID: " + profitMetricId);
@@ -88,18 +100,6 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
 
     private boolean canRemove() {
         return true;
-    }
-
-    @Override
-    public ProfitMetricEntity validate() {
-        validateProfitMetricId();
-        validateType();
-        validateAmount();
-        validateMarginPercentage();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
-        return this;
     }
 
     private void validateProfitMetricId() {
@@ -124,13 +124,13 @@ public class ProfitMetricEntity implements TianyanFinanceEntity {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new EntityValidateException("创建者ID不能为空");
+            throw new EntityValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new EntityValidateException("修改者ID不能为空");
+            throw new EntityValidateException("修改用户ID不能为空");
         }
     }
 

@@ -2,7 +2,6 @@ package org.endless.tianyan.item.components.item.item.infrastructure.data.manage
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
 import org.endless.tianyan.item.common.model.infrastructure.data.manager.TianyanItemAggregateDataManager;
 import org.endless.tianyan.item.components.item.item.application.query.anticorruption.ItemQueryRepository;
 import org.endless.tianyan.item.components.item.item.domain.anticorruption.ItemRepository;
@@ -11,12 +10,13 @@ import org.endless.tianyan.item.components.item.item.infrastructure.data.persist
 import org.endless.tianyan.item.components.item.item.infrastructure.data.record.ItemRecord;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 /**
  * ItemDataManager
- * <p>资源项聚合数据管理器
+ * <p>资源项聚合根数据管理器
  * <p>
  * itemCreate 2025/07/23 01:04
  * <p>
@@ -30,6 +30,7 @@ import java.util.Optional;
  */
 @Lazy
 @Component
+@Validated
 public class ItemDataManager implements ItemRepository, ItemQueryRepository, TianyanItemAggregateDataManager<ItemRecord, ItemAggregate> {
 
     /**
@@ -42,32 +43,31 @@ public class ItemDataManager implements ItemRepository, ItemQueryRepository, Tia
     }
 
     @Override
-    @Log(message = "保存资源项聚合数据", value = "#aggregate", level = LogLevel.TRACE)
-    public ItemAggregate save(ItemAggregate aggregate) {
-        Optional.ofNullable(aggregate)
-                .map(ItemAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存资源项聚合数据不能为空"));
+    @Log(message = "保存资源项聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void save(ItemAggregate aggregate) {
         itemMapper.save(ItemRecord.from(aggregate));
-        return aggregate;
     }
 
     @Override
+    @Log(message = "删除资源项聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
     public void remove(ItemAggregate aggregate) {
-
+        itemMapper.remove(ItemRecord.from(aggregate));
     }
 
     @Override
-    public ItemAggregate modify(ItemAggregate aggregate) {
-        return null;
+    @Log(message = "修改资源项聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void modify(ItemAggregate aggregate) {
+        itemMapper.modify(ItemRecord.from(aggregate));
     }
 
     @Override
-    public Optional<ItemAggregate> findById(String s) {
-        return Optional.empty();
+    @Log(message = "根据ID查询资源项聚合根数据", value = "#itemId", level = LogLevel.TRACE)
+    public Optional<ItemAggregate> findById(String itemId) {
+        return itemMapper.findById(itemId).map(ItemRecord::to);
     }
 
     @Override
-    public Optional<ItemAggregate> findByIdForUpdate(String s) {
+    public Optional<ItemAggregate> findByIdForUpdate(String itemId) {
         return Optional.empty();
     }
 }

@@ -54,12 +54,12 @@ public class MarketPriceHistoryAggregate implements TianyanSalesAggregate {
     private MarketHistoryPriceValue sellPrice;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -89,10 +89,6 @@ public class MarketPriceHistoryAggregate implements TianyanSalesAggregate {
         return this;
     }
 
-    private boolean canRemove() {
-        return true;
-    }
-
     @Override
     public MarketPriceHistoryAggregate validate() {
         validateMarketPriceHistoryId();
@@ -104,6 +100,10 @@ public class MarketPriceHistoryAggregate implements TianyanSalesAggregate {
         validateModifyUserId();
         validateIsRemoved();
         return this;
+    }
+
+    private boolean canRemove() {
+        return true;
     }
 
     private void validateMarketPriceHistoryId() {
@@ -138,13 +138,13 @@ public class MarketPriceHistoryAggregate implements TianyanSalesAggregate {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
+            throw new AggregateValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
+            throw new AggregateValidateException("修改用户ID不能为空");
         }
     }
 

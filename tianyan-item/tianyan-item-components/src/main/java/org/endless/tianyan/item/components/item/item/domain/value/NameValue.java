@@ -1,9 +1,10 @@
 package org.endless.tianyan.item.components.item.item.domain.value;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
 import org.endless.ddd.starter.common.annotation.validate.ddd.Value;
-import org.endless.ddd.starter.common.utils.model.object.ObjectTools;
 import org.endless.tianyan.item.common.model.domain.value.TianyanItemValue;
 
 /**
@@ -29,8 +30,10 @@ public record NameValue(
         String abbreviation
 ) implements TianyanItemValue {
 
-    public static NameValue create(NameValueBuilder builder) {
-        return ObjectTools.JSRValidate(builder.innerBuild()).validate();
+    @NotNull(message = "名称值对象创建方法返回对象不能为空")
+    public static @Valid NameValue create(
+            @NotNull(message = "名称值对象构造器不能为空") NameValueBuilder builder) {
+        return builder.innerBuild().validate();
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Optional;
 
 /**
  * ProfitEstimateDataManager
- * <p>预估利润聚合数据管理器
+ * <p>预估利润聚合根数据管理器
  * <p>
  * create 2025/07/28 19:36
  * <p>

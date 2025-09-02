@@ -1,19 +1,23 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.market.group;
 
-import com.alibaba.fastjson2.util.TypeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.manager.DrivenAdapterException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.adapter.DrivenAdapterFailedException;
+import org.endless.ddd.starter.common.utils.model.object.ObjectTools;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.GameEveDataLoadTask;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.market.group.rest.GameEveDataMarketGroupRestClient;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveDataFileMarketGroupRespDTransfer;
-import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.transfer.GameEveMarketGroupCreateReqDTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task.component.market.group.transfer.GameEveDataFileMarketGroupRespDReqTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.game.eve.group.TianyanSidecarGameEveMarketGroupRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.game.eve.group.transfer.GameEveMarketGroupCreateDReqTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.group.TianyanSidecarMarketGroupRestClient;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.group.transfer.MarketGroupCreateDReqTransfer;
+import org.endless.tianyan.starter.common.model.infrastructure.adapter.sidecar.market.group.transfer.MarketGroupModifyParentDReqTransfer;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -32,86 +36,58 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class GameEveDataMarketGroupLoadTask implements GameEveDataLoadTask {
 
-    private final GameEveDataMarketGroupRestClient gameEveDataMarketGroupRestClient;
+    private final TianyanSidecarMarketGroupRestClient marketGroupRestClient;
 
-    public GameEveDataMarketGroupLoadTask(GameEveDataMarketGroupRestClient gameEveDataMarketGroupRestClient) {
-        this.gameEveDataMarketGroupRestClient = gameEveDataMarketGroupRestClient;
+    private final TianyanSidecarGameEveMarketGroupRestClient gameEveMarketGroupRestClient;
+
+    public GameEveDataMarketGroupLoadTask(
+            TianyanSidecarMarketGroupRestClient marketGroupRestClient,
+            TianyanSidecarGameEveMarketGroupRestClient gameEveMarketGroupRestClient) {
+        this.marketGroupRestClient = marketGroupRestClient;
+        this.gameEveMarketGroupRestClient = gameEveMarketGroupRestClient;
     }
 
     @Override
     public CompletableFuture<Void> execute(Map<String, Object> dataMap) {
-        Optional.ofNullable(dataMap)
-                .filter(m -> !CollectionUtils.isEmpty(m))
-                .orElseThrow(() -> new DrivenAdapterException("市场分类数据列表为空，无法执行数据加载任务"));
         return CompletableFuture.runAsync(() -> {
-            Map<String, GameEveMarketGroupCreateReqDTransfer> sourceMap = new HashMap<>();
-            dataMap.forEach((key, value) -> {
+            List<Map<String, String>> parents = new ArrayList<>();
+            dataMap.forEach((gameEveMarketGroupCode, gameEveMarketGroup) -> {
                 try {
-                    GameEveDataFileMarketGroupRespDTransfer marketGroup = TypeUtils.cast(dataMap.get(key), GameEveDataFileMarketGroupRespDTransfer.class).validate();
-                    sourceMap.put(key,
-                            GameEveMarketGroupCreateReqDTransfer.builder()
-                                    .code(key)
-                                    .fullNameZh(marketGroup.getNameID().getZh() == null ? marketGroup.getNameID().getEn() : marketGroup.getNameID().getZh())
-                                    .fullNameEn(marketGroup.getNameID().getEn())
-                                    .parentCode(marketGroup.getParentGroupID())
+                    GameEveDataFileMarketGroupRespDReqTransfer marketGroup =
+                            ObjectTools.of(gameEveMarketGroup, GameEveDataFileMarketGroupRespDReqTransfer.class).validate();
+                    String marketGroupId = marketGroupRestClient.create(MarketGroupCreateDReqTransfer.builder()
+                                    .fullNameZh(StringUtils.hasText(marketGroup.nameID().zh())
+                                            ? marketGroup.nameID().zh()
+                                            : marketGroup.nameID().en())
+                                    .fullNameEn(marketGroup.nameID().en())
                                     .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
-                                    .build().validate());
-                } catch (Exception e) {
-                    log.error("加载市场分类数据失败，key:{}, value:{}, error:{}", key, value, e.getMessage());
-                }
-            });
-            final String ROOT = "ROOT";
-            Map<String, List<String>> graph = new HashMap<>();
-            Map<String, Integer> inDegree = new HashMap<>();
-            for (GameEveMarketGroupCreateReqDTransfer marketGroup : sourceMap.values()) {
-                String code = marketGroup.getCode();
-                String parentCode = StringUtils.hasText(marketGroup.getParentCode())
-                        ? marketGroup.getParentCode()
-                        : ROOT;
-                graph.computeIfAbsent(parentCode, k -> new ArrayList<>()).add(code);
-                inDegree.put(code, inDegree.getOrDefault(code, 0) + 1);
-                inDegree.putIfAbsent(parentCode, 0);
-            }
-            Queue<String> queue = new LinkedList<>();
-            inDegree.forEach((code, degree) -> {
-                if (degree == 0) {
-                    queue.offer(code);
-                }
-            });
-            int processed = 0;
-            while (!queue.isEmpty()) {
-                List<String> currentLayer = new ArrayList<>();
-                int size = queue.size();
-                for (int i = 0; i < size; i++) {
-                    currentLayer.add(queue.poll());
-                }
-
-                List<CompletableFuture<Void>> futures = currentLayer.stream()
-                        .filter(currentCode -> !ROOT.equals(currentCode))
-                        .map(currentCode -> {
-                            GameEveMarketGroupCreateReqDTransfer current = sourceMap.get(currentCode);
-                            return gameEveDataMarketGroupRestClient.create(current)
-                                    .exceptionally(ex -> {
-                                        log.error("加载蓝图数据失败，currentCode:{},dataMap:{},  current:{}, error:{}", currentCode, dataMap.get(currentCode), current, ex.getMessage());
-                                        return null;
-                                    });
-                        })
-                        .toList();
-                CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-                processed += currentLayer.size();
-                for (String currentId : currentLayer) {
-                    List<String> children = graph.getOrDefault(currentId, Collections.emptyList());
-                    for (String child : children) {
-                        inDegree.put(child, inDegree.get(child) - 1);
-                        if (inDegree.get(child) == 0) {
-                            queue.offer(child);
-                        }
+                                    .build())
+                            .orElseThrow(() -> new DrivenAdapterFailedException("市场分组创建失败"));
+                    gameEveMarketGroupRestClient.create(GameEveMarketGroupCreateDReqTransfer.builder()
+                            .marketGroupId(marketGroupId)
+                            .gameEveMarketGroupCode(gameEveMarketGroupCode)
+                            .createUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
+                            .build());
+                    if (StringUtils.hasText(marketGroup.parentGroupID())) {
+                        parents.add(Map.of("marketGroupId", marketGroupId, "parentGameEveMarketGroupCode", marketGroup.parentGroupID()));
                     }
+                } catch (Exception e) {
+                    log.error("加载市场分组数据失败，gameEveMarketGroupCode:{}, gameEveMarketGroup:{}, error:{}", gameEveMarketGroupCode, gameEveMarketGroup, e.getMessage(), e);
                 }
-            }
-            if (processed < sourceMap.size()) {
-                throw new DrivenAdapterException("存在循环依赖，无法完成市场分类创建");
-            }
+            });
+            parents.forEach(parentGameEveMarketGroup -> {
+                try {
+                    String parentMarketGroupId = gameEveMarketGroupRestClient.findMarketGroupIdByCode(parentGameEveMarketGroup.get("parentGameEveMarketGroupCode"))
+                            .orElseThrow(() -> new DrivenAdapterFailedException("父节点市场分组查询失败"));
+                    marketGroupRestClient.modifyParent(MarketGroupModifyParentDReqTransfer.builder()
+                            .marketGroupId(parentGameEveMarketGroup.get("marketGroupId"))
+                            .parentId(parentMarketGroupId)
+                            .modifyUserId(TianyanMetadataCommandHandler.TIANYAN_METADATA_USER_ID)
+                            .build());
+                } catch (Exception e) {
+                    log.error("加载市场分组父节点数据失败，parentGameEveMarketGroup:{}, error:{}", parentGameEveMarketGroup, e.getMessage(), e);
+                }
+            });
         });
     }
 

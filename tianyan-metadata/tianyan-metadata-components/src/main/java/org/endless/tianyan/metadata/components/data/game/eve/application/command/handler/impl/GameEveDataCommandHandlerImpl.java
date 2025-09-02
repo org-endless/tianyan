@@ -2,13 +2,14 @@ package org.endless.tianyan.metadata.components.data.game.eve.application.comman
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.components.data.game.eve.application.command.handler.GameEveDataCommandHandler;
-import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCTransfer;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCReqTransfer;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.anticorruption.GameEveDataLoadDrivenAdapter;
 import org.endless.tianyan.metadata.components.data.game.eve.domain.type.GameEveDataTypeEnum;
-
-import java.util.Optional;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveDataCommandHandlerImpl
@@ -22,6 +23,9 @@ import java.util.Optional;
  * @see GameEveDataCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class GameEveDataCommandHandlerImpl implements GameEveDataCommandHandler {
 
     /**
@@ -34,11 +38,9 @@ public class GameEveDataCommandHandlerImpl implements GameEveDataCommandHandler 
     }
 
     @Override
+    @Transactional
     @Log(message = "游戏EVE数据加载命令", value = "#command", level = LogLevel.TRACE)
-    public void load(GameEveDataLoadReqCTransfer command) {
-        Optional.ofNullable(command)
-                .map(GameEveDataLoadReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE数据加载命令参数不能为空"));
-        gameEveDataLoadDrivenAdapter.load(GameEveDataTypeEnum.fromCode(command.getDataType()));
+    public void load(GameEveDataLoadReqCReqTransfer command) {
+        gameEveDataLoadDrivenAdapter.load(GameEveDataTypeEnum.fromCode(command.gameEveDataType()));
     }
 }

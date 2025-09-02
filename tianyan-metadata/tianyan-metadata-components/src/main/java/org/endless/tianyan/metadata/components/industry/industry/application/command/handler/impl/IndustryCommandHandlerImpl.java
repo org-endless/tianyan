@@ -3,13 +3,14 @@ package org.endless.tianyan.metadata.components.industry.industry.application.co
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
-import org.endless.tianyan.metadata.components.industry.category.application.query.transfer.IndustryCategoryFindByIdReqQTransfer;
-import org.endless.tianyan.metadata.components.industry.category.facade.adapter.IndustryCategoryDrivingAdapter;
 import org.endless.tianyan.metadata.components.industry.industry.application.command.handler.IndustryCommandHandler;
-import org.endless.tianyan.metadata.components.industry.industry.application.command.transfer.IndustryCreateReqCTransfer;
+import org.endless.tianyan.metadata.components.industry.industry.application.command.transfer.IndustryCreateReqCReqTransfer;
 import org.endless.tianyan.metadata.components.industry.industry.domain.anticorruption.IndustryRepository;
 import org.endless.tianyan.metadata.components.industry.industry.domain.entity.IndustryAggregate;
 import org.endless.tianyan.metadata.components.industry.industry.domain.value.IndustryNameValue;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -25,6 +26,9 @@ import java.util.Optional;
  * @see IndustryCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class IndustryCommandHandlerImpl implements IndustryCommandHandler {
 
     /**
@@ -32,21 +36,16 @@ public class IndustryCommandHandlerImpl implements IndustryCommandHandler {
      */
     private final IndustryRepository industryRepository;
 
-    private final IndustryCategoryDrivingAdapter industryCategoryDrivingAdapter;
-
-    public IndustryCommandHandlerImpl(IndustryRepository industryRepository, IndustryCategoryDrivingAdapter industryCategoryDrivingAdapter) {
+    public IndustryCommandHandlerImpl(IndustryRepository industryRepository) {
         this.industryRepository = industryRepository;
-        this.industryCategoryDrivingAdapter = industryCategoryDrivingAdapter;
     }
 
     @Override
     @Log(message = "行业创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(IndustryCreateReqCTransfer command) {
+    public void create(IndustryCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(IndustryCreateReqCTransfer::validate)
+                .map(IndustryCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("行业创建命令参数不能为空"));
-        industryCategoryDrivingAdapter.existsById(IndustryCategoryFindByIdReqQTransfer.builder()
-                .industryCategoryId(command.getIndustryCategoryId()).build().validate());
         IndustryAggregate aggregate = IndustryAggregate.create(IndustryAggregate.builder()
                 .industryCategoryId(command.getIndustryCategoryId())
                 .code(command.getCode())

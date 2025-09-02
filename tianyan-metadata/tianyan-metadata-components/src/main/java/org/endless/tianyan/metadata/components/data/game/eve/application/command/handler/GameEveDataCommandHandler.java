@@ -1,9 +1,10 @@
 package org.endless.tianyan.metadata.components.data.game.eve.application.command.handler;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
 import org.endless.tianyan.metadata.common.model.domain.entity.TianyanMetadataAggregate;
-import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCTransfer;
-import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.GameEveDataAggregate;
+import org.endless.tianyan.metadata.components.data.game.eve.application.command.transfer.GameEveDataLoadReqCReqTransfer;
 
 /**
  * GameEveDataCommandHandler
@@ -19,5 +20,12 @@ import org.endless.tianyan.metadata.components.data.game.eve.domain.entity.GameE
  */
 public interface GameEveDataCommandHandler extends TianyanMetadataCommandHandler<TianyanMetadataAggregate> {
 
-    void load(GameEveDataLoadReqCTransfer command);
+    /**
+     * 游戏EVE数据加载命令
+     *
+     * @param command 游戏EVE数据加载命令请求传输对象
+     */
+    void load(
+            @NotNull(message = "游戏EVE数据加载命令请求传输对象不能为空")
+            @Valid GameEveDataLoadReqCReqTransfer command);
 }

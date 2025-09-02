@@ -64,17 +64,14 @@
         <Logger name="com.github.pagehelper" level="ERROR"/>
 
         <Logger name="org.endless.ddd.starter.common.config.aspect.log.LogAspect"
-                level="TRACE" additivity="false">
-            <!-- <AppenderRef ref="AspectConsole"/> -->
+                level="INFO" additivity="false">
             <AppenderRef ref="AspectFile"/>
         </Logger>
         <Logger name="org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler"
-                level="TRACE" additivity="false">
-            <!-- <AppenderRef ref="AspectConsole"/> -->
+                level="INFO" additivity="false">
             <AppenderRef ref="AspectFile"/>
         </Logger>
-        <Root level="TRACE">
-            <!-- <AppenderRef ref="DefaultConsole"/> -->
+        <Root level="INFO">
             <AppenderRef ref="DefaultFile"/>
         </Root>
     </Loggers>

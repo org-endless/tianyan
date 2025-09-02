@@ -75,12 +75,12 @@ public class CostRuleRecord implements TianyanFinanceRecord<CostRuleAggregate> {
     private String description;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -139,6 +139,23 @@ public class CostRuleRecord implements TianyanFinanceRecord<CostRuleAggregate> {
         return this;
     }
 
+    public CostRuleAggregate to() {
+        validate();
+        return CostRuleAggregate.builder()
+                .costRuleId(costRuleId)
+                .industryId(industryId)
+                .eventTypeId(eventTypeId)
+                .costTypeId(costTypeId)
+                .minBaseAmount(minBaseAmount)
+                .maxBaseAmount(maxBaseAmount)
+                .percentage(percentage)
+                .description(description)
+                .createUserId(createUserId)
+                .modifyUserId(modifyUserId)
+                .isRemoved(isRemoved)
+                .innerBuild();
+    }
+
     private void validateCostRuleId() {
         if (!StringUtils.hasText(costRuleId)) {
             throw new DataRecordValidateException("成本规则ID不能为空");
@@ -177,13 +194,13 @@ public class CostRuleRecord implements TianyanFinanceRecord<CostRuleAggregate> {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
+            throw new DataRecordValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
+            throw new DataRecordValidateException("修改用户ID不能为空");
         }
     }
 
@@ -191,22 +208,5 @@ public class CostRuleRecord implements TianyanFinanceRecord<CostRuleAggregate> {
         if (isRemoved == null) {
             throw new DataRecordValidateException("是否已删除不能为 null ");
         }
-    }
-
-    public CostRuleAggregate to() {
-        validate();
-        return CostRuleAggregate.builder()
-                .costRuleId(costRuleId)
-                .industryId(industryId)
-                .eventTypeId(eventTypeId)
-                .costTypeId(costTypeId)
-                .minBaseAmount(minBaseAmount)
-                .maxBaseAmount(maxBaseAmount)
-                .percentage(percentage)
-                .description(description)
-                .createUserId(createUserId)
-                .modifyUserId(modifyUserId)
-                .isRemoved(isRemoved)
-                .innerBuild();
     }
 }

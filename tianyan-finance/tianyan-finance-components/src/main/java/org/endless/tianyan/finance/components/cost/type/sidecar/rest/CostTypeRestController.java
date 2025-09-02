@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * CostTypeRestController
- * <p>成本类型领域Rest控制器
+ * <p>成本类型领域REST控制器
  * <p>
  * create 2025/07/28 20:09
  * <p>

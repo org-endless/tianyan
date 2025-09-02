@@ -1,7 +1,7 @@
 package org.endless.tianyan.metadata.components.industry.industry.application.command.handler;
 
 import org.endless.tianyan.metadata.common.model.application.command.handler.TianyanMetadataCommandHandler;
-import org.endless.tianyan.metadata.components.industry.industry.application.command.transfer.IndustryCreateReqCTransfer;
+import org.endless.tianyan.metadata.components.industry.industry.application.command.transfer.IndustryCreateReqCReqTransfer;
 import org.endless.tianyan.metadata.components.industry.industry.domain.entity.IndustryAggregate;
 
 /**
@@ -18,6 +18,6 @@ import org.endless.tianyan.metadata.components.industry.industry.domain.entity.I
  */
 public interface IndustryCommandHandler extends TianyanMetadataCommandHandler<IndustryAggregate> {
 
-    void create(IndustryCreateReqCTransfer command);
+    void create(IndustryCreateReqCReqTransfer command);
 
 }

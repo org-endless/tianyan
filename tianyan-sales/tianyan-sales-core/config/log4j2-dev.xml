@@ -4,19 +4,28 @@
         <property name="APP_NAME" value="tianyan-sales"/>
         <property name="LOG_HOME" value="/logs/${APP_NAME}"/>
         <property name="LOG_NAME" value="${APP_NAME}"/>
-        <property name="LOG_PATTERN_ASPECT">[%d{HH:mm:ss.SSS}][%-5p][%t] %c{1.} - %m%n</property>
-        <property name="LOG_PATTERN">[%d{HH:mm:ss.SSS}][%-5p][%t][%c.%M:%L] - %m%n</property>
+        <property name="LOG_PATTERN_ASPECT">[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5p][%T]%msg%xEx%n</property>
+        <property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5p][%T][%c:%L][%M]%msg%xEx%n</property>
         <property name="FILE_SIZE">20MB</property>
     </Properties>
-
     <Appenders>
-        <Console name="Console_aspect" target="SYSTEM_OUT">
-            <PatternLayout pattern="${LOG_PATTERN_ASPECT}" charset="UTF-8"/>
-        </Console>
-        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="DefaultConsole" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
         </Console>
-        <RollingRandomAccessFile name="RollingRandomAccessFile"
+        <Console name="AspectConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN_ASPECT}" charset="UTF-8"/>
+        </Console>
+        <RollingRandomAccessFile name="DefaultFile"
+                                 fileName="${LOG_HOME}/${LOG_NAME}.log"
+                                 filePattern="${LOG_HOME}/%d{yyyyMMdd}/${LOG_NAME}-%d{yyyyMMdd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="AspectFile"
                                  fileName="${LOG_HOME}/${LOG_NAME}.log"
                                  filePattern="${LOG_HOME}/%d{yyyyMMdd}/${LOG_NAME}-%d{yyyyMMdd}-%i.log">
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
@@ -28,36 +37,43 @@
         </RollingRandomAccessFile>
     </Appenders>
     <Loggers>
-        <!--        <Logger name="org.mongodb" level="INFO"/>-->
-        <!--        <Logger name="org.mybatis" level="INFO"/>-->
-        <!--        <Logger name="com.baomidou.mybatisplus" level="INFO"/>-->
-        <!--        <Logger name="org.apache" level="INFO"/>-->
-        <!--        <Logger name="org.springframework" level="INFO"/>-->
-        <!--        <Logger name="org.springframework.security" level="INFO"/>-->
-        <!--        <Logger name="_org.springframework" level="INFO"/>-->
-        <!--        <Logger name="org.jboss" level="INFO"/>-->
-        <!--        <Logger name="org.thymeleaf" level="INFO"/>-->
-        <!--        <Logger name="org.hibernate" level="INFO"/>-->
-        <!--        <Logger name="javax.management" level="INFO"/>-->
-        <!--        <Logger name="sun.rmi" level="INFO"/>-->
-        <!--        <Logger name="sun.net" level="INFO"/>-->
-        <!--        <Logger name="jdk.event" level="INFO"/>-->
-        <!--        <Logger name="io.netty" level="INFO"/>-->
-        <!--        <Logger name="io.lettuce" level="INFO"/>-->
-        <!--        <Logger name="okhttp3" level="INFO"/>-->
-        <!--        <Logger name="io.minio" level="INFO"/>-->
-        <!--        <Logger name="org.springdoc" level="INFO"/>-->
-        <!--        <Logger name="druid" level="INFO"/>-->
-        <!--        <Logger name="java.io.serialization" level="INFO"/>-->
-        <Logger name="org.endless.ddd.starter.common.config.aspect.log.LogAspect" level="ERROR"
-                additivity="false">
-            <AppenderRef ref="Console_aspect"/>
+        <Logger name="org.springframework" level="ERROR"/>
+        <Logger name="_org.springframework" level="ERROR"/>
+        <Logger name="org.apache" level="ERROR"/>
+        <Logger name="io.undertow" level="ERROR"/>
+        <Logger name="org.xnio" level="ERROR"/>
+        <Logger name="org.jboss" level="ERROR"/>
+        <Logger name="org.thymeleaf" level="ERROR"/>
+        <Logger name="javax.management" level="ERROR"/>
+        <Logger name="sun.rmi" level="ERROR"/>
+        <Logger name="sun.net" level="ERROR"/>
+        <Logger name="io.netty" level="ERROR"/>
+        <Logger name="io.lettuce" level="ERROR"/>
+        <Logger name="io.minio" level="ERROR"/>
+        <Logger name="io.micrometer" level="ERROR"/>
+        <Logger name="okhttp3" level="ERROR"/>
+        <Logger name="java.io.serialization" level="ERROR"/>
+        <Logger name="org.springdoc" level="ERROR"/>
+
+        <Logger name="org.hibernate" level="ERROR"/>
+        <Logger name="org.mongodb" level="ERROR"/>
+        <Logger name="org.sqlite" level="ERROR"/>
+        <Logger name="com.alibaba" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari" level="ERROR"/>
+        <Logger name="org.mybatis" level="ERROR"/>
+        <Logger name="com.baomidou.mybatisplus" level="ERROR"/>
+        <Logger name="com.github.pagehelper" level="ERROR"/>
+
+        <Logger name="org.endless.ddd.starter.common.config.aspect.log.LogAspect"
+                level="ERROR" additivity="false">
+            <AppenderRef ref="AspectConsole"/>
         </Logger>
-        <!-- 其他日志配置，Root 配置不再冗余打印 LogAspect 的日志 -->
+        <Logger name="org.endless.ddd.starter.common.exception.AbstractRestExceptionHandler"
+                level="ERROR" additivity="false">
+            <AppenderRef ref="AspectConsole"/>
+        </Logger>
         <Root level="ERROR">
-            <AppenderRef ref="Console"/>
-            <!-- 如果需要输出到文件，可以启用文件输出 -->
-            <!--            <AppenderRef ref="RollingRandomAccessFile"/>-->
+            <AppenderRef ref="DefaultConsole"/>
         </Root>
     </Loggers>
 </Configuration>

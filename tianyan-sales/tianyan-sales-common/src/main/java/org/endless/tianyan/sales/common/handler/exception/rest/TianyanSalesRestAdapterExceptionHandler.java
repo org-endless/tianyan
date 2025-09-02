@@ -1,7 +1,6 @@
 package org.endless.tianyan.sales.common.handler.exception.rest;
 
-import org.endless.ddd.starter.common.exception.handler.rest.AbstractRestAdapterExceptionHandler;
-import org.endless.tianyan.sales.common.model.sidecar.rest.TianyanSalesRestResponse;
+import org.endless.ddd.starter.common.exception.AbstractRestExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -12,14 +11,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * update 2024/11/03 14:33
  *
  * @author Deng Haozhi
- * @see AbstractRestAdapterExceptionHandler
+ * @see AbstractRestExceptionHandler
  * @since 0.0.1
  */
 @RestControllerAdvice
-public class TianyanSalesRestAdapterExceptionHandler extends AbstractRestAdapterExceptionHandler {
+public class TianyanSalesRestAdapterExceptionHandler extends AbstractRestExceptionHandler {
 
     @Override
-    public TianyanSalesRestResponse response() {
-        return TianyanSalesRestResponse.builder().build();
+    public String serviceDescription() {
+        return "天演-销售服务";
     }
 }

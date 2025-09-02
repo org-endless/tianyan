@@ -4,10 +4,13 @@ import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
 import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
 import org.endless.tianyan.metadata.components.industry.category.application.command.handler.IndustryCategoryCommandHandler;
-import org.endless.tianyan.metadata.components.industry.category.application.command.transfer.IndustryCategoryCreateReqCTransfer;
+import org.endless.tianyan.metadata.components.industry.category.application.command.transfer.IndustryCategoryCreateReqCReqTransfer;
 import org.endless.tianyan.metadata.components.industry.category.domain.anticorruption.IndustryCategoryRepository;
 import org.endless.tianyan.metadata.components.industry.category.domain.entity.IndustryCategoryAggregate;
 import org.endless.tianyan.metadata.components.industry.category.domain.value.IndustryCategoryNameValue;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -23,6 +26,9 @@ import java.util.Optional;
  * @see IndustryCategoryCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class IndustryCategoryCommandHandlerImpl implements IndustryCategoryCommandHandler {
 
     /**
@@ -36,9 +42,9 @@ public class IndustryCategoryCommandHandlerImpl implements IndustryCategoryComma
 
     @Override
     @Log(message = "行业分类创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(IndustryCategoryCreateReqCTransfer command) {
+    public void create(IndustryCategoryCreateReqCReqTransfer command) {
         Optional.ofNullable(command)
-                .map(IndustryCategoryCreateReqCTransfer::validate)
+                .map(IndustryCategoryCreateReqCReqTransfer::validate)
                 .orElseThrow(() -> new CommandReqTransferNullException("行业分类创建命令参数不能为空"));
         IndustryCategoryAggregate aggregate = IndustryCategoryAggregate.create(IndustryCategoryAggregate.builder()
                 .code(command.getCode())

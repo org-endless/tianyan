@@ -1,0 +1,25 @@
+package org.endless.tianyan.sales.components.market.order.domain.anticorruption;
+
+import jakarta.validation.constraints.NotBlank;
+import org.endless.tianyan.sales.common.model.domain.anticorruption.TianyanSalesRepository;
+import org.endless.tianyan.sales.components.market.order.domain.entity.MarketOrderAggregate;
+
+import java.util.List;
+
+/**
+ * MarketOrderRepository
+ * <p>市场订单聚合仓储接口
+ * <p>
+ * create 2025/07/25 13:11
+ * <p>
+ * update 2025/07/25 13:11
+ *
+ * @author Deng Haozhi
+ * @see TianyanSalesRepository
+ * @since 0.0.1
+ */
+public interface MarketOrderRepository extends TianyanSalesRepository<MarketOrderAggregate> {
+
+    List<MarketOrderAggregate> findAllByItemId(
+            @NotBlank(message = "资源项ID不能为空") String itemId);
+}

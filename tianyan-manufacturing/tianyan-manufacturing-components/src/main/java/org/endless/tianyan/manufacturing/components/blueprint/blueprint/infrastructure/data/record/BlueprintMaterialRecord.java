@@ -52,12 +52,12 @@ public class BlueprintMaterialRecord implements TianyanManufacturingRecord<Bluep
     private Long quantity;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -96,18 +96,6 @@ public class BlueprintMaterialRecord implements TianyanManufacturingRecord<Bluep
                 .validate();
     }
 
-    protected BlueprintMaterialEntity to() {
-        validate();
-        return BlueprintMaterialEntity.builder()
-                .blueprintMaterialId(blueprintMaterialId)
-                .itemId(itemId)
-                .quantity(quantity)
-                .createUserId(createUserId)
-                .modifyUserId(modifyUserId)
-                .isRemoved(isRemoved)
-                .innerBuild();
-    }
-
     @Override
     public BlueprintMaterialRecord validate() {
         validateBlueprintMaterialId();
@@ -118,6 +106,18 @@ public class BlueprintMaterialRecord implements TianyanManufacturingRecord<Bluep
         validateModifyUserId();
         validateIsRemoved();
         return this;
+    }
+
+    protected BlueprintMaterialEntity to() {
+        validate();
+        return BlueprintMaterialEntity.builder()
+                .blueprintMaterialId(blueprintMaterialId)
+                .itemId(itemId)
+                .quantity(quantity)
+                .createUserId(createUserId)
+                .modifyUserId(modifyUserId)
+                .isRemoved(isRemoved)
+                .innerBuild();
     }
 
     private void validateBlueprintMaterialId() {
@@ -146,13 +146,13 @@ public class BlueprintMaterialRecord implements TianyanManufacturingRecord<Bluep
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new DataRecordValidateException("创建者ID不能为空");
+            throw new DataRecordValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new DataRecordValidateException("修改者ID不能为空");
+            throw new DataRecordValidateException("修改用户ID不能为空");
         }
     }
 

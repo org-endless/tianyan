@@ -11,7 +11,7 @@ import org.endless.ddd.starter.common.ddd.application.command.transfer.CommandRe
  *
  * @author Deng Haozhi
  * @see CommandRespTransfer
- * @since 1.0.0
+ * @since 0.0.1
  */
 public interface TianyanItemCommandRespTransfer extends CommandRespTransfer {
 

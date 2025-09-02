@@ -5,6 +5,9 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.applicat
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintQueryRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintSkillQueryRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.handler.BlueprintQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * BlueprintQueryHandlerImpl
@@ -18,6 +21,9 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.applicat
  * @see BlueprintQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class BlueprintQueryHandlerImpl implements BlueprintQueryHandler {
 
     /**

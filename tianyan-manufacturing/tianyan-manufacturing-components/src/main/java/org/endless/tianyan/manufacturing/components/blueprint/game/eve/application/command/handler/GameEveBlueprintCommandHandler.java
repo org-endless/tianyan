@@ -1,7 +1,9 @@
 package org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.endless.tianyan.manufacturing.common.model.application.command.handler.TianyanManufacturingCommandHandler;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.transfer.GameEveBlueprintCreateReqCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.transfer.GameEveBlueprintCreateCReqTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.GameEveBlueprintAggregate;
 
 /**
@@ -18,6 +20,13 @@ import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.en
  */
 public interface GameEveBlueprintCommandHandler extends TianyanManufacturingCommandHandler<GameEveBlueprintAggregate> {
 
-    void create(GameEveBlueprintCreateReqCTransfer command);
+    /**
+     * 游戏EVE蓝图创建命令
+     *
+     * @param command 游戏EVE蓝图创建命令请求传输对象
+     */
+    void create(
+            @NotNull(message = "游戏EVE蓝图创建命令请求传输对象不能为空")
+            @Valid GameEveBlueprintCreateCReqTransfer command);
 
 }

@@ -1,9 +1,9 @@
 package org.endless.tianyan.item.components.item.item.application.command.transfer;
 
 import com.alibaba.fastjson2.annotation.JSONType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
-import org.endless.ddd.starter.common.annotation.validate.ddd.transfer.Transfer;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Transfer;
 import org.endless.tianyan.item.common.model.application.command.transfer.TianyanItemCommandRespTransfer;
 
 /**

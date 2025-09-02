@@ -29,31 +29,17 @@ redis-lettuce-pool-max-idle: 8 # 连接池中最大空闲连接数
 redis-lettuce-pool-max-active: 8 # 连接池中最大活动连接数（并发连接数）
 redis-lettuce-pool-max-wait: -1 # 从连接池获取连接的最大等待时间，-1 表示没有限制
 #Datasource
-datasource-type: com.alibaba.druid.pool.DruidDataSource # 指定 Druid 数据源类型
 datasource-driver-class-name: com.mysql.cj.jdbc.Driver # 设置数据库驱动类
-datasource-url: jdbc:mysql://120.24.251.166:13000/gycdp?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-datasource-username: gycdp # 数据库用户名
-datasource-password: gycdp # 数据库密码
-#Druid
-druid-initial-size: 1 # 初始化连接数
-druid-min-idle: 1 # 最小空闲连接数
-druid-max-active: 20 # 最大活动连接数
-druid-max-wait: 60000 # 获取连接的最大等待时间，单位为毫秒
-druid-validation-query: SELECT 1 # 连接验证查询
-druid-test-on-borrow: false # 在获取连接时检查有效性
-druid-test-on-return: false # 归还连接时进行检测
-druid-test-while-idle: true # 在空闲时检查连接有效性
-druid-time-between-eviction-runs-millis: 60000 # 运行空闲连接回收线程的时间间隔，单位为毫秒
-druid-min-evictable-idle-time-millis: 300000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
-druid-max-evictable-idle-time-millis: 900000 # 连接最小空闲时间，超过该时间将被回收，单位为毫秒
-druid-filters: stat,log4j2 # Druid 监控过滤器配置，开启统计和 log4j 记录
-druid-stat-view-servlet-enabled: true # 是否启用 Druid 的监控页面
-druid-web-stat-filter-enabled: true # 是否启用 Druid 的 Web 统计过滤器
-druid-filter-stat-enabled: true # 启用统计过滤器
-druid-filter-stat-log-slow-sql: true # 启用慢SQL记录
-druid-filter-stat-slow-sql-millis: 1000 # 记录执行时间超过1000毫秒的SQL
-druid-filter-stat-merge-sql: true # 合并相似的SQL执行
-druid-filter-wall-config-multi-statement-allow: true # 允许多条语句执行
+datasource-url: jdbc:mysql://127.0.0.1:61005/tianyan?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+datasource-username: tianyan # 数据库用户名
+datasource-password: tianyan # 数据库密码
+#Hikari
+hikari-minimum-idle: 10 # 最小空闲连接数
+hikari-maximum-pool-size: 50 # 最大连接池大小
+hikari-idle-timeout: 600000 # 空闲连接超时时间（秒）
+hikari-max-lifetime: 1800000 # 连接最大存活时间（秒）
+hikari-connection-timeout: 30000 # 连接超时时间（秒）
+hikari-pool-name: HikariCP # 连接池名称
 #Logging
 logging-config: file:config/log4j2-dev.xml
 #MinIO

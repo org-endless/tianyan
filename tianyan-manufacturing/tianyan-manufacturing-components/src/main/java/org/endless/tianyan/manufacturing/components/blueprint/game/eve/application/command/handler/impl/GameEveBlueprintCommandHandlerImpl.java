@@ -2,21 +2,14 @@ package org.endless.tianyan.manufacturing.components.blueprint.game.eve.applicat
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.application.command.transfer.CommandReqTransferNullException;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintCreateReqCTransfer;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintMaterialReqCTransfer;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintProductReqCTransfer;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.command.transfer.BlueprintSkillReqCTransfer;
-import org.endless.tianyan.manufacturing.components.blueprint.blueprint.facade.adapter.BlueprintDrivingAdapter;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.handler.GameEveBlueprintCommandHandler;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.transfer.GameEveBlueprintCreateReqCTransfer;
+import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.command.transfer.GameEveBlueprintCreateCReqTransfer;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.anticorruption.GameEveBlueprintRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.entity.GameEveBlueprintAggregate;
-import org.endless.tianyan.manufacturing.components.blueprint.game.eve.domain.type.GameEveBlueprintTypeEnum;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-import java.util.Optional;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveBlueprintCommandHandlerImpl
@@ -30,6 +23,9 @@ import java.util.Optional;
  * @see GameEveBlueprintCommandHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class GameEveBlueprintCommandHandlerImpl implements GameEveBlueprintCommandHandler {
 
     /**
@@ -37,55 +33,19 @@ public class GameEveBlueprintCommandHandlerImpl implements GameEveBlueprintComma
      */
     private final GameEveBlueprintRepository gameEveBlueprintRepository;
 
-    /**
-     * 蓝图主动适配器接口
-     */
-    private final BlueprintDrivingAdapter blueprintDrivingAdapter;
-
-    public GameEveBlueprintCommandHandlerImpl(GameEveBlueprintRepository gameEveBlueprintRepository, BlueprintDrivingAdapter blueprintDrivingAdapter) {
+    public GameEveBlueprintCommandHandlerImpl(GameEveBlueprintRepository gameEveBlueprintRepository) {
         this.gameEveBlueprintRepository = gameEveBlueprintRepository;
-        this.blueprintDrivingAdapter = blueprintDrivingAdapter;
     }
 
     @Override
     @Transactional
     @Log(message = "游戏EVE蓝图创建命令", value = "#command", level = LogLevel.TRACE)
-    public void create(GameEveBlueprintCreateReqCTransfer command) {
-        Optional.ofNullable(command)
-                .map(GameEveBlueprintCreateReqCTransfer::validate)
-                .orElseThrow(() -> new CommandReqTransferNullException("游戏EVE蓝图创建命令参数不能为空"));
-        String blueprintId = blueprintDrivingAdapter.create(BlueprintCreateReqCTransfer.builder()
-                        .itemId(command.getItemId())
-                        .type(command.getType())
-                        .materials(CollectionUtils.isEmpty(command.getMaterials()) ? null : command.getMaterials().stream()
-                                .map(material -> BlueprintMaterialReqCTransfer.builder()
-                                        .itemId(material.getItemId())
-                                        .quantity(material.getQuantity())
-                                        .build().validate())
-                                .toList())
-                        .createUserId(command.getCreateUserId())
-                        .products(CollectionUtils.isEmpty(command.getProducts()) ? null : command.getProducts().stream()
-                                .map(product -> BlueprintProductReqCTransfer.builder()
-                                        .itemId(product.getItemId())
-                                        .quantity(product.getQuantity())
-                                        .build().validate())
-                                .toList())
-                        .skills(CollectionUtils.isEmpty(command.getSkills()) ? null : command.getSkills().stream()
-                                .map(skill -> BlueprintSkillReqCTransfer.builder()
-                                        .itemId(skill.getItemId())
-                                        .level(skill.getLevel())
-                                        .build().validate())
-                                .toList())
-                        .cycle(command.getCycle())
-                        .createUserId(command.getCreateUserId())
-                        .build().validate())
-                .validate().getBlueprintId();
+    public void create(GameEveBlueprintCreateCReqTransfer command) {
         GameEveBlueprintAggregate aggregate = GameEveBlueprintAggregate.create(GameEveBlueprintAggregate.builder()
-                .blueprintId(blueprintId)
-                .code(command.getCode())
-                .type(GameEveBlueprintTypeEnum.fromCode(command.getType()))
-                .maxProductionLimit(command.getMaxProductionLimit())
-                .createUserId(command.getCreateUserId()));
+                .blueprintId(command.blueprintId())
+                .code(command.gameEveBlueprintItemCode())
+                .maxProductionLimit(command.maxProductionLimit())
+                .createUserId(command.createUserId()));
         gameEveBlueprintRepository.save(aggregate);
     }
 }

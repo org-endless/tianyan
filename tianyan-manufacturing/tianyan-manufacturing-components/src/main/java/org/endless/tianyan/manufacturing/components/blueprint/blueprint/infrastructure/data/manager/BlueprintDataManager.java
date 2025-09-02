@@ -2,7 +2,7 @@ package org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrast
 
 import org.endless.ddd.starter.common.annotation.log.Log;
 import org.endless.ddd.starter.common.config.aspect.log.type.LogLevel;
-import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerRequestNullException;
+import org.endless.ddd.starter.common.exception.ddd.infrastructure.data.manager.DataManagerSaveFailedException;
 import org.endless.tianyan.manufacturing.common.model.infrastructure.data.manager.TianyanManufacturingAggregateDataManager;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.application.query.anticorruption.BlueprintQueryRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.anticorruption.BlueprintRepository;
@@ -15,12 +15,13 @@ import org.endless.tianyan.manufacturing.components.blueprint.blueprint.infrastr
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
 /**
  * BlueprintDataManager
- * <p>蓝图聚合数据管理器
+ * <p>蓝图聚合根数据管理器
  * <p>
  * create 2025/07/23 17:17
  * <p>
@@ -33,6 +34,7 @@ import java.util.Optional;
  * @since 0.0.1
  */
 @Lazy
+@Validated
 @Component
 public class BlueprintDataManager implements BlueprintRepository, BlueprintQueryRepository, TianyanManufacturingAggregateDataManager<BlueprintRecord, BlueprintAggregate> {
 
@@ -64,23 +66,21 @@ public class BlueprintDataManager implements BlueprintRepository, BlueprintQuery
     }
 
     @Override
-    @Log(message = "保存蓝图聚合数据", value = "#aggregate", level = LogLevel.TRACE)
-    public BlueprintAggregate save(BlueprintAggregate aggregate) {
-        Optional.ofNullable(aggregate)
-                .map(BlueprintAggregate::validate)
-                .orElseThrow(() -> new DataManagerRequestNullException("保存蓝图聚合数据不能为空"));
-        BlueprintRecord record = BlueprintRecord.from(aggregate);
+    @Log(message = "保存蓝图聚合根数据", value = "#aggregate", level = LogLevel.TRACE)
+    public void save(BlueprintAggregate aggregate) {
+        BlueprintRecord dataRecord = BlueprintRecord.from(aggregate);
         blueprintMapper.save(BlueprintRecord.from(aggregate));
-        Optional.ofNullable(record.getMaterials())
-                .filter(l -> !CollectionUtils.isEmpty(l))
-                .ifPresent(blueprintMaterialMapper::save);
-        Optional.ofNullable(record.getProducts())
-                .filter(l -> !CollectionUtils.isEmpty(l))
-                .ifPresent(blueprintProductMapper::save);
-        Optional.ofNullable(record.getSkills())
-                .filter(l -> !CollectionUtils.isEmpty(l))
-                .ifPresent(blueprintSkillMapper::save);
-        return aggregate;
+        if (!CollectionUtils.isEmpty(dataRecord.getMaterials())) {
+            blueprintMaterialMapper.save(dataRecord.getMaterials());
+        }
+        if (!CollectionUtils.isEmpty(dataRecord.getProducts())) {
+            blueprintProductMapper.save(dataRecord.getProducts());
+        } else {
+            throw new DataManagerSaveFailedException("蓝图产品列表不能为空");
+        }
+        if (!CollectionUtils.isEmpty(dataRecord.getSkills())) {
+            blueprintSkillMapper.save(dataRecord.getSkills());
+        }
     }
 
     @Override
@@ -89,8 +89,7 @@ public class BlueprintDataManager implements BlueprintRepository, BlueprintQuery
     }
 
     @Override
-    public BlueprintAggregate modify(BlueprintAggregate aggregate) {
-        return null;
+    public void modify(BlueprintAggregate aggregate) {
     }
 
     @Override

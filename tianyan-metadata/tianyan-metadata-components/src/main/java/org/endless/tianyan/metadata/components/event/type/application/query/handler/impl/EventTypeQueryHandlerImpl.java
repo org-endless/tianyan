@@ -2,6 +2,9 @@ package org.endless.tianyan.metadata.components.event.type.application.query.han
 
 import org.endless.tianyan.metadata.components.event.type.application.query.anticorruption.EventTypeQueryRepository;
 import org.endless.tianyan.metadata.components.event.type.application.query.handler.EventTypeQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * EventTypeQueryHandlerImpl
@@ -15,6 +18,9 @@ import org.endless.tianyan.metadata.components.event.type.application.query.hand
  * @see EventTypeQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class EventTypeQueryHandlerImpl implements EventTypeQueryHandler {
 
     /**

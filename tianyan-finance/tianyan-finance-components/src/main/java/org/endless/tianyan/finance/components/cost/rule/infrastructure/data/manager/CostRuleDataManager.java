@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * CostRuleDataManager
- * <p>成本规则聚合数据管理器
+ * <p>成本规则聚合根数据管理器
  * <p>
  * create 2025/07/28 20:10
  * <p>

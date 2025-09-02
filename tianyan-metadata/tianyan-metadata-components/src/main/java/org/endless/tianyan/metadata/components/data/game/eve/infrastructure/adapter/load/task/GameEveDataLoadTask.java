@@ -1,5 +1,6 @@
 package org.endless.tianyan.metadata.components.data.game.eve.infrastructure.adapter.load.task;
 
+import jakarta.validation.constraints.NotEmpty;
 import org.endless.tianyan.metadata.common.model.domain.anticorruption.TianyanMetadataDrivenAdapter;
 import org.springframework.scheduling.annotation.Async;
 
@@ -20,7 +21,9 @@ import java.util.concurrent.CompletableFuture;
 public interface GameEveDataLoadTask extends TianyanMetadataDrivenAdapter {
 
     @Async("virtualThreadExecutor")
-    CompletableFuture<Void> execute(Map<String, Object> dataMap);
+    CompletableFuture<Void> execute(
+            @NotEmpty(message = "数据列表不能为空")
+            Map<String, Object> dataMap);
 
     String filePath();
 

@@ -80,12 +80,12 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
     private final List<ProfitMetricEntity> metrics;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
     private String modifyUserId;
 
@@ -115,10 +115,6 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
-    }
-
-    private boolean canRemove() {
-        return true;
     }
 
     public ProfitEstimateAggregate addMetric(ProfitMetricEntity metric, String modifyUserId) {
@@ -189,6 +185,10 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
         return this;
     }
 
+    private boolean canRemove() {
+        return true;
+    }
+
     private void validateProfitEstimateId() {
         if (!StringUtils.hasText(profitEstimateId)) {
             throw new AggregateValidateException("预估利润ID不能为空");
@@ -245,13 +245,13 @@ public class ProfitEstimateAggregate implements TianyanFinanceAggregate {
 
     private void validateCreateUserId() {
         if (!StringUtils.hasText(createUserId)) {
-            throw new AggregateValidateException("创建者ID不能为空");
+            throw new AggregateValidateException("创建用户ID不能为空");
         }
     }
 
     private void validateModifyUserId() {
         if (!StringUtils.hasText(modifyUserId)) {
-            throw new AggregateValidateException("修改者ID不能为空");
+            throw new AggregateValidateException("修改用户ID不能为空");
         }
     }
 

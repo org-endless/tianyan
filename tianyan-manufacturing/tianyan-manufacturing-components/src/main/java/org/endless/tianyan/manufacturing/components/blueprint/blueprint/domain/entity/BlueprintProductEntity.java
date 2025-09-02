@@ -1,14 +1,15 @@
 package org.endless.tianyan.manufacturing.components.blueprint.blueprint.domain.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.endless.ddd.starter.common.annotation.validate.ddd.Entity;
 import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
-import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityRemoveException;
-import org.endless.ddd.starter.common.exception.ddd.domain.entity.EntityValidateException;
-import org.endless.ddd.starter.common.utils.model.decimal.DecimalTools;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.entity.EntityRemoveException;
 import org.endless.tianyan.manufacturing.common.model.domain.entity.TianyanManufacturingEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 
@@ -26,42 +27,51 @@ import java.math.BigDecimal;
  */
 @Getter
 @ToString
+@Entity
+@Validated
 @Builder(buildMethodName = "innerBuild")
 public class BlueprintProductEntity implements TianyanManufacturingEntity {
 
     /**
      * 蓝图产品ID
      */
+    @NotBlank(message = "蓝图产品ID不能为空")
     private final String blueprintProductId;
 
     /**
      * 资源项ID
      */
+    @NotBlank(message = "资源项ID不能为空")
     private String itemId;
 
     /**
      * 蓝图产品数量
      */
+    @NotNull(message = "蓝图产品数量不能为空")
     private Long quantity;
 
     /**
      * 蓝图产品成功率(8, 5)
      */
+    @NotNull(message = "蓝图产品成功率不能为空")
     private BigDecimal successRate;
 
     /**
-     * 创建者ID
+     * 创建用户ID
      */
+    @NotBlank(message = "创建用户ID不能为空")
     private final String createUserId;
 
     /**
-     * 修改者ID
+     * 修改用户ID
      */
+    @NotBlank(message = "修改用户ID不能为空")
     private String modifyUserId;
 
     /**
      * 是否已删除
      */
+    @NotNull(message = "是否已删除不能为空")
     private Boolean isRemoved;
 
     public static BlueprintProductEntity create(BlueprintProductEntityBuilder builder) {
@@ -77,71 +87,17 @@ public class BlueprintProductEntity implements TianyanManufacturingEntity {
                 .validate();
     }
 
+    @Override
+    public BlueprintProductEntity validate() {
+        return this;
+    }
+
     protected BlueprintProductEntity remove(String modifyUserId) {
-        if (this.isRemoved) {
+        if (Boolean.TRUE.equals(this.isRemoved)) {
             throw new EntityRemoveException("已经被删除的实体<蓝图产品实体>不能再次删除, ID: " + blueprintProductId);
-        }
-        if (!canRemove()) {
-            throw new EntityRemoveException("实体<蓝图产品实体>处于不可删除状态, ID: " + blueprintProductId);
         }
         this.isRemoved = true;
         this.modifyUserId = modifyUserId;
         return this;
-    }
-
-    private boolean canRemove() {
-        return true;
-    }
-
-    @Override
-    public BlueprintProductEntity validate() {
-        validateBlueprintProductId();
-        validateItemId();
-        validateQuantity();
-        validateSuccessRate();
-        validateCreateUserId();
-        validateModifyUserId();
-        validateIsRemoved();
-        return this;
-    }
-
-    private void validateBlueprintProductId() {
-        if (!StringUtils.hasText(blueprintProductId)) {
-            throw new EntityValidateException("蓝图产品ID不能为空");
-        }
-    }
-
-    private void validateItemId() {
-        if (!StringUtils.hasText(itemId)) {
-            throw new EntityValidateException("资源项ID不能为空");
-        }
-    }
-
-    private void validateQuantity() {
-        if (quantity == null || quantity < 0) {
-            throw new EntityValidateException("蓝图产品数量不能为 null 或小于 0，当前值为: " + quantity);
-        }
-    }
-
-    private void validateSuccessRate() {
-        DecimalTools.validateRate(successRate);
-    }
-
-    private void validateCreateUserId() {
-        if (!StringUtils.hasText(createUserId)) {
-            throw new EntityValidateException("创建者ID不能为空");
-        }
-    }
-
-    private void validateModifyUserId() {
-        if (!StringUtils.hasText(modifyUserId)) {
-            throw new EntityValidateException("修改者ID不能为空");
-        }
-    }
-
-    private void validateIsRemoved() {
-        if (isRemoved == null) {
-            throw new EntityValidateException("是否已删除不能为 null ");
-        }
     }
 }

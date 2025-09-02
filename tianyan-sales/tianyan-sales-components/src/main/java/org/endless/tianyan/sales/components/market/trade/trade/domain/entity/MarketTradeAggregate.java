@@ -1,0 +1,144 @@
+package org.endless.tianyan.sales.components.market.trade.trade.domain.entity;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+import org.endless.ddd.starter.common.config.utils.id.IdGenerator;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateRemoveException;
+import org.endless.ddd.starter.common.exception.ddd.domain.entity.aggregate.AggregateValidateException;
+import org.endless.tianyan.sales.common.model.domain.entity.TianyanSalesAggregate;
+import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+
+/**
+ * MarketTradeAggregate
+ * <p>市场交易聚合根
+ * <p>
+ * create 2025/07/26 18:57
+ * <p>
+ * update 2025/07/26 18:57
+ *
+ * @author Deng Haozhi
+ * @see TianyanSalesAggregate
+ * @since 0.0.1
+ */
+@Getter
+@ToString
+@Builder(buildMethodName = "innerBuild")
+public class MarketTradeAggregate implements TianyanSalesAggregate {
+
+    /**
+     * 市场交易ID
+     */
+    private final String marketTradeId;
+
+    /**
+     * 资源项ID
+     */
+    private String itemId;
+
+    /**
+     * 成交价格(17, 2)
+     */
+    private BigDecimal price;
+
+    /**
+     * 资源项交易数量(20, 5)
+     */
+    private String itemQuantity;
+
+    /**
+     * 创建用户ID
+     */
+    private final String createUserId;
+
+    /**
+     * 修改用户ID
+     */
+    private String modifyUserId;
+
+    /**
+     * 是否已删除
+     */
+    private Boolean isRemoved;
+
+    public static MarketTradeAggregate create(MarketTradeAggregateBuilder builder) {
+        return builder
+                .marketTradeId(IdGenerator.of())
+                .modifyUserId(builder.createUserId)
+                .isRemoved(false)
+                .innerBuild()
+                .validate();
+    }
+
+    public MarketTradeAggregate remove(String modifyUserId) {
+        if (this.isRemoved) {
+            throw new AggregateRemoveException("已经被删除的聚合根<市场交易聚合根>不能再次删除, ID: " + marketTradeId);
+        }
+        if (!canRemove()) {
+            throw new AggregateRemoveException("聚合根<市场交易聚合根>处于不可删除状态, ID: " + marketTradeId);
+        }
+        this.isRemoved = true;
+        this.modifyUserId = modifyUserId;
+        return this;
+    }
+
+    @Override
+    public MarketTradeAggregate validate() {
+        validateMarketTradeId();
+        validateItemId();
+        validatePrice();
+        validateItemQuantity();
+        validateCreateUserId();
+        validateModifyUserId();
+        validateIsRemoved();
+        return this;
+    }
+
+    private boolean canRemove() {
+        return true;
+    }
+
+    private void validateMarketTradeId() {
+        if (!StringUtils.hasText(marketTradeId)) {
+            throw new AggregateValidateException("市场交易ID不能为空");
+        }
+    }
+
+    private void validateItemId() {
+        if (!StringUtils.hasText(itemId)) {
+            throw new AggregateValidateException("资源项ID不能为空");
+        }
+    }
+
+    private void validatePrice() {
+        if (price == null) {
+            throw new AggregateValidateException("成交价格(17, 2)不能为 null ");
+        }
+    }
+
+    private void validateItemQuantity() {
+        if (!StringUtils.hasText(itemQuantity)) {
+            throw new AggregateValidateException("资源项交易数量(20, 5)不能为空");
+        }
+    }
+
+    private void validateCreateUserId() {
+        if (!StringUtils.hasText(createUserId)) {
+            throw new AggregateValidateException("创建用户ID不能为空");
+        }
+    }
+
+    private void validateModifyUserId() {
+        if (!StringUtils.hasText(modifyUserId)) {
+            throw new AggregateValidateException("修改用户ID不能为空");
+        }
+    }
+
+    private void validateIsRemoved() {
+        if (isRemoved == null) {
+            throw new AggregateValidateException("是否已删除不能为 null ");
+        }
+    }
+}

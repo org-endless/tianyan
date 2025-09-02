@@ -1,6 +1,9 @@
 package org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.impl;
 
 import org.endless.tianyan.metadata.components.data.game.eve.application.query.handler.GameEveDataQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveDataQueryHandlerImpl
@@ -14,6 +17,9 @@ import org.endless.tianyan.metadata.components.data.game.eve.application.query.h
  * @see GameEveDataQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class GameEveDataQueryHandlerImpl implements GameEveDataQueryHandler {
 
 

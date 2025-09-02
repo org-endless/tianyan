@@ -2,6 +2,9 @@ package org.endless.tianyan.manufacturing.components.blueprint.game.eve.applicat
 
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.anticorruption.GameEveBlueprintQueryRepository;
 import org.endless.tianyan.manufacturing.components.blueprint.game.eve.application.query.handler.GameEveBlueprintQueryHandler;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * GameEveBlueprintQueryHandlerImpl
@@ -15,6 +18,9 @@ import org.endless.tianyan.manufacturing.components.blueprint.game.eve.applicati
  * @see GameEveBlueprintQueryHandler
  * @since 0.0.1
  */
+@Lazy
+@Service
+@Validated
 public class GameEveBlueprintQueryHandlerImpl implements GameEveBlueprintQueryHandler {
 
     /**

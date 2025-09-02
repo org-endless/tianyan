@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ItemRestController
- * <p>资源项领域Rest控制器
+ * <p>资源项领域REST控制器
  * <p>
  * itemCreate 2025/07/23 01:04
  * <p>
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Lazy
 @RestController
-@RequestMapping("/item")
+@RequestMapping("/item/item")
 public class ItemRestController implements TianyanItemRestController {
 
     /**
@@ -49,11 +49,12 @@ public class ItemRestController implements TianyanItemRestController {
     }
 
     @PostMapping("/command/create")
-    @Log(message = "资源项创建", value = "#command")
+    @Log(message = "资源项创建命令", value = "#command")
     public ResponseEntity<RestResponse<ItemCreateCRespTransfer>> create(
-            @NotNull(message = "资源项创建命令请求体不能为空")
+            @NotNull(message = "资源项创建命令请求传输对象不能为空")
             @Valid @RequestBody ItemCreateCReqTransfer command) {
-        return response(itemCommandHandler.create(command)).success("资源项创建成功");
+        return response(itemCommandHandler.create(command))
+                .success("资源项创建成功");
     }
 
     @Override
